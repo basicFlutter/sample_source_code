@@ -10,6 +10,10 @@ class Style {
 
     brightness: Brightness.light,
     scaffoldBackgroundColor: Colors.white,
+    primaryColor: AppColors.lightBlue,
+    highlightColor: Colors.white,
+    secondaryHeaderColor: AppColors.unselected,
+
 
     appBarTheme:  AppBarTheme(
         color: Colors.white54,
@@ -19,6 +23,7 @@ class Style {
         )
     ),
 
+
     iconTheme: IconThemeData(color: Colors.grey[700]),
     textTheme:  TextTheme(
       displayLarge: TextStyle(fontSize: 37.sp, fontWeight: FontWeight.w400,fontFamily: "QuicklyGone" , color: const Color(0xff3F61AC)),
@@ -26,10 +31,11 @@ class Style {
       displaySmall:const TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.indigoAccent ),
       headlineLarge: const TextStyle(fontSize: 13, color: Colors.deepPurple),
       headlineMedium:const TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.deepPurple ),
-      headlineSmall:const TextStyle(fontSize: 15 , color: Colors.deepPurple ),
-      bodyLarge: TextStyle(fontSize: 15,  color: Colors.grey[800]),
+      headlineSmall:const TextStyle(fontSize: 15 , color: AppColors.grayText ),
+      bodyLarge:  TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w900, color: Colors.black),
       bodyMedium:const TextStyle(fontSize: 15, color: Colors.grey),
       bodySmall:const TextStyle(fontSize: 15, color: Colors.grey),
+
       labelLarge: TextStyle(fontSize: 37.sp, fontWeight: FontWeight.w400,fontFamily: "QuicklyGone" , color: const Color(0xff3F61AC)),  /// for HillzDealer in login page
       labelSmall: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400,fontFamily: "Radley-Regular" , color: const Color(0xff3F61AC)), /// for Driven by Future,Run Faster, Cost Less in login page
     ),

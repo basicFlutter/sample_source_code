@@ -1,29 +1,5 @@
 class AppImages {
   static String prefixUrl = '';
-  static const String suv = 'assets/images/SUV.jpg';
-  static const String sedan = 'assets/images/sedan.jpg';
-  static const String minivan = 'assets/images/Minivans.jpg';
-  static const String carfax = 'assets/images/carfaxcanada.png';
-  static const String certified = 'assets/images/certified.png';
-  static const String desjardins = 'assets/images/desjardins.png';
-  static const String edenpark = 'assets/images/edenpark.png';
-  static const String General_Bank = 'assets/images/General_Bank.jpg';
-  static const String Finance = 'assets/images/iA-Auto-Finance.png';
-  static const String lubrico = 'assets/images/lubrico.png';
-  static const String nationalbank = 'assets/images/nationalbank.png';
-  static const String NFC = 'assets/images/NFC.png';
-  static const String rifco = 'assets/images/rifco.png';
-  static const String td = 'assets/images/td.png';
-  static const String ucda = 'assets/images/ucda.png';
-  static const String tab1 = 'assets/images/tab1.jpg';
-  static const String tab2 = 'assets/images/tab2.jpg';
-  static const String tab3 = 'assets/images/tab3.jpg';
-  static const String tab4 = 'assets/images/tab4.jpg';
-  static const String tab5 = 'assets/images/tab5.jpg';
-  static const String detailing = 'assets/images/detailing.jpg';
-  static const String aboutUs = 'assets/images/about_us.jpg';
-  static const String gurus1 = 'assets/images/carGurus1.png';
-  static const String gurus2 = 'assets/images/carGurus2.png';
-  static const String instagram = 'assets/images/instagram.png';
-  static const String preImage = 'assets/images/pre-image.png';
+  static String pageLogo = "assets/images/light_login_back.png" ;
+  static String qualityLogo = 'assets/images/logo2.png';
 }

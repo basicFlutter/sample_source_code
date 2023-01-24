@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../constants/app_dimensions.dart';
 import '../constants/app_styles.dart';
@@ -31,7 +32,7 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 45,
+        height: 48,
         child: _button(context));
   }
 
@@ -41,7 +42,7 @@ class _CustomButtonState extends State<CustomButton> {
           const EdgeInsets.symmetric(horizontal: AppDimensions.paddingContent),
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                     Radius.circular(AppDimensions.buttonRadius))),
             backgroundColor:
@@ -63,13 +64,11 @@ class _CustomButtonState extends State<CustomButton> {
                   Text(
                     widget.text,
                     style: AppStyles.button.copyWith(
-                        color: widget.textColor != null
-                            ? widget.textColor
-                            : widget.onTab == null
+                        color: widget.textColor ?? (widget.onTab == null
                                 ? Theme.of(context).dividerColor
-                                : Theme.of(context).indicatorColor),
+                                : Theme.of(context).indicatorColor)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Icon(
@@ -81,9 +80,9 @@ class _CustomButtonState extends State<CustomButton> {
             : Text(
                 widget.text,
                 style: AppStyles.button.copyWith(
-                    color: widget.onTab == null
+                    color: widget.textColor ?? (widget.onTab == null
                         ? Theme.of(context).dividerColor
-                        : Theme.of(context).indicatorColor),
+                        : Theme.of(context).indicatorColor)),
               ),
       ),
     );
@@ -100,10 +99,10 @@ class _CustomButtonState extends State<CustomButton> {
             style: AppStyles.button
                 .copyWith(color: Theme.of(context).indicatorColor),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
-          Container(
+          SizedBox(
             width: 20,
             height: 20,
             child: CircularProgressIndicator(

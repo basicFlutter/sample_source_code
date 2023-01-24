@@ -6,6 +6,7 @@ import 'package:new_panel/core/data/network/api_provider.dart';
 import 'package:new_panel/core/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_panel/features/forgot_pass_feature/presentation/pages/forget_pass_page.dart';
 import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
 Logger logger = Logger();
 void main() {
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: const LoginPage(),
+      child: const ForgetPassPage(),
     );
   }
 }

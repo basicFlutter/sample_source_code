@@ -30,19 +30,18 @@ class CustomCoupleButton extends StatelessWidget {
           child: CustomButton(
             onTab: leftOnTab,
             text: leftButtonText,
-            buttonColor: Theme.of(context).primaryColor,
+            textColor: Colors.black,
+            buttonColor: Theme.of(context).secondaryHeaderColor,
           ),
         ),
         Flexible(
           flex: 1,
-          child: TextButton(
-              onPressed: rightOnTab,
-              child: Center(
-                child: Text(
-                  rightButtonText,
-                  style: TextStyle(color: Theme.of(context).primaryColor),
-                ),
-              )),
+          child: CustomButton(
+              onTab: rightOnTab,
+              text: rightButtonText,
+            textColor: Colors.white,
+            buttonColor: Theme.of(context).primaryColor,
+             ),
         )
       ],
     );

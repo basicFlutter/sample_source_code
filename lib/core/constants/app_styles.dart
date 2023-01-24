@@ -115,13 +115,13 @@ class AppStyles {
   );
 
   static  TextStyle titleStyleDetail = TextStyle(
-      color: AppColors.gray,
+      color: AppColors.grayText,
       fontSize: 11.sp,
       fontWeight: FontWeight.bold,
   );
 
   static  TextStyle subTitleStyleDetail = TextStyle(
-    color: AppColors.gray,
+    color: AppColors.grayText,
     fontSize: 10.sp,
     fontWeight: FontWeight.normal,
   );
@@ -139,7 +139,7 @@ class AppStyles {
   );
 
   static  TextStyle valueTableCarDetail = TextStyle(
-    color: AppColors.gray,
+    color: AppColors.grayText,
     fontSize: 10.sp,
     fontWeight: FontWeight.normal,
   );
