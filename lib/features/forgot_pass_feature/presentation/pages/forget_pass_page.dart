@@ -7,6 +7,7 @@ import 'package:new_panel/core/widgets/custom_title.dart';
 
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/widgets/custom_body_with_logo.dart';
+import '../../../../core/widgets/custom_space.dart';
 import '../../../login_feature/presentation/widgets/hillz_text.dart';
 import '../../../login_feature/presentation/widgets/login_container.dart';
 
@@ -35,11 +36,11 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
       key: formKey,
       child: Column(children: [
         _title() ,
-        SizedBox(height: 20.h,),
+        const CustomSpace(),
         CustomInput(isRequired : true ,inputController: usernameController, label: 'Username') ,
-        SizedBox(height: 20.h,),
+        const CustomSpace(),
         CustomInput(isRequired: true , inputController: emailController, label: 'Email Address'),
-        SizedBox(height: 20.h,),
+        const CustomSpace(),
         CustomCoupleButton(rightButtonText: 'Submit', leftButtonText: 'Cancel' , rightOnTab: (){
           if(formKey.currentState!.validate()){
 

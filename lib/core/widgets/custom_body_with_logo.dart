@@ -9,7 +9,8 @@ class CustomBodyWithLogo extends StatelessWidget {
   final Widget body ;
   final double? bodyHeight ;
   final double? bodyWidth ;
-  const CustomBodyWithLogo({Key? key , required this.body , this.bodyHeight , this.bodyWidth }) : super(key: key);
+  final double? spaceFromBottom ;
+  const CustomBodyWithLogo({Key? key ,this.spaceFromBottom ,  required this.body , this.bodyHeight , this.bodyWidth }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class CustomBodyWithLogo extends StatelessWidget {
           child: Container(
             width:bodyWidth?? 428.w,
             height:bodyHeight?? 562.h,
-            padding: EdgeInsets.only(top: 40.h , bottom: 60.h , left: 24.w , right: 24.w),
+            padding: EdgeInsets.only(top: 40.h , bottom:spaceFromBottom ??  60.h , left: 24.w , right: 24.w),
             decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(30.r ) , topRight: Radius.circular(30.r ))

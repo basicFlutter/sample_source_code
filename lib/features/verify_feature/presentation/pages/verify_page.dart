@@ -8,6 +8,8 @@ import 'package:new_panel/core/widgets/custom_sub_title.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/custom_title.dart';
 
+import '../../../../core/widgets/custom_space.dart';
+
 class VerifyPage extends StatefulWidget {
   const VerifyPage({Key? key}) : super(key: key);
 
@@ -23,6 +25,7 @@ class _VerifyPageState extends State<VerifyPage> {
     return Scaffold(
       body: CustomBodyWithLogo(
         body: _body(),
+        spaceFromBottom:54.h ,
         bodyHeight: 449.h,
       ),
     );
@@ -32,25 +35,32 @@ class _VerifyPageState extends State<VerifyPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _title(),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: _title(),
+        ),
         const CustomDescription(
             text:
                 'There is not any activity report from this device over the last 7  days to show that it is really you, complete the task below'),
-        SizedBox(
-          height: 20.h,
+        const CustomSpace(),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          child:  CustomSubTitle(text: 'Enter Code'),
         ),
-        const CustomSubTitle(text: 'Enter Code'),
         CustomInput(
           inputController: codeController,
           label: 'code',
         ),
-        SizedBox(
-          height: 29.h,
+        const CustomSpace(),
+        Row(
+          children: [CustomText(text: 'Dont  ask me again on this device')],
         ),
-        Row(children: [
-        CustomText(text: 'Dont  ask me again on this device')
-        ],),
-        CustomCoupleButton(rightButtonText: 'Login', leftButtonText: 'Cancel')
+        const CustomSpace(),
+        CustomCoupleButton(
+            rightOnTab: () {},
+            leftOnTab: () {},
+            rightButtonText: 'Login',
+            leftButtonText: 'Cancel')
       ],
     );
   }
