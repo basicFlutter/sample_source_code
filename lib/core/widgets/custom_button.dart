@@ -41,14 +41,16 @@ class _CustomButtonState extends State<CustomButton> {
       padding:
           const EdgeInsets.symmetric(horizontal: AppDimensions.paddingContent),
       child: ElevatedButton(
+
           style: ElevatedButton.styleFrom(
+            elevation: 0,
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                     Radius.circular(AppDimensions.buttonRadius))),
             backgroundColor:
                 widget.buttonColor ?? Theme.of(context).primaryColor,
           ),
-          onPressed: widget.onTab ?? null,
+          onPressed: widget.onTab ,
           child: widget.isLoading ?? false ? _loading(context) : _text()),
     );
   }
