@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-const baseUrl = 'https://api.hillzusers.com/api/';
-// const domain = 'autohousenewmarket.ca';
-const domain = 'localhost:3000';
-const chatSocketUrl = 'wss://chat.hillzusers.com:8443/chat';
+// const baseUrl = 'https://api.hillzusers.com/api/';
+const baseUrl = 'http://192.168.1.119:8000';
+// const domain = 'localhost:3000';
+
 
 
 abstract class ApiProviderInterface {

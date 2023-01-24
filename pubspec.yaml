@@ -53,6 +53,8 @@ dependencies:
   photo_view: ^0.14.0
   flutter_svg: ^0.23.0+1
   flutter_html: ^2.2.1
+  global_bottom_navigation_bar: ^0.0.8
+
 
 dev_dependencies:
   flutter_test:

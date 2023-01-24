@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/widgets/custom_body_with_logo.dart';
 import 'package:new_panel/core/widgets/custom_couple_button.dart';
 import 'package:new_panel/core/widgets/custom_description.dart';
@@ -8,6 +10,7 @@ import 'package:new_panel/core/widgets/custom_sub_title.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/custom_title.dart';
 
+import '../../../../core/widgets/custom_check_box.dart';
 import '../../../../core/widgets/custom_space.dart';
 
 class VerifyPage extends StatefulWidget {
@@ -53,7 +56,9 @@ class _VerifyPageState extends State<VerifyPage> {
         ),
         const CustomSpace(),
         Row(
-          children: [CustomText(text: 'Dont  ask me again on this device')],
+          children: [
+            CustomCheckBox(isChecked:false) ,
+            const CustomText(text: 'Dont  ask me again on this device')],
         ),
         const CustomSpace(),
         CustomCoupleButton(
@@ -67,8 +72,12 @@ class _VerifyPageState extends State<VerifyPage> {
 
   Widget _title() {
     return Row(
-      children: const [
-        CustomTitle(text: 'Verify Your Identity'),
+      children:  [
+        SvgPicture.asset(AppImages.verifyMobile) ,
+        const Padding(
+          padding: EdgeInsets.only(left: 8.0),
+          child: CustomTitle(text: 'Verify Your Identity'),
+        ),
       ],
     );
   }
