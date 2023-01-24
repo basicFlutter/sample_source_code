@@ -1,73 +1,64 @@
 import "package:flutter/material.dart";
+import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:new_panel/core/constants/app_colors.dart";
 
-ThemeData customLightTheme() {
-  TextTheme _customLightThemesTextTheme(TextTheme base) {
-    return base.copyWith(
-        headline1: base.headline1?.copyWith(
-          fontFamily: "Roboto",
-          fontSize: 30,
-          fontWeight: FontWeight.bold,
-          color: AppColors.titleColor,
-        ),
-        headline2: base.headline2?.copyWith(
-          fontFamily: "Roboto",
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-          color: AppColors.titleColor,
-        ),
-        headline3: base.headline3?.copyWith(
-          fontSize: 15.0,
-          color: AppColors.gray,
-        ),
-        headline4: base.headline4?.copyWith(
-          fontSize: 12.0,
-          fontWeight: FontWeight.bold,
-          color: AppColors.titleColor,
-        ),
-        headline5: base.headline5?.copyWith(
-          fontSize: 22.0,
-          color: AppColors.titleColor,
-        ),
-        caption: base.caption?.copyWith(
-            color: AppColors.gray, fontWeight: FontWeight.bold, fontSize: 10),
-        bodyText1: base.bodyText1?.copyWith(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: AppColors.gray,
-        ),
-        bodyText2:
-            base.bodyText2?.copyWith(color: AppColors.titleColor, fontSize: 14),
-        overline:
-            base.overline?.copyWith(color: AppColors.yellow, fontSize: 12));
-  }
+import 'package:flutter/material.dart';
 
-  final ThemeData lightTheme = ThemeData.light();
-  return lightTheme.copyWith(
-    textTheme: _customLightThemesTextTheme(lightTheme.textTheme),
-    primaryColor: AppColors.customGray,
-    secondaryHeaderColor: AppColors.yellow,
-    errorColor: AppColors.red,
-    hintColor: AppColors.green,
-    disabledColor: AppColors.unselected,
-    cardColor: Colors.white,
-    shadowColor: AppColors.unselected,
-    backgroundColor: AppColors.darkBackground,
-    indicatorColor: AppColors.yellow,
-    dividerColor: AppColors.gray,
-    toggleableActiveColor: AppColors.green,
-    scaffoldBackgroundColor: AppColors.backgroundColor,
-    bottomAppBarColor: AppColors.customGray,
-    primaryIconTheme: lightTheme.primaryIconTheme.copyWith(
-      color: AppColors.customGray,
-      size: 20,
+class Style {
+
+  static ThemeData lightTheme = ThemeData(
+
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: Colors.white,
+
+    appBarTheme:  AppBarTheme(
+        color: Colors.white54,
+        titleTextStyle:  TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[700]),
+        iconTheme: IconThemeData(
+            color: Colors.grey[900]
+        )
     ),
-    iconTheme: lightTheme.iconTheme.copyWith(color: AppColors.customGray),
-    tabBarTheme: lightTheme.tabBarTheme.copyWith(
-      labelColor: AppColors.customGray,
-      unselectedLabelColor: AppColors.backgroundColor,
+
+    iconTheme: IconThemeData(color: Colors.grey[700]),
+    textTheme:  TextTheme(
+      displayLarge: TextStyle(fontSize: 37.sp, fontWeight: FontWeight.w400,fontFamily: "QuicklyGone" , color: const Color(0xff3F61AC)),
+      displayMedium: TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.grey[800] ),
+      displaySmall:const TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.indigoAccent ),
+      headlineLarge: const TextStyle(fontSize: 13, color: Colors.deepPurple),
+      headlineMedium:const TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.deepPurple ),
+      headlineSmall:const TextStyle(fontSize: 15 , color: Colors.deepPurple ),
+      bodyLarge: TextStyle(fontSize: 15,  color: Colors.grey[800]),
+      bodyMedium:const TextStyle(fontSize: 15, color: Colors.grey),
+      bodySmall:const TextStyle(fontSize: 15, color: Colors.grey),
+      labelLarge: TextStyle(fontSize: 37.sp, fontWeight: FontWeight.w400,fontFamily: "QuicklyGone" , color: const Color(0xff3F61AC)),  /// for HillzDealer in login page
+      labelSmall: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400,fontFamily: "Radley-Regular" , color: const Color(0xff3F61AC)), /// for Driven by Future,Run Faster, Cost Less in login page
     ),
-    buttonTheme:
-        lightTheme.buttonTheme.copyWith(buttonColor: AppColors.customGray),
   );
+
+
+
+  static ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    appBarTheme:  AppBarTheme(
+        titleTextStyle:  TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[400]),
+        iconTheme: IconThemeData(
+            color: Colors.grey[500]
+        )
+    ),
+
+    iconTheme: IconThemeData(color: Colors.grey[500] ,),
+    textTheme:  TextTheme(
+      displayLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[900]),
+      displayMedium: TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.grey[800] ),
+      displaySmall:const TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.indigoAccent ),
+      headlineLarge: const TextStyle(fontSize: 13, color: Colors.deepPurple),
+      headlineMedium:const TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.deepPurple ),
+      headlineSmall:const TextStyle(fontSize: 15 , color: Colors.deepPurple ), ///
+      bodyLarge: TextStyle(fontSize: 15,  color: Colors.grey[800]),
+      bodyMedium:const TextStyle(fontSize: 15, color: Colors.grey),
+      bodySmall:const TextStyle(fontSize: 15, color: Colors.grey),
+    ),
+  );
+
 }
+
