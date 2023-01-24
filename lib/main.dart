@@ -8,11 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/features/forgot_pass_feature/presentation/pages/forget_pass_page.dart';
 import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
-import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
+import 'package:new_panel/features/theme_switcher/presentation/manager/theme_switcher_bloc.dart';
 import 'package:new_panel/features/verify_feature/presentation/pages/verify_page.dart';
-Logger logger = Logger();
-void main() {
 
+Logger logger = Logger();
+
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   serviceLocator();
@@ -24,28 +25,45 @@ void main() {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp( MyApp());
-
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
 
+  ThemeMode themeMode = ThemeMode.light;
+
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(428, 926),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: Style.lightTheme,
-          darkTheme: Style.darkTheme,
-          themeMode: ThemeMode.light,
-          home: child,
-        );
-      },
-      child: const VerifyPage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ThemeSwitcherBloc>(
+          create: (context) => locator<ThemeSwitcherBloc>()..add(const GetThemeModeEvent()),)
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(428, 926),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return BlocConsumer<ThemeSwitcherBloc, ThemeSwitcherState>(
+            listener: (context , state){
+              if(state is AppThemeSwitchState){
+                themeMode = state.themeMode;
+              }
+            },
+            builder: (context, state) {
+
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                theme: Style.lightTheme,
+                darkTheme: Style.darkTheme,
+                themeMode: themeMode,
+                home: child,
+              );
+            },
+          );
+        },
+        child: const LoginPage(),
+      ),
     );
   }
 }

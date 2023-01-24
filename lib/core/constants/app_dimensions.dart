@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class AppDimensions {
   static const double heightComponent = 45;
   static const double heightImage = 240;
@@ -5,7 +7,7 @@ class AppDimensions {
   static const double heightImageDialog = 100;
   static const double fontSizeInput = 18;
   static const double buttonRadius = 8;
-  static const double smallButtonRadius = 7;
+  static  double smallButtonRadius = 8.r;
   static const double radiusStatus = 4;
   static const double radiusIcon = 4;
   static const double divider = 1.0;
@@ -20,4 +22,5 @@ class AppDimensions {
   static const double arcHeightHeader = 40.0;
   static const double marginForm = 12.0;
   static const double radiusLoading = 50;
+
 }

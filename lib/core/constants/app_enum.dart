@@ -11,3 +11,8 @@ enum OdometerTypeEnum { MI, KM }
 enum SortTypeEnum { Year, Make, Model, BodyStyle, Price, none }
 
 enum SortOrderEnum { ASC, DESC }
+
+enum AppTheme {
+  dark ,
+  light
+}

@@ -32,9 +32,9 @@ class HillzLogo extends StatelessWidget {
                   SizedBox(
                     height: 5.8.h,
                   ),
-                  Text("HillzDealer" , style: Theme.of(context).textTheme.labelLarge,),
-                  Text("Driven by Future," , style: Theme.of(context).textTheme.labelSmall,),
-                  Text("Run Faster, Cost Less" , style: Theme.of(context).textTheme.labelSmall,),
+                  Text("HillzDealer" , style: Theme.of(context).textTheme.displayLarge,),
+                  Text("Driven by Future," , style: Theme.of(context).textTheme.displaySmall,),
+                  Text("Run Faster, Cost Less" , style: Theme.of(context).textTheme.displaySmall,),
 
                 ],
               ),

@@ -96,39 +96,33 @@ class CustomInput extends StatelessWidget {
 
           // constraints: BoxConstraints(maxHeight: 330 , minHeight: 50),
           counterText: '',
-          prefixText: prefixText ?? null,
+          prefixText: prefixText,
           suffixIcon: suffixIcon != null
               ? Icon(
             suffixIcon,
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).inputDecorationTheme.suffixIconColor,
           )
               : null,
           prefixIcon: prefixIcon != null
               ? Icon(
             prefixIcon,
-            color: prefixIconColor,
+            color: Theme.of(context).inputDecorationTheme.prefixIconColor,
           )
               : hasMoneyFormat ?? false
-              ? Icon(Icons.attach_money)
+              ? const Icon(Icons.attach_money)
               : null,
-          focusedBorder: OutlineInputBorder(
-              borderRadius:
-              BorderRadius.circular(AppDimensions.smallButtonRadius),
-              borderSide: BorderSide(color: Theme.of(context).dividerColor)),
-          border: OutlineInputBorder(
-              borderRadius:
-              BorderRadius.circular(AppDimensions.smallButtonRadius),
-              borderSide: BorderSide(color: Theme.of(context).dividerColor)),
-          enabledBorder: OutlineInputBorder(
-              borderRadius:
-              BorderRadius.circular(AppDimensions.smallButtonRadius),
-              borderSide: BorderSide(color: Theme.of(context).dividerColor)),
+          focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
+          border: Theme.of(context).inputDecorationTheme.border,
+          enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
           floatingLabelBehavior:
           floatingLabelBehavior ?? FloatingLabelBehavior.auto,
           label: Text(
             isRequired ?? false ? '* $label' : label,
-            style:
-            labelStyle ?? Theme.of(context).textTheme.headlineSmall),
+            style:Theme.of(context).inputDecorationTheme.labelStyle
+          ),
+          hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
+          errorStyle: Theme.of(context).inputDecorationTheme.errorStyle,
+          fillColor: Theme.of(context).inputDecorationTheme.fillColor
           ),
         ),
     );
