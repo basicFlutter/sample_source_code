@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/features/forgot_pass_feature/presentation/pages/forget_pass_page.dart';
 import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
+import 'package:new_panel/features/verify_feature/presentation/pages/verify_page.dart';
 Logger logger = Logger();
 void main() {
 
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: const ForgetPassPage(),
+      child: const VerifyPage(),
     );
   }
 }

@@ -20,6 +20,7 @@ class ForgetPassPage extends StatefulWidget {
 class _ForgetPassPageState extends State<ForgetPassPage> {
   TextEditingController usernameController = TextEditingController() ;
   TextEditingController emailController = TextEditingController() ;
+  GlobalKey<FormState> formKey = GlobalKey() ;
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +31,25 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
   }
 
   Widget _forgetPassBody(){
-    return  Column(children: [
-      _title() ,
-      SizedBox(height: 20.h,),
-      CustomInput(inputController: usernameController, label: 'Username') ,
-      SizedBox(height: 20.h,),
-      CustomInput(inputController: emailController, label: 'Email Address'),
-      SizedBox(height: 20.h,),
-      CustomCoupleButton(rightButtonText: 'Submit', leftButtonText: 'Cancel' , rightOnTab: (){},leftOnTab: (){}, )
+    return  Form(
+      key: formKey,
+      child: Column(children: [
+        _title() ,
+        SizedBox(height: 20.h,),
+        CustomInput(isRequired : true ,inputController: usernameController, label: 'Username') ,
+        SizedBox(height: 20.h,),
+        CustomInput(isRequired: true , inputController: emailController, label: 'Email Address'),
+        SizedBox(height: 20.h,),
+        CustomCoupleButton(rightButtonText: 'Submit', leftButtonText: 'Cancel' , rightOnTab: (){
+          if(formKey.currentState!.validate()){
 
-    ],);
+          }
+        },leftOnTab: (){
+          Navigator.of(context).pop();
+        }, )
+
+      ],),
+    );
   }
 
   Widget _title() {

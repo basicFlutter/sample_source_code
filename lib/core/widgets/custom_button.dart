@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 import '../constants/app_dimensions.dart';
 import '../constants/app_styles.dart';
@@ -41,7 +40,6 @@ class _CustomButtonState extends State<CustomButton> {
       padding:
           const EdgeInsets.symmetric(horizontal: AppDimensions.paddingContent),
       child: ElevatedButton(
-
           style: ElevatedButton.styleFrom(
             elevation: 0,
             shape: const RoundedRectangleBorder(

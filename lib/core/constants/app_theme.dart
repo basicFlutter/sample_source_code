@@ -30,12 +30,11 @@ class Style {
       displayMedium: TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.grey[800] ),
       displaySmall:const TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.indigoAccent ),
       headlineLarge: const TextStyle(fontSize: 13, color: Colors.deepPurple),
-      headlineMedium:const TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.deepPurple ),
+      headlineMedium: TextStyle(fontSize: 14.sp, color:AppColors.bodyColor ), //body normal text
       headlineSmall:const TextStyle(fontSize: 15 , color: AppColors.grayText ),
-      bodyLarge:  TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w900, color: Colors.black),
-      bodyMedium:const TextStyle(fontSize: 15, color: Colors.grey),
-      bodySmall:const TextStyle(fontSize: 15, color: Colors.grey),
-
+      bodyLarge:  TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w900, color: Colors.black), //title
+      bodyMedium:TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w900, color: Colors.black), //subTitle
+      bodySmall: TextStyle(fontSize: 14.sp, color: AppColors.grayText), // DESCRIPTION
       labelLarge: TextStyle(fontSize: 37.sp, fontWeight: FontWeight.w400,fontFamily: "QuicklyGone" , color: const Color(0xff3F61AC)),  /// for HillzDealer in login page
       labelSmall: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400,fontFamily: "Radley-Regular" , color: const Color(0xff3F61AC)), /// for Driven by Future,Run Faster, Cost Less in login page
     ),
