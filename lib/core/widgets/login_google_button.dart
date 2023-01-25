@@ -36,7 +36,8 @@ class LoginGoogleButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SvgPicture.asset("assets/images/ic_google.svg" ,
+            SvgPicture.asset(
+              "assets/images/ic_google.svg" ,
               color: Theme.of(context).colorScheme.onTertiary,
               width: 24.w,
               height: 24.w,

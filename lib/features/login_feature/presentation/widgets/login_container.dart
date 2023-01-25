@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/widgets/active_button.dart';
+import 'package:new_panel/core/widgets/check_box_with_text.dart';
+import 'package:new_panel/core/widgets/custom_input.dart';
 import 'package:new_panel/core/widgets/de_active_button.dart';
+import 'package:new_panel/core/widgets/large_title.dart';
 import 'package:new_panel/core/widgets/login_button.dart';
 import 'package:new_panel/core/widgets/login_google_button.dart';
 import 'package:new_panel/features/theme_switcher/presentation/manager/theme_switcher_bloc.dart';
 
 class LoginContainer extends StatelessWidget {
-  const LoginContainer({Key? key}) : super(key: key);
+  LoginContainer({Key? key}) : super(key: key);
+
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
 
 
   @override
@@ -23,23 +31,62 @@ class LoginContainer extends StatelessWidget {
         borderRadius: BorderRadius.only(topLeft: Radius.circular(30.r ) , topRight: Radius.circular(30.r ))
       ),
 
-      child: Column(
-        children: [
-          Row(
-            children: [
-              SvgPicture.asset("assets/images/accont_icon.svg" , )
-            ],
-          ),
+      child: Form(
 
-          Column(children: [
-            LoginButton(onTap: (){
+        child: Column(
+          children: [
+            Row(
+              children: [
+                SvgPicture.asset("assets/images/accont_icon.svg" , ),
+                SizedBox(
+                  width: 8.w,
+                ),
+                const LargeTitle(
+                  text: "Login",
+                )
+              ],
+            ),
 
-            }),
-            LoginGoogleButton(onTap: (){
-              BlocProvider.of<ThemeSwitcherBloc>(context).add(const SwitchThemeEvent());
-            })
-          ],)
-        ],
+            SizedBox(
+              height: 31.h,
+            ),
+
+            CustomInput(
+              inputController: userNameController,
+              label: "Username",
+              isRequired: true,
+            ),
+            SizedBox(
+              height: 16.4.h,
+            ),
+
+            CustomInput(
+              inputController: passwordController,
+              label: "Password",
+              isRequired: true,
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+
+
+            CheckBoxWithText(text: "dsafdsf", isChecked: false),
+
+
+            Column(children: [
+              LoginButton(
+                  onTap: (){
+
+                  }
+              ),
+              LoginGoogleButton(
+                  onTap: (){
+               // BlocProvider.of<ThemeSwitcherBloc>(context).add(const SwitchThemeEvent());
+              }
+              )
+            ],)
+          ],
+        ),
       ),
 
 

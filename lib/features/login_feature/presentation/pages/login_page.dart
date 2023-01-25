@@ -14,6 +14,7 @@ class LoginPage extends StatelessWidget {
         SystemUiMode.manual, overlays: [
     ]);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Align(
@@ -30,7 +31,7 @@ class LoginPage extends StatelessWidget {
               right: 88.w,
               child: const HillzLogo()
           ),
-          Align(
+           Align(
             alignment: Alignment.bottomCenter,
             child: LoginContainer(
 

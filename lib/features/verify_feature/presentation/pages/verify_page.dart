@@ -6,9 +6,10 @@ import 'package:new_panel/core/widgets/custom_body_with_logo.dart';
 import 'package:new_panel/core/widgets/custom_couple_button.dart';
 import 'package:new_panel/core/widgets/custom_description.dart';
 import 'package:new_panel/core/widgets/custom_input.dart';
-import 'package:new_panel/core/widgets/custom_sub_title.dart';
+
 import 'package:new_panel/core/widgets/custom_text.dart';
-import 'package:new_panel/core/widgets/custom_title.dart';
+import 'package:new_panel/core/widgets/large_title.dart';
+import 'package:new_panel/core/widgets/subtitle.dart';
 
 import '../../../../core/widgets/custom_check_box.dart';
 import '../../../../core/widgets/custom_space.dart';
@@ -22,6 +23,7 @@ class VerifyPage extends StatefulWidget {
 
 class _VerifyPageState extends State<VerifyPage> {
   TextEditingController codeController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class _VerifyPageState extends State<VerifyPage> {
         const CustomSpace(),
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0),
-          child:  CustomSubTitle(text: 'Enter Code'),
+          child:  Subtitle(text: 'Enter Code'),
         ),
         CustomInput(
           inputController: codeController,
@@ -76,7 +78,7 @@ class _VerifyPageState extends State<VerifyPage> {
         SvgPicture.asset(AppImages.verifyMobile) ,
         const Padding(
           padding: EdgeInsets.only(left: 8.0),
-          child: CustomTitle(text: 'Verify Your Identity'),
+          child: LargeTitle(text: 'Verify Your Identity'),
         ),
       ],
     );

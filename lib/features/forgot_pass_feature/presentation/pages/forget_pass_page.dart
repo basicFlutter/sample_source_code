@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:new_panel/core/widgets/custom_couple_button.dart';
 import 'package:new_panel/core/widgets/custom_input.dart';
-import 'package:new_panel/core/widgets/custom_title.dart';
+import 'package:new_panel/core/widgets/large_title.dart';
 
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/widgets/custom_body_with_logo.dart';
@@ -77,7 +77,7 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
           padding: const EdgeInsets.only(right: 8.0),
           child: SvgPicture.asset(AppImages.forgetPass),
         ),
-        const CustomTitle(text: 'Forgot your password'),
+        const LargeTitle(text: 'Forgot your password'),
       ],
     );
   }
