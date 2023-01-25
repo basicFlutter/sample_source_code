@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class CustomCheckBox extends StatefulWidget {
   final String? text;
   bool isChecked ;
-   CustomCheckBox({Key? key, this.text , required this.isChecked}) : super(key: key);
+  final Function onChecked ;
+   CustomCheckBox({Key? key,required this.onChecked ,  this.text , required this.isChecked}) : super(key: key);
 
   @override
   State<CustomCheckBox> createState() => _CustomCheckBoxState();
@@ -23,9 +24,10 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
       children: [
         if (widget.text != null)
           Text(widget.text!, style: Theme.of(context).textTheme.headlineMedium),
-        Checkbox(value: widget.isChecked, onChanged: (val) {
+        Checkbox(value: widget.isChecked, onChanged: (value) {
           setState(() {
-            widget.isChecked = val!;
+            widget.onChecked(value );
+            widget.isChecked = value!;
           });
         })
       ],

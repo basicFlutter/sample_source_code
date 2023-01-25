@@ -6,11 +6,11 @@ import '../../../../core/use_case/base_use_case.dart';
 import '../entities/verify_response_entity.dart';
 import '../repositories/verify_repository.dart';
 
-class VerifyUsUseCase extends BaseUseCase<VerifyResponseEntity, Map> {
+class VerifyUseCase extends BaseUseCase<VerifyResponseEntity, Map> {
   VerifyRepository verifyRepository ;
 
 
-  VerifyUsUseCase({required this.verifyRepository});
+  VerifyUseCase({required this.verifyRepository});
 
   @override
   Future<Either<Failure, VerifyResponseEntity>> call(Map params) {

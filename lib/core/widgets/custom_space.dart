@@ -12,7 +12,7 @@ class CustomSpace extends StatelessWidget {
 
   Widget _customSpace() {
     return SizedBox(
-      height: 29.h,
+      height: 16.4.h,
     );
   }
 }
