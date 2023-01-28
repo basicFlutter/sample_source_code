@@ -161,6 +161,12 @@ class AppColors {
 
 
 
+ /// ############################### CheckBox Color ##########################
+  static const Color checkColor = Colors.white;
+  static const Color checkBoxBackgroundColor = Color(0xff005BEA);
+  // static const Color hillzSubtitleDark = Color(0xff3F61AC);
+
+
 
 
 
