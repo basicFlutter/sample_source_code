@@ -57,7 +57,7 @@ class LoginContainer extends StatelessWidget {
               isRequired: true,
             ),
             SizedBox(
-              height: 16.4.h,
+              height: 15.h,
             ),
 
             CustomInput(
@@ -70,7 +70,12 @@ class LoginContainer extends StatelessWidget {
             ),
 
 
-            CheckBoxWithText(text: "dsafdsf", isChecked: false),
+            CheckBoxWithText(
+              text: "Remember me",
+              isChecked: false,
+            ),
+
+            // CheckBoxWithText(text: "dsafdsf", isChecked: false),
 
 
             Column(children: [
@@ -81,7 +86,7 @@ class LoginContainer extends StatelessWidget {
               ),
               LoginGoogleButton(
                   onTap: (){
-               // BlocProvider.of<ThemeSwitcherBloc>(context).add(const SwitchThemeEvent());
+               BlocProvider.of<ThemeSwitcherBloc>(context).add(const SwitchThemeEvent());
               }
               )
             ],)

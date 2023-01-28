@@ -34,6 +34,19 @@ class Style {
       onSurface: Colors.red,
     ),
 
+    checkboxTheme: CheckboxThemeData(
+      checkColor: MaterialStateProperty.all(Colors.deepOrange),
+      fillColor:MaterialStateProperty.resolveWith<Color?>(
+
+            (Set<MaterialState> states) {
+              if(states.contains(MaterialState.selected)){
+                return AppColors.checkBoxBackgroundColor;
+              }
+          return Colors.red; // Defer to the widget's default.
+        },
+      ),
+    ),
+
 
     // appBarTheme:  AppBarTheme(
     //     color: AppColors.appBarBackground,
