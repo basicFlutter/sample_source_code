@@ -119,7 +119,7 @@ class AppColors {
 
   /// ############################### subtitle Colors DARK ##########################
 
-  static const Color smallSubtitleColorDark = Color(0xff637381);
+  static const Color subtitleColorDark = Color(0xff637381);
 
 
   /// ############################### Label Colors ##########################
