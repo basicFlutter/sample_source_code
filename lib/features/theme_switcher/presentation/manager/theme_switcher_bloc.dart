@@ -34,6 +34,7 @@ class ThemeSwitcherBloc extends Bloc<ThemeSwitcherEvent, ThemeSwitcherState> {
        isDark = await SharePref.getBool("isDark");
       emit(AppThemeSwitchState(themeMode: isDark ? ThemeMode.dark : ThemeMode.light));
     });
+    // Theme.of(context).brightness == Brightness.dark TODO THEME
 
 
   }
