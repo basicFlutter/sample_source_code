@@ -1,23 +1,22 @@
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
 
-
 class CustomDropDownWidget extends StatefulWidget {
   CustomDropDownWidget(
       {Key? key,
-        required this.items,
-        required this.onChange,
-        this.defaultText,
-        this.buttonWidth,
-        this.isDisabled ,
-        this.valueStyle,
-        this.shadowColor,
-        this.title,
-        this.dropdownValue,
-        this.height, required this.label})
+      required this.items,
+      required this.onChange,
+      this.defaultText,
+      this.buttonWidth,
+      this.isDisabled,
+      this.valueStyle,
+      this.shadowColor,
+      this.title,
+      this.dropdownValue,
+      this.height,
+      required this.label})
       : super(key: key);
   final List<String> items;
 
@@ -28,8 +27,10 @@ class CustomDropDownWidget extends StatefulWidget {
   final Color? shadowColor;
   final TextStyle? valueStyle;
   final double? height;
-  final String label ;
-  final bool? isDisabled ;
+  final String label;
+
+  final bool? isDisabled;
+
   String? dropdownValue;
 
   @override
@@ -44,32 +45,31 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
       child: Stack(
         children: [
           TextFormField(
-            validator: (value){
-              value = widget.dropdownValue;
-              if(value == null){
-                return '${widget.label} is required';
-              }
-              return null ;
-            },
-            decoration:  InputDecoration(
-              label: Text(widget.label) ,
-              floatingLabelBehavior:  FloatingLabelBehavior.always,
-            )
-          ),
+              validator: (value) {
+                value = widget.dropdownValue;
+                if (value == null) {
+                  return '${widget.label} is required';
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                label: Text(widget.label),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+              )),
           DropdownButtonHideUnderline(
             child: DropdownButton2<String>(
               isExpanded: true,
 
               items: widget.items
                   .map((item) => DropdownMenuItem<String>(
-                value: item,
-                child: Text(
-                  item,
-                  style: widget.valueStyle ??
-                      Theme.of(context).textTheme.headlineMedium,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ))
+                        value: item,
+                        child: Text(
+                          item,
+                          style: widget.valueStyle ??
+                              Theme.of(context).textTheme.headlineMedium,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ))
                   .toList(),
               value: widget.dropdownValue,
               onChanged: (value) {
@@ -80,8 +80,8 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
                   widget.dropdownValue = value;
                 });
               },
-              style:   Theme.of(context).textTheme.headlineMedium,
-              icon:  Icon(
+              style: Theme.of(context).textTheme.headlineMedium,
+              icon: Icon(
                 Icons.keyboard_arrow_down_sharp,
                 color: Theme.of(context).dividerColor,
                 size: 24,
@@ -94,14 +94,14 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
 
               hint: Text(
                 widget.defaultText ?? "",
-                style:Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
                 overflow: TextOverflow.fade,
               ),
               iconEnabledColor: Theme.of(context).primaryColor,
               iconDisabledColor: Theme.of(context).primaryColor,
               buttonHeight: widget.height ?? 60,
               buttonWidth:
-              widget.buttonWidth ?? MediaQuery.of(context).size.width - 20,
+                  widget.buttonWidth ?? MediaQuery.of(context).size.width - 20,
               buttonPadding: const EdgeInsets.only(left: 10, right: 10),
               // buttonDecoration: BoxDecoration(
               //     borderRadius:
