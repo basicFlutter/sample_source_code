@@ -10,10 +10,12 @@ class Style {
   static ThemeData lightTheme = ThemeData(
 
     brightness: Brightness.light,
+    backgroundColor: AppColors.backgroundColor,
     scaffoldBackgroundColor: Colors.white,
     primaryColor: AppColors.lightBlue,
     highlightColor: Colors.white,
     secondaryHeaderColor: AppColors.unselected,
+    dividerColor: AppColors.borderColor,
 
 
     colorScheme: const ColorScheme(

@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
             },
           );
         },
-        child: const LoginPage(),
+        child:  const VerifyPage(username: 'username', password: 'password'),
       ),
     );
   }
