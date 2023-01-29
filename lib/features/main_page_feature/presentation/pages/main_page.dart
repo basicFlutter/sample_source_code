@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       activeIcon: Icon(
         Icons.dashboard,
         color: Theme.of(context).primaryColor,
-        size: 25,
+        size: 35,
       ),
       inActiveIcon: Icon(
         Icons.dashboard,
@@ -47,12 +47,12 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       activeIcon: Icon(
         Icons.add_box,
         color: Theme.of(context).primaryColor,
-        size: 25,
+        size: 35,
       ),
       inActiveIcon: Icon(
         Icons.add_box_rounded,
         color:  Theme.of(context).secondaryHeaderColor,
-        size: 25,
+        size: 35,
       ),
       title: 'more',
       color: Colors.white,
@@ -62,12 +62,12 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           activeIcon: Icon(
             Icons.notifications_rounded,
             color: Theme.of(context).primaryColor,
-            size: 25,
+            size: 35,
           ),
           inActiveIcon: Icon(
             Icons.notifications_rounded,
             color:  Theme.of(context).secondaryHeaderColor,
-            size: 25,
+            size: 35,
           ),
           title: 'learn',
           color: Colors.white,
@@ -78,12 +78,12 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           activeIcon: Icon(
             Icons.person,
             color: Theme.of(context).primaryColor,
-            size: 25,
+            size: 35,
           ),
           inActiveIcon: Icon(
             Icons.person,
             color:  Theme.of(context).secondaryHeaderColor,
-            size: 25,
+            size: 35,
           ),
           title: 'more',
           color: Colors.white,

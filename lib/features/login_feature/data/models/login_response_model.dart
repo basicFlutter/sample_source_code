@@ -1,37 +1,62 @@
 import 'dart:convert';
 
 import 'package:new_panel/features/login_feature/domain/entities/login_response_entity.dart';
-/// accessToken : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwNCwiaWF0IjoxNjc0ODk0OTQwLCJleHAiOjE2NzUxMTA5NDB9.weytCpNw4MtxparOx_fTCZYqHJ6Fyqfyrf_uu7-9YJ4"
-/// refreshToken : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwNCwiaWF0IjoxNjc0ODk0OTQwLCJleHAiOjE2ODAwNzg5NDB9.35jgPJ9EznDP3XZu__rLULvBIcq66Azf-o9woDRM1YE"
+/// message : "Credentials is wrong"
+/// type : "OnPage"
+/// alertType : "Error"
+/// accessToken : "String"
+/// refreshToken : "String"
 
-LoginResponseModel loginResponseModelFromJson(String str) => LoginResponseModel.fromJson(json.decode(str));
-String loginResponseModelToJson(LoginResponseModel data) => json.encode(data.toJson());
-class LoginResponseModel extends LoginResponseEntity {
+LoginResponseModel loginFailedModelFromJson(String str) => LoginResponseModel.fromJson(json.decode(str));
+String loginFailedModelToJson(LoginResponseModel data) => json.encode(data.toJson());
+class LoginResponseModel extends LoginResponseEntity{
   LoginResponseModel({
-      String? accessToken, 
-      String? refreshToken,}) : super(accessToken : accessToken, refreshToken : refreshToken){
+    String? message,
+    String? type,
+    String? alertType,
+    String? accessToken,
+    String? refreshToken,}){
+    _message = message;
+    _type = type;
+    _alertType = alertType;
     _accessToken = accessToken;
     _refreshToken = refreshToken;
-}
+  }
 
   LoginResponseModel.fromJson(dynamic json) {
-    _accessToken = json['accessToken'];
-    _refreshToken = json['refreshToken'];
+    _message = json['message'] ?? '';
+    _type = json['type'] ?? '';
+    _alertType = json['alertType'] ?? '';
+    _accessToken = json['accessToken'] ?? '';
+    _refreshToken = json['refreshToken'] ?? '';
   }
+  String? _message;
+  String? _type;
+  String? _alertType;
   String? _accessToken;
   String? _refreshToken;
-LoginResponseModel copyWith({  String? accessToken,
-  String? refreshToken,
-}) => LoginResponseModel(  accessToken: accessToken ?? _accessToken,
-  refreshToken: refreshToken ?? _refreshToken,
-);
-  @override
+  LoginResponseModel copyWith({  String? message,
+    String? type,
+    String? alertType,
+    String? accessToken,
+    String? refreshToken,
+  }) => LoginResponseModel(  message: message ?? _message,
+    type: type ?? _type,
+    alertType: alertType ?? _alertType,
+    accessToken: accessToken ?? _accessToken,
+    refreshToken: refreshToken ?? _refreshToken,
+  );
+  String? get message => _message;
+  String? get type => _type;
+  String? get alertType => _alertType;
   String? get accessToken => _accessToken;
-  @override
   String? get refreshToken => _refreshToken;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['message'] = _message;
+    map['type'] = _type;
+    map['alertType'] = _alertType;
     map['accessToken'] = _accessToken;
     map['refreshToken'] = _refreshToken;
     return map;

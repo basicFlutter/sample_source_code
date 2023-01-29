@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:new_panel/core/data/cache/cache_provider.dart';
+import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
 import 'package:new_panel/features/login_feature/domain/entities/login_response_entity.dart';
 import 'package:new_panel/features/login_feature/presentation/manager/status/login_status.dart';
@@ -23,29 +24,33 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(state.copyWith(newLoginStatus: LoadingLoginStatus()));
 
       Either<Failure, LoginResponseEntity> response =
-          await loginUseCase.call(event.loginInfo);
+      await loginUseCase.call(event.loginInfo);
 
       response.fold((error) {
-
         emit(state.copyWith(newLoginStatus: FailedLoginStatus()));
-
       }, (LoginResponseEntity data) {
+        if (data.refreshToken?.isEmpty ?? true) {
+          AppUtils.showMessage(
+              message:data.message!, context: event.context, isShowingError: true) ;
+       emit(state.copyWith(newLoginStatus: SuccessLoginStatus()));
 
-        emit(state.copyWith(newLoginStatus: SuccessLoginStatus( )));
-        CacheProvider.saveString('accessToken', data.accessToken!);
-        CacheProvider.saveString('refreshToken', data.refreshToken!);
+        } else {
+          AppUtils.showMessage(
+              message:'you logged in successfully', context: event.context, isShowingError: false) ;
+          emit(state.copyWith(newLoginStatus: SuccessLoginStatus()));
+          CacheProvider.saveString('accessToken', data.accessToken!);
+          CacheProvider.saveString('refreshToken', data.refreshToken!);
+        }
       });
     });
 
 
     on<ChooseGoogleAccountEvent>((event, emit) {
-      if(event.isLoading){
+      if (event.isLoading) {
         emit(state.copyWith(newLoginStatus: LoadingGoogleStatus()));
-      }else{
+      } else {
         emit(state.copyWith(newLoginStatus: SuccessLoginStatus()));
       }
-
     });
-
   }
 }

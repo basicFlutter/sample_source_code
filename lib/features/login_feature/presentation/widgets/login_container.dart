@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,6 +66,7 @@ class _LoginContainerState extends State<LoginContainer> {
         "361382020837-91div34dgrr1i2nsh533hhdcv9vd7rpl.apps.googleusercontent.com",
     scopes: <String>[
       'email',
+      'profile',
       'https://www.googleapis.com/auth/contacts.readonly',
     ],
   );
@@ -192,6 +195,7 @@ class _LoginContainerState extends State<LoginContainer> {
           BlocProvider.of<LoginBloc>(context)
               .add(ChooseGoogleAccountEvent(isLoading: false));
           await _googleSignIn.signIn().then((result) {
+            log( 'goooooogllllllee id ${result?.id}' );
             result?.authentication.then((googleKey) {
               logger.i(googleKey.accessToken);
               logger.i(googleKey.idToken);
