@@ -52,7 +52,7 @@ class CustomInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 67.h,
+      height: 48.h,
       child: TextFormField( controller: inputController,
         inputFormatters: hasMoneyFormat == true ?? false
             ? [ThousandsSeparatorInputFormatter()]
@@ -62,6 +62,7 @@ class CustomInput extends StatelessWidget {
         maxLength: maxLength,
         keyboardType: keyboardType ?? TextInputType.text,
         autovalidateMode: AutovalidateMode.onUserInteraction,
+        scrollPadding: EdgeInsets.only(bottom: 300.h),
 
         style:TextStyle(
           fontSize: 16.sp,

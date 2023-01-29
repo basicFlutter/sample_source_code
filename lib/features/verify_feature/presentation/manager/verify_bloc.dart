@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:new_panel/core/exceptions/failure.dart';
 import 'package:new_panel/features/verify_feature/data/models/verify_map_model.dart';

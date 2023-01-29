@@ -1,13 +1,12 @@
 import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:new_panel/core/constants/app_colors.dart";
-
-import 'package:flutter/material.dart';
 import "package:new_panel/core/constants/app_dimensions.dart";
 
 class Style {
 
   static ThemeData lightTheme = ThemeData(
+
 
     brightness: Brightness.light,
     backgroundColor: AppColors.backgroundColor,
@@ -15,7 +14,7 @@ class Style {
     primaryColor: AppColors.lightBlue,
     highlightColor: Colors.white,
     secondaryHeaderColor: AppColors.unselected,
-    dividerColor: AppColors.borderColor,
+    dividerColor: AppColors.grayText,
 
 
     colorScheme: const ColorScheme(
@@ -42,7 +41,7 @@ class Style {
               if(states.contains(MaterialState.selected)){
                 return AppColors.checkBoxBackgroundColor;
               }
-          return Colors.red; // Defer to the widget's default.
+          return AppColors.lightBlue; // Defer to the widget's default.
         },
       ),
     ),
@@ -89,6 +88,7 @@ class Style {
 
 
     inputDecorationTheme: InputDecorationTheme(
+
 
       focusedBorder: OutlineInputBorder(
           borderRadius:
@@ -175,10 +175,11 @@ class Style {
       /// SubTitle
       titleSmall:TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400,fontFamily: "PublicSans" , color: AppColors.subtitleColor),
       headlineLarge: const TextStyle(fontSize: 13, color: Colors.deepPurple),
-      headlineMedium: TextStyle(fontSize: 14.sp, color:AppColors.bodyColor ), //body normal text
-      headlineSmall:const TextStyle(fontSize: 15 , color: AppColors.grayText ),
+      headlineMedium: TextStyle(fontSize: 14.sp, color:AppColors.darkGrayColor ), //body normal text
+      headlineSmall: TextStyle(fontSize: 14.sp, color: AppColors.lightGrayColor),
       bodyLarge:  TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w900, color: Colors.black),
       bodyMedium:TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w900, color: Colors.black),
+      // bodyText1: TextStyle(fontSize: 10.sp, color: AppColors.lightGrayColor),
       /// DESCRIPTION
       bodySmall: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400,fontFamily: "PublicSans" , color: AppColors.textDescription),
       /// search hint text field text

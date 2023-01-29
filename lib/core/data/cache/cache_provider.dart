@@ -1,39 +1,59 @@
-import 'dart:async';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
-const _prefixUrl = 'prefixUrl';
-const _chatSessionId = 'chatSessionId' ;
+class CacheProvider{
 
-class CacheProvider {
-  CacheProvider._internal();
-
-  late SharedPreferences _preferences;
-
-  static final CacheProvider _singleton = CacheProvider._internal();
-
-  factory CacheProvider() {
-    return _singleton;
+  static save(String key , dynamic value) async{
+    SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+    if (value is bool) {
+      sharedPrefs.setBool(key, value);
+    } else if (value is String) {
+      sharedPrefs.setString(key, value);
+    } else if (value is int) {
+      sharedPrefs.setInt(key, value);
+    } else if (value is double) {
+      sharedPrefs.setDouble(key, value);
+    } else if (value is List<String>) {
+      sharedPrefs.setStringList(key, value);
+    }
   }
 
-  void setPrefixUrl(String url) async {
-    _preferences = await SharedPreferences.getInstance();
-    _preferences.setString(_prefixUrl, url);
-  }
-
-  FutureOr<String> getPrefixUrl() async {
-    _preferences = await SharedPreferences.getInstance();
-    return Future.value(_preferences.getString(_prefixUrl) ?? "");
+  static Future<bool> saveString(String key , String value) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool result = await prefs.setString(key, value);
+    return result;
   }
 
 
-  void setSessionId(String id) async {
-    _preferences = await SharedPreferences.getInstance();
-    _preferences.setString(_chatSessionId, id);
+  static void saveInt(String key , int value) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(key, value);
   }
 
-  FutureOr<String> getSessionId() async {
-    _preferences = await SharedPreferences.getInstance();
-    return Future.value(_preferences.getString(_chatSessionId) ?? "");
+
+
+  static void saveBool(String key , bool value) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(key, value);
   }
+
+  static Future<String?> getString(String key ) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? stringValue = prefs.getString(key);
+    return stringValue;
+  }
+
+  static Future<int> getInt(String key ) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int intValue = prefs.getInt(key) ?? 0;
+    return intValue;
+  }
+
+  static Future<bool> getBool(String key ) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool boolValue = prefs.getBool(key) ?? false;
+    return boolValue;
+  }
+
+
+
 }

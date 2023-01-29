@@ -5,6 +5,7 @@ abstract class VerifyEvent {}
 
 class VerifyCodeEvent extends VerifyEvent{
   VerifyMapModel? verifyInfo ;
+  BuildContext context ;
 
-  VerifyCodeEvent({this.verifyInfo});
+  VerifyCodeEvent({this.verifyInfo , required this.context});
 }

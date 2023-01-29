@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:new_panel/core/constants/app_enum.dart';
-import 'package:new_panel/core/sharePref/share_pref.dart';
+
+import '../../../../core/data/cache/cache_provider.dart';
 
 part 'theme_switcher_event.dart';
 part 'theme_switcher_state.dart';
@@ -19,11 +19,11 @@ class ThemeSwitcherBloc extends Bloc<ThemeSwitcherEvent, ThemeSwitcherState> {
       if(!isDark){
         appTheme = ThemeMode.dark;
         isDark = true;
-        SharePref.saveBool("isDark", isDark);
+        CacheProvider.saveBool("isDark", isDark);
       }else{
         appTheme = ThemeMode.light;
         isDark = false;
-        SharePref.saveBool("isDark", isDark);
+        CacheProvider.saveBool("isDark", isDark);
       }
 
       emit(AppThemeSwitchState(themeMode: isDark ? ThemeMode.dark : ThemeMode.light));
@@ -31,7 +31,7 @@ class ThemeSwitcherBloc extends Bloc<ThemeSwitcherEvent, ThemeSwitcherState> {
 
 
     on<GetThemeModeEvent>((event , emit) async{
-       isDark = await SharePref.getBool("isDark");
+       isDark = await CacheProvider.getBool("isDark");
       emit(AppThemeSwitchState(themeMode: isDark ? ThemeMode.dark : ThemeMode.light));
     });
     // Theme.of(context).brightness == Brightness.dark TODO THEME

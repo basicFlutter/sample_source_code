@@ -103,7 +103,7 @@ class _VerifyPageState extends State<VerifyPage> {
                         rememberMe: isRememberMe);
 
                     BlocProvider.of<VerifyBloc>(context)
-                        .add(VerifyCodeEvent(verifyInfo: userInfo));
+                        .add(VerifyCodeEvent(verifyInfo: userInfo, context: context));
 
                     codeController.clear();
                   }
