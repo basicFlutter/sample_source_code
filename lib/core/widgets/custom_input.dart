@@ -52,7 +52,7 @@ class CustomInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 48.h,
+      height: 66.h,
       child: TextFormField( controller: inputController,
         inputFormatters: hasMoneyFormat == true ?? false
             ? [ThousandsSeparatorInputFormatter()]

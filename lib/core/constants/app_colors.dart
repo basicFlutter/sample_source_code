@@ -124,6 +124,17 @@ class AppColors {
   static const Color subtitleColorDark = Color(0xff637381);
 
 
+
+  /// ############################### largeHeadline Colors ##########################
+
+  static const Color largeHeadlineColor = Color(0xff637381);
+
+  /// ############################### largeHeadline Colors DARK ##########################
+
+  static const Color largeHeadlineColorDark = Color(0xff637381);
+
+
+
   /// ############################### Label Colors ##########################
 
   static const Color labelColor = Color(0xff005BEA);
@@ -165,7 +176,13 @@ class AppColors {
  /// ############################### CheckBox Color ##########################
   static const Color checkColor = Colors.white;
   static const Color checkBoxBackgroundColor = Color(0xff005BEA);
-  // static const Color hillzSubtitleDark = Color(0xff3F61AC);
+  static const Color checkBorderColor = Color(0xff637381);
+  static const Color checkTitleColor = Color(0xff637381);
+
+  static const Color checkColorDark = Colors.white;
+  static const Color checkBoxBackgroundColorDark = Color(0xff005BEA);
+  static const Color checkBorderColorDark = Color(0xff637381);
+  static const Color checkTitleColorDark = Color(0xff637381);
 
 
 

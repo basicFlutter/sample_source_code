@@ -34,7 +34,24 @@ class Style {
     ),
 
     checkboxTheme: CheckboxThemeData(
-      checkColor: MaterialStateProperty.all(Colors.deepOrange),
+      checkColor: MaterialStateProperty.all(AppColors.checkColor),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(3.r)),
+      ),
+      side: MaterialStateBorderSide.resolveWith((Set<MaterialState> states) {
+        if(states.contains(MaterialState.selected)){
+          return const BorderSide(
+              width: 1,
+              color:Colors.transparent
+          );
+        }
+        return const BorderSide(
+            width: 1,
+            color:AppColors.checkBorderColor
+        ); // Defer to the widget's default.
+      },
+
+      ),
       fillColor:MaterialStateProperty.resolveWith<Color?>(
 
             (Set<MaterialState> states) {
@@ -44,6 +61,7 @@ class Style {
           return AppColors.lightBlue; // Defer to the widget's default.
         },
       ),
+
     ),
 
 
@@ -174,9 +192,9 @@ class Style {
       titleMedium: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600,fontFamily: "PublicSans" , color: AppColors.mediumTitleColor),
       /// SubTitle
       titleSmall:TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400,fontFamily: "PublicSans" , color: AppColors.subtitleColor),
-      headlineLarge: const TextStyle(fontSize: 13, color: Colors.deepPurple),
+      headlineLarge:  TextStyle(fontSize: 16.sp, fontWeight:  FontWeight.w400 , fontFamily:  "PublicSans",color: Colors.deepPurple),
       headlineMedium: TextStyle(fontSize: 14.sp, color:AppColors.darkGrayColor ), //body normal text
-      headlineSmall: TextStyle(fontSize: 14.sp, color: AppColors.lightGrayColor),
+      headlineSmall: TextStyle(fontSize: 14.sp , fontWeight: FontWeight.w400 , fontFamily: "PublicSans" ,  color: AppColors.checkTitleColor), /// for title check box
       bodyLarge:  TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w900, color: Colors.black),
       bodyMedium:TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w900, color: Colors.black),
       // bodyText1: TextStyle(fontSize: 10.sp, color: AppColors.lightGrayColor),
@@ -188,6 +206,7 @@ class Style {
       labelMedium: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400,fontFamily: "PublicSans" , color: AppColors.searchText),
       /// label text => carPrice
       labelSmall: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400,fontFamily: "PublicSans" , color: AppColors.labelColor),
+
 
   ),
   );

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:new_panel/core/widgets/active_button.dart';
 import 'package:new_panel/core/widgets/de_active_button.dart';
 
-import 'custom_button.dart';
+
 
 class CustomCoupleButton extends StatelessWidget {
   String rightButtonText;

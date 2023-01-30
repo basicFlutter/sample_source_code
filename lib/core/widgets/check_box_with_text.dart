@@ -24,7 +24,13 @@ class _CheckBoxWithTextState extends State<CheckBoxWithText> {
     return CheckboxListTile(
       title: Transform.translate(
         offset: Offset(-19.w, 0),
-        child: Text(widget.text),
+        child: Text(
+          widget.text ,
+          style:widget.isChecked ? Theme.of(context).textTheme.headlineSmall : Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color: Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.8)
+          ),
+
+        ),
       ),
       value: widget.isChecked,
       onChanged: (newValue) {
