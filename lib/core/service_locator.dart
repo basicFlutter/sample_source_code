@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:new_panel/features/login_feature/domain/use_cases/auth_google_use_case.dart';
 import 'package:new_panel/features/login_feature/domain/use_cases/login_use_case.dart';
 import 'package:new_panel/features/theme_switcher/presentation/manager/theme_switcher_bloc.dart';
 import 'package:new_panel/features/verify_feature/domain/repositories/verify_repository.dart';
@@ -28,6 +29,7 @@ serviceLocator() async {
   locator.registerSingleton<LoginRepository>(
       LoginRepositoryImp(loginRemoteData: locator()));
 
+
   /// /// *********************************    Register Use Case      *******************
 
   locator.registerSingleton<VerifyUseCase>(
@@ -36,11 +38,14 @@ serviceLocator() async {
   locator.registerSingleton<LoginUseCase>(
       LoginUseCase(loginRepository: locator()));
 
+
+  locator.registerSingleton<AuthGoogleUseCase>(
+      AuthGoogleUseCase(loginRepository: locator()));
   ///  *********************************    Register bloc      *******************
 
   locator.registerSingleton<ThemeSwitcherBloc>(ThemeSwitcherBloc());
 
   locator.registerSingleton<VerifyBloc>(VerifyBloc(verifyUseCase: locator()));
 
-  locator.registerSingleton<LoginBloc>(LoginBloc(loginUseCase: locator()));
+  locator.registerSingleton<LoginBloc>(LoginBloc(loginUseCase: locator(), authGoogleUseCase: locator()));
 }

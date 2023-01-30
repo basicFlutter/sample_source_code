@@ -13,8 +13,8 @@ class DoLoginEvent extends LoginEvent{
   DoLoginEvent({required this.loginInfo , required this.context });
 }
 
-class ChooseGoogleAccountEvent extends LoginEvent{
-final bool isLoading ;
+class LoginWithGoogleEvent extends LoginEvent{
 
-ChooseGoogleAccountEvent({required this.isLoading});
+final String googleId ;
+LoginWithGoogleEvent({ required this.googleId});
 }

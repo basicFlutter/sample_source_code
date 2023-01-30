@@ -8,6 +8,6 @@ import '../entities/login_response_entity.dart';
 
 abstract class LoginRepository {
   Future<Either<Failure, LoginResponseEntity>> login(LoginMapModel data);
-  Future<Either<Failure, GoogleResponseEntity>> authGoogle(String googleId);
+  Future<Either<Failure, LoginResponseEntity>> authGoogle(String googleId);
   // Future<Either<Failure, LoginResponseEntity>> verifyGoogle();
 }

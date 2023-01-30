@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: BlocProvider(
-        create: (context) => LoginBloc(loginUseCase: locator()),
+        create: (context) => LoginBloc(loginUseCase: locator(), authGoogleUseCase: locator()),
         child: Stack(
           children: [
             Align(
@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
                 right: 88.w,
                 child: const HillzLogo()
             ),
-            Align(
+            const Align(
               alignment: Alignment.bottomCenter,
               child: LoginContainer()
             )

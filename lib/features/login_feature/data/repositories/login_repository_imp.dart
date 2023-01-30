@@ -1,5 +1,3 @@
-
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
@@ -16,27 +14,27 @@ import '../models/google_response_model.dart';
 import '../models/login_response_model.dart';
 
 class LoginRepositoryImp implements LoginRepository {
-  LoginRemoteData loginRemoteData ;
-
+  LoginRemoteData loginRemoteData;
 
   LoginRepositoryImp({required this.loginRemoteData});
+
   @override
-  Future<Either<Failure, LoginResponseEntity>> login(LoginMapModel data ) async {
+  Future<Either<Failure, LoginResponseEntity>> login(LoginMapModel data) async {
     try {
       Response result = await loginRemoteData.login(data.toJson());
       LoginResponseEntity response = LoginResponseModel.fromJson(result.data);
 
       return Right(response);
     } on DioError catch (error) {
-      if(error.response?.statusCode == 400){
+      if (error.response?.statusCode == 400) {
         logger.e(error);
-        LoginResponseEntity response = LoginResponseModel.fromJson(error.response!.data);
+        LoginResponseEntity response =
+            LoginResponseModel.fromJson(error.response!.data);
         return Right(response);
-
-      }else
-      if(error.response?.statusCode == 404){
+      } else if (error.response?.statusCode == 404) {
         logger.e("404");
-        LoginResponseEntity response = LoginResponseModel.fromJson(error.response!.data);
+        LoginResponseEntity response =
+            LoginResponseModel.fromJson(error.response!.data);
         return Right(response);
       }
       return Left(ServerFailure(error: error));
@@ -44,30 +42,21 @@ class LoginRepositoryImp implements LoginRepository {
   }
 
   @override
-  Future<Either<Failure, GoogleResponseEntity>> authGoogle(String googleId)async {
-
+  Future<Either<Failure, LoginResponseEntity>> authGoogle(
+      String googleId) async {
     try {
       Response result = await loginRemoteData.authGoogle(googleId);
-      GoogleResponseEntity response = GoogleResponseModel.fromJson(result.data);
+      LoginResponseEntity response = LoginResponseModel.fromJson(result.data);
 
       return Right(response);
     } on DioError catch (error) {
-      // if(error.response?.statusCode == 400){
-      //   logger.e(error);
-      //   LoginResponseEntity response = LoginResponseModel.fromJson(error.response!.data);
-      //   return Right(response);
-      //
-      // }else
-      // if(error.response?.statusCode == 404){
-      //   logger.e("404");
-      //   LoginResponseEntity response = LoginResponseModel.fromJson(error.response!.data);
-      //   return Right(response);
-      // }
+      if (error.response?.statusCode == 400) {
+        return Left(ServerFailure(error: error));
+      } else if (error.response?.statusCode == 404) {
+        return Left(ServerFailure(error: error));
+      }
       return Left(ServerFailure(error: error));
     }
 
-    throw UnimplementedError();
   }
-
-
 }

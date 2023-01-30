@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginGoogleButton extends StatelessWidget {
-  const LoginGoogleButton({Key? key , required this.onTap}) : super(key: key);
+   LoginGoogleButton({Key? key , required this.onTap , this.isLoading}) : super(key: key);
   final GestureTapCallback onTap;
+  bool? isLoading ;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class LoginGoogleButton extends StatelessWidget {
 
         style: ButtonStyle(
             padding: MaterialStateProperty.resolveWith<EdgeInsets>(
-                  (states) => EdgeInsets.symmetric(vertical: 11.h , horizontal: 90.5.h),
+                  (states) => EdgeInsets.symmetric(vertical: 11.h , horizontal: 70.5.h),
             ),
             elevation: MaterialStateProperty.resolveWith<double?>(
                   (states) => 0,
@@ -56,6 +57,14 @@ class LoginGoogleButton extends StatelessWidget {
               ),
 
             ),
+            isLoading ?? false ?
+            Padding(
+              padding:  EdgeInsets.only(left: 8.w),
+              child: SizedBox(
+                  height: 20.h,
+                  width: 20.w,
+                  child: CircularProgressIndicator(color: Theme.of(context).backgroundColor,)),
+            ) : const SizedBox.shrink()
           ],
         ),),
     );

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/core/widgets/active_button.dart';
 import 'package:new_panel/core/widgets/check_box_with_text.dart';
 import 'package:new_panel/core/widgets/custom_input.dart';
@@ -14,8 +15,7 @@ import 'package:new_panel/core/widgets/de_active_button.dart';
 import 'package:new_panel/core/widgets/large_title.dart';
 import 'package:new_panel/core/widgets/login_button.dart';
 import 'package:new_panel/core/widgets/login_google_button.dart';
-import 'package:new_panel/core/widgets/medium_title.dart';
-import 'package:new_panel/core/widgets/subtitle.dart';
+import 'package:new_panel/features/forgot_pass_feature/presentation/pages/forget_pass_page.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
 import 'package:new_panel/features/theme_switcher/presentation/manager/theme_switcher_bloc.dart';
 import 'package:new_panel/main.dart';
@@ -35,28 +35,13 @@ class _LoginContainerState extends State<LoginContainer> {
   @override
   void initState() {
     super.initState();
-    _iniLoading();
-  }
-
-  void _iniLoading() {
-    _googleSignIn.onCurrentUserChanged
-        .listen((GoogleSignInAccount? account) async {
-      if (account != null) {
-        // user logged
-      } else {
-        // user NOT logged
-      }
-    });
-    _googleSignIn.signInSilently().whenComplete(() =>
-        BlocProvider.of<LoginBloc>(context)
-            .add(ChooseGoogleAccountEvent(isLoading: true)));
   }
 
   final GlobalKey<FormState> formKey = GlobalKey();
-
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isRememberMe = false;
+  String? googleId;
 
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     // Optional clientId
@@ -70,7 +55,6 @@ class _LoginContainerState extends State<LoginContainer> {
       'https://www.googleapis.com/auth/contacts.readonly',
     ],
   );
-  GoogleSignInAccount? _currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -117,18 +101,45 @@ class _LoginContainerState extends State<LoginContainer> {
             SizedBox(
               height: 15.h,
             ),
-            CheckBoxWithText(
+            _rememberAndForgetPass(),
+            _buttons(context, state),
+            _registerButton(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _rememberAndForgetPass() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Flexible(
+          flex: 1,
+          child: SizedBox(
+            width: 0.5.sw,
+            child: CheckBoxWithText(
               onCheck: (value) {
                 isRememberMe = value;
               },
               text: "Remember me",
               isChecked: isRememberMe,
             ),
-            _buttons(context, state),
-            _registerButton(context),
-          ],
+          ),
         ),
-      ),
+        Flexible(
+            flex: 1,
+            child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (builder){
+                    return const ForgetPassPage() ;
+                  }));
+                },
+                child: Text(
+                  'Forgot password?',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                )))
+      ],
     );
   }
 
@@ -191,28 +202,35 @@ class _LoginContainerState extends State<LoginContainer> {
           text: 'OR',
         ),
         const CustomSpace(),
-        LoginGoogleButton(onTap: () async {
-          BlocProvider.of<LoginBloc>(context)
-              .add(ChooseGoogleAccountEvent(isLoading: false));
-          await _googleSignIn.signIn().then((result) {
-            log( 'goooooogllllllee id ${result?.id}' );
-            result?.authentication.then((googleKey) {
-              logger.i(googleKey.accessToken);
-              logger.i(googleKey.idToken);
-              logger.i(_googleSignIn.currentUser?.displayName);
-            }).catchError((err) {
-              logger.e(err);
-            });
-          }).catchError((err) {
-            logger.e(err);
-          });
-
-          // BlocProvider.of<ThemeSwitcherBloc>(context)
-          //     .add(const SwitchThemeEvent());
-        })
+        LoginGoogleButton(
+            isLoading: state.loginStatus is LoadingGoogleStatus ? true : false,
+            onTap: () => _onTapLoginGoogle(context))
       ],
     );
   }
 
+  Future<void> _onTapLoginGoogle(BuildContext context) async {
+    {
 
+      log('YOU WANT TO CHOOSE GOOGLE ACCOUNT ') ;
+      await _googleSignIn.signIn().then((result) {
+        BlocProvider.of<LoginBloc>(context)
+            .add(LoginWithGoogleEvent(googleId: (result?.id)!));
+        log('google id ${result?.id}');
+        result?.authentication.then((googleKey) {
+          logger.i(googleKey.accessToken);
+          logger.i(googleKey.idToken);
+          logger.i(_googleSignIn.currentUser?.displayName);
+        }).catchError((err) {
+          logger.e(err);
+        });
+      }).catchError((err) {
+        AppUtils.showMessage(
+            message: 'Something went wrong',
+            context: context,
+            isShowingError: true);
+        logger.e(err);
+      });
+    }
+  }
 }
