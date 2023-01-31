@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
   final response;
+
   const Failure([this.response]);
 
   @override
@@ -10,26 +11,25 @@ abstract class Failure extends Equatable {
 
 class ServerFailure extends Failure {
   final error;
+
   const ServerFailure({this.error}) : super(error);
 }
-class ResponseError extends Failure{
 
+class ResponseError extends Failure {
   String? act;
-      String? alertType;
+  String? alertType;
   dynamic data;
-      String? entity;
+  String? entity;
   String? message;
-      String? reason;
+  String? reason;
   String? type;
+
   ResponseError(
-  {
-    required this.message,
-     required this.alertType,
-    required this.type,
-    required this.data,
-    required this.act,
-    required this.entity,
-    required this.reason
-}
-      );
+      {required this.message,
+      required this.alertType,
+      required this.type,
+      required this.data,
+      required this.act,
+      required this.entity,
+      required this.reason});
 }

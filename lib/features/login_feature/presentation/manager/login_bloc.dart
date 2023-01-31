@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:new_panel/core/data/cache/cache_provider.dart';
+import 'package:new_panel/core/exceptions/error_model.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
 
@@ -31,8 +32,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       Either<ResponseError, LoginResponseEntity> response =
           await loginUseCase.call(event.loginInfo);
 
-      response.fold((error) {
-        emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error.data )));
+      response.fold((ResponseError error) {
+
+        emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error )));
       }, (LoginResponseEntity data) {
         // TODO navigate TO HOME
         AppUtils.showMessage(
@@ -53,7 +55,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await authGoogleUseCase.call(event.googleId);
 
       response.fold((error) {
-        emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error.data)));
+        emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error)));
         log('LOG ERROR ${error.message}') ;
       }, (LoginResponseEntity data) {
         // TODO navigate TO HOME

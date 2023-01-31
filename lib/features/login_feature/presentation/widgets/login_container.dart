@@ -79,38 +79,35 @@ class _LoginContainerState extends State<LoginContainer> {
   Widget _successBody(BuildContext context, LoginState state) {
     return Form(
       key: formKey,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _title(),
-            if(state.loginStatus is FailedLoginStatus)
-           CustomErrorWidget(errorText: 'kjflkjlkfjgjdkfj', isVisible: true , iconSrc: AppImages.testSvg) ,
-            
-            SizedBox(
-              height: 20.h,
-            ),
-            CustomInput(
-              inputController: userNameController,
-              label: "Username",
-              isRequired: true,
-            ),
-            SizedBox(
-              height: 15.h,
-            ),
-            CustomInput(
-              inputController: passwordController,
-              label: "Password",
-              isRequired: true,
-            ),
-            _rememberAndForgetPass(),
-            SizedBox(
-              height: 18.h,
-            ),
-            _buttons(context, state),
-            CustomSpace(space: 18.h,) ,
-            _registerButton(context),
-          ],
-        ),
+      child: Column(
+        children: [
+          _title(),
+         CustomErrorWidget(errorText: 'kjflkjlkfjgjdkfj', isVisible: state.loginStatus is FailedLoginStatus ? true : false  , iconSrc: AppImages.testSvg) ,
+
+          SizedBox(
+            height: 20.h,
+          ),
+          CustomInput(
+            inputController: userNameController,
+            label: "Username",
+            isRequired: true,
+          ),
+          SizedBox(
+            height: 15.h,
+          ),
+          CustomInput(
+            inputController: passwordController,
+            label: "Password",
+            isRequired: true,
+          ),
+          _rememberAndForgetPass(),
+          SizedBox(
+            height: 18.h,
+          ),
+          _buttons(context, state),
+          CustomSpace(space: 18.h,) ,
+          _registerButton(context),
+        ],
       ),
     );
   }
