@@ -10,11 +10,13 @@ class Style {
 
     brightness: Brightness.light,
     backgroundColor: AppColors.backgroundColor,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: AppColors.grayBackground,
     primaryColor: AppColors.lightBlue,
     highlightColor: Colors.white,
     secondaryHeaderColor: AppColors.unselected,
     dividerColor: AppColors.grayText,
+    errorColor: AppColors.red,
+
 
 
     colorScheme: const ColorScheme(
@@ -185,7 +187,7 @@ class Style {
       displayLarge: TextStyle(fontSize: 37.sp, fontWeight: FontWeight.w400,fontFamily: "QuicklyGone" , color: const Color(0xff3F61AC)),
       /// for Driven by Future,Run Faster, Cost Less in login page
       displaySmall: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400,fontFamily: "Radley-Regular" , color: const Color(0xff3F61AC)),
-      displayMedium: TextStyle(fontSize: 15, fontWeight: FontWeight.bold , color: Colors.grey[800] ),
+      displayMedium:  TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold , color:AppColors.grayText ),
       /// Large Title
       titleLarge: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w700,fontFamily: "PublicSans" , color: AppColors.largeTitleColor),
       /// Medium Title

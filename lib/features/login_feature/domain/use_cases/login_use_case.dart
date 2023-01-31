@@ -14,7 +14,7 @@ class LoginUseCase extends BaseUseCase<LoginResponseEntity, LoginMapModel> {
   LoginUseCase({required this.loginRepository});
 
   @override
-  Future<Either<Failure, LoginResponseEntity>> call(LoginMapModel params) {
+  Future<Either<ResponseError, LoginResponseEntity>> call(LoginMapModel params) {
    return loginRepository.login(params) ;
   }
  }

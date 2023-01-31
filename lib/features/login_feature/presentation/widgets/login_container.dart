@@ -9,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/core/widgets/active_button.dart';
 import 'package:new_panel/core/widgets/check_box_with_text.dart';
+import 'package:new_panel/core/widgets/custom_error_widget.dart';
 import 'package:new_panel/core/widgets/custom_input.dart';
 import 'package:new_panel/core/widgets/custom_space.dart';
 import 'package:new_panel/core/widgets/de_active_button.dart';
@@ -61,8 +62,7 @@ class _LoginContainerState extends State<LoginContainer> {
     return Container(
       width: 428.w,
       height: 562.h,
-      padding:
-          EdgeInsets.only(top: 40.h, bottom: 64.h, left: 24.w, right: 24.w),
+      padding: EdgeInsets.only(top: 39.69.h, bottom: 40.11.h, left: 24.w, right: 24.w),
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.only(
@@ -82,8 +82,11 @@ class _LoginContainerState extends State<LoginContainer> {
         child: Column(
           children: [
             _title(),
+            // if(state.loginStatus is FailedLoginStatus)
+            const CustomErrorWidget(errorText: 'kjflkjlkfjgjdkfj',) ,
+            
             SizedBox(
-              height: 31.h,
+              height: 20.h,
             ),
             CustomInput(
               inputController: userNameController,
@@ -98,11 +101,12 @@ class _LoginContainerState extends State<LoginContainer> {
               label: "Password",
               isRequired: true,
             ),
-            SizedBox(
-              height: 15.h,
-            ),
             _rememberAndForgetPass(),
+            SizedBox(
+              height: 18.h,
+            ),
             _buttons(context, state),
+            CustomSpace(space: 18.h,) ,
             _registerButton(context),
           ],
         ),
@@ -111,73 +115,91 @@ class _LoginContainerState extends State<LoginContainer> {
   }
 
   Widget _rememberAndForgetPass() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Flexible(
-          flex: 1,
-          child: SizedBox(
-            width: 0.5.sw,
-            child: CheckBoxWithText(
-              onCheck: (value) {
-                isRememberMe = value;
-              },
-              text: "Remember me",
-              isChecked: isRememberMe,
+    return SizedBox(
+      height: 40.h,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+
+            child: SizedBox(
+              width: 0.5.sw,
+              child: CheckBoxWithText(
+                onCheck: (value) {
+                  isRememberMe = value;
+                },
+                text: "Remember me",
+                isChecked: isRememberMe,
+              ),
             ),
           ),
-        ),
-        Flexible(
-            flex: 1,
-            child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-                    return const ForgetPassPage() ;
-                  }));
-                },
-                child: Text(
-                  'Forgot password?',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                )))
-      ],
+          TextButton(
+              style: TextButton.styleFrom(
+                minimumSize: Size.zero,
+                padding: EdgeInsets.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (builder){
+                  return const ForgetPassPage() ;
+                }));
+              },
+              child: Text(
+                'Forgot password?',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ))
+        ],
+      ),
     );
   }
 
   Widget _registerButton(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Not Registered?',
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-        // MediumTitle(text: '') ,
-        TextButton(
-            onPressed: () {},
-            child: Text(
-              'Create Account',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium
-                  ?.copyWith(color: Theme.of(context).primaryColor),
-            ))
-      ],
+    return SizedBox(
+      height: 22.h,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Not Registered?',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          // MediumTitle(text: '') ,
+          TextButton(
+              style: TextButton.styleFrom(
+                minimumSize: Size.zero,
+                padding: EdgeInsets.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              onPressed: () {},
+              child: Text(
+                'Create Account',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium
+                    ?.copyWith(color: Theme.of(context).primaryColor),
+              ))
+        ],
+      ),
     );
   }
 
   Widget _title() {
-    return Row(
-      children: [
-        SvgPicture.asset(
-          "assets/images/accont_icon.svg",
-        ),
-        SizedBox(
-          width: 8.w,
-        ),
-        const LargeTitle(
-          text: "Login",
-        )
-      ],
+    return SizedBox(
+      height: 48.h,
+      child: Row(
+        children: [
+          SvgPicture.asset(
+            "assets/images/accont_icon.svg",
+          ),
+          SizedBox(
+            width: 8.w,
+          ),
+          const LargeTitle(
+            text: "Login",
+          )
+        ],
+      ),
     );
   }
 
@@ -197,11 +219,11 @@ class _LoginContainerState extends State<LoginContainer> {
           },
           text: "Login",
         ),
-        const CustomSpace(),
+         CustomSpace(space: 18.h,),
         const CustomDividerWithText(
           text: 'OR',
         ),
-        const CustomSpace(),
+        CustomSpace(space: 18.h,),
         LoginGoogleButton(
             isLoading: state.loginStatus is LoadingGoogleStatus ? true : false,
             onTap: () => _onTapLoginGoogle(context))

@@ -23,6 +23,7 @@ class _CustomButtonState extends State<CustomButton> {
       height: 48.h,
       width: 380.w,
       child: ElevatedButton(
+
         autofocus: false,
         onPressed: widget.onTap,
 

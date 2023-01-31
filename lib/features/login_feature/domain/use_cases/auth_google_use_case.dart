@@ -1,7 +1,7 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
-import 'package:new_panel/features/login_feature/domain/entities/google_response_entity.dart';
+
 
 import '../../../../core/exceptions/failure.dart';
 import '../../../../core/use_case/base_use_case.dart';
@@ -15,7 +15,7 @@ class AuthGoogleUseCase extends BaseUseCase<LoginResponseEntity, String> {
   AuthGoogleUseCase({required this.loginRepository});
 
   @override
-  Future<Either<Failure, LoginResponseEntity>> call(String params) {
+  Future<Either<ResponseError, LoginResponseEntity>> call(String params) {
     return loginRepository.authGoogle(params) ;
   }
 }

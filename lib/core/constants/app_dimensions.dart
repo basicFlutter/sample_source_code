@@ -13,7 +13,7 @@ class AppDimensions {
   static const double divider = 1.0;
   static const double icon = 30.0;
   static const double smallIcon = 20.0;
-  static const double circle = 30.0;
+  static  double circle = 100.r;
   static const double paddingContent = 8.0;
   static const double horizontalPaddingContent = 20.0;
   static const double radiusAvatar = 48.0;

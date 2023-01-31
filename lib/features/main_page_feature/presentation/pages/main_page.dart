@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:global_bottom_navigation_bar/widgets/bottom_navigation_item.dart';
 import 'package:global_bottom_navigation_bar/widgets/scaffold_bottom_navigation.dart';
 
+import '../../../menu_feature/presentation/pages/menu_page.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -18,7 +20,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           endDrawerEnableOpenDragGesture: false ,
       drawerEnableOpenDragGesture: false ,
       listOfChild: [
-        Container() ,
+        const MenuPage() ,
         Container() ,
         Container() ,
         Container()
