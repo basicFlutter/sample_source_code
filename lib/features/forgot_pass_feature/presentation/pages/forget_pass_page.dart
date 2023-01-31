@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:new_panel/core/widgets/custom_couple_button.dart';
+import 'package:new_panel/core/widgets/custom_error_widget.dart';
 import 'package:new_panel/core/widgets/custom_input.dart';
+import 'package:new_panel/core/widgets/de_active_button.dart';
 import 'package:new_panel/core/widgets/large_title.dart';
 
 import '../../../../core/constants/app_images.dart';
@@ -29,11 +31,13 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       // appBar: ,
       body: CustomBodyWithLogo(
         body: _forgetPassBody(),
-        bodyHeight: 382.h,
-        spaceFromBottom:60.h ,
+        bodyHeight: 357.h,
+        spaceFromBottom:38.5.h ,
+        spaceFromTop: 38.5.h,
       ),
     );
   }
@@ -44,7 +48,11 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
       child: Column(
         children: [
           _title(),
-          const CustomSpace(),
+          CustomErrorWidget(errorText: 'kjad dsafd dfads ', isVisible: false,iconSrc: AppImages.testSvg) ,
+          SizedBox(
+            height: 20.h,
+          ),
+
           CustomInput(
               isRequired: true,
               inputController: usernameController,
@@ -55,6 +63,8 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
               inputController: emailController,
               label: 'Email Address'),
           const CustomSpace(),
+       
+
           CustomCoupleButton(
             rightButtonText: 'Submit',
             leftButtonText: 'Cancel',
@@ -64,21 +74,25 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
             leftOnTab: () {
               Navigator.of(context).pop();
             },
-          )
+          ),
         ],
       ),
     );
   }
 
   Widget _title() {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(right: 8.0),
-          child: SvgPicture.asset(AppImages.forgetPass),
-        ),
-        const LargeTitle(text: 'Forgot your password'),
-      ],
+    return SizedBox(
+      height: 48.h,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(right: 8.0.w),
+            child: SvgPicture.asset(AppImages.forgetPass),
+          ),
+          const LargeTitle(text: 'Forgot your password'),
+        ],
+      ),
     );
   }
 }

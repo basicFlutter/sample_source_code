@@ -10,7 +10,9 @@ class CustomBodyWithLogo extends StatelessWidget {
   final double? bodyHeight ;
   final double? bodyWidth ;
   final double? spaceFromBottom ;
-  const CustomBodyWithLogo({Key? key ,this.spaceFromBottom ,  required this.body , this.bodyHeight , this.bodyWidth }) : super(key: key);
+  final double? spaceFromTop ;
+
+  const CustomBodyWithLogo({Key? key ,this.spaceFromBottom ,  required this.body , this.bodyHeight , this.bodyWidth  , this.spaceFromTop}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,11 @@ class CustomBodyWithLogo extends StatelessWidget {
   Widget _customBody(BuildContext context) {
     return Stack(
       children: [
-        Align(
-            alignment: Alignment.topCenter,
+        Positioned(
+          top: 0,
+            left: 0,
+            right: 0,
+            //alignment: Alignment.topCenter,
 
             child: Image.asset(
               AppImages.pageLogo,
@@ -37,15 +42,23 @@ class CustomBodyWithLogo extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Container(
-            width:bodyWidth?? 428.w,
-            height:bodyHeight?? 562.h,
-            padding: EdgeInsets.only(top: 40.h , bottom:spaceFromBottom ??  60.h , left: 24.w , right: 24.w),
-            decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(30.r ) , topRight: Radius.circular(30.r ))
+          child: IntrinsicHeight(
+            child: Container(
+              
+             // duration: const Duration(milliseconds: 500),
+              width:bodyWidth?? 428.w,
+             // height:bodyHeight?? 562.h,
+              constraints: BoxConstraints(
+                minHeight: bodyHeight?? 562.h,
+                //maxHeight: 600.h
+              ),
+              padding: EdgeInsets.only(top: spaceFromTop ?? 40.h , bottom:spaceFromBottom ??  60.h , left: 24.w , right: 24.w),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30.r ) , topRight: Radius.circular(30.r ))
+              ),
+              child:body,
             ),
-            child:body,
           ),
         )
       ],

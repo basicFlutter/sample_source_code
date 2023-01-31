@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/core/widgets/active_button.dart';
 import 'package:new_panel/core/widgets/check_box_with_text.dart';
@@ -83,7 +84,7 @@ class _LoginContainerState extends State<LoginContainer> {
           children: [
             _title(),
             // if(state.loginStatus is FailedLoginStatus)
-            const CustomErrorWidget(errorText: 'kjflkjlkfjgjdkfj',) ,
+           CustomErrorWidget(errorText: 'kjflkjlkfjgjdkfj', isVisible: true , iconSrc: AppImages.testSvg) ,
             
             SizedBox(
               height: 20.h,

@@ -15,9 +15,9 @@ class DeActiveButton extends StatelessWidget {
         autofocus: false,
         onPressed: onTap,
         style: ButtonStyle(
-            padding: MaterialStateProperty.resolveWith<EdgeInsets>(
-                  (states) => EdgeInsets.symmetric(vertical: 11.h , horizontal: 69.h),
-            ),
+            // padding: MaterialStateProperty.resolveWith<EdgeInsets>(
+            //       (states) => EdgeInsets.symmetric(vertical: 11.h , horizontal: 69.h),
+            // ),
             elevation: MaterialStateProperty.resolveWith<double?>(
                   (states) => 0,
             ),
