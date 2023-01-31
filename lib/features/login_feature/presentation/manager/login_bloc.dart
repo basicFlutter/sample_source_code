@@ -28,12 +28,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<DoLoginEvent>((event, emit) async {
       emit(state.copyWith(newLoginStatus: LoadingLoginStatus()));
 
-      Either<Failure, LoginResponseEntity> response =
+      Either<ResponseError, LoginResponseEntity> response =
           await loginUseCase.call(event.loginInfo);
 
       response.fold((error) {
-        //TODO show error
-        emit(state.copyWith(newLoginStatus: FailedLoginStatus()));
+        emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error.data )));
       }, (LoginResponseEntity data) {
         // TODO navigate TO HOME
         AppUtils.showMessage(
@@ -41,8 +40,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             context: event.context,
             isShowingError: false);
         emit(state.copyWith(newLoginStatus: SuccessLoginStatus()));
-        CacheProvider.saveString('accessToken', data.accessToken!);
-        CacheProvider.saveString('refreshToken', data.refreshToken!);
+        if(event.isRememberMe){
+          CacheProvider.saveString('refreshToken', data.refreshToken!) ;
+          CacheProvider.saveString('accessToken', data.accessToken!) ;
+        }
       });
     });
 
@@ -52,13 +53,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await authGoogleUseCase.call(event.googleId);
 
       response.fold((error) {
-        emit(state.copyWith(newLoginStatus: FailedLoginStatus()));
+        emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error.data)));
         log('LOG ERROR ${error.message}') ;
-        //TODO show error
       }, (LoginResponseEntity data) {
         // TODO navigate TO HOME
-
         emit(state.copyWith(newLoginStatus: SuccessLoginStatus()));
+        if(event.isRememberMe){
+          CacheProvider.saveString('refreshToken', data.refreshToken!) ;
+          CacheProvider.saveString('accessToken', data.accessToken!) ;
+        }
       });
     });
   }

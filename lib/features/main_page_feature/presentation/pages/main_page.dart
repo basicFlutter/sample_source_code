@@ -16,76 +16,54 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ScaffoldGlobalBottomNavigation(
-          floatingActionButtonAnimator: null,
-          endDrawerEnableOpenDragGesture: false ,
-      drawerEnableOpenDragGesture: false ,
-      listOfChild: [
-        const MenuPage() ,
-        Container() ,
-        Container() ,
-        Container()
-      ],
+      floatingActionButtonAnimator: null,
+      endDrawerEnableOpenDragGesture: false,
+      drawerEnableOpenDragGesture: false,
+      listOfChild: [const MenuPage(), Container(), Container(), Container()],
       listOfBottomNavigationItem: buildBottomNavigationItemList(),
     ));
   }
 
   List<BottomNavigationItem> buildBottomNavigationItemList() => [
-    BottomNavigationItem(
-      activeIcon: Icon(
-        Icons.dashboard,
-        color: Theme.of(context).primaryColor,
-        size: 35,
-      ),
-      inActiveIcon: Icon(
-        Icons.dashboard,
-        color:  Theme.of(context).secondaryHeaderColor,
-        size: 25,
-      ),
-      title: 'more',
-      color: Colors.white,
-      vSync: this,
-    ),
-    BottomNavigationItem(
-      activeIcon: Icon(
-        Icons.add_box,
-        color: Theme.of(context).primaryColor,
-        size: 35,
-      ),
-      inActiveIcon: Icon(
-        Icons.add_box_rounded,
-        color:  Theme.of(context).secondaryHeaderColor,
-        size: 35,
-      ),
-      title: 'more',
-      color: Colors.white,
-      vSync: this,
-    ),
         BottomNavigationItem(
-          activeIcon: Icon(
-            Icons.notifications_rounded,
-            color: Theme.of(context).primaryColor,
-            size: 35,
+          activeIcon: const Icon(
+            Icons.dashboard,
           ),
-          inActiveIcon: Icon(
+          inActiveIcon: const Icon(
+            Icons.dashboard,
+          ),
+          title: 'more',
+          color: Colors.white,
+          vSync: this,
+        ),
+        BottomNavigationItem(
+          activeIcon: const Icon(
+            Icons.add_box,
+          ),
+          inActiveIcon: const Icon(
+            Icons.add_box_rounded,
+          ),
+          title: 'more',
+          color: Colors.white,
+          vSync: this,
+        ),
+        BottomNavigationItem(
+          activeIcon: const Icon(
             Icons.notifications_rounded,
-            color:  Theme.of(context).secondaryHeaderColor,
-            size: 35,
+          ),
+          inActiveIcon: const Icon(
+            Icons.notifications_rounded,
           ),
           title: 'learn',
           color: Colors.white,
           vSync: this,
         ),
-
         BottomNavigationItem(
-          activeIcon: Icon(
+          activeIcon: const Icon(
             Icons.person,
-            color: Theme.of(context).primaryColor,
-            size: 35,
           ),
-          inActiveIcon: Icon(
+          inActiveIcon: const Icon(
             Icons.person,
-            color:  Theme.of(context).secondaryHeaderColor,
-            size: 35,
           ),
           title: 'more',
           color: Colors.white,

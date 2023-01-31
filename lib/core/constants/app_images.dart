@@ -4,7 +4,15 @@ class AppImages {
   static String qualityLogo = 'assets/images/logo2.png';
   static String verifyMobile = 'assets/images/verify_mobile.svg' ;
   static String forgetPass = 'assets/images/forget_pass.svg';
-  static String lorem = 'assets/images/lorem.svg';
+  static String lorem = 'assets/images/lorem.png';
+  static String customerLogo = 'assets/images/customerLogo.svg';
+  static String dashboardLogo = 'assets/images/dashboardLogo.svg';
+  static String dealLogo = 'assets/images/dealLogo.svg';
+  static String inventoryLogo = 'assets/images/inventoryLogo.svg';
+  static String leadLogo = 'assets/images/leadLogo.svg';
+  static String test = 'assets/images/IMG.png' ;
+
+
   static String testSvg =   '''<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.68179 12.2128C6.68179 11.5642 6.78952 10.9423 6.98179 10.359L3.61634 7.78906C2.96043 9.12081 2.59088 10.6214 2.59088 12.2128C2.59088 13.8028 2.95997 15.3025 3.61497 16.6333L6.97861 14.0583C6.78815 13.4778 6.68179 12.8582 6.68179 12.2128Z" fill="white"/>
 <path d="M12.5909 6.31204C14 6.31204 15.2727 6.81133 16.2727 7.62835L19.1818 4.72338C17.4091 3.18012 15.1363 2.22693 12.5909 2.22693C8.63906 2.22693 5.2427 4.4869 3.61633 7.78903L6.98179 10.359C7.75724 8.00508 9.9677 6.31204 12.5909 6.31204Z" fill="white"/>

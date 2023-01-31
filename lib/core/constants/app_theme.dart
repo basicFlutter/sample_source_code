@@ -20,19 +20,21 @@ class Style {
 
 
     colorScheme: const ColorScheme(
+      shadow: AppColors.grayText,
       brightness: Brightness.light,
       background: Colors.white,
-      onBackground: Colors.grey,
-      error: Colors.red,
-      onError: Colors.white,
-      primary: AppColors.backgroundActiveButton, /// background active button
+      onBackground: AppColors.darkGrayColor,
+      errorContainer: AppColors.backgroundError,
+      error:AppColors.red ,
+      onError:  AppColors.errorText,
+      primary: AppColors.lightBlue, /// background active button
       onPrimary: AppColors.textActiveButton, /// text color active button
       secondary: AppColors.backgroundDeActiveButton, /// background deActive button
       onSecondary: AppColors.textDeActiveButton, /// text color deActive button
       tertiary: AppColors.backgroundGoogleButton, /// background Google Button
       onTertiary: AppColors.textGoogleButton, /// text color Google Button
       surface: Colors.white,
-      onSurface: Colors.red,
+      onSurface: AppColors.red,
     ),
 
     checkboxTheme: CheckboxThemeData(
@@ -194,7 +196,7 @@ class Style {
       titleMedium: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600,fontFamily: "PublicSans" , color: AppColors.mediumTitleColor),
       /// SubTitle
       titleSmall:TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400,fontFamily: "PublicSans" , color: AppColors.subtitleColor),
-      headlineLarge:  TextStyle(fontSize: 16.sp, fontWeight:  FontWeight.w400 , fontFamily:  "PublicSans",color: Colors.deepPurple),
+      headlineLarge:  TextStyle(fontSize: 16.sp, fontWeight:  FontWeight.w400 , fontFamily:  "PublicSans",color: AppColors.darkGrayColor),
       headlineMedium: TextStyle(fontSize: 14.sp, color:AppColors.darkGrayColor ), //body normal text
       headlineSmall: TextStyle(fontSize: 14.sp , fontWeight: FontWeight.w400 , fontFamily: "PublicSans" ,  color: AppColors.checkTitleColor), /// for title check box
       bodyLarge:  TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w900, color: Colors.black),

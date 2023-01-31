@@ -83,7 +83,7 @@ class _LoginContainerState extends State<LoginContainer> {
         child: Column(
           children: [
             _title(),
-            // if(state.loginStatus is FailedLoginStatus)
+            if(state.loginStatus is FailedLoginStatus)
            CustomErrorWidget(errorText: 'kjflkjlkfjgjdkfj', isVisible: true , iconSrc: AppImages.testSvg) ,
             
             SizedBox(
@@ -123,7 +123,6 @@ class _LoginContainerState extends State<LoginContainer> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
-
             child: SizedBox(
               width: 0.5.sw,
               child: CheckBoxWithText(
@@ -214,8 +213,7 @@ class _LoginContainerState extends State<LoginContainer> {
               LoginMapModel userInfo = LoginMapModel(
                   username: userNameController.text,
                   password: passwordController.text);
-              BlocProvider.of<LoginBloc>(context)
-                  .add(DoLoginEvent(loginInfo: userInfo, context: context));
+              BlocProvider.of<LoginBloc>(context).add(DoLoginEvent(loginInfo: userInfo, context: context, isRememberMe:isRememberMe));
             }
           },
           text: "Login",
@@ -238,7 +236,7 @@ class _LoginContainerState extends State<LoginContainer> {
       log('YOU WANT TO CHOOSE GOOGLE ACCOUNT ') ;
       await _googleSignIn.signIn().then((result) {
         BlocProvider.of<LoginBloc>(context)
-            .add(LoginWithGoogleEvent(googleId: (result?.id)!));
+            .add(LoginWithGoogleEvent(googleId: (result?.id)!, isRememberMe: isRememberMe));
         log('google id ${result?.id}');
         result?.authentication.then((googleKey) {
           logger.i(googleKey.accessToken);

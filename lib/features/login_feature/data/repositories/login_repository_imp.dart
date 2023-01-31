@@ -29,14 +29,24 @@ class LoginRepositoryImp implements LoginRepository {
 
       if (error.response?.statusCode == 400) {
         logger.e(error);
-        LoginResponseEntity response =
-            LoginResponseModel.fromJson(error.response!.data);
-        return Right(response);
+
+        return Left(ResponseError( data: errorModel.data,
+            message: errorModel.message,
+            act: errorModel.act,
+            alertType: errorModel.alertType,
+            type: errorModel.type,
+            entity: errorModel.entity,
+            reason: errorModel.reason));
       } else if (error.response?.statusCode == 404) {
         logger.e("404");
-        LoginResponseEntity response =
-            LoginResponseModel.fromJson(error.response!.data);
-        return Right(response);
+
+        return Left(ResponseError( data: errorModel.data,
+            message: errorModel.message,
+            act: errorModel.act,
+            alertType: errorModel.alertType,
+            type: errorModel.type,
+            entity: errorModel.entity,
+            reason: errorModel.reason));
       }
       return Left(ResponseError( data: errorModel.data,
           message: errorModel.message,

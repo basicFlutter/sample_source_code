@@ -1,20 +1,26 @@
 part of 'login_bloc.dart';
 
+abstract class LoginEvent {}
 
- abstract class LoginEvent {
+class DoLoginEvent extends LoginEvent {
+  final LoginMapModel loginInfo;
 
+  final BuildContext context;
 
+  final bool isRememberMe;
+
+  DoLoginEvent(
+      {required this.loginInfo,
+      required this.context,
+      required this.isRememberMe});
 }
 
-class DoLoginEvent extends LoginEvent{
- final LoginMapModel loginInfo ;
- final BuildContext context ;
 
-  DoLoginEvent({required this.loginInfo , required this.context });
-}
 
-class LoginWithGoogleEvent extends LoginEvent{
+class LoginWithGoogleEvent extends LoginEvent {
+  final String googleId;
 
-final String googleId ;
-LoginWithGoogleEvent({ required this.googleId});
+  final bool isRememberMe;
+
+  LoginWithGoogleEvent({required this.googleId, required this.isRememberMe});
 }
