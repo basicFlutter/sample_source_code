@@ -108,7 +108,6 @@ class CustomInput extends StatelessWidget {
         maxLines: maxLines ?? 1,
         minLines: hasDifferentHeight ?? true ? null : 1,
 
-
         decoration: InputDecoration(
 
           constraints: BoxConstraints(

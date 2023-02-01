@@ -21,6 +21,7 @@ class Style {
 
     colorScheme: const ColorScheme(
       shadow: AppColors.grayText,
+      outline: AppColors.unselected,
       brightness: Brightness.light,
       background: Colors.white,
       onBackground: AppColors.darkGrayColor,

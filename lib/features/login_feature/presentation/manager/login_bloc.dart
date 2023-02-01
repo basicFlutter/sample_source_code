@@ -1,17 +1,13 @@
-import 'dart:async';
-import 'dart:developer';
 
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:new_panel/core/data/cache/cache_provider.dart';
-import 'package:new_panel/core/exceptions/error_model.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
-
 import 'package:new_panel/features/login_feature/domain/entities/login_response_entity.dart';
 import 'package:new_panel/features/login_feature/presentation/manager/status/login_status.dart';
-
 import '../../../../core/exceptions/failure.dart';
 import '../../domain/use_cases/auth_google_use_case.dart';
 import '../../domain/use_cases/login_use_case.dart';
@@ -48,6 +44,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         }
       });
     });
+
+
 
     on<LoginWithGoogleEvent>((event, emit) async {
       emit(state.copyWith(newLoginStatus: LoadingGoogleStatus()));

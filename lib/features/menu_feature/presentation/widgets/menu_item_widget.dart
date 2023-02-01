@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../../core/constants/app_images.dart';
-
 class MenuItemWidget extends StatelessWidget {
   final String title ;
   final String imageUrl ;
   final Function? onTap ;
+  final bool? isVisible ;
+  final bool? isEnable ;
 
-  const MenuItemWidget({Key? key , required this.title , required this.imageUrl , this.onTap}) : super(key: key);
+  const MenuItemWidget({Key? key , required this.title , required this.imageUrl , this.onTap ,  this.isEnable ,  this.isVisible}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ Widget _menuItem(BuildContext context ){
               offset: const Offset(1, 1 ), // Shadow position
             ),
           ],
-          color: Theme.of(context).backgroundColor),
+          color: isEnable??true ? Theme.of(context).backgroundColor : Theme.of(context).colorScheme.outline)  ,
       child: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 20.h , vertical:  9.w),
         child: Row(
