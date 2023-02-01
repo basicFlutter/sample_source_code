@@ -33,13 +33,8 @@ class MenuListWidget extends StatelessWidget {
           title: 'Deals',
           imageUrl: AppImages.dealLogo,
         ),
-        CustomSpace(
-          space: 20.h,
-        ),
-        CustomTitleWidget(
-          title: 'Inventory',
-          onTap: () {},
-        ),
+
+
       ],
     );
   }

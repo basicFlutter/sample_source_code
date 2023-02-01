@@ -9,9 +9,12 @@ class LoginRemoteData{
   }
 
   Future<dynamic> authGoogle(String googleId ) async{
-    Response res = await ApiProvider().post('$baseUrl/auth/google/verify/identifier' , data: {"id" :googleId.toString()});
+    Response res = await ApiProvider().post('$baseUrl/auth/google/verifyById' , data: {"id" :googleId.toString()});
     return res;
   }
 
-
+  Future<dynamic> assignGoogleAccount(String googleId ) async{
+    Response res = await ApiProvider().post('$baseUrl/user/assignGoogleAccount' , data: {"id" :googleId.toString()});
+    return res;
+  }
 }

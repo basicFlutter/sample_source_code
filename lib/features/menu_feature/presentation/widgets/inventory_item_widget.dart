@@ -28,23 +28,13 @@ class InventoryItemWidget extends StatelessWidget {
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: 6.h , vertical: 4.w),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('\$43,000' , style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    color: Theme.of(context).primaryColor
-                  ),) ,
+                  _price(context) ,
                   CustomSpace(space: 5.h,),
-                  SizedBox(
-                    height: 35.h,
-                    width: 125.w,
-                    child: Text('Mileage:10423 km ' ,
-                        overflow: TextOverflow.fade,
-                        style:Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground
-                    )),
-                  ),
+                  _name(context),
                   CustomSpace(space: 4.h,),
-                  Text('03 Jun 2020' , style: Theme.of(context).textTheme.displayMedium,)
+                  _date(context)
                 ],
               ),
             )
@@ -52,6 +42,26 @@ class InventoryItemWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _date(BuildContext context) => Center(child: Text('03 Jun 2020' , style: Theme.of(context).textTheme.displayMedium,));
+
+  Widget _name(BuildContext context) {
+    return SizedBox(
+                  height: 35.h,
+                  width: 125.w,
+                  child: Text('Mileage:10423 km ' ,
+                      overflow: TextOverflow.fade,
+                      style:Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground
+                  )),
+                );
+  }
+
+  Widget _price(BuildContext context) {
+    return Text('\$43,000' , style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                  color: Theme.of(context).primaryColor
+                ),);
   }
 
   Widget _cardImage() {

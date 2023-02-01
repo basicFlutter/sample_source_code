@@ -4,7 +4,10 @@ import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/widgets/custom_space.dart';
 import 'package:new_panel/features/menu_feature/presentation/widgets/custom_title_widget.dart';
 import 'package:new_panel/features/menu_feature/presentation/widgets/inventory_List_widget.dart';
+import 'package:new_panel/features/menu_feature/presentation/widgets/lead_list_widget.dart';
 import 'package:new_panel/features/menu_feature/presentation/widgets/menu_item_widget.dart';
+import 'package:new_panel/features/menu_feature/presentation/widgets/menu_list_widget.dart';
+import '../../../../core/constants/app_dimensions.dart';
 import '../../../../core/widgets/searchbar_widget.dart';
 import '../../data/models/menu_item_model.dart';
 import '../widgets/inventory_item_widget.dart';
@@ -43,7 +46,9 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme
+          .of(context)
+          .scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -63,19 +68,21 @@ class _MenuPageState extends State<MenuPage> {
               CustomSpace(
                 space: 19.h,
               ),
-              for (var item in menuItems)
-                if (item.isVisible)
-                  MenuItemWidget(
-                    title: item.text,
-                    imageUrl: item.svg,
-                    isEnable: item.isEnable,
-                  ),
-
+              const MenuListWidget(),
+              CustomSpace(
+                space: 20.h,
+              ),
+              CustomTitleWidget(
+                title: 'Inventory',
+                onTap: () {},
+              ),
               const InventoryListWidget(),
               CustomTitleWidget(
                 title: 'Leads',
                 onTap: () {},
               ),
+              const LeadListWidget() ,
+
               CustomTitleWidget(
                 title: 'Deals',
                 onTap: () {},

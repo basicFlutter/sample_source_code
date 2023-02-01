@@ -20,6 +20,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginUseCase loginUseCase;
   AuthGoogleUseCase authGoogleUseCase;
 
+
   LoginBloc({required this.loginUseCase, required this.authGoogleUseCase})
       : super(LoginState()) {
     on<DoLoginEvent>((event, emit) async {

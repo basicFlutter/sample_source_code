@@ -18,26 +18,29 @@ class CustomTitleWidget extends StatelessWidget {
 
 
   Widget _inventoryTitle(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 21.h),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
-              _viewAllTitle(context)
-            ],
+    return Padding(
+      padding:  EdgeInsets.symmetric(vertical: 8.h),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 21.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+                _viewAllTitle(context)
+              ],
+            ),
           ),
-        ),
-        CustomSpace(
-          space: 4.h,
-        ),
-        _dottedLine(),
-      ],
+          CustomSpace(
+            space: 4.h,
+          ),
+          _dottedLine(),
+        ],
+      ),
     );
   }
 
