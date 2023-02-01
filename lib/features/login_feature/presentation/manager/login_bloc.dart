@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -8,6 +7,7 @@ import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
 import 'package:new_panel/features/login_feature/domain/entities/login_response_entity.dart';
 import 'package:new_panel/features/login_feature/presentation/manager/status/login_status.dart';
+import 'package:new_panel/features/menu_feature/presentation/pages/menu_page.dart';
 import '../../../../core/exceptions/failure.dart';
 import '../../domain/use_cases/auth_google_use_case.dart';
 import '../../domain/use_cases/login_use_case.dart';
@@ -29,23 +29,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await loginUseCase.call(event.loginInfo);
 
       response.fold((ResponseError error) {
-
-        emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error )));
+        emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error)));
       }, (LoginResponseEntity data) {
-        // TODO navigate TO HOME
-        AppUtils.showMessage(
-            message: 'you logged in successfully',
-            context: event.context,
-            isShowingError: false);
+        Navigator.of(event.context).push(MaterialPageRoute(builder: (builder) {
+          return const MenuPage();
+        }));
         emit(state.copyWith(newLoginStatus: SuccessLoginStatus()));
-        if(event.isRememberMe){
-          CacheProvider.saveString('refreshToken', data.refreshToken!) ;
-          CacheProvider.saveString('accessToken', data.accessToken!) ;
+        if (event.isRememberMe) {
+          CacheProvider.saveString('refreshToken', data.refreshToken!);
+          CacheProvider.saveString('accessToken', data.accessToken!);
         }
       });
     });
-
-
 
     on<LoginWithGoogleEvent>((event, emit) async {
       emit(state.copyWith(newLoginStatus: LoadingGoogleStatus()));
@@ -54,13 +49,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       response.fold((error) {
         emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error)));
-        log('LOG ERROR ${error.message}') ;
+        log('LOG ERROR ${error.message}');
       }, (LoginResponseEntity data) {
-        // TODO navigate TO HOME
+        Navigator.of(event.context).push(MaterialPageRoute(builder: (builder) {
+          return const MenuPage();
+        }));
         emit(state.copyWith(newLoginStatus: SuccessLoginStatus()));
-        if(event.isRememberMe){
-          CacheProvider.saveString('refreshToken', data.refreshToken!) ;
-          CacheProvider.saveString('accessToken', data.accessToken!) ;
+        if (event.isRememberMe) {
+          CacheProvider.saveString('refreshToken', data.refreshToken!);
+          CacheProvider.saveString('accessToken', data.accessToken!);
         }
       });
     });

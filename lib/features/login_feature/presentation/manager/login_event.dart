@@ -19,8 +19,8 @@ class DoLoginEvent extends LoginEvent {
 
 class LoginWithGoogleEvent extends LoginEvent {
   final String googleId;
-
+  final BuildContext context ;
   final bool isRememberMe;
 
-  LoginWithGoogleEvent({required this.googleId, required this.isRememberMe});
+  LoginWithGoogleEvent({ required this.context , required this.googleId, required this.isRememberMe});
 }

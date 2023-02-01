@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:new_panel/core/widgets/small_body_text.dart';
+import 'package:new_panel/core/widgets/custom_space.dart';
+
 
 import '../../../../core/constants/app_dimensions.dart';
 import '../../../../core/constants/app_images.dart';
@@ -14,7 +15,7 @@ class InventoryItemWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 6.h , vertical: 6.w ),
       child: Container(
         width: 125.w,
-        height: 122.h,
+        height: 172.h,
         decoration: BoxDecoration(
             color:Theme.of(context).backgroundColor,
             borderRadius:
@@ -23,17 +24,27 @@ class InventoryItemWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _cardImage() ,
+            _cardImage(),
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: 6.h , vertical: 4.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('\$43,000' , style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  Text('\$43,000' , style: Theme.of(context).textTheme.displayMedium!.copyWith(
                     color: Theme.of(context).primaryColor
                   ),) ,
-                  
-                  const SmallBodyText(text: 'Mileage:15734 km')
+                  CustomSpace(space: 5.h,),
+                  SizedBox(
+                    height: 35.h,
+                    width: 125.w,
+                    child: Text('Mileage:10423 km ' ,
+                        overflow: TextOverflow.fade,
+                        style:Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground
+                    )),
+                  ),
+                  CustomSpace(space: 4.h,),
+                  Text('03 Jun 2020' , style: Theme.of(context).textTheme.displayMedium,)
                 ],
               ),
             )

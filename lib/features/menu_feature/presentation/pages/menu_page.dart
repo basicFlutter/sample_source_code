@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/widgets/custom_space.dart';
 import 'package:new_panel/features/menu_feature/presentation/widgets/custom_title_widget.dart';
+import 'package:new_panel/features/menu_feature/presentation/widgets/inventory_List_widget.dart';
 import 'package:new_panel/features/menu_feature/presentation/widgets/menu_item_widget.dart';
 import '../../../../core/widgets/searchbar_widget.dart';
 import '../../data/models/menu_item_model.dart';
@@ -69,45 +70,16 @@ class _MenuPageState extends State<MenuPage> {
                     imageUrl: item.svg,
                     isEnable: item.isEnable,
                   ),
-              MenuItemWidget(
-                title: 'Dashboard',
-                imageUrl: AppImages.dashboardLogo,
-              ),
-              MenuItemWidget(
-                title: 'Inventory',
-                imageUrl: AppImages.inventoryLogo,
-              ),
-              MenuItemWidget(
-                title: 'Customers',
-                imageUrl: AppImages.customerLogo,
-              ),
-              MenuItemWidget(
-                title: 'Leads',
-                imageUrl: AppImages.leadLogo,
-              ),
-              MenuItemWidget(
-                title: 'Deals',
-                imageUrl: AppImages.dealLogo,
-              ),
-              CustomSpace(
-                space: 20.h,
-              ),
-              CustomTitleWidget(
-                title: 'Inventory',
-                onTap: () {},
-              ),
-              const InventoryItemWidget()
-,
+
+              const InventoryListWidget(),
               CustomTitleWidget(
                 title: 'Leads',
                 onTap: () {},
               ),
-
               CustomTitleWidget(
                 title: 'Deals',
                 onTap: () {},
               ),
-
               CustomTitleWidget(
                 title: 'Customers',
                 onTap: () {},
@@ -118,4 +90,6 @@ class _MenuPageState extends State<MenuPage> {
       ),
     );
   }
+
+
 }

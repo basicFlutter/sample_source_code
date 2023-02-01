@@ -14,7 +14,7 @@ import 'package:new_panel/features/verify_feature/presentation/pages/verify_page
 
 Logger logger = Logger();
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   serviceLocator();
@@ -25,6 +25,7 @@ void main() {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  await ScreenUtil.ensureScreenSize();
 
   runApp(MyApp());
 }
@@ -41,9 +42,12 @@ class MyApp extends StatelessWidget {
           create: (context) => locator<ThemeSwitcherBloc>()..add(const GetThemeModeEvent()),)
       ],
       child: ScreenUtilInit(
-        designSize: const Size(428, 926),
+
+          designSize: const Size(428, 926),
         minTextAdapt: true,
-        splitScreenMode: true,
+        splitScreenMode: false,
+        useInheritedMediaQuery: true,
+
         builder: (context, child) {
           return BlocConsumer<ThemeSwitcherBloc, ThemeSwitcherState>(
             listener: (context , state){
@@ -63,7 +67,7 @@ class MyApp extends StatelessWidget {
             },
           );
         },
-        child:  const MainPage(),
+        child:  const LoginPage(),
       ),
     );
   }

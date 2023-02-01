@@ -29,10 +29,29 @@ class CustomBodyWithLogo extends StatelessWidget {
             right: 0,
             //alignment: Alignment.topCenter,
 
-            child: Image.asset(
-              AppImages.pageLogo,
-              fit: BoxFit.fitWidth,
-            )
+            // child: Container(
+            //
+            //
+            //
+            //   decoration: BoxDecoration(
+            //
+            //     image: DecorationImage(
+            //       image: AssetImage(
+            //
+            //         AppImages.pageLogo,),
+            //      fit: BoxFit.cover,
+            //       alignment: Alignment.topCenter
+            //     ),
+            //
+            //   ),
+            //   ),
+              child: Image.asset(
+                AppImages.pageLogo,
+                width: 428.w,
+                height: 928.h,
+                fit: BoxFit.fitHeight,
+              ),
+           // )
         ),
         Positioned(
             top: 68.h,

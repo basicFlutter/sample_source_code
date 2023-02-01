@@ -73,12 +73,6 @@ class _LoginContainerState extends State<LoginContainer> {
         spaceFromBottom:40.11.h ,
         spaceFromTop: 39.69.h,
 
-
-      // Container(
-      // width: 428.w,
-      // height: 562.h,
-      // padding: EdgeInsets.only(top: 39.69.h, bottom: 40.11.h, left: 24.w, right: 24.w),
-
         body: BlocConsumer<LoginBloc, LoginState>(
 
           listener: (context , state){
@@ -94,35 +88,40 @@ class _LoginContainerState extends State<LoginContainer> {
         builder: (context, state) {
           return Form(
             key: formKey,
-            child: Column(
-              children: [
-                _title(),
-                CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is FailedLoginStatus ? true : false  , iconSrc: AppImages.testSvg) ,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _title(),
+                  CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is FailedLoginStatus ? true : false  , iconSrc: AppImages.testSvg) ,
 
-                SizedBox(
-                  height: 20.h,
-                ),
-                CustomInput(
-                  inputController: userNameController,
-                  label: "Username",
-                  isRequired: true,
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                CustomInput(
-                  inputController: passwordController,
-                  label: "Password",
-                  isRequired: true,
-                ),
-                _rememberAndForgetPass(),
-                SizedBox(
-                  height: 18.h,
-                ),
-                _buttons(context, state),
-                CustomSpace(space: 18.h,) ,
-                _registerButton(context),
-              ],
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  CustomInput(
+                    inputController: userNameController,
+                    label: "Username",
+                    isRequired: true,
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  CustomInput(
+                    inputController: passwordController,
+                    label: "Password",
+                    isRequired: true,
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  _rememberAndForgetPass(),
+                  SizedBox(
+                    height: 18.h,
+                  ),
+                  _buttons(context, state),
+                  CustomSpace(space: 18.h,) ,
+                  _registerButton(context),
+                ],
+              ),
             ),
           );
         },
@@ -132,24 +131,23 @@ class _LoginContainerState extends State<LoginContainer> {
 
 
   Widget _rememberAndForgetPass() {
-    return SizedBox(
+    return Container(
       height: 40.h,
+     // color: Colors.red,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(
-            child: SizedBox(
-              width: 0.5.sw,
-              child: CheckBoxWithText(
+           Flexible(
+             child: CheckBoxWithText(
                 onCheck: (value) {
                   isRememberMe = value;
                 },
                 text: "Remember me",
                 isChecked: isRememberMe,
               ),
-            ),
-          ),
+           ),
+
           TextButton(
               style: TextButton.styleFrom(
                 minimumSize: Size.zero,
@@ -266,7 +264,7 @@ class _LoginContainerState extends State<LoginContainer> {
       logger.i('YOU WANT TO CHOOSE GOOGLE ACCOUNT ');
       await _googleSignIn.signIn().then((result) {
         BlocProvider.of<LoginBloc>(context)
-            .add(LoginWithGoogleEvent(googleId: (result?.id)!, isRememberMe: isRememberMe));
+            .add(LoginWithGoogleEvent(googleId: (result?.id)!, isRememberMe: isRememberMe, context: context ));
 
         logger.i('google id ${result?.id}');
         result?.authentication.then((googleKey) {

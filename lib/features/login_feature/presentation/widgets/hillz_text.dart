@@ -26,8 +26,8 @@ class HillzLogo extends StatelessWidget {
                   ),
                   SvgPicture.asset(
                     "assets/images/Logo.svg",
-                    width: 102.96,
-                    height: 102.23,
+                    width: 102.96.w,
+                    height: 102.23.h,
                   ),
                   SizedBox(
                     height: 5.8.h,

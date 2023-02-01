@@ -51,41 +51,43 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
 
   Widget _forgetPassBody() {
     return Form(
-      key: formKey,
-      child: Column(
-        children: [
-          _title(),
-          CustomErrorWidget(errorText: 'kjad dsafd dfads ', isVisible: false,iconSrc: AppImages.testSvg) ,
-          SizedBox(
-            height: 20.h,
-          ),
+      key: formKey, 
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _title(),
+            CustomErrorWidget(errorText: 'kjad dsafd dfads ', isVisible: false,iconSrc: AppImages.testSvg) ,
+            SizedBox(
+              height: 20.h,
+            ),
 
-          CustomInput(
-              isRequired: true,
-              inputController: usernameController,
-              label: 'Username'),
-          const CustomSpace(),
-          CustomInput(
-              isRequired: true,
-              inputController: emailController,
-              label: 'Email Address'),
-          const CustomSpace(),
-       
+            CustomInput(
+                isRequired: true,
+                inputController: usernameController,
+                label: 'Username'),
+            const CustomSpace(),
+            CustomInput(
+                isRequired: true,
+                inputController: emailController,
+                label: 'Email Address'),
+            const CustomSpace(),
 
-          CustomCoupleButton(
-            rightButtonText: 'Submit',
-            leftButtonText: 'Cancel',
-            rightOnTab: () {
-              if (formKey.currentState!.validate()) {}
-              FocusScope.of(context).unfocus();
-            },
-            leftOnTab: () {
-              FocusScope.of(context).unfocus();
 
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
+            CustomCoupleButton(
+              rightButtonText: 'Submit',
+              leftButtonText: 'Cancel',
+              rightOnTab: () {
+                if (formKey.currentState!.validate()) {}
+                FocusScope.of(context).unfocus();
+              },
+              leftOnTab: () {
+                FocusScope.of(context).unfocus();
+
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
