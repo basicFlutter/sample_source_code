@@ -28,6 +28,13 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
 
   GlobalKey<FormState> formKey = GlobalKey();
 
+  // Navigator.of(context).push(
+  // AnimationTransitionClass.createRouteAnimation(
+  // const ForgetPassPage(),
+  // textDirection: TextDirection.rtl,
+  // isSlide: false
+  // ));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,8 +77,11 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
             leftButtonText: 'Cancel',
             rightOnTab: () {
               if (formKey.currentState!.validate()) {}
+              FocusScope.of(context).unfocus();
             },
             leftOnTab: () {
+              FocusScope.of(context).unfocus();
+
               Navigator.of(context).pop();
             },
           ),

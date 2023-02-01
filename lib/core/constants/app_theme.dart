@@ -104,13 +104,23 @@ class Style {
     ),
 
 
+
+    ///############################ textButton #########################################
+
+    // textButtonTheme: TextButtonThemeData(
+    //   style: ButtonStyle(
+    //    textStyle: MaterialStateProperty.resolveWith((states) {
+    //      return
+    //    })
+    //   )
+    // ),
+
+
+
+
     ///############################ textField theme #########################################
 
-
-
-
     inputDecorationTheme: InputDecorationTheme(
-
 
       focusedBorder: OutlineInputBorder(
           borderRadius:

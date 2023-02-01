@@ -7,9 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_panel/core/constants/app_images.dart';
+import 'package:new_panel/core/transition_animation/TransitionAnimation.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/core/widgets/active_button.dart';
 import 'package:new_panel/core/widgets/check_box_with_text.dart';
+import 'package:new_panel/core/widgets/custom_body_with_logo.dart';
 import 'package:new_panel/core/widgets/custom_error_widget.dart';
 import 'package:new_panel/core/widgets/custom_input.dart';
 import 'package:new_panel/core/widgets/custom_space.dart';
@@ -45,6 +47,10 @@ class _LoginContainerState extends State<LoginContainer> {
   bool isRememberMe = false;
   String? googleId;
 
+  bool isVisibleError = false;
+  String messageError = '';
+  String srcIconError = '';
+
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     // Optional clientId
     serverClientId:
@@ -60,57 +66,70 @@ class _LoginContainerState extends State<LoginContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 428.w,
-      height: 562.h,
-      padding: EdgeInsets.only(top: 39.69.h, bottom: 40.11.h, left: 24.w, right: 24.w),
-      decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30.r), topRight: Radius.circular(30.r))),
-      child: BlocBuilder<LoginBloc, LoginState>(
+    return
+      CustomBodyWithLogo(
+
+        bodyHeight: 357.h,
+        spaceFromBottom:40.11.h ,
+        spaceFromTop: 39.69.h,
+
+
+      // Container(
+      // width: 428.w,
+      // height: 562.h,
+      // padding: EdgeInsets.only(top: 39.69.h, bottom: 40.11.h, left: 24.w, right: 24.w),
+
+        body: BlocConsumer<LoginBloc, LoginState>(
+
+          listener: (context , state){
+            if(state.loginStatus is FailedLoginStatus){
+              FailedLoginStatus failedLoginStatus = state.loginStatus as FailedLoginStatus;
+              isVisibleError = true;
+              messageError = failedLoginStatus.error.message??"";
+            }
+            if(state.loginStatus is SuccessLoginStatus){
+              isVisibleError = false;
+            }
+          },
         builder: (context, state) {
-          return _successBody(context, state);
+          return Form(
+            key: formKey,
+            child: Column(
+              children: [
+                _title(),
+                CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is FailedLoginStatus ? true : false  , iconSrc: AppImages.testSvg) ,
+
+                SizedBox(
+                  height: 20.h,
+                ),
+                CustomInput(
+                  inputController: userNameController,
+                  label: "Username",
+                  isRequired: true,
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                CustomInput(
+                  inputController: passwordController,
+                  label: "Password",
+                  isRequired: true,
+                ),
+                _rememberAndForgetPass(),
+                SizedBox(
+                  height: 18.h,
+                ),
+                _buttons(context, state),
+                CustomSpace(space: 18.h,) ,
+                _registerButton(context),
+              ],
+            ),
+          );
         },
       ),
     );
   }
 
-  Widget _successBody(BuildContext context, LoginState state) {
-    return Form(
-      key: formKey,
-      child: Column(
-        children: [
-          _title(),
-         CustomErrorWidget(errorText: 'kjflkjlkfjgjdkfj', isVisible: state.loginStatus is FailedLoginStatus ? true : false  , iconSrc: AppImages.testSvg) ,
-
-          SizedBox(
-            height: 20.h,
-          ),
-          CustomInput(
-            inputController: userNameController,
-            label: "Username",
-            isRequired: true,
-          ),
-          SizedBox(
-            height: 15.h,
-          ),
-          CustomInput(
-            inputController: passwordController,
-            label: "Password",
-            isRequired: true,
-          ),
-          _rememberAndForgetPass(),
-          SizedBox(
-            height: 18.h,
-          ),
-          _buttons(context, state),
-          CustomSpace(space: 18.h,) ,
-          _registerButton(context),
-        ],
-      ),
-    );
-  }
 
   Widget _rememberAndForgetPass() {
     return SizedBox(
@@ -138,9 +157,16 @@ class _LoginContainerState extends State<LoginContainer> {
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-                  return const ForgetPassPage() ;
-                }));
+                FocusScope.of(context).unfocus();
+                Navigator.of(context).push(
+                AnimationTransitionClass.createRouteAnimation(
+                const ForgetPassPage(),
+                textDirection: TextDirection.rtl,
+                isSlide: false
+                ));
+                // Navigator.of(context).push(MaterialPageRoute(builder: (builder){
+                //   return const ForgetPassPage() ;
+                // }));
               },
               child: Text(
                 'Forgot password?',
@@ -168,7 +194,9 @@ class _LoginContainerState extends State<LoginContainer> {
                 padding: EdgeInsets.zero,
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
-              onPressed: () {},
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+              },
               child: Text(
                 'Create Account',
                 style: Theme.of(context)
@@ -206,6 +234,7 @@ class _LoginContainerState extends State<LoginContainer> {
         CustomButton(
           isLoading: state.loginStatus is LoadingLoginStatus ? true : false,
           onTap: () {
+            FocusScope.of(context).unfocus();
             if (formKey.currentState!.validate()) {
               LoginMapModel userInfo = LoginMapModel(
                   username: userNameController.text,
@@ -222,7 +251,10 @@ class _LoginContainerState extends State<LoginContainer> {
         CustomSpace(space: 18.h,),
         LoginGoogleButton(
             isLoading: state.loginStatus is LoadingGoogleStatus ? true : false,
-            onTap: () => _onTapLoginGoogle(context))
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              _onTapLoginGoogle(context);
+            })
       ],
     );
   }
@@ -230,11 +262,13 @@ class _LoginContainerState extends State<LoginContainer> {
   Future<void> _onTapLoginGoogle(BuildContext context) async {
     {
 
-      log('YOU WANT TO CHOOSE GOOGLE ACCOUNT ') ;
+
+      logger.i('YOU WANT TO CHOOSE GOOGLE ACCOUNT ');
       await _googleSignIn.signIn().then((result) {
         BlocProvider.of<LoginBloc>(context)
             .add(LoginWithGoogleEvent(googleId: (result?.id)!, isRememberMe: isRememberMe));
-        log('google id ${result?.id}');
+
+        logger.i('google id ${result?.id}');
         result?.authentication.then((googleKey) {
           logger.i(googleKey.accessToken);
           logger.i(googleKey.idToken);

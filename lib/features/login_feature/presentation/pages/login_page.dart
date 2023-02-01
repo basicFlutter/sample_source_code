@@ -18,31 +18,11 @@ class LoginPage extends StatelessWidget {
         SystemUiMode.manual, overlays: [
     ]);
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: BlocProvider(
         create: (context) => LoginBloc(loginUseCase: locator(), authGoogleUseCase: locator()),
-        child: Stack(
-          children: [
-            Align(
-                alignment: Alignment.topCenter,
+          child: LoginContainer()
 
-                child: Image.asset(
-                  "assets/images/light_login_back.png",
-                  fit: BoxFit.fitWidth,
-                )
-            ),
-            Positioned(
-                top: 68.h,
-                left: 71.w,
-                right: 88.w,
-                child: const HillzLogo()
-            ),
-            const Align(
-              alignment: Alignment.bottomCenter,
-              child: LoginContainer()
-            )
-          ],
-        ),
       ),
     );
   }
