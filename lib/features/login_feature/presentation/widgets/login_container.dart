@@ -118,7 +118,7 @@ class _LoginContainerState extends State<LoginContainer> {
                     height: 18.h,
                   ),
                   _buttons(context, state),
-                  CustomSpace(space: 18.h,) ,
+                  CustomVerticalSpace(space: 18.h,) ,
                   _registerButton(context),
                 ],
               ),
@@ -242,11 +242,11 @@ class _LoginContainerState extends State<LoginContainer> {
           },
           text: "Login",
         ),
-         CustomSpace(space: 18.h,),
+         CustomVerticalSpace(space: 18.h,),
         const CustomDividerWithText(
           text: 'OR',
         ),
-        CustomSpace(space: 18.h,),
+        CustomVerticalSpace(space: 18.h,),
         LoginGoogleButton(
             isLoading: state.loginStatus is LoadingGoogleStatus ? true : false,
             onTap: () {

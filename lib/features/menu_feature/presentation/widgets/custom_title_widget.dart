@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/widgets/custom_dotted_line_widget.dart';
 import '../../../../core/widgets/custom_space.dart';
 
 class CustomTitleWidget extends StatelessWidget {
@@ -35,42 +36,15 @@ class CustomTitleWidget extends StatelessWidget {
               ],
             ),
           ),
-          CustomSpace(
+          CustomVerticalSpace(
             space: 4.h,
           ),
-          _dottedLine(),
+          CustomDottedLineWidget(width:385.w ,),
         ],
       ),
     );
   }
 
-  Widget _dottedLine() {
-    return Center(
-        child: SizedBox(
-          width: 385.w,
-          child: Row(
-            // Dashed line
-            children: [
-              for (int i = 0; i < 70; i++)
-                Container(
-                  width: 5,
-                  height: 1,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        width: 1,
-                        color: i % 2 == 0
-                            ? const Color.fromRGBO(214, 211, 211, 1)
-                            : Colors.transparent,
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
-      );
-  }
 
   Widget _viewAllTitle(BuildContext context) {
     return GestureDetector(

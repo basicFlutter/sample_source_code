@@ -31,9 +31,9 @@ class InventoryItemWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _price(context) ,
-                  CustomSpace(space: 5.h,),
+                  CustomVerticalSpace(space: 5.h,),
                   _name(context),
-                  CustomSpace(space: 4.h,),
+                  CustomVerticalSpace(space: 4.h,),
                   _date(context)
                 ],
               ),

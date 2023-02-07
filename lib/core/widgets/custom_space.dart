@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomSpace extends StatelessWidget {
+class CustomVerticalSpace extends StatelessWidget {
   final double? space ;
-  const CustomSpace({Key? key , this.space}) : super(key: key);
+  const CustomVerticalSpace({Key? key , this.space}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

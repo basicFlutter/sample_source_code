@@ -12,7 +12,6 @@ enum SortTypeEnum { Year, Make, Model, BodyStyle, Price, none }
 
 enum SortOrderEnum { ASC, DESC }
 
-enum AppTheme {
-  dark ,
-  light
-}
+enum AppTheme { dark, light }
+
+enum AlertType {Info , Success , Warning , Error }

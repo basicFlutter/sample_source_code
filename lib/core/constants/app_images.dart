@@ -12,6 +12,11 @@ class AppImages {
   static String leadLogo = 'assets/images/leadLogo.svg';
   static String test = 'assets/images/IMG.png' ;
   static String profileTest = 'assets/images/profilePicture.jpg' ;
+  static String inventoryTest = 'assets/images/inventoryTest.png' ;
+  static String errorSvg = 'assets/images/error.svg';
+  static String warningSvg = 'assets/images/warning.svg';
+  static String successSvg = 'assets/images/success.svg';
+  static String infoSvg = 'assets/images/info.svg';
 
 
   static String testSvg =   '''<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

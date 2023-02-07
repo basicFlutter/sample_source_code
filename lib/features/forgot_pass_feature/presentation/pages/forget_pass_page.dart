@@ -90,12 +90,12 @@ class _ForgetPassPageState extends State<ForgetPassPage> {
                 isRequired: true,
                 inputController: usernameController,
                 label: 'Username'),
-            const CustomSpace(),
+            const CustomVerticalSpace(),
             CustomInput(
                 isRequired: true,
                 inputController: emailController,
                 label: 'Email Address'),
-            const CustomSpace(),
+            const CustomVerticalSpace(),
 
             CustomCoupleButton(
               rightButtonText: 'Submit',

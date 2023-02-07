@@ -55,6 +55,7 @@ dependencies:
   flutter_html: ^2.2.1
   global_bottom_navigation_bar: ^0.0.8
   google_sign_in: ^5.4.3
+  dotted_line: ^3.1.0
 
 
 dev_dependencies:

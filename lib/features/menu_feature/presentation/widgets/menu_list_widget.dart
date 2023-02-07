@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/widgets/custom_space.dart';
+import '../../../inventory_feature/presentation/pages/inventory_page.dart';
 import 'custom_title_widget.dart';
 import 'menu_item_widget.dart';
 
@@ -19,6 +20,11 @@ class MenuListWidget extends StatelessWidget {
         ),
         MenuItemWidget(
           title: 'Inventory',
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (builder){
+              return const InventoryPage() ;
+            })) ;
+          },
           imageUrl: AppImages.inventoryLogo,
         ),
         MenuItemWidget(

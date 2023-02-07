@@ -29,9 +29,9 @@ class LeadItemWidget extends StatelessWidget {
             Column(children: [
               _userPicture(),
               _userName(context),
-              CustomSpace(space: 5.h,) ,
+              CustomVerticalSpace(space: 5.h,) ,
               _type(context),
-              CustomSpace(space: 10.h,) ,
+              CustomVerticalSpace(space: 10.h,) ,
             ],),
 
             _date(context)

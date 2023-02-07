@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/app_dimensions.dart';
 
 class SearchbarWidget extends StatefulWidget {
-  const SearchbarWidget({Key? key}) : super(key: key);
+  TextEditingController searchbarController ;
+   SearchbarWidget({Key? key , required this.searchbarController}) : super(key: key);
 
   @override
   State<SearchbarWidget> createState() => _SearchbarWidgetState();
@@ -38,6 +39,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
               height: 48.h ,
               width: 318.w,
               child: TextFormField(
+                controller : widget.searchbarController ,
                 decoration:  InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 5) ,
                   prefixIcon: Icon(Icons.search , color: Theme.of(context).dividerColor,),

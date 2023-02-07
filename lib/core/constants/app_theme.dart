@@ -9,6 +9,7 @@ class Style {
 
 
     brightness: Brightness.light,
+    disabledColor: AppColors.lightGrayColor,
     backgroundColor: AppColors.backgroundColor,
     scaffoldBackgroundColor: AppColors.grayBackground,
     primaryColor: AppColors.lightBlue,
@@ -20,6 +21,9 @@ class Style {
 
 
     colorScheme: const ColorScheme(
+
+      onSecondaryContainer: AppColors.secondaryGrayBackground, // background khakestari yavash
+      secondaryContainer: AppColors.grayCard, // khakestari
       shadow: AppColors.grayText,
       outline: AppColors.unselected,
       brightness: Brightness.light,
@@ -27,6 +31,7 @@ class Style {
       onBackground: AppColors.darkGrayColor,
       errorContainer: AppColors.backgroundError,
       error:AppColors.red ,
+
       onError:  AppColors.errorText,
       primary: AppColors.lightBlue, /// background active button
       onPrimary: AppColors.textActiveButton, /// text color active button

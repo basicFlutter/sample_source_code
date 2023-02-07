@@ -70,7 +70,7 @@ class _VerifyPageState extends State<VerifyPage> {
             const CustomDescription(
                 text:
                     'There is not any activity report from this device over the last 7  days to show that it is really you, complete the task below'),
-            const CustomSpace(),
+            const CustomVerticalSpace(),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: MediumTitle(text: 'Enter Code'),
@@ -80,7 +80,7 @@ class _VerifyPageState extends State<VerifyPage> {
               isRequired: true,
               label: 'code',
             ),
-            const CustomSpace(),
+            const CustomVerticalSpace(),
             Row(
               children: [
                 CustomCheckBox(
@@ -92,7 +92,7 @@ class _VerifyPageState extends State<VerifyPage> {
                 const CustomText(text: 'Dont ask me again on this device')
               ],
             ),
-            const CustomSpace(),
+            const CustomVerticalSpace(),
             CustomCoupleButton(
                 rightOnTab: () {
                   if (formKey.currentState!.validate()) {

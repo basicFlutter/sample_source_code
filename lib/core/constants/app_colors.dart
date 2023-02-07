@@ -8,11 +8,12 @@ class AppColors {
   static const Color backgroundError = Color(0xffFFE7D9);
   static const Color lightBlue = Color(0xff005BEA);
   static const Color grayBackground = Color(0xffE9EBF0);
+  static const Color secondaryGrayBackground = Color(0xffE9EBF0);
   static const Color unselected = Color(0xffDFE3E8);
   static const Color borderColor = Color(0xff212B36);
+  static const Color grayCard  = Color(0xffDCE0E4);
   static const Color cardColor = Color(0xffF8F4F3);
   static const Color grayText = Color(0xff919EAB);
-  static const Color grayTextDark = Color(0xff919EAB);
   static const Color errorText = Color(0xff7A0C2E);
   static const Color errorTextDark = Color(0xff7A0C2E);
   static const Color backgroundErrorColor = Color(0xffFFE7D9);
@@ -23,6 +24,9 @@ class AppColors {
   static const Color backgroundColor = Colors.white;
   static const Color backgroundColorShimmer = Color(0xE0DEDEFF);
   static const Color titleRowTable = Color(0xffEEEEEE);
+  static const Color successColor = Color(0xff54D62C);
+  static const Color warningColor = Color(0xffFFC107);
+  static const Color infoColor = Color(0xff1890FF);
 
 
 

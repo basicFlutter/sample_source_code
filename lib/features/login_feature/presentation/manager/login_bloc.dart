@@ -7,6 +7,7 @@ import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
 import 'package:new_panel/features/login_feature/domain/entities/login_response_entity.dart';
 import 'package:new_panel/features/login_feature/presentation/manager/status/login_status.dart';
+import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
 import 'package:new_panel/features/menu_feature/presentation/pages/menu_page.dart';
 import '../../../../core/exceptions/failure.dart';
 import '../../domain/use_cases/auth_google_use_case.dart';
@@ -33,7 +34,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error)));
       }, (LoginResponseEntity data) {
         Navigator.of(event.context).push(MaterialPageRoute(builder: (builder) {
-          return const MenuPage();
+          return const MainPage();
         }));
         emit(state.copyWith(newLoginStatus: SuccessLoginStatus()));
         if (event.isRememberMe) {
@@ -50,10 +51,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       response.fold((error) {
         emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error)));
-        log('LOG ERROR ${error.message}');
+
       }, (LoginResponseEntity data) {
         Navigator.of(event.context).push(MaterialPageRoute(builder: (builder) {
-          return const MenuPage();
+          return const MainPage();
         }));
         emit(state.copyWith(newLoginStatus: SuccessLoginStatus()));
         if (event.isRememberMe) {
