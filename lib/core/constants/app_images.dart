@@ -17,6 +17,18 @@ class AppImages {
   static String warningSvg = 'assets/images/warning.svg';
   static String successSvg = 'assets/images/success.svg';
   static String infoSvg = 'assets/images/info.svg';
+  static String sliderTest = 'assets/images/sliderTest.png';
+
+  static String vin = 'assets/images/vin.svg';
+  static String sticker = 'assets/images/sticker.svg';
+  static String gaz = 'assets/images/gaz.svg';
+  static String engine = 'assets/images/engine.svg';
+  static String color = 'assets/images/color.svg';
+  static String chart = 'assets/images/chart.svg';
+  static String car = 'assets/images/car.svg';
+
+
+
 
 
   static String testSvg =   '''<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

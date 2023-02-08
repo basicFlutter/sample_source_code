@@ -29,7 +29,7 @@ class _MenuPageState extends State<MenuPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ErrorModel alert = ErrorModel(
-          alertType: 'INFO',
+          alertType: 'WARNING',
           type: 'ON_FORM',
           message: 'this is a temporary message i dont have any idea about it take it easy!');
       showDialog(

@@ -5,7 +5,8 @@ import '../constants/app_dimensions.dart';
 
 class SearchbarWidget extends StatefulWidget {
   TextEditingController searchbarController ;
-   SearchbarWidget({Key? key , required this.searchbarController}) : super(key: key);
+  String? fieldHint ;
+   SearchbarWidget({Key? key , required this.searchbarController , this.fieldHint}) : super(key: key);
 
   @override
   State<SearchbarWidget> createState() => _SearchbarWidgetState();
@@ -14,23 +15,24 @@ class SearchbarWidget extends StatefulWidget {
 class _SearchbarWidgetState extends State<SearchbarWidget> {
   @override
   Widget build(BuildContext context) {
-    return _searchbar(context );
+    return Container(
+        color: Theme.of(context).colorScheme.onSecondaryContainer,
+        child: Padding(
+      padding:  EdgeInsets.only(top: 11.h , bottom: 19.h ,right: 20.w , left: 20.w ),
+      child: _searchbar(context ),
+    ));
   }
 
 
   Widget _searchbar(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 20.h),
-      child: SizedBox(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-
-          children: [
-            Expanded(child: _field(context))  ,
-            _filterButton(context)
-          ],),
-      ),
+    return SizedBox(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(child: _field(context))  ,
+          // _filterButton(context)
+        ],),
     );
   }
 
@@ -41,9 +43,10 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
               child: TextFormField(
                 controller : widget.searchbarController ,
                 decoration:  InputDecoration(
+
                   contentPadding: const EdgeInsets.symmetric(vertical: 5) ,
                   prefixIcon: Icon(Icons.search , color: Theme.of(context).dividerColor,),
-                  hintText: 'Search...',
+                  hintText:widget.fieldHint ??  'Search...',
                     hintStyle: Theme.of(context).textTheme.displayMedium,
                     filled: true ,
                     fillColor: Theme.of(context).backgroundColor

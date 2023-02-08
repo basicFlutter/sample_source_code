@@ -8,7 +8,6 @@ class AppColors {
   static const Color backgroundError = Color(0xffFFE7D9);
   static const Color lightBlue = Color(0xff005BEA);
   static const Color grayBackground = Color(0xffE9EBF0);
-  static const Color secondaryGrayBackground = Color(0xffE9EBF0);
   static const Color unselected = Color(0xffDFE3E8);
   static const Color borderColor = Color(0xff212B36);
   static const Color grayCard  = Color(0xffDCE0E4);

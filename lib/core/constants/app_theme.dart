@@ -22,7 +22,7 @@ class Style {
 
     colorScheme: const ColorScheme(
 
-      onSecondaryContainer: AppColors.secondaryGrayBackground, // background khakestari yavash
+      onSecondaryContainer: AppColors.grayBackground, // background khakestari yavash
       secondaryContainer: AppColors.grayCard, // khakestari
       shadow: AppColors.grayText,
       outline: AppColors.unselected,
@@ -205,7 +205,7 @@ class Style {
       displayLarge: TextStyle(fontSize: 37.sp, fontWeight: FontWeight.w400,fontFamily: "QuicklyGone" , color: const Color(0xff3F61AC)),
       /// for Driven by Future,Run Faster, Cost Less in login page
       displaySmall: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400,fontFamily: "Radley-Regular" , color: const Color(0xff3F61AC)),
-      displayMedium:  TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold , color:AppColors.grayText ),
+      displayMedium:  TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold , color:AppColors.grayText ),
       /// Large Title
       titleLarge: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w700,fontFamily: "PublicSans" , color: AppColors.largeTitleColor),
       /// Medium Title
@@ -213,10 +213,10 @@ class Style {
       /// SubTitle
       titleSmall:TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400,fontFamily: "PublicSans" , color: AppColors.subtitleColor),
       headlineLarge:  TextStyle(fontSize: 16.sp, fontWeight:  FontWeight.w400 , fontFamily:  "PublicSans",color: AppColors.darkGrayColor),
-      headlineMedium: TextStyle(fontSize: 14.sp, color:AppColors.darkGrayColor ), //body normal text
+      headlineMedium: TextStyle(fontSize: 18.sp, color:AppColors.darkGrayColor ), //body normal text
       headlineSmall: TextStyle(fontSize: 14.sp , fontWeight: FontWeight.w400 , fontFamily: "PublicSans" ,  color: AppColors.checkTitleColor), /// for title check box
       bodyLarge:  TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w900, color: Colors.black),
-      bodyMedium:TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w900, color: Colors.black),
+      bodyMedium:TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w900, color: Colors.black),
       // bodyText1: TextStyle(fontSize: 10.sp, color: AppColors.lightGrayColor),
       /// DESCRIPTION
       bodySmall: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400,fontFamily: "PublicSans" , color: AppColors.textDescription),
