@@ -15,12 +15,7 @@ class SearchbarWidget extends StatefulWidget {
 class _SearchbarWidgetState extends State<SearchbarWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Theme.of(context).colorScheme.onSecondaryContainer,
-        child: Padding(
-      padding:  EdgeInsets.only(top: 11.h , bottom: 19.h ,right: 20.w , left: 20.w ),
-      child: _searchbar(context ),
-    ));
+    return _searchbar(context );
   }
 
 
@@ -37,37 +32,36 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
   }
 
   Widget _field(BuildContext context) {
-    return SizedBox(
-              height: 48.h ,
-              width: 318.w,
-              child: TextFormField(
-                controller : widget.searchbarController ,
-                decoration:  InputDecoration(
+    return Material( elevation: 2.0,
+      borderRadius:  BorderRadius.all(Radius.circular(12.r)),
+      child: SizedBox(
+                // height: 40.h ,
+                // width: 358.w,
+                child: PhysicalModel (
+                  borderRadius: BorderRadius.all(Radius.circular(12.r)),
+                  color: Theme.of(context).colorScheme.shadow,
+                  child: TextFormField(
+                    controller : widget.searchbarController ,
+                    decoration:  InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide( width: 0,
+                            style: BorderStyle.none,),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
 
-                  contentPadding: const EdgeInsets.symmetric(vertical: 5) ,
-                  prefixIcon: Icon(Icons.search , color: Theme.of(context).dividerColor,),
-                  hintText:widget.fieldHint ??  'Search...',
-                    hintStyle: Theme.of(context).textTheme.displayMedium,
-                    filled: true ,
-                    fillColor: Theme.of(context).backgroundColor
-                ),
-              ));
+                      contentPadding:  EdgeInsets.symmetric(vertical: 13.h , horizontal: 5.w) ,
+                      prefixIcon: Icon(Icons.search , color: Theme.of(context).colorScheme.onTertiary,),
+                      hintText:widget.fieldHint ??  'Search All',
+                        hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onTertiary
+                        ),
+                        filled: true ,
+                        fillColor: Theme.of(context).colorScheme.shadow
+                    ),
+                  ),
+                )),
+    );
   }
 
-  Widget _filterButton(BuildContext context) {
-    return Padding(
-            padding:  EdgeInsets.only( left: 20.h ),
-            child: GestureDetector(
-              child: Container(
-                width: 48.w,
-                height: 48.h,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.3),
-                    borderRadius: BorderRadius.all(Radius.circular(AppDimensions.circle))
-                ),
-                child: Icon(Icons.filter_list_alt  ,color: Theme.of(context).primaryColor,),
-              ),
-            ),
-          );
-  }
+
 }

@@ -18,12 +18,12 @@ class CustomDivider extends StatelessWidget {
     return type == DividerType.horizontal
         ? Divider(
             height: height,
-            color: AppColors.unselected,
+            color: AppColors.unselectedColor,
             thickness: AppDimensions.divider,
           )
         : VerticalDivider(
             width: width,
-            color: AppColors.unselected,
+            color: AppColors.unselectedColor,
             thickness: AppDimensions.divider,
           );
   }

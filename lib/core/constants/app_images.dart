@@ -4,7 +4,7 @@ class AppImages {
   static String qualityLogo = 'assets/images/logo2.png';
   static String verifyMobile = 'assets/images/verify_mobile.svg' ;
   static String forgetPass = 'assets/images/forget_pass.svg';
-  static String lorem = 'assets/images/lorem.png';
+  static String lorem = 'assets/images/lorem.svg';
   static String customerLogo = 'assets/images/customerLogo.svg';
   static String dashboardLogo = 'assets/images/dashboardLogo.svg';
   static String dealLogo = 'assets/images/dealLogo.svg';
@@ -27,6 +27,9 @@ class AppImages {
   static String chart = 'assets/images/chart.svg';
   static String car = 'assets/images/car.svg';
 
+  static String ring = 'assets/images/ring.svg' ;
+  static String add = 'assets/images/add.svg' ;
+  static String menu = 'assets/images/menu.svg' ;
 
 
 

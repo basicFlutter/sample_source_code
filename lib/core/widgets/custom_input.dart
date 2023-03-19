@@ -68,7 +68,7 @@ class CustomInput extends StatelessWidget {
           fontSize: 16.sp,
           fontFamily: "PublicSans",
           fontWeight: FontWeight.w400,
-          color: Theme.of(context).brightness == Brightness.light ? AppColors.textColorTextField : AppColors.textColorTextFieldDark
+          // color: Theme.of(context).brightness == Brightness.light ? AppColors.textColorTextField : AppColors.textColorTextFieldDark
           // color: Colors.red
         ),
         validator: hasEmailFormat ?? false
@@ -149,7 +149,7 @@ class CustomInput extends StatelessWidget {
             ),
             hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
             errorStyle: Theme.of(context).inputDecorationTheme.errorStyle,
-            fillColor: Theme.of(context).brightness == Brightness.light ? AppColors.textColorTextField : AppColors.textColorTextFieldDark
+            // fillColor: Theme.of(context).brightness == Brightness.light ? AppColors.textColorTextField : AppColors.textColorTextFieldDark
         ),
       ),
     );

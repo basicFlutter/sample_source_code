@@ -33,11 +33,11 @@ class CustomTag extends StatelessWidget {
             Center(
                 child: Text(
               tagString,
-              style: AppStyles.body2.copyWith(
-                color: isActive ?? false
-                    ? Theme.of(context).backgroundColor
-                    : Theme.of(context).primaryColor,
-              ),
+              // style: AppStyles.body2.copyWith(
+              //   color: isActive ?? false
+              //       ? Theme.of(context).backgroundColor
+              //       : Theme.of(context).primaryColor,
+              // ),
             )),
             if (icon != null)
               Padding(

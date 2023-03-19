@@ -6,14 +6,10 @@ import 'package:new_panel/core/data/network/api_provider.dart';
 import 'package:new_panel/core/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:new_panel/features/forgot_pass_feature/presentation/pages/forget_pass_page.dart';
-import 'package:new_panel/features/inventory_detail_feature/presentation/pages/inventory_detail_page.dart';
-import 'package:new_panel/features/inventory_feature/presentation/pages/inventory_page.dart';
-import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
 import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
-import 'package:new_panel/features/menu_feature/presentation/pages/menu_page.dart';
+
 import 'package:new_panel/features/theme_switcher/presentation/manager/theme_switcher_bloc.dart';
-import 'package:new_panel/features/verify_feature/presentation/pages/verify_page.dart';
+
 
 Logger logger = Logger();
 
@@ -70,7 +66,7 @@ class MyApp extends StatelessWidget {
             },
           );
         },
-        child:   InventoryDetailPage(),
+        child:   const MainPage(),
       ),
     );
   }
