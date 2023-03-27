@@ -29,7 +29,11 @@ class AppImages {
 
   static String ring = 'assets/images/ring.svg' ;
   static String add = 'assets/images/add.svg' ;
-  static String menu = 'assets/images/menu.svg' ;
+  static String menu = 'assets/images/menu.svg';
+  static String more = 'assets/images/more.svg';
+  static String filter = 'assets/images/filter.svg';
+  static String search = 'assets/images/search.svg';
+  static String arrow = 'assets/images/arrow.svg';
 
 
 

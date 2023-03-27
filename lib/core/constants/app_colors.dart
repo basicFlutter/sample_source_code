@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color customGray = Color(0xffE5E8EB);
   static const Color grayText = Color(0xff919294);
+  static const Color selectedColor = Color(0xffEDEFF2);
   static const Color titleColor = Color(0xff252525);
   static const Color buttonColor = Color(0xffEBECF3);
   static const Color secondaryColor = Color(0xffE6EEFF);

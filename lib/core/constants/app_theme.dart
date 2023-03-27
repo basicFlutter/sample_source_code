@@ -4,8 +4,9 @@ import "package:new_panel/core/constants/app_colors.dart";
 
 class Style {
   static ThemeData lightTheme = ThemeData(
-    colorScheme: const ColorScheme(
-
+       colorScheme: const ColorScheme(
+         surfaceTint: AppColors.selectedColor,
+       tertiary: AppColors.cardColor,
        onTertiary: AppColors.grayText, //TEXTE KHAKESTARY K TU SEARCH BAR DARIM
         shadow: AppColors.customGray,
         brightness: Brightness.light,
@@ -17,7 +18,7 @@ class Style {
         onError: AppColors.white,
         background: AppColors.backgroundColor,
         onBackground: AppColors.titleColor,
-        surface: AppColors.buttonColor,
+        surface: AppColors.unselectedColor,
         onSurface: AppColors.titleColor),
     //
     // checkboxTheme: CheckboxThemeData(
@@ -178,87 +179,90 @@ class Style {
     iconTheme: IconThemeData(color: Colors.grey[700]),
     textTheme: TextTheme(
       /// for HillzDealer in login page
-      displayLarge: TextStyle(
-          fontSize: 37.sp,
-          fontWeight: FontWeight.w400,
-          fontFamily: "QuicklyGone",
-          color: const Color(0xff3F61AC)),
-
-      /// for Driven by Future,Run Faster, Cost Less in login page
-      displaySmall: TextStyle(
+      displayLarge:TextStyle(
           fontSize: 14.sp,
           fontWeight: FontWeight.w400,
-          fontFamily: "Radley-Regular",
-          color: const Color(0xff3F61AC)),
+          fontFamily: "PublicSans",
+          color: AppColors.titleColor),
+
+      /// for Driven by Future,Run Faster, Cost Less in login page
+      displaySmall:TextStyle(
+          fontSize: 8.sp,
+          fontWeight: FontWeight.w400,
+          fontFamily: "PublicSans",
+          color: AppColors.titleColor),
+
+
       displayMedium: TextStyle(
-          fontSize: 17.sp,
-          fontWeight: FontWeight.bold,
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w400,
+          fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
       /// Large Title
       titleLarge: TextStyle(
-          fontSize: 24.sp,
+          fontSize: 20.sp,
           fontWeight: FontWeight.w700,
           fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
       /// Medium Title
       titleMedium: TextStyle(
-          fontSize: 14.sp,
-          fontWeight: FontWeight.w600,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w700,
           fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
       /// SubTitle
       titleSmall: TextStyle(
-          fontSize: 10.sp,
-          fontWeight: FontWeight.w400,
+          fontSize: 11.sp,
+          fontWeight: FontWeight.w700,
           fontFamily: "PublicSans",
           color: AppColors.titleColor),
+
       headlineLarge: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w400,
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w300,
           fontFamily: "PublicSans",
           color: AppColors.titleColor),
       headlineMedium:
-          TextStyle(fontSize: 18.sp, color: AppColors.titleColor),
+          TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w300, color: AppColors.grayText),
       //body normal text
       headlineSmall: TextStyle(
-          fontSize: 14.sp,
-          fontWeight: FontWeight.w400,
+          fontSize: 9.sp,
+          fontWeight: FontWeight.w300,
           fontFamily: "PublicSans",
           color: AppColors.titleColor),
-
-      /// for title check box
+    //
+    //   /// for title check box
       bodyLarge: TextStyle(
-          fontSize: 24.sp, fontWeight: FontWeight.w900, color: Colors.black),
+          fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.black),
       bodyMedium: TextStyle(
-          fontSize: 18.sp, fontWeight: FontWeight.w900, color: Colors.black),
-      // bodyText1: TextStyle(fontSize: 10.sp, color: AppColors.lightGrayColor),
-      /// DESCRIPTION
-      bodySmall: TextStyle(
-          fontSize: 14.sp,
-          fontWeight: FontWeight.w400,
-          fontFamily: "PublicSans",
-          color: AppColors.titleColor),
+          fontSize: 10.sp, fontWeight: FontWeight.w700, color: AppColors.primaryColor),
 
-      /// search hint text field text
+      bodySmall: TextStyle(
+          fontSize: 10.sp,
+          fontWeight: FontWeight.w300,
+          fontFamily: "PublicSans",
+          color: AppColors.disableGrayColor),
+    //
+    //   /// search hint text field text
       labelLarge: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w400,
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w500,
           fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
       /// search text
       labelMedium: TextStyle(
-          fontSize: 10.sp,
-          fontWeight: FontWeight.w400,
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w700,
           fontFamily: "PublicSans",
-          color: AppColors.titleColor),
+          color: AppColors.primaryColor),
 
       /// label text => carPrice
       labelSmall: TextStyle(
-          fontSize: 14.sp,
+          fontSize: 13.sp,
           fontWeight: FontWeight.w400,
           fontFamily: "PublicSans",
           color: AppColors.titleColor),
