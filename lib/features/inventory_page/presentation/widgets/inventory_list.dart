@@ -13,7 +13,9 @@ class InventoryList extends StatefulWidget {
 class _InventoryListState extends State<InventoryList> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (context , index){return const InventoryItem() ;});
+    return ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context , index){return  InventoryItem(itemIndex: index,) ;});
 
 
   }

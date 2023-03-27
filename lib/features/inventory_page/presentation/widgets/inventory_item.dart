@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,30 +7,91 @@ import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 
 class InventoryItem extends StatefulWidget {
-  const InventoryItem({Key? key}) : super(key: key);
+   final int itemIndex ;
+   const InventoryItem({Key? key , required this.itemIndex}) : super(key: key);
 
   @override
   State<InventoryItem> createState() => _InventoryItemState();
 }
 
-class _InventoryItemState extends State<InventoryItem> {
+class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderStateMixin {
+  // late List<AnimationController> controllerList =[];
+   late AnimationController animationController;
+   late int selectedIndex ;
+    bool isExpanded =false  ;
+
+  @override
+  void initState() {
+    animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1000),);
+
+    selectedIndex = widget.itemIndex ;
+   super.initState();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 7.h),
       child: SizedBox(
         height: 100,
-        child: Row(
+        child: Stack(
           children: [
-            _cardPicture(),
-            const SizedBox(
-              width: 5,
-            ),
-            _cardDetail(context),
+            _itemCard(context),
+            AnimatedPositioned(
+              bottom:isExpanded && selectedIndex == widget.itemIndex ?0 : -50,
+              left: 0,
+              duration: const Duration(milliseconds: 1000),
+              child: Container(
+                width: 329.w ,
+                height: 50.h,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 4,
+                      offset: Offset(1, 0), // changes position of shadow
+                    ),
+                  ],
+                  color: Theme.of(context).colorScheme.secondary ,
+                  borderRadius: BorderRadius.all(Radius.circular(5.r))
+                ),
+
+                child: Row(children: [
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(7.r)) ,
+                        border: Border.all(color: Theme.of(context).colorScheme.primary)
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text('Total cost: '),
+                      ))
+                ],),
+              ),
+            )
           ],
         ),
       ),
     );
+  }
+
+  Widget _itemCard(BuildContext context) {
+    return Row(
+            children: [
+              _cardPicture(),
+              const SizedBox(
+                width: 5,
+              ),
+              _cardDetail(context),
+            ],
+          );
   }
 
   Widget _cardDetail(BuildContext context) {
@@ -107,98 +170,129 @@ class _InventoryItemState extends State<InventoryItem> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                          onTap: () {
-                            showModalBottomSheet(
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(36),
-                                  ),
-                                ),
-                                context: context,
-                                builder: (context) {
-                                  return Container(
-                                    // height: 360.h ,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(36.r),
-                                          topLeft: Radius.circular(36.r),
-                                        )),
-                                    child: ListView(
-                                      // mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        _topDesignWidget(context),
-                                        SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              _bottomSheetItem(
-                                                  context: context,
-                                                  title: 'View Listing'),
-                                              _bottomSheetItem(
-                                                  context: context,
-                                                  title: 'Edit Listing'),
-                                              _bottomSheetItem(
-                                                  context: context,
-                                                  title:
-                                                      'Create Windows Sticker'),
-                                              _bottomSheetItem(
-                                                  context: context,
-                                                  title: 'Start Deal'),
-                                              _subMenuExpansion(context),
-                                              _bottomSheetItem(
-                                                  context: context,
-                                                  title: 'Appraisal'),
-                                              _bottomSheetItem(
-                                                  context: context,
-                                                  title: 'Coming Soon'),
-                                              _bottomSheetItem(
-                                                  context: context,
-                                                  title: 'Pending'),
-                                              _bottomSheetItem(
-                                                  context: context,
-                                                  title: 'Mark As Sold'),
-                                              _bottomSheetItem(
-                                                  context: context,
-                                                  title: 'Delete Listing'),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                });
-                          },
-                          child: SvgPicture.asset(
-                            AppImages.more,
-                            height: 22.h,
-                          )),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      SvgPicture.asset(
-                        AppImages.arrow,
-                        height: 22.h,
-                      ),
-                    ],
-                  ),
-                )
+                _options(context)
               ],
             )
           ],
         ),
       ),
     );
+  }
+
+  Widget _options(BuildContext context) {
+    return Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(36),
+                                ),
+                              ),
+                              context: context,
+                              builder: (context) {
+                                return _moreBottomSheet(context);
+                              });
+                        },
+                        child: SvgPicture.asset(
+                          AppImages.more,
+                          height: 22.h,
+                        )),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    AnimatedBuilder(
+                      animation: animationController,
+                      builder: (BuildContext context, Widget? child){
+                        return  Transform.rotate(
+                          angle: animationController.value *pi,
+                          child: GestureDetector(
+                            onTap: (){
+                              if(selectedIndex == widget.itemIndex){
+
+                                if(!isExpanded){
+                                  animationController.animateTo(180) ;
+                                }else{
+                                  animationController.animateBack(0);
+                                }
+
+                                isExpanded = !isExpanded;
+                              }
+
+                            },
+                            child: SvgPicture.asset(
+                              AppImages.arrow,
+                              height: 22.h,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              );
+  }
+
+  Widget _moreBottomSheet(BuildContext context) {
+    return Container(
+                                  // height: 360.h ,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(36.r),
+                                        topLeft: Radius.circular(36.r),
+                                      )),
+                                  child: ListView(
+                                    // mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      _topDesignWidget(context),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            _bottomSheetItem(
+                                                context: context,
+                                                title: 'View Listing'),
+                                            _bottomSheetItem(
+                                                context: context,
+                                                title: 'Edit Listing'),
+                                            _bottomSheetItem(
+                                                context: context,
+                                                title:
+                                                    'Create Windows Sticker'),
+                                            _bottomSheetItem(
+                                                context: context,
+                                                title: 'Start Deal'),
+                                            _subMenuExpansion(context),
+                                            _bottomSheetItem(
+                                                context: context,
+                                                title: 'Appraisal'),
+                                            _bottomSheetItem(
+                                                context: context,
+                                                title: 'Coming Soon'),
+                                            _bottomSheetItem(
+                                                context: context,
+                                                title: 'Pending'),
+                                            _bottomSheetItem(
+                                                context: context,
+                                                title: 'Mark As Sold'),
+                                            _bottomSheetItem(
+                                                context: context,
+                                                title: 'Delete Listing'),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
   }
 
   Widget _subMenuExpansion(BuildContext context) {

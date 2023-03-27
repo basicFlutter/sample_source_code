@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_images.dart';
-import 'package:new_panel/core/widgets/custom_tabBar.dart';
 import 'package:new_panel/core/widgets/custom_tag.dart';
 import 'package:new_panel/core/widgets/dialog_close_button.dart';
 
@@ -13,12 +12,17 @@ import '../widgets/inventory_list.dart';
 class InventoryPage extends StatefulWidget {
   const InventoryPage({Key? key}) : super(key: key);
 
+
+
   @override
   State<InventoryPage> createState() => _InventoryPageState();
 }
 
 class _InventoryPageState extends State<InventoryPage> {
+
+  bool isSearchMode = false ;
   TextEditingController searchbarController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,35 +50,34 @@ class _InventoryPageState extends State<InventoryPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              SvgPicture.asset(
-                AppImages.filter,
-                width: 35,
-              ),
-              SizedBox(
-                width: 15.w,
-              ),
-              SvgPicture.asset(
-                AppImages.search,
-                width: 35,
-              ),
-              SizedBox(
-                width: 15.w,
-              ),
-            ],
+          Expanded(
+            child: Row( 
+              children: [
+                SvgPicture.asset(
+                  AppImages.filter,
+                  width: 35,
+                ),
+                SizedBox(
+                  width: 15.w,
+                ),
+                if(!isSearchMode)
+                _searchButton()
+                else
+                 _searchField(context),
+                SizedBox(
+                  width: 15.w,
+                ),
+              ],
+            ),
           ),
           GestureDetector(
             onTap: (){
               showDialog(context: context , builder: (context){
                 return AlertDialog(
-                  insetPadding: EdgeInsets.all(10),
-                  contentPadding: EdgeInsets.all(10),
+                  insetPadding: const EdgeInsets.all(10),
+                  contentPadding: const EdgeInsets.all(10),
                   content: _dialogContent(context),
-                  shape:   const RoundedRectangleBorder(
-
-                      borderRadius: BorderRadius.all(Radius.circular(8))),
-
+                  shape:   const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
                 ) ;
               }) ;
             },
@@ -98,6 +101,68 @@ class _InventoryPageState extends State<InventoryPage> {
         ],
       ),
     );
+  }
+
+  Widget _searchField(BuildContext context) {
+    return Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [Theme.of(context).colorScheme.tertiary,Theme.of(context).colorScheme.primary]),
+                      border: Border.all(
+                        color: Colors.transparent,
+                      ),
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32),
+                        color: Theme.of(context).colorScheme.background
+                      ),
+                      child: TextFormField(
+                        controller:searchbarController ,
+                        decoration:  InputDecoration(
+                          suffixIcon: IconButton(onPressed: (){
+                            setState((){
+                              isSearchMode = false ;
+                            });
+
+                          }, icon:Icon(Icons.close, size:20 ,color: Theme.of(context).colorScheme.onBackground),),
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.only(right:12.w, top: 2.h , bottom: 2.h),
+                              child: SvgPicture.asset(
+                                AppImages.search,
+                                width: 35,
+                              ),
+                            ),
+                            border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              borderSide: BorderSide(color: Colors.white , width:0.5),
+                            ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(color: Colors.white , width:0.5),
+                          ),
+
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+  }
+
+  Widget _searchButton() {
+    return GestureDetector(
+              onTap: (){
+
+                setState(() {
+                  isSearchMode = !isSearchMode ;
+                });
+              },
+              child: SvgPicture.asset(
+                AppImages.search,
+                width: 35,
+              ),
+            );
   }
 
   Widget _dialogContent(BuildContext context) {
