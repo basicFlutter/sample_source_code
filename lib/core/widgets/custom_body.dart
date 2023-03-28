@@ -47,29 +47,30 @@ class CustomBody extends StatelessWidget {
           children: [
             SvgPicture.asset(
               AppImages.menu,
-              height: 40,
-              width: 40,
+              height: 45.r,
+              width: 45.r,
             ),
-            const SizedBox(
-              width: 10,
+             SizedBox(
+              width: 10.w,
             ),
             SvgPicture.asset(AppImages.ring,
-              height: 40,
-              width: 40,),
+              height: 45.r,
+              width: 45.r,
+            ),
           ],
         ),
         SvgPicture.asset(AppImages.lorem),
         Row(
           children: [
             SvgPicture.asset(AppImages.add,
-              height: 40,
-              width: 40,),
-            const SizedBox(
-              width: 10,
+              height: 45.r,
+              width: 45.r,),
+             SizedBox(
+              width: 10.w,
             ),
             Container(
-              width: 50,
-              height: 50,
+              width: 60.r,
+              height: 60.r,
               decoration: BoxDecoration(
 
                   borderRadius: BorderRadius.circular(50.r),
@@ -81,8 +82,8 @@ class CustomBody extends StatelessWidget {
                     child: Image.asset(
                       AppImages.profileTest,
                       fit: BoxFit.cover,
-                      width: 40,
-                      height: 40,
+                      width: 40.r,
+                      height: 40.r,
                     )),
               ),
             )

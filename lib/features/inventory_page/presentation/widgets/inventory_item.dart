@@ -1,14 +1,19 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 
+import '../manager/inventory_bloc.dart';
+import '../manager/status/inventory_page_status.dart';
+
 class InventoryItem extends StatefulWidget {
    final int itemIndex ;
-   const InventoryItem({Key? key , required this.itemIndex}) : super(key: key);
+
+    InventoryItem({Key? key , required this.itemIndex }) : super(key: key);
 
   @override
   State<InventoryItem> createState() => _InventoryItemState();
@@ -19,10 +24,11 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
    late AnimationController animationController;
    late int selectedIndex ;
     bool isExpanded =false  ;
+    bool? isSelectMode ;
 
   @override
   void initState() {
-    animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1000),);
+    animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500),);
 
     selectedIndex = widget.itemIndex ;
    super.initState();
@@ -36,49 +42,89 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 7.h),
-      child: SizedBox(
-        height: 100,
-        child: Stack(
-          children: [
-            _itemCard(context),
-            AnimatedPositioned(
-              bottom:isExpanded && selectedIndex == widget.itemIndex ?0 : -50,
-              left: 0,
-              duration: const Duration(milliseconds: 1000),
-              child: Container(
-                width: 329.w ,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 1,
-                      blurRadius: 4,
-                      offset: Offset(1, 0), // changes position of shadow
-                    ),
-                  ],
-                  color: Theme.of(context).colorScheme.secondary ,
-                  borderRadius: BorderRadius.all(Radius.circular(5.r))
-                ),
 
-                child: Row(children: [
-                  Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(7.r)) ,
-                        border: Border.all(color: Theme.of(context).colorScheme.primary)
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text('Total cost: '),
-                      ))
-                ],),
-              ),
-            )
-          ],
+
+    return BlocBuilder<InventoryBloc, InventoryState>(
+      builder: (context, state) {
+        if(state.inventoryPageStatus is ChangeSelectModeStatus){
+          ChangeSelectModeStatus changeSelectMode = state.inventoryPageStatus as ChangeSelectModeStatus ;
+          isSelectMode = changeSelectMode.isSelectMode ;
+        }
+    return GestureDetector(
+      onLongPress: (){
+        print('LONG PRESS') ;
+       BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: true )) ;
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 7.h),
+        child: SizedBox(
+          height: 100,
+          child: Stack(
+            children: [
+              _itemCard(context),
+              _moreDetailCard(context)
+            ],
+          ),
         ),
       ),
+    );
+  },
+);
+  }
+
+  Widget _moreDetailCard(BuildContext context) {
+    return AnimatedPositioned(
+            curve: Curves.linear,
+            bottom:isExpanded && selectedIndex == widget.itemIndex ?0 : -50,
+            left: 0,
+            duration: const Duration(milliseconds: 500),
+            child: Container(
+              width: 329.w ,
+              height: 50.h,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 4,
+                    offset: Offset(1, 0), // changes position of shadow
+                  ),
+                ],
+                color: Theme.of(context).colorScheme.secondary ,
+                borderRadius: BorderRadius.all(Radius.circular(5.r))
+              ),
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                _moreDetailItem(context , 'Total Cost : 3000000\$') ,
+                _moreDetailItem(context , 'Color :metal yellow') ,
+                Container(decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(7.r)) ,
+                border: Border.all(color: Theme.of(context).colorScheme.primary)),
+                child:const Padding(
+                  padding:  EdgeInsets.all(5.0),
+                  child:  Icon(Icons.build ,size: 12, ),
+                ),
+                ) ,
+
+              ],),
+            ),
+          );
+  }
+
+  Widget _moreDetailItem(BuildContext context , String title ) {
+    return Padding(
+      padding:  EdgeInsets.only(right: 8.w),
+      child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(7.r)) ,
+                      border: Border.all(color: Theme.of(context).colorScheme.primary)
+                    ),
+                    child:  Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Text('$title '),
+                    )),
     );
   }
 
@@ -142,7 +188,7 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   Text(
-                    '15734 KM',
+                    'Odometer: 15,734 KM',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   Text(
@@ -170,6 +216,11 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                     ],
                   ),
                 ),
+                isSelectMode?? false   ?const SizedBox()
+                : SizedBox(
+                    height: 20.h,
+                    width: 20.w,
+                    child: Switch(value: true, onChanged: (isActive){})) ,
                 _options(context)
               ],
             )
@@ -184,6 +235,7 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
                   children: [
+                    isSelectMode ??false   ?SizedBox() :
                     GestureDetector(
                         onTap: () {
                           showModalBottomSheet(
@@ -220,6 +272,9 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                                 }
 
                                 isExpanded = !isExpanded;
+                                setState(() {
+
+                                });
                               }
 
                             },
@@ -405,12 +460,13 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
             ),
           ),
         ),
+        isSelectMode ?? false   ?
         Positioned(
             bottom: -16,
             left: -16,
             child: Transform.scale(
                 scale: 0.7,
-                child: Checkbox(value: true, onChanged: (value) {})))
+                child: Checkbox(value: true, onChanged: (value) {}))) : const SizedBox()
       ],
     );
   }
