@@ -52,13 +52,13 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
         }
     return GestureDetector(
       onLongPress: (){
-        print('LONG PRESS') ;
        BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: true )) ;
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 7.h),
+        padding: EdgeInsets.symmetric(vertical: 7.h , horizontal: 12.w),
         child: SizedBox(
-          height: 100,
+          width: MediaQuery.of(context).size.width ,
+          height: 110.h,
           child: Stack(
             children: [
               _itemCard(context),
@@ -75,7 +75,7 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
   Widget _moreDetailCard(BuildContext context) {
     return AnimatedPositioned(
             curve: Curves.linear,
-            bottom:isExpanded && selectedIndex == widget.itemIndex ?0 : -50,
+            bottom:isExpanded && selectedIndex == widget.itemIndex ?8 : -50,
             left: 0,
             duration: const Duration(milliseconds: 500),
             child: Container(
@@ -129,15 +129,23 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
   }
 
   Widget _itemCard(BuildContext context) {
-    return Row(
-            children: [
-              _cardPicture(),
-              const SizedBox(
-                width: 5,
+    return Padding(
+      padding:  EdgeInsets.symmetric(horizontal: 6.w),
+      child: Container(
+
+        height: 102.h,
+
+        child: Row(
+                children: [
+                  _cardPicture(),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  _cardDetail(context),
+                ],
               ),
-              _cardDetail(context),
-            ],
-          );
+      ),
+    );
   }
 
   Widget _cardDetail(BuildContext context) {
@@ -254,7 +262,7 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                           height: 22.h,
                         )),
                     SizedBox(
-                      width: 15.w,
+                      width: 20.w,
                     ),
                     AnimatedBuilder(
                       animation: animationController,
@@ -458,6 +466,29 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
               AppImages.inventoryTest,
               fit: BoxFit.cover,
             ),
+          ),
+        ),
+
+        Positioned(
+          top: 0,
+          left: 20,
+          child: Container(
+            height: 24.h,
+            width: 20.w,
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color:Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+                  offset: const Offset(0, 2)
+                    ,
+                  spreadRadius: 1 ,
+                  blurRadius: 3
+                )
+              ],
+              color: Theme.of(context).colorScheme.background ,
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4.r) , bottomRight:Radius.circular(4.r) , )
+            ),
+            child: const Center(child: Text('3')),
           ),
         ),
         isSelectMode ?? false   ?

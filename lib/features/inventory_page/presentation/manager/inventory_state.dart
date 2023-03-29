@@ -1,16 +1,17 @@
 part of 'inventory_bloc.dart';
 
+class InventoryState {
+  InventoryPageStatus? inventoryPageStatus;
 
- class InventoryState {
+  GetInventoryStatus? getInventoryStatus;
 
-  InventoryPageStatus? inventoryPageStatus ;
+  InventoryState({this.inventoryPageStatus, this.getInventoryStatus});
 
-  InventoryState({  this.inventoryPageStatus});
-
-  InventoryState copyWith({InventoryPageStatus? newInventoryPageStatus }){
-    return InventoryState(inventoryPageStatus: newInventoryPageStatus ?? inventoryPageStatus) ;
+  InventoryState copyWith(
+      {InventoryPageStatus? newInventoryPageStatus,
+      GetInventoryStatus? newInventoryStatus}) {
+    return InventoryState(
+        inventoryPageStatus: newInventoryPageStatus ?? inventoryPageStatus,
+        getInventoryStatus: newInventoryStatus ?? getInventoryStatus);
   }
-
 }
-
-

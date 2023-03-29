@@ -18,16 +18,22 @@ class CustomBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
+        padding:  EdgeInsets.symmetric( vertical: 18.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _topOptions(context),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w,),
+              child: _topOptions(context),
+            ),
             SizedBox(
               height: 10.h,
             ),
-            SearchbarWidget(
-              searchbarController: searchbarController,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w,),
+              child: SearchbarWidget(
+                searchbarController: searchbarController,
+              ),
             ),
             SizedBox(
               height: 10.h,

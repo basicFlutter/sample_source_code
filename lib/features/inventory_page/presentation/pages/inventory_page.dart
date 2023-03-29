@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_images.dart';
+import 'package:new_panel/core/service_locator.dart';
 import 'package:new_panel/core/widgets/custom_tag.dart';
 import 'package:new_panel/core/widgets/dialog_close_button.dart';
+import 'package:new_panel/features/inventory_page/presentation/manager/status/get_inventpries_status.dart';
 
 import '../../../../core/widgets/custom_body.dart';
 import '../manager/inventory_bloc.dart';
@@ -29,30 +31,36 @@ class _InventoryPageState extends State<InventoryPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<InventoryBloc>(
-      create: (context) => InventoryBloc(),
+      create: (context) => InventoryBloc(getInventoryUseCase: locator())
+        ..add(GetInventoriesEvent(stateType: '3')),
       child: Scaffold(
-        body: BlocBuilder<InventoryBloc, InventoryState>(
+        body: BlocConsumer<InventoryBloc, InventoryState>(
+          listener: (context, state) {
+
+          },
           builder: (context, state) {
-            if (state.inventoryPageStatus is ChangeSelectModeStatus) {
-              print('YESSSSSSSSSSSSS') ;
-              ChangeSelectModeStatus currentState = state.inventoryPageStatus as ChangeSelectModeStatus;
-              isSelect = currentState.isSelectMode;
-            }
-            return CustomBody(
-              searchbarController: searchbarController,
-              body: Column(
-                children: [
-                  isSelect ? _selectWidget(context) : _tags(),
-                  SizedBox(
-                    height: 6.h,
-                  ),
-                  isSelect ? _selectOptions(context) : _filterOptions(context),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Expanded(child: InventoryList())
-                ],
-              ),
+            return BlocBuilder<InventoryBloc, InventoryState>(
+              builder: (context, state) {
+                if (state.inventoryPageStatus is ChangeSelectModeStatus) {
+                  ChangeSelectModeStatus currentState = state.inventoryPageStatus as ChangeSelectModeStatus;
+                  isSelect = currentState.isSelectMode;
+                }
+                if (state.getInventoryStatus is SuccessGetInventoryStatus) {
+                  SuccessGetInventoryStatus successState = state.getInventoryStatus as SuccessGetInventoryStatus ;
+
+                  return CustomBody(
+                    searchbarController: searchbarController,
+                    body: _inventoryBody(context),
+                  );
+                }else if(state.getInventoryStatus is LoadingGetInventoryStatus){
+                  return CustomBody(
+                    searchbarController: searchbarController,
+                    body:Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary,)),
+                  );
+              ;  }
+
+                return Container();
+              },
             );
           },
         ),
@@ -60,9 +68,30 @@ class _InventoryPageState extends State<InventoryPage> {
     );
   }
 
+  Widget _inventoryBody(BuildContext context ) {
+    return Column(
+      children: [
+        isSelect ? _selectWidget(context) : _tags(),
+        SizedBox(
+          height: 6.h,
+        ),
+        isSelect ? _selectOptions(context) : _filterOptions(context),
+        SizedBox(
+          height: 5.h,
+        ),
+        Expanded(child: InventoryList())
+      ],
+    );
+  }
+
   Widget _selectOptions(BuildContext context) {
-    return Wrap(
-      children: [_selectItems(context, 'pending')],
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.w,
+      ),
+      child: Wrap(
+        children: [_selectItems(context, 'Pending')],
+      ),
     );
   }
 
@@ -89,78 +118,88 @@ class _InventoryPageState extends State<InventoryPage> {
   }
 
   Widget _selectWidget(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          '5 Selected',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        TextButton(
-            onPressed: () {
-              BlocProvider.of<InventoryBloc>(context)
-                  .add(ChangeSelectModeEvent(isSelectMode: false));
-            },
-            child: const Text('Done'))
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.w,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '5 Selected',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          TextButton(
+              onPressed: () {
+                BlocProvider.of<InventoryBloc>(context)
+                    .add(ChangeSelectModeEvent(isSelectMode: false));
+              },
+              child: const Text('Done'))
+        ],
+      ),
     );
   }
 
   Widget _filterOptions(BuildContext context) {
-    return SizedBox(
-      height: 42.h,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  AppImages.filter,
-                  width: 35,
-                ),
-                SizedBox(
-                  width: 15.w,
-                ),
-                if (!isSearchMode) _searchButton() else _searchField(context),
-                SizedBox(
-                  width: 15.w,
-                ),
-              ],
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      insetPadding: const EdgeInsets.all(10),
-                      contentPadding: const EdgeInsets.all(10),
-                      content: _dialogContent(context),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                    );
-                  });
-            },
-            child: Container(
-                height: 40.h,
-                width: 140.w,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.shadow,
-                    borderRadius: BorderRadius.all(Radius.circular(6.r))),
-                child: DropdownButton2(
-                  underline: const SizedBox(),
-                  items: const [],
-                  barrierColor: Theme.of(context).colorScheme.secondary,
-                  hint: Text(
-                    'Inventory',
-                    style: Theme.of(context).textTheme.headlineLarge,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.w,
+      ),
+      child: SizedBox(
+        height: 42.h,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    AppImages.filter,
+                    width: 35,
                   ),
-                )),
-          )
-          // SvgPicture.asset(AppImages.more , width: 35,  ) ,
-        ],
+                  SizedBox(
+                    width: 15.w,
+                  ),
+                  if (!isSearchMode) _searchButton() else _searchField(context),
+                  SizedBox(
+                    width: 15.w,
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        insetPadding: const EdgeInsets.all(10),
+                        contentPadding: const EdgeInsets.all(10),
+                        content: _dialogContent(context),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                      );
+                    });
+              },
+              child: Container(
+                  height: 40.h,
+                  width: 140.w,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.shadow,
+                      borderRadius: BorderRadius.all(Radius.circular(6.r))),
+                  child: DropdownButton2(
+                    underline: const SizedBox(),
+                    items: const [],
+                    barrierColor: Theme.of(context).colorScheme.secondary,
+                    hint: Text(
+                      'Inventory',
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                  )),
+            )
+            // SvgPicture.asset(AppImages.more , width: 35,  ) ,
+          ],
+        ),
       ),
     );
   }
@@ -242,7 +281,7 @@ class _InventoryPageState extends State<InventoryPage> {
           _dialogItem(context, false, 'Appraisal'),
           _dialogItem(context, true, 'Coming soon'),
           _dialogItem(context, false, 'Active Inventory'),
-          _dialogItem(context, false, 'pending'),
+          _dialogItem(context, false, 'Pending'),
           _dialogItem(context, false, 'Delete'),
           SizedBox(
             height: 10.h,
@@ -275,19 +314,25 @@ class _InventoryPageState extends State<InventoryPage> {
   }
 
   Widget _tags() {
-    return SizedBox(
-      height: 70.h,
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        direction: Axis.horizontal,
-        children: [
-          CustomTag(tagString: 'Total: 900\$', onTap: () {}),
-          CustomTag(tagString: 'Active: 320\$', onTap: () {}),
-          CustomTag(
-              tagString: 'Total Retail Price: \$32,700,557', onTap: () {}),
-          CustomTag(tagString: 'Total Purchase Price: \$322,700', onTap: () {}),
-          CustomTag(tagString: 'Deactivate: 500', onTap: () {}),
-        ],
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.w,
+      ),
+      child: SizedBox(
+        height: 70.h,
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          direction: Axis.horizontal,
+          children: [
+            CustomTag(tagString: 'Total: \$ 900', onTap: () {}),
+            CustomTag(tagString: 'Active: \$ 320', onTap: () {}),
+            CustomTag(
+                tagString: 'Total Retail Price: \$ 32,700,557', onTap: () {}),
+            CustomTag(
+                tagString: 'Total Purchase Price: \$ 322,700', onTap: () {}),
+            CustomTag(tagString: 'Deactivate: 500', onTap: () {}),
+          ],
+        ),
       ),
     );
   }

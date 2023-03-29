@@ -67,12 +67,12 @@ class AppUtils {
     return Color(int.parse(hexColor));
   }
 
-  static String dollarFormat(String number ,{bool leftDollar = false}) {
+  static String dollarFormat(String number ) {
     if (number.length > 2) {
       number = number.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), ',');
     }
 
-    return leftDollar ? '\$$number' : '$number\$';
+    return '\$ $number';
   }
 
   // static copyToClipboard({required String text}) {
