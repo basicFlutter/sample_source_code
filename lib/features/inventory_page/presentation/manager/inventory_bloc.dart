@@ -5,43 +5,81 @@ import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/get_inventpries_status.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/inventory_page_status.dart';
+import 'package:new_panel/features/inventory_page/presentation/manager/status/search_inventory_status.dart';
 
 import '../../../../core/exceptions/failure.dart';
 import '../../domain/entities/inventory_entity.dart';
 import '../../domain/use_cases/get_inventory_usecase.dart';
+import '../../domain/use_cases/get_whole_inventory_use_case.dart';
 
 part 'inventory_event.dart';
+
 part 'inventory_state.dart';
 
 class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
+  GetInventoryUseCase getInventoryUseCase;
 
-  GetInventoryUseCase getInventoryUseCase ;
+  GetWholeInventoryUseCase getWholeInventoriesUseCase;
 
   List<InventoryEntity> inventories = [];
+  List<InventoryEntity> searchedInventories = [] ;
 
-  InventoryBloc({ required this.getInventoryUseCase}) : super(InventoryState()) {
+  InventoryBloc(
+      {required this.getInventoryUseCase,
+      required this.getWholeInventoriesUseCase})
+      : super(InventoryState()) {
     on<InventoryEvent>((event, emit) {});
-    
+
     on<ChangeSelectModeEvent>((event, emit) {
-      emit(state.copyWith(newInventoryPageStatus:ChangeSelectModeStatus(isSelectMode: event.isSelectMode ) ) );
+      emit(state.copyWith(
+          newInventoryPageStatus:
+              ChangeSelectModeStatus(isSelectMode: event.isSelectMode)));
     });
 
     on<GetInventoriesEvent>((event, emit) async {
       emit(state.copyWith(newInventoryStatus: LoadingGetInventoryStatus()));
 
-      Either<Failure, List<InventoryEntity>> response = await getInventoryUseCase.call(event.stateType);
+      Either<Failure, List<InventoryEntity>> response =
+          await getInventoryUseCase.call(event.stateType);
 
-      response.fold((error){
-        emit(state.copyWith(newInventoryStatus: FailedGetInventoryStatus())) ;
-      } , (List<InventoryEntity> data ){
+      response.fold((error) {
+        emit(state.copyWith(newInventoryStatus: FailedGetInventoryStatus()));
+      }, (List<InventoryEntity> data) {
         inventories.addAll(data);
-         emit(state.copyWith(newInventoryStatus: SuccessGetInventoryStatus(inventories: inventories)));
-      }) ;
+        emit(state.copyWith(
+            newInventoryStatus: SuccessGetInventoryStatus(
+                allInventory: inventories, currentPageInventory: [])));
+      });
     });
-
 
     on<GetWholeInventoriesEvent>((event, emit) {});
 
+    on<SearchInventoryEvent>((event, emit) {
+      print('QUERY IS ${event.searchQuery}') ;
+      if(event.searchQuery == ''){
+
+        emit(state.copyWith(newInventoryStatus: SuccessGetInventoryStatus(allInventory: inventories, currentPageInventory: [])));
+
+      } else {
+        searchedInventories.clear();
+        for (var element in inventories) {
+          if (element.age.toString().toLowerCase().contains(event.searchQuery.toString().toLowerCase()) ||
+              element.vehicles!.modelYear.toString().toLowerCase().contains(event.searchQuery.toLowerCase()) ||
+              element.vehicles!.make.toString().toLowerCase().contains(event.searchQuery.toLowerCase()) ||
+              element.vehicles!.model.toString().toLowerCase().contains(event.searchQuery.toLowerCase()) ||
+              element.vehicles!.bodyStyles.toString().toLowerCase().contains(event.searchQuery.toLowerCase()) ||
+              element.vehicles!.vinNumber.toString().toLowerCase().contains(event.searchQuery.toLowerCase()) ||
+              element.sellPrice.toString().toLowerCase().contains(event.searchQuery.toLowerCase()) ||
+              element.specialPrice.toString().toLowerCase().contains(event.searchQuery.toLowerCase()) ||
+            element.stockNO.toString().toLowerCase().contains(  event.searchQuery.toLowerCase()) ||
+              element.odometer.toString().toLowerCase().contains(event.searchQuery.toLowerCase()) ||
+              element.createdAt.toString().toLowerCase().contains(event.searchQuery.toLowerCase())
+          ) {
+            searchedInventories.add(element) ;
+          }
+        }
+        emit(state.copyWith(newInventoryStatus: SuccessGetInventoryStatus(allInventory: searchedInventories, currentPageInventory: [] , )));
+      }
+     });
   }
 }
-

@@ -5,9 +5,10 @@ abstract class GetInventoryStatus {}
 class FailedGetInventoryStatus extends GetInventoryStatus { }
 
 class SuccessGetInventoryStatus extends GetInventoryStatus {
-  List<InventoryEntity> inventories ;
+  List<InventoryEntity> allInventory ;
+  List<InventoryEntity> currentPageInventory ;
 
-  SuccessGetInventoryStatus({required this.inventories});
+  SuccessGetInventoryStatus({required this.allInventory , required this.currentPageInventory});
 }
 
 class LoadingGetInventoryStatus extends GetInventoryStatus {}

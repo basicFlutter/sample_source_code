@@ -14,6 +14,7 @@ import '../manager/inventory_bloc.dart';
 import '../manager/status/inventory_page_status.dart';
 import '../widgets/inventory_list.dart';
 
+
 class InventoryPage extends StatefulWidget {
   const InventoryPage({Key? key}) : super(key: key);
 
@@ -21,43 +22,54 @@ class InventoryPage extends StatefulWidget {
   State<InventoryPage> createState() => _InventoryPageState();
 }
 
-class _InventoryPageState extends State<InventoryPage> {
+class _InventoryPageState extends State<InventoryPage>
+   {
   bool isSearchMode = false;
 
   bool isSelect = false;
 
   TextEditingController searchbarController = TextEditingController();
+  TextEditingController inventorySearchController = TextEditingController() ;
+  @override
+  void initState() {
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<InventoryBloc>(
-      create: (context) => InventoryBloc(getInventoryUseCase: locator())
+      create: (context) => InventoryBloc(
+          getInventoryUseCase: locator(), getWholeInventoriesUseCase: locator())
         ..add(GetInventoriesEvent(stateType: '3')),
       child: Scaffold(
         body: BlocConsumer<InventoryBloc, InventoryState>(
-          listener: (context, state) {
-
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             return BlocBuilder<InventoryBloc, InventoryState>(
               builder: (context, state) {
                 if (state.inventoryPageStatus is ChangeSelectModeStatus) {
-                  ChangeSelectModeStatus currentState = state.inventoryPageStatus as ChangeSelectModeStatus;
+                  ChangeSelectModeStatus currentState =
+                      state.inventoryPageStatus as ChangeSelectModeStatus;
                   isSelect = currentState.isSelectMode;
                 }
                 if (state.getInventoryStatus is SuccessGetInventoryStatus) {
-                  SuccessGetInventoryStatus successState = state.getInventoryStatus as SuccessGetInventoryStatus ;
+                  SuccessGetInventoryStatus successState =
+                      state.getInventoryStatus as SuccessGetInventoryStatus;
 
                   return CustomBody(
                     searchbarController: searchbarController,
-                    body: _inventoryBody(context),
+                    body: _inventoryBody(context, successState),
                   );
-                }else if(state.getInventoryStatus is LoadingGetInventoryStatus){
+                } else if (state.getInventoryStatus is LoadingGetInventoryStatus) {
                   return CustomBody(
                     searchbarController: searchbarController,
-                    body:Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary,)),
+                    body: Center(
+                        child: CircularProgressIndicator(
+                      color: Theme.of(context).colorScheme.primary,
+                    )),
                   );
-              ;  }
+                }
 
                 return Container();
               },
@@ -68,21 +80,78 @@ class _InventoryPageState extends State<InventoryPage> {
     );
   }
 
-  Widget _inventoryBody(BuildContext context ) {
-    return Column(
-      children: [
-        isSelect ? _selectWidget(context) : _tags(),
-        SizedBox(
-          height: 6.h,
-        ),
-        isSelect ? _selectOptions(context) : _filterOptions(context),
-        SizedBox(
-          height: 5.h,
-        ),
-        Expanded(child: InventoryList())
-      ],
-    );
+  Widget _inventoryBody(BuildContext context, SuccessGetInventoryStatus state) {
+    return
+
+      // NestedScrollView(
+      // headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+      //   return <Widget>[
+      //     SliverAppBar(
+      //       stretch: true ,
+      //       title: Column(children: [
+      //             isSelect ? _selectWidget(context) : _tags(),
+      //             SizedBox(
+      //               height: 6.h,
+      //             ),
+      //             isSelect ? _selectOptions(context) : _filterOptions(context),
+      //             SizedBox(
+      //               height: 5.h,
+      //             ),
+      //       ],),
+      //     ),
+      //   ];
+      // },
+      // headerSliverBuilder
+      // slivers: [
+      //   SliverAppBar(
+      //     // expandedHeight: 250,
+      //     // collapsedHeight: 100,
+      //     centerTitle: false,
+      //     pinned: true,
+      //     /// 1
+      //     title:Column(children: [
+      //           isSelect ? _selectWidget(context) : _tags(),
+      //           SizedBox(
+      //             height: 6.h,
+      //           ),
+      //           isSelect ? _selectOptions(context) : _filterOptions(context),
+      //           SizedBox(
+      //             height: 5.h,
+      //           ),
+      //     ],) ,
+      //     elevation: 0,
+      //     /// 2
+      //     backgroundColor: Colors.transparent,
+      //     leading: const BackButton(
+      //       color: Colors.white,
+      //     ),
+      //     /// 3
+      //
+      //   ),
+// ],
+
+          // body: Expanded (child: InventoryList(inventories: state.allInventory,)),
+
+
+      Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          isSelect ? _selectWidget(context) : _tags(),
+          SizedBox(
+            height: 6.h,
+          ),
+          isSelect ? _selectOptions(context) : _filterOptions(context),
+          SizedBox(
+            height: 5.h,
+          ),
+          Expanded(child: InventoryList(inventories: state.allInventory,))
+        ],
+      );
+
   }
+
+
+
 
   Widget _selectOptions(BuildContext context) {
     return Padding(
@@ -94,6 +163,9 @@ class _InventoryPageState extends State<InventoryPage> {
       ),
     );
   }
+
+
+
 
   Widget _selectItems(BuildContext context, String title) {
     return Container(
@@ -222,11 +294,14 @@ class _InventoryPageState extends State<InventoryPage> {
               borderRadius: BorderRadius.circular(32),
               color: Theme.of(context).colorScheme.background),
           child: TextFormField(
-            controller: searchbarController,
+            controller: inventorySearchController,
             decoration: InputDecoration(
               suffixIcon: IconButton(
                 onPressed: () {
                   setState(() {
+                    BlocProvider.of<InventoryBloc>(context).add(SearchInventoryEvent(searchQuery: '')) ;//TODO state should be changed
+                    
+                    inventorySearchController.clear() ;
                     isSearchMode = false;
                   });
                 },
@@ -236,9 +311,14 @@ class _InventoryPageState extends State<InventoryPage> {
               ),
               prefixIcon: Padding(
                 padding: EdgeInsets.only(right: 12.w, top: 2.h, bottom: 2.h),
-                child: SvgPicture.asset(
-                  AppImages.search,
-                  width: 35,
+                child: GestureDetector(
+                  onTap:(){
+                    print('helloooooo');
+                    BlocProvider.of<InventoryBloc>(context).add(SearchInventoryEvent(searchQuery: inventorySearchController.text));},
+                  child: SvgPicture.asset(
+                    AppImages.search,
+                    width: 35,
+                  ),
                 ),
               ),
               border: const OutlineInputBorder(
@@ -319,7 +399,7 @@ class _InventoryPageState extends State<InventoryPage> {
         horizontal: 16.w,
       ),
       child: SizedBox(
-        height: 70.h,
+        height: 75.h,
         child: Wrap(
           alignment: WrapAlignment.center,
           direction: Axis.horizontal,

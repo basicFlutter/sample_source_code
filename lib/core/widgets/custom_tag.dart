@@ -27,7 +27,7 @@ class CustomTag extends StatelessWidget {
     return Padding(
       padding:  EdgeInsets.symmetric(horizontal: 3.w , vertical: 2.h),
       child: Container(
-        height: 30.h,
+        height: 35.h,
         decoration: BoxDecoration(
             borderRadius:
                 BorderRadius.all(Radius.circular(12.r)),
