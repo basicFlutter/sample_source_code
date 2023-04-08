@@ -68,24 +68,30 @@ class Style {
     // // ),
     //
     //
-    // bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    //   backgroundColor: AppColors.bottomNavigationBackGround,
-    //   elevation: 0,
-    //   selectedIconTheme: IconThemeData(
-    //     color: AppColors.bottomNavigationIconSelected,
-    //     size: 30.r
-    //   ),
-    //   unselectedIconTheme: IconThemeData(
-    //       color: AppColors.bottomNavigationIconUnselected,
-    //       size: 30.r
-    //   ),
-    //   selectedLabelStyle: TextStyle(
-    //     color: AppColors.bottomNavigationTitle,
-    //     fontSize: 10.sp,
-    //     fontFamily: "PublicSans",
-    //     fontWeight: FontWeight.w400
-    //   ),
-    // ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.customLightGray,
+      elevation: 0,
+      selectedIconTheme: IconThemeData(
+        color: AppColors.primaryColor,
+        size: 30.r
+      ),
+      unselectedIconTheme: IconThemeData(
+          color: AppColors.unselectedColor,
+          size: 30.r
+      ),
+      selectedLabelStyle: TextStyle(
+        color: AppColors.primaryColor,
+        fontSize:10.sp,
+        fontFamily: "Tajawal-Regular",
+        fontWeight: FontWeight.w400
+      ),
+      unselectedLabelStyle: TextStyle(
+          color: AppColors.unselectedColor,
+          fontSize: 10.sp,
+          fontFamily: "Tajawal-Regular",
+          fontWeight: FontWeight.w400
+      ),
+    ),
     //
     //
     //
