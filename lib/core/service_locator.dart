@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:new_panel/features/inventory_page/domain/use_cases/get_whole_inventory_use_case.dart';
 
 import '../features/inventory_page/data/data_sources/inventory_remote_data.dart';
 import '../features/inventory_page/data/repositories/inventory_repository_imp.dart';
@@ -24,8 +25,12 @@ locator.registerSingleton<ThemeSwitcherBloc>(ThemeSwitcherBloc());
   locator.registerSingleton<GetInventoryUseCase>(
       GetInventoryUseCase(inventoryRepository: locator()));
 
+
+  locator.registerSingleton<GetWholeInventoryUseCase>(
+      GetWholeInventoryUseCase(inventoryRepository: locator()));
+
   locator.registerSingleton<InventoryBloc>(
-      InventoryBloc(getInventoryUseCase: locator()));
+      InventoryBloc(getInventoryUseCase: locator() , getWholeInventoriesUseCase: locator()));
 
 
 

@@ -39,7 +39,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
                 // width: 358.w,
                 child: PhysicalModel (
                   borderRadius: BorderRadius.all(Radius.circular(12.r)),
-                  color: Theme.of(context).colorScheme.shadow,
+                  color: Theme.of(context).colorScheme.tertiary,
                   child: TextFormField(
                     controller : widget.searchbarController ,
                     decoration:  InputDecoration(
@@ -56,7 +56,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
                           color: Theme.of(context).colorScheme.onTertiary
                         ),
                         filled: true ,
-                        fillColor: Theme.of(context).colorScheme.shadow
+                        fillColor: Theme.of(context).colorScheme.tertiary
                     ),
                   ),
                 )),

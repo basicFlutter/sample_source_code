@@ -20,3 +20,13 @@ class GetWholeInventoriesEvent extends InventoryEvent{
  GetWholeInventoriesEvent();
 
 }
+
+class GetNewInventoryPage extends InventoryEvent{
+
+}
+
+class SearchInventoryEvent extends InventoryEvent{
+ final String searchQuery ;
+
+ SearchInventoryEvent({required this.searchQuery});
+}

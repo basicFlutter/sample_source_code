@@ -3,17 +3,18 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:new_panel/core/constants/app_images.dart';
+import 'package:new_panel/core/data/network/api_provider.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 
+import '../../domain/entities/inventory_entity.dart';
 import '../manager/inventory_bloc.dart';
 import '../manager/status/inventory_page_status.dart';
 
 class InventoryItem extends StatefulWidget {
    final int itemIndex ;
+   final InventoryEntity currentInventory ;
 
-    InventoryItem({Key? key , required this.itemIndex }) : super(key: key);
+    InventoryItem({Key? key , required this.itemIndex , required this.currentInventory}) : super(key: key);
 
   @override
   State<InventoryItem> createState() => _InventoryItemState();
@@ -55,10 +56,10 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
        BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: true )) ;
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 7.h , horizontal: 12.w),
+        padding: EdgeInsets.symmetric(vertical: 2.h , horizontal: 12.w),
         child: SizedBox(
           width: MediaQuery.of(context).size.width ,
-          height: 110.h,
+          height: 130.h,
           child: Stack(
             children: [
               _itemCard(context),
@@ -90,15 +91,15 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                     offset: Offset(1, 0), // changes position of shadow
                   ),
                 ],
-                color: Theme.of(context).colorScheme.secondary ,
+                color:Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(5.r))
               ),
 
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                _moreDetailItem(context , 'Total Cost : 3000000\$') ,
-                _moreDetailItem(context , 'Color :metal yellow') ,
+                _moreDetailItem(context , 'Total Cost : ${AppUtils.dollarFormat(widget.currentInventory.totalCost.toString())}') ,
+                _moreDetailItem(context , 'Color :${ widget.currentInventory.vehicles?.colorsVehiclesFrkExteriorColorToColors!= null ?   widget.currentInventory.vehicles?.colorsVehiclesFrkExteriorColorToColors['name'] : '---'}') ,
                 Container(decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(7.r)) ,
                 border: Border.all(color: Theme.of(context).colorScheme.primary)),
@@ -133,7 +134,7 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
       padding:  EdgeInsets.symmetric(horizontal: 6.w),
       child: Container(
 
-        height: 102.h,
+        height: 127.h,
 
         child: Row(
                 children: [
@@ -183,45 +184,60 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Land rover range rover evoque',
-                    style: Theme.of(context).textTheme.titleSmall,
+                  SizedBox(
+                    width:MediaQuery.of(context).size.width/3+20.w,
+                    height: 25.h,
+                    child: Text(
+                      '${widget.currentInventory.vehicles?.modelYear} ${widget.currentInventory.vehicles?.make} ${widget.currentInventory.vehicles?.model}',
+                      style: Theme.of(context).textTheme.titleSmall,
+                      overflow: TextOverflow.fade,
+                    ),
                   ),
                   Text(
-                    'TRUUT28N7110442',
+                    widget.currentInventory.vehicles?.vinNumber ?? '',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   Text(
-                    'Sedan',
+                    'Stock #: ${widget.currentInventory.stockNO}',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   Text(
-                    'Odometer: 15,734 KM',
+                    'Odometer: ${widget.currentInventory.odometer} ${widget.currentInventory.odometerType == 2 ?'KM':'MI'}',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),Text(
+                    widget.currentInventory.vehicles?.bodyStyles?.name ?? '',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  Text(
-                    'Stock #: NV911415659278301',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
+
                 ],
               ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 8.h, right: 8.w),
-                  child: Column(
-                    children: [
-                      Text(
-                        AppUtils.dollarFormat('3000'),
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      Text(AppUtils.dollarFormat('2500'),
-                          style:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    decoration: TextDecoration.lineThrough,))
-                    ],
+                SizedBox(
+                  width: 80.w,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 8.h, right: 8.w),
+                    child: Column(
+                      children: [
+                        if(widget.currentInventory.specialPrice != 0)  Text(
+                          AppUtils.dollarFormat('${widget.currentInventory.specialPrice}'),
+                          overflow: TextOverflow.fade,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        )else Text(
+
+                          AppUtils.dollarFormat('${widget.currentInventory.sellPrice}'),
+                          style: Theme.of(context).textTheme.bodyMedium,   overflow: TextOverflow.fade,
+                        ),
+                        if(widget.currentInventory.specialPrice != 0)
+                        Text(AppUtils.dollarFormat('${widget.currentInventory.sellPrice}'),
+                            overflow: TextOverflow.fade,
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      decoration: TextDecoration.lineThrough,))
+                      ],
+                    ),
                   ),
                 ),
                 isSelectMode?? false   ?const SizedBox()
@@ -243,27 +259,6 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
                   children: [
-                    isSelectMode ??false   ?SizedBox() :
-                    GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(36),
-                                ),
-                              ),
-                              context: context,
-                              builder: (context) {
-                                return _moreBottomSheet(context);
-                              });
-                        },
-                        child: SvgPicture.asset(
-                          AppImages.more,
-                          height: 22.h,
-                        )),
-                    SizedBox(
-                      width: 20.w,
-                    ),
                     AnimatedBuilder(
                       animation: animationController,
                       builder: (BuildContext context, Widget? child){
@@ -286,14 +281,50 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                               }
 
                             },
-                            child: SvgPicture.asset(
-                              AppImages.arrow,
-                              height: 22.h,
-                            ),
+                            child:Stack(children: [
+                              Positioned(
+                                bottom: 2,
+                                left: 0,
+                                child: Container(
+                                  width:30.w ,
+                                  height: 30.h ,
+                                  decoration: BoxDecoration(
+
+                                  color: Theme.of(context).colorScheme.primary ,
+                                  shape: BoxShape.circle
+                                ),),
+                              ) ,
+                              Icon(Icons.arrow_drop_down_circle_sharp , size: 35.h , color: Colors.white ,)
+                            ],)
+                            // SvgPicture.asset(
+                            //   AppImages.arrow,
+                            //   height: 22.h,
+                            // ),
                           ),
                         );
                       },
                     ),
+                    SizedBox(
+                      width: 5.w,
+                    ),
+
+                    isSelectMode ??false   ?const SizedBox() :
+                    GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(36),
+                                ),
+                              ),
+                              context: context,
+                              builder: (context) {
+                                return _moreBottomSheet(context);
+                              });
+                        },
+                        child:Icon(Icons.more_vert , size: 22.h, color: Theme.of(context).colorScheme.primary,)),
+
+
                   ],
                 ),
               );
@@ -456,16 +487,20 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
     return Stack(
       children: [
         SizedBox(
-          width: 126,
-          height: 100,
+          width: 120,
+          height: 120,
           child: ClipRRect(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(5.r),
-                bottomLeft: Radius.circular(55.r)),
-            child: Image.asset(
-              AppImages.inventoryTest,
+                bottomLeft: Radius.circular(5.r)),
+            child:widget.currentInventory.midVDSMedia!.isNotEmpty ?  Image.network(
+              '${imageBaseUrl}${widget.currentInventory.midVDSMedia?[0].mediaSrc}' ,
               fit: BoxFit.cover,
-            ),
+            ) : Icon(Icons.directions_car_filled)
+            // Image.asset(
+            //   AppImages.inventoryTest,
+            //   fit: BoxFit.cover,
+            // ),
           ),
         ),
 
@@ -488,7 +523,7 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
               color: Theme.of(context).colorScheme.background ,
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4.r) , bottomRight:Radius.circular(4.r) , )
             ),
-            child: const Center(child: Text('3')),
+            child: Center(child: Text(widget.currentInventory.age.toString())),
           ),
         ),
         isSelectMode ?? false   ?

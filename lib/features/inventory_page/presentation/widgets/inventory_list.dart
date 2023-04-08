@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../../../main.dart';
+import '../../domain/entities/inventory_entity.dart';
 import 'inventory_item.dart';
 
 class InventoryList extends StatefulWidget {
-
-  InventoryList({Key? key})
+List<InventoryEntity> inventories ;
+  InventoryList({Key? key , required this.inventories})
       : super(key: key);
 
   @override
@@ -13,15 +14,46 @@ class InventoryList extends StatefulWidget {
 }
 
 class _InventoryListState extends State<InventoryList> {
+
+  int currentPage = 1 ;
+
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return InventoryItem(
-            itemIndex: index,
+    return NotificationListener<ScrollEndNotification>(
+      onNotification: (ScrollEndNotification t){
+        // bool hasMoreData =widget.inventories.length;
+        // if (t.metrics.pixels > 0 && t.metrics.atEdge) {
+        //   int page = currentPage;
+        //   logger.i('CURRENT PAGE IS  ------------------>  $page') ;
+        //   if (hasMoreData) {
+        //     page++;
+        //     currentPage = page;
+        //
+        //     if (!state.isLoadingMore!) {
+        //       BlocProvider.of<InventoryBloc>(context).add(GetInventoriesEvent(
+        //         context: context,
+        //         page: currentPage,
+        //         data: filterData,
+        //         sortQuery: sortQueryString, ));
+        //     }
+        //   }
+        // } else {}
+        return true ;
+      },
+      child:
 
-          );
-        });
+
+      ListView.builder(
+          // shrinkWrap: true,
+          // physics: const NeverScrollableScrollPhysics(),
+          itemCount: widget.inventories.length,
+          itemBuilder: (context, index) {
+            return InventoryItem(
+              itemIndex: index,
+              currentInventory: widget.inventories[index],
+            );
+          }),
+    );
   }
 }
