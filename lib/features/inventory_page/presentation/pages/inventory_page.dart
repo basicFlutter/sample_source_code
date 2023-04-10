@@ -14,7 +14,6 @@ import '../manager/inventory_bloc.dart';
 import '../manager/status/inventory_page_status.dart';
 import '../widgets/inventory_list.dart';
 
-
 class InventoryPage extends StatefulWidget {
   const InventoryPage({Key? key}) : super(key: key);
 
@@ -22,18 +21,17 @@ class InventoryPage extends StatefulWidget {
   State<InventoryPage> createState() => _InventoryPageState();
 }
 
-class _InventoryPageState extends State<InventoryPage>
-   {
+class _InventoryPageState extends State<InventoryPage> {
   bool isSearchMode = false;
 
   bool isSelect = false;
 
   TextEditingController searchbarController = TextEditingController();
-  TextEditingController inventorySearchController = TextEditingController() ;
+  TextEditingController inventorySearchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -41,8 +39,9 @@ class _InventoryPageState extends State<InventoryPage>
     return BlocProvider<InventoryBloc>(
       create: (context) => InventoryBloc(
           getInventoryUseCase: locator(), getWholeInventoriesUseCase: locator())
-        ..add(GetInventoriesEvent(stateType: '3')),
+        ..add(GetInventoriesEvent(stateType: '3')), // TODO STATE IS NOT REAL
       child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: BlocConsumer<InventoryBloc, InventoryState>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -61,7 +60,8 @@ class _InventoryPageState extends State<InventoryPage>
                     searchbarController: searchbarController,
                     body: _inventoryBody(context, successState),
                   );
-                } else if (state.getInventoryStatus is LoadingGetInventoryStatus) {
+                } else if (state.getInventoryStatus
+                    is LoadingGetInventoryStatus) {
                   return CustomBody(
                     searchbarController: searchbarController,
                     body: Center(
@@ -81,77 +81,109 @@ class _InventoryPageState extends State<InventoryPage>
   }
 
   Widget _inventoryBody(BuildContext context, SuccessGetInventoryStatus state) {
-    return
+    return NestedScrollView(
+      body: InventoryList(
+        inventories: state.allInventory,
+      ),
+      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        return [
+          SliverOverlapAbsorber(
+            sliver: SliverAppBar(
+              titleSpacing: 0,
+              backgroundColor: Theme.of(context).colorScheme.background,
+              // title: SizedBox(height: 1.h,),
+              pinned: false  ,
+              forceElevated: innerBoxIsScrolled,
+              bottom: PreferredSize(
+                  preferredSize:  Size.fromHeight(70.h),
+                  child: Column(
+                    children: [
+                      Center(child:isSelect ? _selectWidget(context) : _tags(),),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      isSelect
+                          ? _selectOptions(context)
+                          : _filterOptions(context),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                    ],
+                  )),
+            ), handle:  NestedScrollView.sliverOverlapAbsorberHandleFor(
+              context),
+          )
+        ];
+      },
+    );
 
-      // NestedScrollView(
-      // headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-      //   return <Widget>[
-      //     SliverAppBar(
-      //       stretch: true ,
-      //       title: Column(children: [
-      //             isSelect ? _selectWidget(context) : _tags(),
-      //             SizedBox(
-      //               height: 6.h,
-      //             ),
-      //             isSelect ? _selectOptions(context) : _filterOptions(context),
-      //             SizedBox(
-      //               height: 5.h,
-      //             ),
-      //       ],),
-      //     ),
-      //   ];
-      // },
-      // headerSliverBuilder
-      // slivers: [
-      //   SliverAppBar(
-      //     // expandedHeight: 250,
-      //     // collapsedHeight: 100,
-      //     centerTitle: false,
-      //     pinned: true,
-      //     /// 1
-      //     title:Column(children: [
-      //           isSelect ? _selectWidget(context) : _tags(),
-      //           SizedBox(
-      //             height: 6.h,
-      //           ),
-      //           isSelect ? _selectOptions(context) : _filterOptions(context),
-      //           SizedBox(
-      //             height: 5.h,
-      //           ),
-      //     ],) ,
-      //     elevation: 0,
-      //     /// 2
-      //     backgroundColor: Colors.transparent,
-      //     leading: const BackButton(
-      //       color: Colors.white,
-      //     ),
-      //     /// 3
-      //
-      //   ),
+    // NestedScrollView(
+    // headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+    //   return <Widget>[
+    //     SliverAppBar(
+    //       stretch: true ,
+    //       title: Column(children: [
+    //             isSelect ? _selectWidget(context) : _tags(),
+    //             SizedBox(
+    //               height: 6.h,
+    //             ),
+    //             isSelect ? _selectOptions(context) : _filterOptions(context),
+    //             SizedBox(
+    //               height: 5.h,
+    //             ),
+    //       ],),
+    //     ),
+    //   ];
+    // },
+    // headerSliverBuilder
+    // slivers: [
+    //   SliverAppBar(
+    //     // expandedHeight: 250,
+    //     // collapsedHeight: 100,
+    //     centerTitle: false,
+    //     pinned: true,
+    //     /// 1
+    //     title:Column(children: [
+    //           isSelect ? _selectWidget(context) : _tags(),
+    //           SizedBox(
+    //             height: 6.h,
+    //           ),
+    //           isSelect ? _selectOptions(context) : _filterOptions(context),
+    //           SizedBox(
+    //             height: 5.h,
+    //           ),
+    //     ],) ,
+    //     elevation: 0,
+    //     /// 2
+    //     backgroundColor: Colors.transparent,
+    //     leading: const BackButton(
+    //       color: Colors.white,
+    //     ),
+    //     /// 3
+    //
+    //   ),
 // ],
 
-          // body: Expanded (child: InventoryList(inventories: state.allInventory,)),
+    // body: Expanded (child: InventoryList(inventories: state.allInventory,)),
 
-
-      Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          isSelect ? _selectWidget(context) : _tags(),
-          SizedBox(
-            height: 6.h,
-          ),
-          isSelect ? _selectOptions(context) : _filterOptions(context),
-          SizedBox(
-            height: 5.h,
-          ),
-          Expanded(child: InventoryList(inventories: state.allInventory,))
-        ],
-      );
-
+    Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        isSelect ? _selectWidget(context) : _tags(),
+        SizedBox(
+          height: 6.h,
+        ),
+        isSelect ? _selectOptions(context) : _filterOptions(context),
+        SizedBox(
+          height: 5.h,
+        ),
+        Expanded(
+            child: InventoryList(
+          inventories: state.allInventory,
+        ))
+      ],
+    );
   }
-
-
-
 
   Widget _selectOptions(BuildContext context) {
     return Padding(
@@ -163,9 +195,6 @@ class _InventoryPageState extends State<InventoryPage>
       ),
     );
   }
-
-
-
 
   Widget _selectItems(BuildContext context, String title) {
     return Container(
@@ -215,10 +244,10 @@ class _InventoryPageState extends State<InventoryPage>
   Widget _filterOptions(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: 16.w,
+        horizontal: 16.w,vertical: 2.h
       ),
       child: SizedBox(
-        height: 42.h,
+        height: 70.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -227,14 +256,14 @@ class _InventoryPageState extends State<InventoryPage>
                 children: [
                   SvgPicture.asset(
                     AppImages.filter,
-                    width: 35,
+                    width: 30,
                   ),
                   SizedBox(
-                    width: 15.w,
+                    width: 10.w,
                   ),
                   if (!isSearchMode) _searchButton() else _searchField(context),
                   SizedBox(
-                    width: 15.w,
+                    width: 10.w,
                   ),
                 ],
               ),
@@ -254,7 +283,7 @@ class _InventoryPageState extends State<InventoryPage>
                     });
               },
               child: Container(
-                  height: 40.h,
+                  height: 32.h,
                   width: 140.w,
                   decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.shadow,
@@ -279,6 +308,7 @@ class _InventoryPageState extends State<InventoryPage>
   Widget _searchField(BuildContext context) {
     return Expanded(
       child: Container(
+
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
             Theme.of(context).colorScheme.tertiary,
@@ -287,37 +317,46 @@ class _InventoryPageState extends State<InventoryPage>
           border: Border.all(
             color: Colors.transparent,
           ),
-          borderRadius: BorderRadius.circular(32),
+          borderRadius: BorderRadius.circular(32.r),
         ),
         child: Container(
+          height: 35.h,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: BorderRadius.circular(32.r),
               color: Theme.of(context).colorScheme.background),
           child: TextFormField(
+            maxLines: 1,
+            style: Theme.of(context).textTheme.displayMedium,
             controller: inventorySearchController,
             decoration: InputDecoration(
+              contentPadding: EdgeInsets.zero,
+              isDense: true,
               suffixIcon: IconButton(
                 onPressed: () {
                   setState(() {
-                    BlocProvider.of<InventoryBloc>(context).add(SearchInventoryEvent(searchQuery: '')) ;//TODO state should be changed
-                    
-                    inventorySearchController.clear() ;
+                    BlocProvider.of<InventoryBloc>(context).add(
+                        SearchInventoryEvent(
+                            searchQuery: '')); //TODO state should be changed
+
+                    inventorySearchController.clear();
                     isSearchMode = false;
                   });
                 },
                 icon: Icon(Icons.close,
-                    size: 20,
+                    size: 15,
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               prefixIcon: Padding(
                 padding: EdgeInsets.only(right: 12.w, top: 2.h, bottom: 2.h),
                 child: GestureDetector(
-                  onTap:(){
-                    print('helloooooo');
-                    BlocProvider.of<InventoryBloc>(context).add(SearchInventoryEvent(searchQuery: inventorySearchController.text));},
+                  onTap: () {
+                    BlocProvider.of<InventoryBloc>(context).add(
+                        SearchInventoryEvent(
+                            searchQuery: inventorySearchController.text));
+                  },
                   child: SvgPicture.asset(
                     AppImages.search,
-                    width: 35,
+                    width: 30,
                   ),
                 ),
               ),
@@ -345,7 +384,7 @@ class _InventoryPageState extends State<InventoryPage>
       },
       child: SvgPicture.asset(
         AppImages.search,
-        width: 35,
+        width: 30,
       ),
     );
   }
@@ -399,18 +438,18 @@ class _InventoryPageState extends State<InventoryPage>
         horizontal: 16.w,
       ),
       child: SizedBox(
-        height: 75.h,
+        height: 45.h,
         child: Wrap(
           alignment: WrapAlignment.center,
           direction: Axis.horizontal,
           children: [
-            CustomTag(tagString: 'Total: \$ 900', onTap: () {}),
-            CustomTag(tagString: 'Active: \$ 320', onTap: () {}),
+            CustomTag(tagString: 'Total: \$ 900', onTap: () {} , icon: Icon(Icons.directions_car_filled , size: 12, color: Theme.of(context).colorScheme.primary, ) ,),
+            CustomTag(tagString: 'Active: \$ 320', onTap: () {}, icon:const Icon(Icons.circle , color: Colors.lightGreenAccent,size: 12,),),
             CustomTag(
-                tagString: 'Total Retail Price: \$ 32,700,557', onTap: () {}),
+                tagString: 'Total Retail Price: \$ 32,700,557', onTap: () {} , icon: Icon(Icons.payments , size: 12, color: Theme.of(context).colorScheme.primary,),),
             CustomTag(
-                tagString: 'Total Purchase Price: \$ 322,700', onTap: () {}),
-            CustomTag(tagString: 'Deactivate: 500', onTap: () {}),
+                tagString: 'Total Purchase Price: \$ 322,700', onTap: () {}, icon: Icon(Icons.price_change , size: 12, color: Theme.of(context).colorScheme.primary,)),
+            CustomTag(tagString: 'Deactivate: 500', onTap: () {}, icon: Icon(Icons.circle , size: 12, color: Theme.of(context).colorScheme.surface,)),
           ],
         ),
       ),

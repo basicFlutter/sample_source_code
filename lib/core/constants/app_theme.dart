@@ -7,6 +7,7 @@ class Style {
        colorScheme: const ColorScheme(
          surfaceTint: AppColors.selectedColor,
        tertiary: AppColors.cardColor,
+       onTertiaryContainer: AppColors.darkBlueColor,
        onTertiary: AppColors.grayText, //TEXTE KHAKESTARY K TU SEARCH BAR DARIM
         shadow: AppColors.customGray,
         brightness: Brightness.light,

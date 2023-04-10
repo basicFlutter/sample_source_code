@@ -7,7 +7,8 @@ class AppColors {
   static const Color titleColor = Color(0xff252525);
   static const Color buttonColor = Color(0xffEBECF3);
   static const Color secondaryColor = Color(0xffE6EEFF);
-  static const Color primaryColor = Color(0xff005BEA);
+  static const Color primaryColor = Color(0xff0382C2);
+  static const Color darkBlueColor = Color(0xff2C3E50);
   static const Color cardColor = Color(0xffecf0f1);
   static const Color backgroundColor = Color(0xffF5F5F5);
   static const Color customLightGray = Color(0xffD9D9D9);

@@ -55,7 +55,7 @@ class InventoryModel extends InventoryEntity
 }
 
   InventoryModel.fromJson(dynamic json) {
-    _id = json['id'];
+    _id = json['id'].toString();
     _vehicles = json['Vehicles'] != null ? Vehicles.fromJson(json['Vehicles']) : null;
     _odometer = json['odometer'];
     _stockNO = json['stock_NO'];
@@ -211,12 +211,12 @@ class MidVdsMedia {
 }
 
   MidVdsMedia.fromJson(dynamic json) {
-    _id = json['id'];
+    _id = json['id'].toString();
     _mediaSrc = json['media_src'];
     _mediaType = json['media_type'];
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
-    _frkMidVDsId = json['frk_mid_v_ds_id'];
+    _frkMidVDsId = json['frk_mid_v_ds_id'].toString();
     _status = json['status'];
     _errorReason = json['error_reason'];
     _order = json['order'];
@@ -328,7 +328,7 @@ class Vehicles {
 }
 
   Vehicles.fromJson(dynamic json) {
-    _id = json['id'];
+    _id = json['id'].toString();
     _make = json['make'];
     _model = json['model'];
     _bodyStyles = json['BodyStyles'] != null ? BodyStyles.fromJson(json['BodyStyles']) : null;

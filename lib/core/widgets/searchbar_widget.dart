@@ -49,7 +49,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
 
-                      contentPadding:  EdgeInsets.symmetric(vertical: 13.h , horizontal: 5.w) ,
+                      contentPadding:  EdgeInsets.symmetric(vertical: 8.h , horizontal: 5.w) ,
                       prefixIcon: Icon(Icons.search , color: Theme.of(context).colorScheme.onTertiary,),
                       hintText:widget.fieldHint ??  'Search All',
                         hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(

@@ -6,33 +6,43 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/data/network/api_provider.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 
+import '../../../inventory_detail_page/presentation/pages/inventory_detail.dart';
 import '../../domain/entities/inventory_entity.dart';
 import '../manager/inventory_bloc.dart';
 import '../manager/status/inventory_page_status.dart';
 
 class InventoryItem extends StatefulWidget {
-   final int itemIndex ;
-   final InventoryEntity currentInventory ;
+  final int itemIndex;
 
-    InventoryItem({Key? key , required this.itemIndex , required this.currentInventory}) : super(key: key);
+  final InventoryEntity currentInventory;
+
+  InventoryItem(
+      {Key? key, required this.itemIndex, required this.currentInventory})
+      : super(key: key);
 
   @override
   State<InventoryItem> createState() => _InventoryItemState();
 }
 
-class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderStateMixin {
+class _InventoryItemState extends State<InventoryItem>
+    with SingleTickerProviderStateMixin {
   // late List<AnimationController> controllerList =[];
-   late AnimationController animationController;
-   late int selectedIndex ;
-    bool isExpanded =false  ;
-    bool? isSelectMode ;
+  late AnimationController animationController;
+  late int selectedIndex;
+
+  bool isExpanded = false;
+
+  bool? isSelectMode;
 
   @override
   void initState() {
-    animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500),);
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
 
-    selectedIndex = widget.itemIndex ;
-   super.initState();
+    selectedIndex = widget.itemIndex;
+    super.initState();
   }
 
   @override
@@ -43,108 +53,112 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
 
   @override
   Widget build(BuildContext context) {
-
-
     return BlocBuilder<InventoryBloc, InventoryState>(
       builder: (context, state) {
-        if(state.inventoryPageStatus is ChangeSelectModeStatus){
-          ChangeSelectModeStatus changeSelectMode = state.inventoryPageStatus as ChangeSelectModeStatus ;
-          isSelectMode = changeSelectMode.isSelectMode ;
+        if (state.inventoryPageStatus is ChangeSelectModeStatus) {
+          ChangeSelectModeStatus changeSelectMode =
+              state.inventoryPageStatus as ChangeSelectModeStatus;
+          isSelectMode = changeSelectMode.isSelectMode;
         }
-    return GestureDetector(
-      onLongPress: (){
-       BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: true )) ;
-      },
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 2.h , horizontal: 12.w),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width ,
-          height: 130.h,
-          child: Stack(
-            children: [
-              _itemCard(context),
-              _moreDetailCard(context)
-            ],
+        return GestureDetector(
+          onTap: (){
+            Navigator.push(context , MaterialPageRoute(builder: (context){
+              return  InventoryDetailPage(currentInventory: widget.currentInventory,) ;
+            }));
+          },
+          onLongPress: () {
+            BlocProvider.of<InventoryBloc>(context)
+                .add(ChangeSelectModeEvent(isSelectMode: true));
+          },
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 12.w),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 130.h,
+              child: Stack(
+                children: [_itemCard(context), _moreDetailCard(context)],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
-  },
-);
   }
 
   Widget _moreDetailCard(BuildContext context) {
     return AnimatedPositioned(
-            curve: Curves.linear,
-            bottom:isExpanded && selectedIndex == widget.itemIndex ?8 : -50,
-            left: 0,
-            duration: const Duration(milliseconds: 500),
-            child: Container(
-              width: 329.w ,
-              height: 50.h,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 4,
-                    offset: Offset(1, 0), // changes position of shadow
-                  ),
-                ],
-                color:Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(5.r))
+      curve: Curves.linear,
+      bottom: isExpanded && selectedIndex == widget.itemIndex ? 8 : -50,
+      left: 0,
+      duration: const Duration(milliseconds: 500),
+      child: Container(
+        width: 329.w,
+        height: 50.h,
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 4,
+                offset: Offset(1, 0), // changes position of shadow
               ),
-
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                _moreDetailItem(context , 'Total Cost : ${AppUtils.dollarFormat(widget.currentInventory.totalCost.toString())}') ,
-                _moreDetailItem(context , 'Color :${ widget.currentInventory.vehicles?.colorsVehiclesFrkExteriorColorToColors!= null ?   widget.currentInventory.vehicles?.colorsVehiclesFrkExteriorColorToColors['name'] : '---'}') ,
-                Container(decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(7.r)) ,
-                border: Border.all(color: Theme.of(context).colorScheme.primary)),
-                child:const Padding(
-                  padding:  EdgeInsets.all(5.0),
-                  child:  Icon(Icons.build ,size: 12, ),
+            ],
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(5.r))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _moreDetailItem(context,
+                'Total Cost : ${AppUtils.dollarFormat(widget.currentInventory.totalCost.toString())}'),
+            _moreDetailItem(context,
+                'Color :${widget.currentInventory.vehicles?.colorsVehiclesFrkExteriorColorToColors != null ? widget.currentInventory.vehicles?.colorsVehiclesFrkExteriorColorToColors['name'] : '---'}'),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(7.r)),
+                  border:
+                      Border.all(color: Theme.of(context).colorScheme.primary)),
+              child: const Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Icon(
+                  Icons.build,
+                  size: 12,
                 ),
-                ) ,
-
-              ],),
+              ),
             ),
-          );
+          ],
+        ),
+      ),
+    );
   }
 
-  Widget _moreDetailItem(BuildContext context , String title ) {
+  Widget _moreDetailItem(BuildContext context, String title) {
     return Padding(
-      padding:  EdgeInsets.only(right: 8.w),
+      padding: EdgeInsets.only(right: 8.w),
       child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(7.r)) ,
-                      border: Border.all(color: Theme.of(context).colorScheme.primary)
-                    ),
-                    child:  Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Text('$title '),
-                    )),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(7.r)),
+              border: Border.all(color: Theme.of(context).colorScheme.primary)),
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Text('$title '),
+          )),
     );
   }
 
   Widget _itemCard(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 6.w),
+      padding: EdgeInsets.symmetric(horizontal: 6.w),
       child: Container(
-
         height: 127.h,
-
         child: Row(
-                children: [
-                  _cardPicture(),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  _cardDetail(context),
-                ],
-              ),
+          children: [
+            _cardPicture(),
+            const SizedBox(
+              width: 5,
+            ),
+            _cardDetail(context),
+          ],
+        ),
       ),
     );
   }
@@ -185,7 +199,7 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width:MediaQuery.of(context).size.width/3+20.w,
+                    width: MediaQuery.of(context).size.width / 3 + 20.w,
                     height: 25.h,
                     child: Text(
                       '${widget.currentInventory.vehicles?.modelYear} ${widget.currentInventory.vehicles?.make} ${widget.currentInventory.vehicles?.model}',
@@ -202,13 +216,13 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   Text(
-                    'Odometer: ${widget.currentInventory.odometer} ${widget.currentInventory.odometerType == 2 ?'KM':'MI'}',
+                    'Odometer: ${widget.currentInventory.odometer} ${widget.currentInventory.odometerType == 2 ? 'KM' : 'MI'}',
                     style: Theme.of(context).textTheme.bodyLarge,
-                  ),Text(
+                  ),
+                  Text(
                     widget.currentInventory.vehicles?.bodyStyles?.name ?? '',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-
                 ],
               ),
             ),
@@ -221,30 +235,84 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
                     padding: EdgeInsets.only(top: 8.h, right: 8.w),
                     child: Column(
                       children: [
-                        if(widget.currentInventory.specialPrice != 0)  Text(
-                          AppUtils.dollarFormat('${widget.currentInventory.specialPrice}'),
-                          overflow: TextOverflow.fade,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        )else Text(
+                        if (widget.currentInventory.specialPrice != 0)
+                          Wrap(
+                            children: [
+                              SizedBox(
+                                height:10.h ,
+                                width: 10.w ,
+                                child: GestureDetector(
+                                  onTap: (){
+                                    print('EDIT');
+                                  },
+                                  child: Icon(
+                                    Icons.edit,
+                                    size: 12,
+                                    color:
+                                    Theme.of(context).colorScheme.surface,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                AppUtils.dollarFormat(
+                                    '${widget.currentInventory.specialPrice}'),
+                                overflow: TextOverflow.fade,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ],
+                          )
+                        else
+                          Wrap(
+                            children: [
+                              SizedBox(
+                                height: 20.h,
+                                width: 20.w,
 
-                          AppUtils.dollarFormat('${widget.currentInventory.sellPrice}'),
-                          style: Theme.of(context).textTheme.bodyMedium,   overflow: TextOverflow.fade,
-                        ),
-                        if(widget.currentInventory.specialPrice != 0)
-                        Text(AppUtils.dollarFormat('${widget.currentInventory.sellPrice}'),
-                            overflow: TextOverflow.fade,
-                            style:
-                                Theme.of(context).textTheme.bodySmall!.copyWith(
-                                      decoration: TextDecoration.lineThrough,))
+                                child: Center(
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      print('EDIT PRICE ');
+                                    },
+                                    child: Icon(
+                                      Icons.edit,
+                                      size: 15,
+                                      color:
+                                      Theme.of(context).colorScheme.surface,
+                                    ),
+                                  )
+                                ),
+                              ),
+                              Text(
+                                AppUtils.dollarFormat(
+                                    '${widget.currentInventory.sellPrice}'),
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                overflow: TextOverflow.fade,
+                              ),
+                            ],
+                          ),
+                        if (widget.currentInventory.specialPrice != 0)
+                          Text(
+                              AppUtils.dollarFormat(
+                                  '${widget.currentInventory.sellPrice}'),
+                              overflow: TextOverflow.fade,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall!
+                                  .copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                  ))
                       ],
                     ),
                   ),
                 ),
-                isSelectMode?? false   ?const SizedBox()
-                : SizedBox(
-                    height: 20.h,
-                    width: 20.w,
-                    child: Switch(value: true, onChanged: (isActive){})) ,
+                isSelectMode ?? false
+                    ? const SizedBox()
+                    : SizedBox(
+                        height: 20.h,
+                        width: 20.w,
+                        child: Switch(
+                            value: widget.currentInventory.isActive == 1,
+                            onChanged: (isActive) {})),
                 _options(context)
               ],
             )
@@ -256,137 +324,119 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
 
   Widget _options(BuildContext context) {
     return Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Row(
-                  children: [
-                    AnimatedBuilder(
-                      animation: animationController,
-                      builder: (BuildContext context, Widget? child){
-                        return  Transform.rotate(
-                          angle: animationController.value *pi,
-                          child: GestureDetector(
-                            onTap: (){
-                              if(selectedIndex == widget.itemIndex){
+      padding: const EdgeInsets.all(4.0),
+      child: Row(
+        children: [
+          AnimatedBuilder(
+            animation: animationController,
+            builder: (BuildContext context, Widget? child) {
+              return Transform.rotate(
+                angle: animationController.value * pi,
+                child: GestureDetector(
+                    onTap: () {
+                      if (selectedIndex == widget.itemIndex) {
+                        if (!isExpanded) {
+                          animationController.animateTo(180);
+                        } else {
+                          animationController.animateBack(0);
+                        }
 
-                                if(!isExpanded){
-                                  animationController.animateTo(180) ;
-                                }else{
-                                  animationController.animateBack(0);
-                                }
-
-                                isExpanded = !isExpanded;
-                                setState(() {
-
-                                });
-                              }
-
-                            },
-                            child:Stack(children: [
-                              Positioned(
-                                bottom: 2,
-                                left: 0,
-                                child: Container(
-                                  width:30.w ,
-                                  height: 30.h ,
-                                  decoration: BoxDecoration(
-
-                                  color: Theme.of(context).colorScheme.primary ,
-                                  shape: BoxShape.circle
-                                ),),
-                              ) ,
-                              Icon(Icons.arrow_drop_down_circle_sharp , size: 35.h , color: Colors.white ,)
-                            ],)
-                            // SvgPicture.asset(
-                            //   AppImages.arrow,
-                            //   height: 22.h,
-                            // ),
+                        isExpanded = !isExpanded;
+                        setState(() {});
+                      }
+                    },
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          bottom: 2,
+                          left: 0,
+                          child: Container(
+                            width: 30.w,
+                            height: 30.h,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.primary,
+                                shape: BoxShape.circle),
                           ),
-                        );
-                      },
+                        ),
+                        Icon(
+                          Icons.arrow_drop_down_circle_sharp,
+                          size: 35.h,
+                          color: Colors.white,
+                        )
+                      ],
+                    )
+                    // SvgPicture.asset(
+                    //   AppImages.arrow,
+                    //   height: 22.h,
+                    // ),
                     ),
-                    SizedBox(
-                      width: 5.w,
-                    ),
-
-                    isSelectMode ??false   ?const SizedBox() :
-                    GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(36),
-                                ),
-                              ),
-                              context: context,
-                              builder: (context) {
-                                return _moreBottomSheet(context);
-                              });
-                        },
-                        child:Icon(Icons.more_vert , size: 22.h, color: Theme.of(context).colorScheme.primary,)),
-
-
-                  ],
-                ),
               );
+            },
+          ),
+          SizedBox(
+            width: 5.w,
+          ),
+          isSelectMode ?? false
+              ? const SizedBox()
+              : GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(36),
+                          ),
+                        ),
+                        context: context,
+                        builder: (context) {
+                          return _moreBottomSheet(context);
+                        });
+                  },
+                  child: Icon(
+                    Icons.more_vert,
+                    size: 22.h,
+                    color: Theme.of(context).colorScheme.primary,
+                  )),
+        ],
+      ),
+    );
   }
 
   Widget _moreBottomSheet(BuildContext context) {
     return Container(
-                                  // height: 360.h ,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(36.r),
-                                        topLeft: Radius.circular(36.r),
-                                      )),
-                                  child: ListView(
-                                    // mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      _topDesignWidget(context),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            _bottomSheetItem(
-                                                context: context,
-                                                title: 'View Listing'),
-                                            _bottomSheetItem(
-                                                context: context,
-                                                title: 'Edit Listing'),
-                                            _bottomSheetItem(
-                                                context: context,
-                                                title:
-                                                    'Create Windows Sticker'),
-                                            _bottomSheetItem(
-                                                context: context,
-                                                title: 'Start Deal'),
-                                            _subMenuExpansion(context),
-                                            _bottomSheetItem(
-                                                context: context,
-                                                title: 'Appraisal'),
-                                            _bottomSheetItem(
-                                                context: context,
-                                                title: 'Coming Soon'),
-                                            _bottomSheetItem(
-                                                context: context,
-                                                title: 'Pending'),
-                                            _bottomSheetItem(
-                                                context: context,
-                                                title: 'Mark As Sold'),
-                                            _bottomSheetItem(
-                                                context: context,
-                                                title: 'Delete Listing'),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                );
+      // height: 360.h ,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(36.r),
+            topLeft: Radius.circular(36.r),
+          )),
+      child: ListView(
+        // mainAxisSize: MainAxisSize.min,
+        children: [
+          _topDesignWidget(context),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _bottomSheetItem(context: context, title: 'View Listing'),
+                _bottomSheetItem(context: context, title: 'Edit Listing'),
+                _bottomSheetItem(
+                    context: context, title: 'Create Windows Sticker'),
+                _bottomSheetItem(context: context, title: 'Start Deal'),
+                _subMenuExpansion(context),
+                _bottomSheetItem(context: context, title: 'Appraisal'),
+                _bottomSheetItem(context: context, title: 'Coming Soon'),
+                _bottomSheetItem(context: context, title: 'Pending'),
+                _bottomSheetItem(context: context, title: 'Mark As Sold'),
+                _bottomSheetItem(context: context, title: 'Delete Listing'),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget _subMenuExpansion(BuildContext context) {
@@ -490,20 +540,21 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
           width: 120,
           height: 120,
           child: ClipRRect(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(5.r),
-                bottomLeft: Radius.circular(5.r)),
-            child:widget.currentInventory.midVDSMedia!.isNotEmpty ?  Image.network(
-              '${imageBaseUrl}${widget.currentInventory.midVDSMedia?[0].mediaSrc}' ,
-              fit: BoxFit.cover,
-            ) : Icon(Icons.directions_car_filled)
-            // Image.asset(
-            //   AppImages.inventoryTest,
-            //   fit: BoxFit.cover,
-            // ),
-          ),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(5.r),
+                  bottomLeft: Radius.circular(5.r)),
+              child: widget.currentInventory.midVDSMedia!.isNotEmpty
+                  ? Image.network(
+                      '${imageBaseUrl}${widget.currentInventory.midVDSMedia?[0].mediaSrc}',
+                      fit: BoxFit.cover,
+                    )
+                  : Icon(Icons.directions_car_filled)
+              // Image.asset(
+              //   AppImages.inventoryTest,
+              //   fit: BoxFit.cover,
+              // ),
+              ),
         ),
-
         Positioned(
           top: 0,
           left: 20,
@@ -511,28 +562,32 @@ class _InventoryItemState extends State<InventoryItem>with SingleTickerProviderS
             height: 24.h,
             width: 20.w,
             decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color:Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-                  offset: const Offset(0, 2)
-                    ,
-                  spreadRadius: 1 ,
-                  blurRadius: 3
-                )
-              ],
-              color: Theme.of(context).colorScheme.background ,
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4.r) , bottomRight:Radius.circular(4.r) , )
-            ),
+                boxShadow: [
+                  BoxShadow(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(0.5),
+                      offset: const Offset(0, 2),
+                      spreadRadius: 1,
+                      blurRadius: 3)
+                ],
+                color: Theme.of(context).colorScheme.background,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(4.r),
+                  bottomRight: Radius.circular(4.r),
+                )),
             child: Center(child: Text(widget.currentInventory.age.toString())),
           ),
         ),
-        isSelectMode ?? false   ?
-        Positioned(
-            bottom: -16,
-            left: -16,
-            child: Transform.scale(
-                scale: 0.7,
-                child: Checkbox(value: true, onChanged: (value) {}))) : const SizedBox()
+        isSelectMode ?? false
+            ? Positioned(
+                bottom: -16,
+                left: -16,
+                child: Transform.scale(
+                    scale: 0.7,
+                    child: Checkbox(value: true, onChanged: (value) {})))
+            : const SizedBox()
       ],
     );
   }
