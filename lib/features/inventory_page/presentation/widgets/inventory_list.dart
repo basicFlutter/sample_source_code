@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../main.dart';
+import 'package:new_panel/features/inventory_page/presentation/widgets/vehicle_item.dart';
 import '../../domain/entities/inventory_entity.dart';
-import 'inventory_item.dart';
+
 
 class InventoryList extends StatefulWidget {
 List<InventoryEntity> inventories ;
@@ -49,7 +49,7 @@ class _InventoryListState extends State<InventoryList> {
           // physics: const NeverScrollableScrollPhysics(),
           itemCount: widget.inventories.length,
           itemBuilder: (context, index) {
-            return InventoryItem(
+            return VehicleItem(
               itemIndex: index,
               currentInventory: widget.inventories[index],
             );

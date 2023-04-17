@@ -4,6 +4,7 @@ import "package:new_panel/core/constants/app_colors.dart";
 
 class Style {
   static ThemeData lightTheme = ThemeData(
+
        colorScheme: const ColorScheme(
          surfaceTint: AppColors.selectedColor,
        tertiary: AppColors.cardColor,
@@ -222,7 +223,7 @@ class Style {
 
       /// SubTitle
       titleSmall: TextStyle(
-          fontSize: 11.sp,
+          fontSize: 10.sp,
           fontWeight: FontWeight.w700,
           fontFamily: "PublicSans",
           color: AppColors.titleColor),

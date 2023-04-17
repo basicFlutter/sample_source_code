@@ -25,6 +25,15 @@ class _InventoryPageState extends State<InventoryPage> {
   bool isSearchMode = false;
 
   bool isSelect = false;
+  String dropDownValue = 'Inventory' ;
+  List<String> items = [
+    'Inventory',
+    'Coming Soon',
+    'Active Inventory',
+    'Pending',
+    'Appraisal',
+    'Delete'
+  ];
 
   TextEditingController searchbarController = TextEditingController();
   TextEditingController inventorySearchController = TextEditingController();
@@ -37,12 +46,12 @@ class _InventoryPageState extends State<InventoryPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<InventoryBloc>(
-      create: (context) => InventoryBloc(
-          getInventoryUseCase: locator(), getWholeInventoriesUseCase: locator())
-        ..add(GetInventoriesEvent(stateType: '3')), // TODO STATE IS NOT REAL
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        body: BlocConsumer<InventoryBloc, InventoryState>(
+        create: (context) => InventoryBloc(
+            getInventoryUseCase: locator(),
+            getWholeInventoriesUseCase: locator())
+          ..add(GetInventoriesEvent(stateType: '3')),
+        // TODO STATE Type IS NOT REAL
+        child: BlocConsumer<InventoryBloc, InventoryState>(
           listener: (context, state) {},
           builder: (context, state) {
             return BlocBuilder<InventoryBloc, InventoryState>(
@@ -75,9 +84,7 @@ class _InventoryPageState extends State<InventoryPage> {
               },
             );
           },
-        ),
-      ),
-    );
+        ));
   }
 
   Widget _inventoryBody(BuildContext context, SuccessGetInventoryStatus state) {
@@ -89,107 +96,36 @@ class _InventoryPageState extends State<InventoryPage> {
         return [
           SliverOverlapAbsorber(
             sliver: SliverAppBar(
-              titleSpacing: 0,
               backgroundColor: Theme.of(context).colorScheme.background,
-              // title: SizedBox(height: 1.h,),
-              pinned: false  ,
+              titleSpacing: 0,
+              pinned: false,
               forceElevated: innerBoxIsScrolled,
               bottom: PreferredSize(
-                  preferredSize:  Size.fromHeight(70.h),
+                  preferredSize: Size.fromHeight(60.h),
                   child: Column(
                     children: [
-                      Center(child:isSelect ? _selectWidget(context) : _tags(),),
+                      Center(
+                        child: isSelect ? _selectWidget(context) : _tags(),
+                      ),
                       SizedBox(
-                        height: 5.h,
+                        height: 6.h,
                       ),
                       isSelect
                           ? _selectOptions(context)
                           : _filterOptions(context),
-                      SizedBox(
-                        height: 5.h,
-                      ),
                     ],
                   )),
-            ), handle:  NestedScrollView.sliverOverlapAbsorberHandleFor(
-              context),
+            ),
+            handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
           )
         ];
       },
-    );
-
-    // NestedScrollView(
-    // headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-    //   return <Widget>[
-    //     SliverAppBar(
-    //       stretch: true ,
-    //       title: Column(children: [
-    //             isSelect ? _selectWidget(context) : _tags(),
-    //             SizedBox(
-    //               height: 6.h,
-    //             ),
-    //             isSelect ? _selectOptions(context) : _filterOptions(context),
-    //             SizedBox(
-    //               height: 5.h,
-    //             ),
-    //       ],),
-    //     ),
-    //   ];
-    // },
-    // headerSliverBuilder
-    // slivers: [
-    //   SliverAppBar(
-    //     // expandedHeight: 250,
-    //     // collapsedHeight: 100,
-    //     centerTitle: false,
-    //     pinned: true,
-    //     /// 1
-    //     title:Column(children: [
-    //           isSelect ? _selectWidget(context) : _tags(),
-    //           SizedBox(
-    //             height: 6.h,
-    //           ),
-    //           isSelect ? _selectOptions(context) : _filterOptions(context),
-    //           SizedBox(
-    //             height: 5.h,
-    //           ),
-    //     ],) ,
-    //     elevation: 0,
-    //     /// 2
-    //     backgroundColor: Colors.transparent,
-    //     leading: const BackButton(
-    //       color: Colors.white,
-    //     ),
-    //     /// 3
-    //
-    //   ),
-// ],
-
-    // body: Expanded (child: InventoryList(inventories: state.allInventory,)),
-
-    Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        isSelect ? _selectWidget(context) : _tags(),
-        SizedBox(
-          height: 6.h,
-        ),
-        isSelect ? _selectOptions(context) : _filterOptions(context),
-        SizedBox(
-          height: 5.h,
-        ),
-        Expanded(
-            child: InventoryList(
-          inventories: state.allInventory,
-        ))
-      ],
     );
   }
 
   Widget _selectOptions(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.w,
-      ),
+      padding: EdgeInsets.only(right: 16.w, left: 16.w, bottom: 15.h),
       child: Wrap(
         children: [_selectItems(context, 'Pending')],
       ),
@@ -232,8 +168,7 @@ class _InventoryPageState extends State<InventoryPage> {
           ),
           TextButton(
               onPressed: () {
-                BlocProvider.of<InventoryBloc>(context)
-                    .add(ChangeSelectModeEvent(isSelectMode: false));
+                BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: false));
               },
               child: const Text('Done'))
         ],
@@ -243,11 +178,9 @@ class _InventoryPageState extends State<InventoryPage> {
 
   Widget _filterOptions(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.w,vertical: 2.h
-      ),
+      padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 2.h),
       child: SizedBox(
-        height: 70.h,
+        height: 60.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -268,36 +201,70 @@ class _InventoryPageState extends State<InventoryPage> {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        insetPadding: const EdgeInsets.all(10),
-                        contentPadding: const EdgeInsets.all(10),
-                        content: _dialogContent(context),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8))),
-                      );
-                    });
-              },
-              child: Container(
-                  height: 32.h,
-                  width: 140.w,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.shadow,
-                      borderRadius: BorderRadius.all(Radius.circular(6.r))),
-                  child: DropdownButton2(
+            // GestureDetector(
+            // onTap: () {
+            // showDialog(
+            //     context: context,
+            //     builder: (context) {
+            //       return AlertDialog(
+            //         insetPadding: const EdgeInsets.all(10),
+            //         contentPadding: const EdgeInsets.all(10),
+            //         content: _dialogContent(context),
+            //         shape: const RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.all(Radius.circular(8))),
+            //       );
+            //     });
+            // },
+            // child:
+            // Container(
+            //     height: 32.h,
+            //     width: 180.w,
+            //     decoration: BoxDecoration(
+            //         color: Theme.of(context).colorScheme.shadow,
+            //         borderRadius: BorderRadius.all(Radius.circular(6.r))),
+            //     child: DropdownButton2(
+            //       underline: const SizedBox(),
+            //       items: items.map((item) => DropdownMenuItem(
+            //         value: item,
+            //         child: Text(
+            //           item,
+            //           style: Theme.of(context).textTheme.displayLarge,
+            //         ),
+            //       )).toList(),
+            //       barrierColor: Theme.of(context).colorScheme.secondary,
+            //       hint: Text(
+            //         'Inventory',
+            //         style: Theme.of(context).textTheme.headlineLarge,
+            //       ),
+            //     )),
+
+            Container(
+              height: 32.h,
+
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.shadow,
+                  borderRadius: BorderRadius.all(Radius.circular(6.r))),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  cardColor: Colors.red,
+                  canvasColor: Theme.of(context).colorScheme.background,
+                ),
+                child: DropdownButton<String>(
+                    onChanged: (value ){
+                      setState((){ dropDownValue = value! ;});
+                    },
+                    value: dropDownValue,
+                    // barrierColor: Theme.of(context).colorScheme.secondary,
                     underline: const SizedBox(),
-                    items: const [],
-                    barrierColor: Theme.of(context).colorScheme.secondary,
                     hint: Text(
                       'Inventory',
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
-                  )),
-            )
+                    items: items.map((String item) => DropdownMenuItem<String>(value: item, child: Text(item , style: Theme.of(context).textTheme.bodyLarge,))).toList()),
+              ),
+            ),
+
+            // )
             // SvgPicture.asset(AppImages.more , width: 35,  ) ,
           ],
         ),
@@ -308,7 +275,6 @@ class _InventoryPageState extends State<InventoryPage> {
   Widget _searchField(BuildContext context) {
     return Expanded(
       child: Container(
-
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
             Theme.of(context).colorScheme.tertiary,
@@ -390,6 +356,7 @@ class _InventoryPageState extends State<InventoryPage> {
   }
 
   Widget _dialogContent(BuildContext context) {
+    // TODO THIS IS USELESS
     return SizedBox(
       width: 200.w,
       child: Column(
@@ -438,18 +405,54 @@ class _InventoryPageState extends State<InventoryPage> {
         horizontal: 16.w,
       ),
       child: SizedBox(
-        height: 45.h,
+        height: 50.h,
         child: Wrap(
           alignment: WrapAlignment.center,
           direction: Axis.horizontal,
           children: [
-            CustomTag(tagString: 'Total: \$ 900', onTap: () {} , icon: Icon(Icons.directions_car_filled , size: 12, color: Theme.of(context).colorScheme.primary, ) ,),
-            CustomTag(tagString: 'Active: \$ 320', onTap: () {}, icon:const Icon(Icons.circle , color: Colors.lightGreenAccent,size: 12,),),
             CustomTag(
-                tagString: 'Total Retail Price: \$ 32,700,557', onTap: () {} , icon: Icon(Icons.payments , size: 12, color: Theme.of(context).colorScheme.primary,),),
+              tagString: 'Total: \$ 900',
+              onTap: () {},
+              icon: Icon(
+                Icons.directions_car_filled,
+                size: 12,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
             CustomTag(
-                tagString: 'Total Purchase Price: \$ 322,700', onTap: () {}, icon: Icon(Icons.price_change , size: 12, color: Theme.of(context).colorScheme.primary,)),
-            CustomTag(tagString: 'Deactivate: 500', onTap: () {}, icon: Icon(Icons.circle , size: 12, color: Theme.of(context).colorScheme.surface,)),
+              tagString: 'Active: \$ 320',
+              onTap: () {},
+              icon: const Icon(
+                Icons.circle,
+                color: Colors.lightGreenAccent,
+                size: 12,
+              ),
+            ),
+            CustomTag(
+              tagString: 'Total Retail Price: \$ 32,700,557',
+              onTap: () {},
+              icon: Icon(
+                Icons.payments,
+                size: 12,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+            CustomTag(
+                tagString: 'Total Purchase Price: \$ 322,700',
+                onTap: () {},
+                icon: Icon(
+                  Icons.price_change,
+                  size: 12,
+                  color: Theme.of(context).colorScheme.primary,
+                )),
+            CustomTag(
+                tagString: 'Deactivate: 500',
+                onTap: () {},
+                icon: Icon(
+                  Icons.circle,
+                  size: 12,
+                  color: Theme.of(context).colorScheme.surface,
+                )),
           ],
         ),
       ),

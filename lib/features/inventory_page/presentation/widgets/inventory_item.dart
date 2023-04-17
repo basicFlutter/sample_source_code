@@ -3,9 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:new_panel/core/data/network/api_provider.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 
+import '../../../../core/constants/app_images.dart';
 import '../../../inventory_detail_page/presentation/pages/inventory_detail.dart';
 import '../../domain/entities/inventory_entity.dart';
 import '../manager/inventory_bloc.dart';
@@ -13,7 +15,6 @@ import '../manager/status/inventory_page_status.dart';
 
 class InventoryItem extends StatefulWidget {
   final int itemIndex;
-
   final InventoryEntity currentInventory;
 
   InventoryItem(
@@ -74,10 +75,18 @@ class _InventoryItemState extends State<InventoryItem>
             padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 12.w),
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: 130.h,
-              child: Stack(
-                children: [_itemCard(context), _moreDetailCard(context)],
-              ),
+              height: 136.h,
+              child: Column(
+                children: [
+                  _itemCard(context),Container(
+                    width: 358.w,
+                    height: 36.h,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary.withOpacity(0.5)
+                    ),
+                  )
+                ],
+              )
             ),
           ),
         );
@@ -149,23 +158,6 @@ class _InventoryItemState extends State<InventoryItem>
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 6.w),
       child: Container(
-        height: 127.h,
-        child: Row(
-          children: [
-            _cardPicture(),
-            const SizedBox(
-              width: 5,
-            ),
-            _cardDetail(context),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _cardDetail(BuildContext context) {
-    return Expanded(
-      child: Container(
         decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -189,6 +181,26 @@ class _InventoryItemState extends State<InventoryItem>
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(5.r),
                 bottomRight: Radius.circular(5.r))),
+        child: Container(
+          height: 127.h,
+          child: Row(
+            children: [
+              _cardPicture(),
+              const SizedBox(
+                width: 5,
+              ),
+              _cardDetail(context),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _cardDetail(BuildContext context) {
+    return Expanded(
+      child: Container(
+
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -217,10 +229,6 @@ class _InventoryItemState extends State<InventoryItem>
                   ),
                   Text(
                     'Odometer: ${widget.currentInventory.odometer} ${widget.currentInventory.odometerType == 2 ? 'KM' : 'MI'}',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  Text(
-                    widget.currentInventory.vehicles?.bodyStyles?.name ?? '',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ],
@@ -305,14 +313,14 @@ class _InventoryItemState extends State<InventoryItem>
                     ),
                   ),
                 ),
-                isSelectMode ?? false
-                    ? const SizedBox()
-                    : SizedBox(
-                        height: 20.h,
-                        width: 20.w,
-                        child: Switch(
-                            value: widget.currentInventory.isActive == 1,
-                            onChanged: (isActive) {})),
+                // isSelectMode ?? false
+                //     ? const SizedBox()
+                //     : SizedBox(
+                //         height: 20.h,
+                //         width: 20.w,
+                //         child: Switch(
+                //             value: widget.currentInventory.isActive == 1,
+                //             onChanged: (isActive) {})),
                 _options(context)
               ],
             )
@@ -327,52 +335,6 @@ class _InventoryItemState extends State<InventoryItem>
       padding: const EdgeInsets.all(4.0),
       child: Row(
         children: [
-          AnimatedBuilder(
-            animation: animationController,
-            builder: (BuildContext context, Widget? child) {
-              return Transform.rotate(
-                angle: animationController.value * pi,
-                child: GestureDetector(
-                    onTap: () {
-                      if (selectedIndex == widget.itemIndex) {
-                        if (!isExpanded) {
-                          animationController.animateTo(180);
-                        } else {
-                          animationController.animateBack(0);
-                        }
-
-                        isExpanded = !isExpanded;
-                        setState(() {});
-                      }
-                    },
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          bottom: 2,
-                          left: 0,
-                          child: Container(
-                            width: 30.w,
-                            height: 30.h,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.primary,
-                                shape: BoxShape.circle),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_drop_down_circle_sharp,
-                          size: 35.h,
-                          color: Colors.white,
-                        )
-                      ],
-                    )
-                    // SvgPicture.asset(
-                    //   AppImages.arrow,
-                    //   height: 22.h,
-                    // ),
-                    ),
-              );
-            },
-          ),
           SizedBox(
             width: 5.w,
           ),
@@ -391,11 +353,7 @@ class _InventoryItemState extends State<InventoryItem>
                           return _moreBottomSheet(context);
                         });
                   },
-                  child: Icon(
-                    Icons.more_vert,
-                    size: 22.h,
-                    color: Theme.of(context).colorScheme.primary,
-                  )),
+                  child: SvgPicture.asset(AppImages.more)),
         ],
       ),
     );
@@ -537,8 +495,8 @@ class _InventoryItemState extends State<InventoryItem>
     return Stack(
       children: [
         SizedBox(
-          width: 120,
-          height: 120,
+          width: 100,
+          height: 100,
           child: ClipRRect(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(5.r),

@@ -1,14 +1,7 @@
 <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="paint0_linear_2003_67221" x1="17.5" y1="0" x2="17.5" y2="35" gradientUnits="userSpaceOnUse">
-            <stop stop-color="white" stop-opacity="0"/>
-            <stop offset="1" stop-color="#005BEA"/>
-        </linearGradient>
-    </defs><rect x="0.25" y="0.25" width="34.5" height="34.5" rx="17.25" fill="#0055FF" fill-opacity="0.1"/>
-<rect x="9.25" y="10.25" width="6.61539" height="6.61539" rx="2.5" stroke="#005BEA"/>
-<rect x="18.1348" y="10.25" width="6.61539" height="6.61539" rx="2.5" stroke="#005BEA"/>
-<rect x="18.1348" y="19.1345" width="6.61539" height="6.61539" rx="2.5" stroke="#005BEA"/>
-<rect x="9.25" y="19.1345" width="6.61539" height="6.61539" rx="2.5" stroke="#005BEA"/>
-<rect x="0.25" y="0.25" width="34.5" height="34.5" rx="17.25" stroke="url(#paint0_linear_2003_67221)" stroke-width="0.5"/>
-
+<rect width="35" height="35" rx="17.5" fill="#0088CC"/>
+<rect x="9.25" y="10.25" width="6.61539" height="6.61539" rx="2.5" stroke="white"/>
+<rect x="18.1348" y="10.25" width="6.61539" height="6.61539" rx="2.5" stroke="white"/>
+<rect x="18.1348" y="19.1348" width="6.61539" height="6.61539" rx="2.5" stroke="white"/>
+<rect x="9.25" y="19.1348" width="6.61539" height="6.61539" rx="2.5" stroke="white"/>
 </svg>
