@@ -74,21 +74,21 @@ class Style {
       backgroundColor: AppColors.customLightGray,
       elevation: 0,
       selectedIconTheme: IconThemeData(
-        color: AppColors.primaryColor,
+        color: AppColors.backgroundColor,
         size: 30.r
       ),
       unselectedIconTheme: IconThemeData(
-          color: AppColors.unselectedColor,
+          color:AppColors.backgroundColor.withOpacity(0.5),
           size: 30.r
       ),
       selectedLabelStyle: TextStyle(
-        color: AppColors.primaryColor,
+        color: AppColors.backgroundColor,
         fontSize:10.sp,
         fontFamily: "Tajawal-Regular",
         fontWeight: FontWeight.w400
       ),
       unselectedLabelStyle: TextStyle(
-          color: AppColors.unselectedColor,
+          color: AppColors.backgroundColor.withOpacity(0.5) ,
           fontSize: 10.sp,
           fontFamily: "Tajawal-Regular",
           fontWeight: FontWeight.w400

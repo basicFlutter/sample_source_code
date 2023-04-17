@@ -13,7 +13,7 @@ class CustomBottomNavigation extends StatelessWidget {
       height: 60.h,
       margin: EdgeInsets.only(left: 16.w,right: 16.w,bottom: 5.h),
       decoration:  BoxDecoration(
-          color:Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+          color:Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.all(Radius.circular(23))
       ),
       child: Row(
