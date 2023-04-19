@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:global_bottom_navigation_bar/widgets/bottom_navigation_item.dart';
 import 'package:global_bottom_navigation_bar/widgets/scaffold_bottom_navigation.dart';
 import 'package:new_panel/core/constants/app_theme.dart';
@@ -12,6 +13,7 @@ import 'package:new_panel/main.dart';
 import '../../../../core/constants/app_images.dart';
 import '../../../../core/widgets/custom_body.dart';
 import '../../../home_page_feature/presentation/pages/home_page.dart';
+import '../widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -38,29 +40,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           themeMode = state.themeMode;
         }
         return Scaffold(
-          key:scaffoldKey ,
-
-          drawer: ClipRRect(
-            borderRadius: BorderRadius.only(topRight: Radius.circular(20.r) , bottomRight:Radius.circular(20.r) ),
-            child: Drawer(
-              elevation:0,
-              backgroundColor: Colors.white.withOpacity(0.3),
-              child: Container(
-
-                decoration: BoxDecoration(color: Colors.transparent,
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(20.r) , bottomRight:Radius.circular(20.r) ),
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(AppImages.drawerBackground )) ,
-
-
-                ),
-                  child: Column(children: [
-                    
-                  ],)
-              ),
-            ),
-          ),
+          key: scaffoldKey,
+          drawer:CustomDrawer() ,
           body: pageList[indexPageSelected],
           bottomNavigationBar: CustomBottomNavigation(
             onSelected: (index) {
@@ -70,7 +51,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             },
             indexSelected: indexPageSelected,
           ),
-        ) ;
+        );
 
         //   MaterialApp(
         //   debugShowCheckedModeBanner: false,
@@ -82,6 +63,16 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       },
     );
   }
+
+
+
+
+
+
+
+
+
+
 
   List<BottomNavigationItem> buildBottomNavigationItemList() => [
         BottomNavigationItem(

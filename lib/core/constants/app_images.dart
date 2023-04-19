@@ -44,8 +44,21 @@ class AppImages {
   static String constInformation = 'assets/images/const_information.svg';
   static String purchaseInformation = 'assets/images/purchase_information.svg';
   static String receivedCommission = 'assets/images/received_commission.svg';
-  static String hyperLink = 'assets/images/hyper_link.svg';
   static String drawerBackground = 'assets/images/backMenu.png';
+  static String hyperLink = 'assets/images/hyper_link.svg';
+
+  static String accounting = 'assets/images/menu/accounting.svg';
+  static String bhph = 'assets/images/menu/bhph.svg';
+  static String billing = 'assets/images/menu/billing.svg';
+  static String customers = 'assets/images/menu/customers.svg';
+  static String dashboard = 'assets/images/menu/dashboard.svg';
+  static String deals = 'assets/images/menu/deals.svg';
+  static String inventory = 'assets/images/menu/inventory.svg';
+  static String leads = 'assets/images/menu/leads.svg';
+  static String marketing = 'assets/images/menu/marketing.svg';
+  static String testDrive = 'assets/images/menu/testDrive.svg';
+  static String user = 'assets/images/menu/user.svg';
+  static String vendor = 'assets/images/menu/vendor.svg';
 
 
 

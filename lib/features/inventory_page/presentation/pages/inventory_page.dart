@@ -191,7 +191,7 @@ class _InventoryPageState extends State<InventoryPage> {
                 children: [
                   SvgPicture.asset(
                     AppImages.filter,
-                    width: 30,
+                    width: 30.w,
                   ),
                   SizedBox(
                     width: 10.w,

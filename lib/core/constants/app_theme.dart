@@ -5,11 +5,12 @@ import "package:new_panel/core/constants/app_colors.dart";
 class Style {
   static ThemeData lightTheme = ThemeData(
 
-       colorScheme: const ColorScheme(
-         surfaceTint: AppColors.selectedColor,
-       tertiary: AppColors.cardColor,
-       onTertiaryContainer: AppColors.darkBlueColor,
-       onTertiary: AppColors.grayText, //TEXTE KHAKESTARY K TU SEARCH BAR DARIM
+        colorScheme: const ColorScheme(
+          outline: AppColors.lightPrimaryColor,
+        surfaceTint: AppColors.selectedColor,
+        tertiary: AppColors.cardColor,
+        onTertiaryContainer: AppColors.darkBlueColor,
+        onTertiary: AppColors.grayText, //TEXTE KHAKESTARY K TU SEARCH BAR DARIM
         shadow: AppColors.customGray,
         brightness: Brightness.light,
         primary: AppColors.primaryColor,
