@@ -82,16 +82,17 @@ class Style {
           size: 30.r
       ),
       selectedLabelStyle: TextStyle(
-        color: AppColors.backgroundColor,
-        fontSize:10.sp,
-        fontFamily: "Tajawal-Regular",
-        fontWeight: FontWeight.w400
+        color: Colors.white,
+        fontSize:11.sp,
+        fontFamily: "PublicSans",
+        fontWeight: FontWeight.bold
       ),
       unselectedLabelStyle: TextStyle(
-          color: AppColors.backgroundColor.withOpacity(0.5) ,
-          fontSize: 10.sp,
-          fontFamily: "Tajawal-Regular",
-          fontWeight: FontWeight.w400
+          color: Colors.white.withOpacity(0.5) ,
+          fontSize: 11.sp,
+          fontFamily: "PublicSans",
+          fontWeight: FontWeight.bold,
+
       ),
     ),
     //
