@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 // const baseUrl = 'https://api.hillzusers.com/api/';
-const baseUrl = 'http://192.168.1.120:8000';
+const baseUrl = 'http://192.168.1.120:80';
 // const domain = 'localhost:3000';
 const imageBaseUrl = 'https://image123.azureedge.net';
 

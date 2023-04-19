@@ -35,8 +35,8 @@ class AppImages {
   static String search = 'assets/images/search.svg';
   static String arrow = 'assets/images/arrow.svg';
   static String back = 'assets/images/back.svg';
-  static String hwyFuel = 'assets/images/hwy_fuel.svg';
-  static String cityFuel = 'assets/images/city_fuel.svg';
+  static String hwyFuel = 'assets/images/hwy_fuel.png';
+  static String cityFuel = 'assets/images/city_fuel.png';
 
   static String details = 'assets/images/details.svg';
   static String history = 'assets/images/history.svg';
@@ -45,6 +45,7 @@ class AppImages {
   static String purchaseInformation = 'assets/images/purchase_information.svg';
   static String receivedCommission = 'assets/images/received_commission.svg';
   static String hyperLink = 'assets/images/hyper_link.svg';
+  static String drawerBackground = 'assets/images/backMenu.png';
 
 
 

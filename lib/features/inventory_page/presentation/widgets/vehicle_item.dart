@@ -398,11 +398,13 @@ class _VehicleItemState extends State<VehicleItem> {
               : GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
+
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.vertical(
                             top: Radius.circular(36),
                           ),
                         ),
+                        isScrollControlled : true ,
                         context: context,
                         builder: (context) {
                           return _moreBottomSheet(context);
@@ -487,8 +489,8 @@ class _VehicleItemState extends State<VehicleItem> {
             topRight: Radius.circular(36.r),
             topLeft: Radius.circular(36.r),
           )),
-      child: ListView(
-        // mainAxisSize: MainAxisSize.min,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           _topDesignWidget(context),
           SizedBox(
@@ -498,11 +500,16 @@ class _VehicleItemState extends State<VehicleItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _bottomSheetItem(context: context, title: 'View Listing'),
+                // _divider(context),
                 _bottomSheetItem(context: context, title: 'Edit Listing'),
+                // _divider(context),
                 _bottomSheetItem(
                     context: context, title: 'Create Windows Sticker'),
+                // _divider(context),
                 _bottomSheetItem(context: context, title: 'Start Deal'),
+                // _divider(context),
                 _subMenuExpansion(context),
+                // _divider(context),
                 _bottomSheetItem(context: context, title: 'Appraisal'),
                 _bottomSheetItem(context: context, title: 'Coming Soon'),
                 _bottomSheetItem(context: context, title: 'Pending'),
@@ -516,13 +523,22 @@ class _VehicleItemState extends State<VehicleItem> {
     );
   }
 
+  Center _divider(BuildContext context) {
+    return Center(
+                child: Container(
+                    width: 330.w
+                    ,
+                    child: Divider(color: Theme.of(context).colorScheme.shadow, thickness: 0.5,)),
+              );
+  }
+
   Widget _bottomSheetItem(
           {required BuildContext context, required String title}) =>
       Padding(
-        padding: EdgeInsets.symmetric(vertical: 9.h, horizontal: 30.w),
+        padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 30.w),
         child: Text(
           title,
-          style: Theme.of(context).textTheme.headlineLarge,
+          style: Theme.of(context).textTheme.displayMedium,
         ),
       );
 
@@ -582,32 +598,57 @@ class _VehicleItemState extends State<VehicleItem> {
               // ),
               ),
         ),
-        Positioned(
-          top: 0,
-          left: 20,
-          child: Container(
-            height: 24.h,
-            width: 20.w,
-            decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onBackground
-                          .withOpacity(0.5),
-                      offset: const Offset(0, 2),
-                      spreadRadius: 1,
-                      blurRadius: 3)
-                ],
-                color: Theme.of(context).colorScheme.background,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(4.r),
-                  bottomRight: Radius.circular(4.r),
-                )),
-            child: Center(child: Text(widget.currentInventory.age.toString())),
-          ),
-        ),
+        _carAge(),
+        if (widget.currentInventory.isComingSoon  == true || widget.currentInventory.vehicleStatus == 5 )
+          Positioned(
+            bottom: 6,
+            child: SizedBox(
+              width: 100.w,
+              height: 20.h,
+              child: Container(
+                decoration:
+                    BoxDecoration(color: AppColors.errorColor.withOpacity(0.5)),
+                child: Center(
+                    child: widget.currentInventory.isComingSoon == true
+                        ? Text(
+                            'Coming Soon',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        : Text('Pending' ,
+                      style: Theme.of(context).textTheme.bodyMedium,),
+                ),
+              ),
+            ),
+          )
       ],
+    );
+  }
+
+  Widget _carAge() {
+    return Positioned(
+      top: 0,
+      left: 20,
+      child: Container(
+        height: 24.h,
+        width: 20.w,
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onBackground
+                      .withOpacity(0.5),
+                  offset: const Offset(0, 2),
+                  spreadRadius: 1,
+                  blurRadius: 3)
+            ],
+            color: Theme.of(context).colorScheme.background,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(4.r),
+              bottomRight: Radius.circular(4.r),
+            )),
+        child: Center(child: Text(widget.currentInventory.age.toString())),
+      ),
     );
   }
 }

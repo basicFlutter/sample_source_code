@@ -15,7 +15,7 @@ class AppColors {
   static const Color customLightGray = Color(0xffD9D9D9);
   static const Color unselectedColor = Color(0xff918686); // item navigationbar
   static const Color disableGrayColor = Color(0xff4F5962); // price
-  static const Color errorColor = Color(0xffFF4842);
+  static const Color errorColor = Color(0xffCA0000);
   static const Color white = Color(0xffFFFFFF);
 
 }

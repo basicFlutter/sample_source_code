@@ -25,7 +25,8 @@ class _InventoryPageState extends State<InventoryPage> {
   bool isSearchMode = false;
 
   bool isSelect = false;
-  String dropDownValue = 'Inventory' ;
+  String dropDownValue = 'Inventory';
+
   List<String> items = [
     'Inventory',
     'Coming Soon',
@@ -168,7 +169,8 @@ class _InventoryPageState extends State<InventoryPage> {
           ),
           TextButton(
               onPressed: () {
-                BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: false));
+                BlocProvider.of<InventoryBloc>(context)
+                    .add(ChangeSelectModeEvent(isSelectMode: false));
               },
               child: const Text('Done'))
         ],
@@ -240,7 +242,6 @@ class _InventoryPageState extends State<InventoryPage> {
 
             Container(
               height: 32.h,
-
               decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.shadow,
                   borderRadius: BorderRadius.all(Radius.circular(6.r))),
@@ -249,18 +250,45 @@ class _InventoryPageState extends State<InventoryPage> {
                   cardColor: Colors.red,
                   canvasColor: Theme.of(context).colorScheme.background,
                 ),
-                child: DropdownButton<String>(
-                    onChanged: (value ){
-                      setState((){ dropDownValue = value! ;});
-                    },
-                    value: dropDownValue,
-                    // barrierColor: Theme.of(context).colorScheme.secondary,
-                    underline: const SizedBox(),
-                    hint: Text(
-                      'Inventory',
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
-                    items: items.map((String item) => DropdownMenuItem<String>(value: item, child: Text(item , style: Theme.of(context).textTheme.bodyLarge,))).toList()),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w),
+                  child: DropdownButton2<String>(
+                      dropdownDecoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8.r)),
+                          boxShadow: [
+                            BoxShadow(
+                                offset: const Offset(2, 2),
+                                color: Theme.of(context).colorScheme.shadow,
+                                spreadRadius: 2,
+                                blurRadius: 2),
+                            BoxShadow(
+                                color: Theme.of(context).colorScheme.primary,
+                                spreadRadius: 0.1,
+                                offset: const Offset(0, -2))
+                          ]),
+                      selectedItemHighlightColor:
+                          Theme.of(context).colorScheme.shadow,
+                      onChanged: (value) {
+                        setState(() {
+                          dropDownValue = value!;
+                        });
+                      },
+                      value: dropDownValue,
+                      // barrierColor: Theme.of(context).colorScheme.secondary,
+                      underline: const SizedBox(),
+                      hint: Text(
+                        'Inventory',
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                      items: items
+                          .map((String item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              )))
+                          .toList()),
+                ),
               ),
             ),
 

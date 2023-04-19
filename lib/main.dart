@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
+
       providers: [
         BlocProvider<ThemeSwitcherBloc>(
           create: (context) => locator<ThemeSwitcherBloc>()..add(const GetThemeModeEvent()),)

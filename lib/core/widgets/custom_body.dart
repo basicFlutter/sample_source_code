@@ -4,22 +4,43 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/widgets/searchbar_widget.dart';
 
 import '../constants/app_images.dart';
-
+GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>() ;
 class CustomBody extends StatelessWidget {
   final TextEditingController searchbarController;
 
   final Widget body;
 
-  const CustomBody(
+   CustomBody(
       {Key? key, required this.searchbarController, required this.body})
       : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
+
+      drawerEnableOpenDragGesture: false,
       backgroundColor: Theme.of(context).colorScheme.background,
+      // drawer: Drawer(
+      //
+      //   child: Column(
+      //     children: [
+      //       Container(
+      //         width: MediaQuery.of(context).size.width,
+      //         height: MediaQuery.of(context).size.height,
+      //         decoration: BoxDecoration(
+      //           image: DecorationImage(image: AssetImage(AppImages.drawerBackground)
+      //
+      //           )
+      //         ),
+      //       )
+      //     ],
+      //   ),
+      // ),
       appBar: AppBar(
-        // leading: SizedBox(width: 1,),
         automaticallyImplyLeading: false ,
         // actions: [],
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -49,10 +70,15 @@ class CustomBody extends StatelessWidget {
       children: [
         Row(
           children: [
-            SvgPicture.asset(
-              AppImages.menu,
-              height: 40.r,
-              width: 40.r,
+            GestureDetector(
+              onTap: (){
+                scaffoldKey.currentState?.openDrawer();
+              },
+              child: SvgPicture.asset(
+                AppImages.menu,
+                height: 40.r,
+                width: 40.r,
+              ),
             ),
              SizedBox(
               width: 10.w,

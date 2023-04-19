@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/constants/app_images.dart';
 import 'detail_expansion_children.dart';
+import 'hyper_link_view.dart';
 
 class VehicleInformationView extends StatefulWidget {
   const VehicleInformationView({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _VehicleInformationViewState extends State<VehicleInformationView> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ListView(
+      child: Column(
         // shrinkWrap: true ,
         // physics: NeverScrollableScrollPhysics(),
         children: [
@@ -25,7 +26,7 @@ class _VehicleInformationViewState extends State<VehicleInformationView> {
           _fuelCard(context, AppImages.hwyFuel, 'HWY FUEL :', '9.0'),
           _fuelCard(context, AppImages.cityFuel, 'CITY FUEL :', '3.0'),
           _customExpansion(context:context, title: 'Details' , imageUrl: AppImages.details , child:DetailExpansionChildren()),
-          _customExpansion(context:context, title: 'Hyper Link' , imageUrl: AppImages.hyperLink , child: Container()),
+          _customExpansion(context:context, title: 'Hyper Link' , imageUrl: AppImages.hyperLink , child:HyperLinkView()),
           _customExpansion(context:context, title: 'Purchase Information' , imageUrl: AppImages.purchaseInformation , child:  Container()),
           _customExpansion(context:context, title: 'Cost Information' , imageUrl: AppImages.constInformation , child:  Container()),
           _customExpansion(context:context, title: 'Receive Commission' , imageUrl: AppImages.receivedCommission , child:  Container()),
@@ -98,9 +99,11 @@ class _VehicleInformationViewState extends State<VehicleInformationView> {
               padding: EdgeInsets.only(left: 5.w),
               child: SizedBox(
                   width: 60.w,
-                  child: SvgPicture.asset(
-                    imageUrl,
-                    fit: BoxFit.cover,
+                  child: Image.asset(
+
+                    imageUrl, width : 50.w ,
+                    height:50.h  ,
+                    fit: BoxFit.contain,
                   )),
             ),
             Text(

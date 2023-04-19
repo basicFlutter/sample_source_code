@@ -10,15 +10,12 @@ import '../../../../core/data/network/api_provider.dart';
 
 class CustomSlider extends StatefulWidget {
   final List<MidVdsMedia> carImages;
-  final String sellPrice;
 
-  final String specialPrice;
 
   const CustomSlider(
       {Key? key,
       required this.carImages,
-      required this.specialPrice,
-      required this.sellPrice})
+})
       : super(key: key);
 
   @override
@@ -32,7 +29,7 @@ class _CustomSliderState extends State<CustomSlider> {
       height: 320.h,
       child: Stack(children: [
         _mainPicture(context),
-        _jaPricei(context),
+        // _jaPricei(context),
         _sliderPointer(context)
       ]),
     );
@@ -109,42 +106,7 @@ class _CustomSliderState extends State<CustomSlider> {
                     .colorScheme
                     .onTertiaryContainer
                     .withOpacity(0.6)),
-            child: widget.specialPrice != '0'
-                ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(),
-                        Text(
-                          AppUtils.dollarFormat(widget.specialPrice),
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.background),
-                        ),
-                        Text(
-                          AppUtils.dollarFormat(widget.sellPrice),
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                  decoration: TextDecoration.lineThrough,
-                                  color:
-                                      Theme.of(context).colorScheme.background),
-                        ),
-                      ],
-                    ),
-                  )
-                : Center(
-                    child: Text(
-                      AppUtils.dollarFormat(widget.sellPrice),
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.background),
-                    ),
-                  ),
+
           ),
         ),
       ),
