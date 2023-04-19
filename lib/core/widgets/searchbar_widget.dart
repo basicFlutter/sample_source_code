@@ -35,7 +35,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
     return Material( elevation: 2.0,
       borderRadius:  BorderRadius.all(Radius.circular(12.r)),
       child: SizedBox(
-                // height: 40.h ,
+                height: 48.h ,
                 // width: 358.w,
                 child: PhysicalModel (
                   borderRadius: BorderRadius.all(Radius.circular(12.r)),
