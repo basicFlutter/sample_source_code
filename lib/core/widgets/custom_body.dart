@@ -10,7 +10,7 @@ class CustomBody extends StatelessWidget {
 
   final Widget body;
 
-   CustomBody(
+  CustomBody(
       {Key? key, required this.searchbarController, required this.body})
       : super(key: key);
 
@@ -21,7 +21,7 @@ class CustomBody extends StatelessWidget {
 
     return Scaffold(
 
-
+      resizeToAvoidBottomInset: false,
       drawerEnableOpenDragGesture: false,
       backgroundColor: Theme.of(context).colorScheme.background,
       // drawer: Drawer(
@@ -40,25 +40,59 @@ class CustomBody extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      appBar: AppBar(
-        automaticallyImplyLeading: false ,
-        // actions: [],
-        backgroundColor: Theme.of(context).colorScheme.background,
-        toolbarHeight: 120.h,
-        elevation: 0,
-        title:Column(children: [
-        _topOptions(context),
-        SizedBox(
-          height: 10.h,
-        ),
-        SearchbarWidget(
-          searchbarController: searchbarController,
-        ),
-      ],) ,),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false ,
+      //   // actions: [],
+      //   // backgroundColor: Theme.of(context).colorScheme.background,
+      //   backgroundColor: Colors.grey,
+      //   toolbarHeight: 93.h,
+      //   elevation: 0,
+      //
+      //
+      //   title:Column(
+      //     mainAxisAlignment: MainAxisAlignment.start,
+      //     children: [
+      //     SizedBox(
+      //       height: 10.h,
+      //     ),
+      //   _topOptions(context),
+      //   SizedBox(
+      //     height: 10.h,
+      //   ),
+      //   SearchbarWidget(
+      //     searchbarController: searchbarController,
+      //   ),
+      // ],) ,),
+
       body: SafeArea(
-        child: Padding(
-          padding:  EdgeInsets.symmetric( vertical: 18.h),
-          child: body,
+        child: SizedBox(
+          width: 1.sw,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 10.h),
+                height: 93.h,
+                width: 358.w,
+
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+                    _topOptions(context),
+                    SizedBox(
+                      height: 4.h,
+                    ),
+
+                    SearchbarWidget(
+                      searchbarController: searchbarController,
+                    ),
+                  ],),
+              ),
+              body,
+            ],
+          ),
         ),
       ),
     );
@@ -74,39 +108,75 @@ class CustomBody extends StatelessWidget {
               onTap: (){
                 scaffoldKey.currentState?.openDrawer();
               },
-              child: SvgPicture.asset(
-                AppImages.menu,
-                height: 40.r,
-                width: 40.r,
+              child: Container(
+                width: 35.r,
+                height: 35.r,
+                padding: EdgeInsets.all(9.75.r),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor
+                ),
+                child: SvgPicture.asset(
+                  AppImages.menu,
+                  height: 16.5.r,
+                  width: 16.5.r,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
               ),
             ),
-             SizedBox(
+            SizedBox(
               width: 10.w,
             ),
-            SvgPicture.asset(AppImages.ring,
-              height: 40.r,
-              width: 40.r,
+            Container(
+              width: 35.r,
+              height: 35.r,
+              padding: EdgeInsets.all(9.75.r),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor
+              ),
+              child: SvgPicture.asset(
+                AppImages.ring,
+                height: 16.5.r,
+                width: 16.5.r,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
+
           ],
         ),
         SvgPicture.asset(AppImages.lorem),
         Row(
           children: [
-            SvgPicture.asset(AppImages.add,
-              height: 40.r,
-              width: 40.r,),
-             SizedBox(
+            Container(
+              width: 35.r,
+              height: 35.r,
+              padding: EdgeInsets.all(9.75.r),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor
+              ),
+              child: SvgPicture.asset(
+                AppImages.add,
+                height: 16.5.r,
+                width: 16.5.r,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+            ),
+
+            SizedBox(
               width: 10.w,
             ),
             Container(
-              width: 55.r,
-              height: 55.r,
+              width: 48.r,
+              height: 48.r,
+
               decoration: BoxDecoration(
 
                   borderRadius: BorderRadius.circular(50.r),
                   border: Border.all(color: Theme.of(context).primaryColor)),
               child: Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding:  EdgeInsets.all(2.r),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(50.r),
                     child: Image.asset(

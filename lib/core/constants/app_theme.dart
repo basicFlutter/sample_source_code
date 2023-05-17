@@ -14,7 +14,7 @@ class Style {
         shadow: AppColors.customGray,
         brightness: Brightness.light,
         primary: AppColors.primaryColor,
-        onPrimary: AppColors.titleColor,
+        onPrimary: AppColors.iconColorsOnPrimary,
         secondary: AppColors.secondaryColor,
         onSecondary: AppColors.titleColor,
         error: AppColors.errorColor,
@@ -71,15 +71,23 @@ class Style {
     // // ),
     //
     //
+    canvasColor: AppColors.backgroundColor,
+
+
+   // cardColor:  LinearGradient(colors: [Colors.blue, Colors.green]),
+
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: AppColors.customLightGray,
+      backgroundColor:Color(0xffECF0F1),
+
+
       elevation: 0,
+
       selectedIconTheme: IconThemeData(
         color: AppColors.backgroundColor,
         size: 30.r
       ),
       unselectedIconTheme: IconThemeData(
-          color:AppColors.backgroundColor.withOpacity(0.5),
+          color:AppColors.primaryColor,
           size: 30.r
       ),
       selectedLabelStyle: TextStyle(
@@ -89,7 +97,7 @@ class Style {
         fontWeight: FontWeight.bold
       ),
       unselectedLabelStyle: TextStyle(
-          color: Colors.white.withOpacity(0.5) ,
+          color: AppColors.primaryColor,
           fontSize: 11.sp,
           fontFamily: "PublicSans",
           fontWeight: FontWeight.bold,
@@ -186,14 +194,18 @@ class Style {
     //
     //
 
+
+
     iconTheme: IconThemeData(color: Colors.grey[700]),
     textTheme: TextTheme(
-      /// for HillzDealer in login page
+
       displayLarge:TextStyle(
-          fontSize: 14.sp,
+          fontSize: 12.sp,
           fontWeight: FontWeight.w400,
           fontFamily: "PublicSans",
-          color: AppColors.titleColor),
+          color: AppColors.displayLargeColor,
+
+      ),
 
       /// for Driven by Future,Run Faster, Cost Less in login page
       displaySmall:TextStyle(
@@ -236,7 +248,7 @@ class Style {
           fontFamily: "PublicSans",
           color: AppColors.titleColor),
       headlineMedium:
-          TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w300, color: AppColors.grayText),
+          TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w300, color: AppColors.secondaryColor2),
       //body normal text
       headlineSmall: TextStyle(
           fontSize: 9.sp,

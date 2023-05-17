@@ -31,11 +31,7 @@ class _VehicleItemState extends State<VehicleItem> {
   Widget build(BuildContext context) {
     return BlocBuilder<InventoryBloc, InventoryState>(
       builder: (context, state) {
-        if (state.inventoryPageStatus is ChangeSelectModeStatus) {
-          ChangeSelectModeStatus changeSelectMode =
-              state.inventoryPageStatus as ChangeSelectModeStatus;
-          isSelectMode = changeSelectMode.isSelectMode;
-        }
+
         return isSelectMode ?? false
             ? Row(
                 children: [

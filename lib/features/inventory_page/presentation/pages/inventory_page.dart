@@ -102,19 +102,23 @@ class _InventoryPageState extends State<InventoryPage> {
               pinned: false,
               forceElevated: innerBoxIsScrolled,
               bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(60.h),
-                  child: Column(
-                    children: [
-                      Center(
-                        child: isSelect ? _selectWidget(context) : _tags(),
-                      ),
-                      SizedBox(
-                        height: 6.h,
-                      ),
-                      isSelect
-                          ? _selectOptions(context)
-                          : _filterOptions(context),
-                    ],
+                  preferredSize: Size.fromHeight(110.h),
+                  child: Container(
+                    color: Colors.red,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          child: isSelect ? _selectWidget(context) : _tags(),
+                        ),
+                        SizedBox(
+                          height: 6.h,
+                        ),
+                        isSelect
+                            ? _selectOptions(context)
+                            : _filterOptions(context),
+                      ],
+                    ),
                   )),
             ),
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
@@ -253,21 +257,21 @@ class _InventoryPageState extends State<InventoryPage> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.w),
                   child: DropdownButton2<String>(
-                      dropdownDecoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                          boxShadow: [
-                            BoxShadow(
-                                offset: const Offset(2, 2),
-                                color: Theme.of(context).colorScheme.shadow,
-                                spreadRadius: 2,
-                                blurRadius: 2),
-                            BoxShadow(
-                                color: Theme.of(context).colorScheme.primary,
-                                spreadRadius: 0.1,
-                                offset: const Offset(0, -2))
-                          ]),
-                      selectedItemHighlightColor:
-                          Theme.of(context).colorScheme.shadow,
+                      // dropdownDecoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.all(Radius.circular(8.r)),
+                      //     boxShadow: [
+                      //       BoxShadow(
+                      //           offset: const Offset(2, 2),
+                      //           color: Theme.of(context).colorScheme.shadow,
+                      //           spreadRadius: 2,
+                      //           blurRadius: 2),
+                      //       BoxShadow(
+                      //           color: Theme.of(context).colorScheme.primary,
+                      //           spreadRadius: 0.1,
+                      //           offset: const Offset(0, -2))
+                      //     ]),
+                      // selectedItemHighlightColor:
+                      //     Theme.of(context).colorScheme.shadow,
                       onChanged: (value) {
                         setState(() {
                           dropDownValue = value!;
@@ -433,54 +437,54 @@ class _InventoryPageState extends State<InventoryPage> {
         horizontal: 16.w,
       ),
       child: SizedBox(
-        height: 50.h,
+        height:70.h,
         child: Wrap(
           alignment: WrapAlignment.center,
           direction: Axis.horizontal,
           children: [
-            CustomTag(
-              tagString: 'Total: \$ 900',
-              onTap: () {},
-              icon: Icon(
-                Icons.directions_car_filled,
-                size: 12,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-            CustomTag(
-              tagString: 'Active: \$ 320',
-              onTap: () {},
-              icon: const Icon(
-                Icons.circle,
-                color: Colors.lightGreenAccent,
-                size: 12,
-              ),
-            ),
-            CustomTag(
-              tagString: 'Total Retail Price: \$ 32,700,557',
-              onTap: () {},
-              icon: Icon(
-                Icons.payments,
-                size: 12,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-            CustomTag(
-                tagString: 'Total Purchase Price: \$ 322,700',
-                onTap: () {},
-                icon: Icon(
-                  Icons.price_change,
-                  size: 12,
-                  color: Theme.of(context).colorScheme.primary,
-                )),
-            CustomTag(
-                tagString: 'Deactivate: 500',
-                onTap: () {},
-                icon: Icon(
-                  Icons.circle,
-                  size: 12,
-                  color: Theme.of(context).colorScheme.surface,
-                )),
+            // CustomTag(
+            //   tagString: 'Total: \$ 900',
+            //   onTap: () {},
+            //   icon: Icon(
+            //     Icons.directions_car_filled,
+            //     size: 12,
+            //     color: Theme.of(context).colorScheme.primary,
+            //   ),
+            // ),
+            // CustomTag(
+            //   tagString: 'Active: \$ 320',
+            //   onTap: () {},
+            //   icon: const Icon(
+            //     Icons.circle,
+            //     color: Colors.lightGreenAccent,
+            //     size: 12,
+            //   ),
+            // ),
+            // CustomTag(
+            //   tagString: 'Total Retail Price: \$ 32,700,557',
+            //   onTap: () {},
+            //   icon: Icon(
+            //     Icons.payments,
+            //     size: 12,
+            //     color: Theme.of(context).colorScheme.primary,
+            //   ),
+            // ),
+            // CustomTag(
+            //     tagString: 'Total Purchase Price: \$ 322,700',
+            //     onTap: () {},
+            //     icon: Icon(
+            //       Icons.price_change,
+            //       size: 12,
+            //       color: Theme.of(context).colorScheme.primary,
+            //     )),
+            // CustomTag(
+            //     tagString: 'Deactivate: 500',
+            //     onTap: () {},
+            //     icon: Icon(
+            //       Icons.circle,
+            //       size: 12,
+            //       color: Theme.of(context).colorScheme.surface,
+            //     )),
           ],
         ),
       ),

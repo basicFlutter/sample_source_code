@@ -1,11 +1,4 @@
-<svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="paint0_linear_2595_17801" x1="17.5" y1="0" x2="17.5" y2="35" gradientUnits="userSpaceOnUse">
-            <stop stop-color="white" stop-opacity="0"/>
-            <stop offset="1" stop-color="#0088CC"/>
-        </linearGradient>
-    </defs><rect x="0.25" y="0.25" width="34.5" height="34.5" rx="17.25" fill="#0088CC"/>
-<rect x="0.25" y="0.25" width="34.5" height="34.5" rx="17.25" stroke="url(#paint0_linear_2595_17801)" stroke-width="0.5"/>
-<path d="M24.422 16.57V18.695L10.125 18.712V16.604L24.422 16.57ZM18.37 24.781H16.245L16.228 10.484H18.336L18.37 24.781Z" fill="white"/>
-
+<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.245 14.781L6.228 0.484H8.336L8.37 14.781H6.245ZM0.125 8.712V6.604L14.422 6.57V8.695L0.125 8.712Z" fill="white"/>
 </svg>
+

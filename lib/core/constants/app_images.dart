@@ -33,6 +33,8 @@ class AppImages {
   static String more = 'assets/images/more.svg';
   static String filter = 'assets/images/filter.svg';
   static String search = 'assets/images/search.svg';
+  static String circularButtonBack = 'assets/images/circular_button_back.svg';
+  static String closeIcon = 'assets/images/close.svg';
   static String arrow = 'assets/images/arrow.svg';
   static String back = 'assets/images/back.svg';
   static String hwyFuel = 'assets/images/hwy_fuel.png';

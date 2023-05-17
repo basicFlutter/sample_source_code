@@ -9,12 +9,14 @@ class CustomTag extends StatelessWidget {
   final Widget? icon;
   final Function() onTap;
   final bool? isActive;
+  final double width;
 
   const CustomTag(
       {Key? key,
       this.isActive,
       this.icon,
       required this.tagString,
+        required this.width,
       required this.onTap})
       : super(key: key);
 
@@ -24,38 +26,28 @@ class CustomTag extends StatelessWidget {
   }
 
   Widget _tag(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 2.w , vertical: 2.h),
-      child: Container(
-        height: 30.h,
-        decoration: BoxDecoration(
-            borderRadius:
-                BorderRadius.all(Radius.circular(12.r)),
-            color: isActive ?? true
-                ? Theme.of(context).colorScheme.secondary
-                : Theme.of(context).shadowColor),
-        child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 2.w, vertical:1.h),
-          child: Row(
-            mainAxisSize: MainAxisSize.min ,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+    return Container(
+      height: 23.h,
+      width: width,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(12.r)),
+          color: isActive ?? true ? Theme.of(context).colorScheme.secondary : Theme.of(context).shadowColor),
+      child: Row(
+       // mainAxisSize: MainAxisSize.min ,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
 
-              if (icon != null)
-                Padding(
-                  padding:  EdgeInsets.only(right: 3.w),
-                  child:icon,
-                ),
-              Center(
-                  child: Text(
-                tagString,
-                style: Theme.of(context).textTheme.bodySmall,
-              )),
-
-            ],
+          icon ?? const SizedBox() ,
+          SizedBox(
+            width: 4.5.w,
           ),
-        ),
+          Text(
+            tagString,
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+
+        ],
       ),
     );
   }

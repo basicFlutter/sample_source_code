@@ -29,6 +29,7 @@ void main() async{
   runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
 
   ThemeMode themeMode = ThemeMode.light;
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
       ],
       child: ScreenUtilInit(
 
-        designSize: const Size(390, 850),
+        designSize: const Size(390, (850+33.5)),
         minTextAdapt: false,
         splitScreenMode: false,
         useInheritedMediaQuery: true,

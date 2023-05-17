@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:new_panel/core/constants/app_colors.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
   CustomBottomNavigation({Key? key , required this.indexSelected , required this.onSelected}) : super(key: key);
   final int indexSelected;
   Function(int index) onSelected;
+  final double itemSelectedSizeWidth = 70.w;
+  final double itemSelectedSizeHeight = 60.w;
+  final double borderRadius = 12.r;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 358.w,
-      height: 60.h,
-      margin: EdgeInsets.only(left: 16.w,right: 16.w,bottom: 5.h),
+      height: 70.h,
+      margin: EdgeInsets.only(left: 16.w,right: 16.w,bottom: 10.h),
       decoration:  BoxDecoration(
-          color:Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.all(Radius.circular(23))
+          color:Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+          borderRadius:  BorderRadius.all(Radius.circular(15.r)),
+         // border: Border.all(color: AppColors.primaryColor),
+          boxShadow: [
+            BoxShadow(
+                offset: const Offset(0, 3),
+                color: Theme.of(context).brightness == Brightness.light ? AppColors.elevationDropDown : AppColors.elevationDropDownDark,
+                spreadRadius: 0,
+                blurRadius: 6
+            ),
+          //   BoxShadow(
+          //       color: Theme.of(context).colorScheme.primary,
+          //       spreadRadius: 0.1,
+          //       offset: const Offset(0, -2))
+          ]
       ),
       child: Row(
 
@@ -24,25 +41,40 @@ class CustomBottomNavigation extends StatelessWidget {
             onTap: (){
               onSelected(0);
             },
-            child: SizedBox(
+            child: Container(
               width: 89.5.w,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+             // color: Colors.red,
+
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
                   Container(
-                    width: 28.r,
-                    height: 28.r,
-                    padding: EdgeInsets.all(2.r),
-                    child: SvgPicture.asset("assets/images/bottomNavigation/home_icon.svg",
-                      color: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                    width:itemSelectedSizeWidth,
+                    height: itemSelectedSizeHeight,
+                    decoration: BoxDecoration(
+                        color: indexSelected == 0 ?  Theme.of(context).primaryColor : Colors.transparent,
+                        borderRadius: BorderRadius.all(Radius.circular(15.r))
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width:20.r,
+                          height: 20.r,
+                          padding: EdgeInsets.all(2.r),
+                          child: SvgPicture.asset("assets/images/bottomNavigation/home_icon.svg",
+                            color: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 3.h,
+                        ),
+                        Text("Home",
+                          style: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
+                        )
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Text("Home",
-                    style: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
-                  )
                 ],
               ),
             ),
@@ -55,24 +87,37 @@ class CustomBottomNavigation extends StatelessWidget {
 
               width: 89.5.w,
 
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
                   Container(
-                    width: 28.r,
-                    height: 28.r,
-                    padding: EdgeInsets.symmetric(vertical: 4.r),
-                    child: SvgPicture.asset("assets/images/bottomNavigation/car_transport_icon.svg",
-                      color: indexSelected == 1 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                    width:itemSelectedSizeWidth,
+                    height: itemSelectedSizeHeight,
+                    decoration: BoxDecoration(
+                        color: indexSelected == 1 ?  Theme.of(context).primaryColor : Colors.transparent,
+                        borderRadius: BorderRadius.all(Radius.circular(15.r))
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 28.r,
+                          height: 28.r,
+                          padding: EdgeInsets.symmetric(vertical: 4.r),
+                          child: SvgPicture.asset("assets/images/bottomNavigation/car_transport_icon.svg",
+                            color: indexSelected == 1 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text("Inventory",
+                          style: indexSelected == 1 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
+
+                        )
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Text("Inventory",
-                    style: indexSelected == 1 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
-
-                  )
                 ],
               ),
             ),
@@ -84,25 +129,38 @@ class CustomBottomNavigation extends StatelessWidget {
             child: Container(
 
               width: 89.5.w,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
                   Container(
-                    width: 28.r,
-                    height: 28.r,
-                    padding: EdgeInsets.symmetric(vertical: 1.r,horizontal: 2.r),
-                    child: SvgPicture.asset("assets/images/bottomNavigation/customer_icon.svg",
-                      color: indexSelected == 2 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                    width:itemSelectedSizeWidth,
+                    height: itemSelectedSizeHeight,
+                    decoration: BoxDecoration(
+                        color: indexSelected == 2 ?  Theme.of(context).primaryColor : Colors.transparent,
+                        borderRadius: BorderRadius.all(Radius.circular(15.r))
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 28.r,
+                          height: 28.r,
+                          padding: EdgeInsets.symmetric(vertical: 1.r,horizontal: 2.r),
+                          child: SvgPicture.asset("assets/images/bottomNavigation/customer_icon.svg",
+                            color: indexSelected == 2 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
 
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text("Customers",
+                          style: indexSelected == 2 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
+
+                        )
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Text("Customers",
-                    style: indexSelected == 2 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
-
-                  )
                 ],
               ),
             ),
@@ -114,28 +172,41 @@ class CustomBottomNavigation extends StatelessWidget {
             child: Container(
 
               width: 89.5.w,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
                   Container(
-                    width: 28.r,
-                    height: 28.r,
-                    padding: EdgeInsets.symmetric(vertical: 5.95.r,horizontal: 0),
+                    width:itemSelectedSizeWidth,
+                    height: itemSelectedSizeHeight,
+                    decoration: BoxDecoration(
+                        color: indexSelected == 3 ?  Theme.of(context).primaryColor : Colors.transparent,
+                        borderRadius: BorderRadius.all(Radius.circular(15.r))
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
 
-                    child: SvgPicture.asset("assets/images/bottomNavigation/handshake_hands_icon.svg",
-                      color: indexSelected == 3 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                      children: [
+                        Container(
+                          width: 30.r,
+                          height: 30.r,
+                          padding: EdgeInsets.symmetric(vertical: 5.95.r,horizontal: 0),
 
+                          child: SvgPicture.asset("assets/images/bottomNavigation/handshake_hands_icon.svg",
+                            color: indexSelected == 3 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+
+                          ),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+
+                        Text("Deals",
+                          style: indexSelected == 3 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
+
+                        )
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-
-                  Text("Deals",
-                    style: indexSelected == 3 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
-
-                  )
                 ],
               ),
             ),
