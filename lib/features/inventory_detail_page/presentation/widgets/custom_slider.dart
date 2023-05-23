@@ -1,6 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/shims/dart_ui_real.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/utils/app_utils.dart';

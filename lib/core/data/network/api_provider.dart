@@ -27,7 +27,7 @@ class ApiProvider extends ApiProviderInterface {
 
   static BaseOptions options = BaseOptions(
     baseUrl: baseUrl,
-    connectTimeout: 150000,
+    connectTimeout:const Duration(milliseconds: 150000),
     headers: {
       "Authorization" :"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY4Mjg0NDA0NywiZXhwIjoxNjgyODQ3NjQ3fQ.QHtRLfgfrW2w4A0sqk9nnt12EmT39BjScz-L6UKgPlA",
       "Content-Type": "application/json",
