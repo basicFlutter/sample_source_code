@@ -1,6 +1,117 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+
+  static const Color primary = Color(0xff01458C);
+  static const Color primary2 = Color(0xff3E6A9D);
+  static const Color primary3 = Color(0xffE0F0FA);
+
+  static const Color secondary = Color(0xff000A32);
+  static const Color secondary2 = Color(0xffC9D2DA);
+  static const Color secondary3 = Color(0xffDCE0E4);
+  static const Color secondary4 = Color(0xff1F2C39);
+
+  static const Color black = Color(0xff000000);
+  static const Color white = Color(0xffFFFFFF);
+  static const Color whiteDark = Color(0xffFFFFFF);
+  static const Color active = Color(0xff67F051);
+  static const Color activeDark = Color(0xff67F051);
+  static const Color deActive = Color(0xffC9D2DA);
+  static const Color deActiveDark = Color(0xffC9D2DA);
+
+
+
+
+  static const Color hint = Color(0xffFFF06A);
+
+
+  static  LinearGradient gradientBackgroundCard = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+       const Color(0xffECF0F1).withOpacity(0.48),
+       const Color(0xffECF0F1).withOpacity(0),
+
+      ]);
+
+  static  LinearGradient gradientBackgroundCardDark = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        const Color(0xffECF0F1).withOpacity(0.48),
+        const Color(0xffECF0F1).withOpacity(0),
+
+      ]);
+
+
+  static const LinearGradient gradientBlue = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xff5691CF),
+        Color(0xff2469B1),
+        Color(0xff02458B),
+      ]);
+
+  static const LinearGradient gradientBlueDark = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xff5691CF),
+        Color(0xff2469B1),
+        Color(0xff02458B),
+      ]);
+
+
+  static const LinearGradient gradientGreen = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xff13D3CB),
+        Color(0xff06A9A2),
+      ]);
+
+  static const LinearGradient gradientGreenDark = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xff13D3CB),
+        Color(0xff06A9A2),
+      ]);
+
+
+  static const LinearGradient gradientPink = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xffE83E5E),
+        Color(0xffE33455),
+      ]);
+
+
+
+  static const LinearGradient gradientOrange = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xffFF8147),
+        Color(0xffFF601E),
+        Color(0xffFF5100),
+      ]);
+
+  static const LinearGradient gradientOrangeDark = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xffFF8147),
+        Color(0xffFF601E),
+        Color(0xffFF5100),
+      ]);
+  static const Color input = Color(0xffF7F9F9);
+  static const Color inputDark = Color(0xffF7F9F9);
+
+
+
   static const Color customGray = Color(0xffE5E8EB);
   static const Color grayText = Color(0xff919294);
   static const Color selectedColor = Color(0xffEDEFF2);
@@ -18,7 +129,7 @@ class AppColors {
   static const Color unselectedColor = Color(0xff918686); // item navigationbar
   static const Color disableGrayColor = Color(0xff4F5962); // price
   static const Color errorColor = Color(0xffCA0000);
-  static const Color white = Color(0xffFFFFFF);
+  //static const Color white = Color(0xffFFFFFF);
   static const Color iconColorsOnPrimary = Color(0xffFFFFFF);
   static const Color displayLargeColor = Color(0xff0A0A0A);
   static  Color elevationDropDown = Colors.black.withOpacity(0.25);

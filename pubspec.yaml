@@ -121,6 +121,14 @@ flutter:
       fonts:
         - asset: assets/fonts/Tajawal-Regular.ttf
           weight: 400
+
+
+    - family: publicSans-variable
+      fonts:
+        - asset: assets/fonts/PublicSans-VariableFont_wght.ttf
+          weight: 400
+
+
     - family: PublicSans
       fonts:
         - asset: assets/fonts/PublicSans-Regular.ttf

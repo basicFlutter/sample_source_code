@@ -64,16 +64,20 @@ class _NewInventoryListState extends State<NewInventoryList> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
 
       width: 359.w,
       height: 635.h,
+      constraints: BoxConstraints(
+        maxHeight: 564.h,
+        minHeight: 501.h
+      ),
       child: ListView.builder(
           itemCount: myList.length,
           padding: EdgeInsets.only(bottom: 100.h),
 
           itemBuilder: (context , index){
-            return NewInventoryItem();
+            return const NewInventoryItem();
 
       }),
     );

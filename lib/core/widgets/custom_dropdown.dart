@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/models/drop_down_model.dart';
+import 'package:new_panel/core/widgets/custom_text.dart';
 
 class CustomDropDown extends StatefulWidget {
   const CustomDropDown({Key? key , required this.itemList}) : super(key: key);
@@ -22,10 +25,10 @@ class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 24.h,
+      height: 28.h,
       width: 115.w,
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.shadow,
+          color: Theme.of(context).colorScheme.primaryContainer,
           borderRadius: BorderRadius.all(Radius.circular(6.r))),
 
       child: DropdownButtonHideUnderline(
@@ -34,7 +37,9 @@ class _CustomDropDownState extends State<CustomDropDown> {
           iconStyleData: IconStyleData(
             icon: Padding(
               padding:  EdgeInsets.only(right: 10.01.w),
-              child: const Icon(Icons.keyboard_arrow_down),
+              child:  Icon(Icons.keyboard_arrow_down ,
+              color: Theme.of(context).primaryColor,
+              ),
             ),
             iconSize: 8.r
           ),
@@ -43,6 +48,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
               width: 115.w,
               padding:  EdgeInsets.symmetric(horizontal: 0 , vertical: 9.h),
               decoration: BoxDecoration(
+                color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
                   borderRadius: BorderRadius.all(Radius.circular(6.r)),
                   boxShadow: [
                     BoxShadow(
@@ -68,7 +74,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
                     width: 150.w,
                     height: 26.h,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.shadow,
+                        color: Theme.of(context).brightness == Brightness.light ? AppColors.input : AppColors.inputDark,
                         borderRadius: BorderRadius.all(Radius.circular(5.r))
                     ),
                     margin: EdgeInsets.only(left: 5.w,right: 5.w),
@@ -77,15 +83,18 @@ class _CustomDropDownState extends State<CustomDropDown> {
                         SizedBox(
                           width: 5.w,
                         ),
-                        Text(
-                          dropDownValue?.title??"",
-                        ),
+                        CustomText(
+                            text: dropDownValue?.title??"",
+                            textStyle: Theme.of(context).textTheme.displayMedium,
+                          textFontWight: TextFontWight.medium,
+                        )
+
                       ],
                     ),
                   );
                 }
             ),
-            style:  Theme.of(context).textTheme.displayLarge,
+            style:  Theme.of(context).textTheme.displaySmall,
             onChanged: (value) {
               setState(() {
                 dropDownValue = value!;
@@ -101,10 +110,18 @@ class _CustomDropDownState extends State<CustomDropDown> {
                     (item) {
                   return Container(
                     alignment: AlignmentDirectional.centerStart,
+
                     padding:  EdgeInsets.only(left: 7.w),
                     child: Text(
                       item.title,
-                      style:Theme.of(context).textTheme.headlineMedium,
+                      style:Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontVariations: [
+                            FontVariation(
+                                'wght',
+                                600
+                            )
+                          ]
+                      ),
                       maxLines: 1,
                     ),
                   );
@@ -116,7 +133,14 @@ class _CustomDropDownState extends State<CustomDropDown> {
                 value: item,
                 child: Text(
                   item.title,
-                  style: Theme.of(context).textTheme.displayLarge,
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      fontVariations: [
+                        FontVariation(
+                            'wght',
+                            400
+                        )
+                      ]
+                  ),
                 ))).toList()),
       ),
     );

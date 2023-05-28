@@ -1,3 +1,5 @@
+import "dart:ui";
+
 import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:new_panel/core/constants/app_colors.dart";
@@ -5,24 +7,38 @@ import "package:new_panel/core/constants/app_colors.dart";
 class Style {
   static ThemeData lightTheme = ThemeData(
 
-        colorScheme: const ColorScheme(
-          outline: AppColors.lightPrimaryColor,
+    splashColor: Colors.transparent,
+    fontFamily: "publicSans-variable",
+    primaryColor: AppColors.primary,
+
+    colorScheme: const ColorScheme(
+        outline: AppColors.lightPrimaryColor,
         surfaceTint: AppColors.selectedColor,
-        tertiary: AppColors.cardColor,
+        tertiary: AppColors.primary3,
         onTertiaryContainer: AppColors.darkBlueColor,
-        onTertiary: AppColors.grayText, //TEXTE KHAKESTARY K TU SEARCH BAR DARIM
+        onTertiary: AppColors.grayText,
         shadow: AppColors.customGray,
         brightness: Brightness.light,
-        primary: AppColors.primaryColor,
-        onPrimary: AppColors.iconColorsOnPrimary,
-        secondary: AppColors.secondaryColor,
-        onSecondary: AppColors.titleColor,
-        error: AppColors.errorColor,
-        onError: AppColors.white,
-        background: AppColors.backgroundColor,
+        primary: AppColors.primary2,
+        primaryContainer: AppColors.primary3,
+        background: AppColors.white,
         onBackground: AppColors.titleColor,
         surface: AppColors.unselectedColor,
-        onSurface: AppColors.titleColor),
+        onSurface: AppColors.titleColor,
+        onPrimary: AppColors.white,
+        secondary: AppColors.secondary,
+        secondaryContainer: AppColors.secondary2,
+        onSecondary: AppColors.secondary2,
+      error: AppColors.errorColor,
+      onError: AppColors.white,
+
+
+    ),
+    searchBarTheme: SearchBarThemeData(
+      backgroundColor:MaterialStateProperty.all(AppColors.primary3),
+    ),
+
+
     //
     // checkboxTheme: CheckboxThemeData(
     //   checkColor: MaterialStateProperty.all(AppColors.checkColor),
@@ -74,33 +90,41 @@ class Style {
     canvasColor: AppColors.backgroundColor,
 
 
-   // cardColor:  LinearGradient(colors: [Colors.blue, Colors.green]),
+    // cardColor:  LinearGradient(colors: [Colors.blue, Colors.green]),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor:Color(0xffECF0F1),
+      backgroundColor:AppColors.primary,
 
 
       elevation: 0,
 
       selectedIconTheme: IconThemeData(
-        color: AppColors.backgroundColor,
-        size: 30.r
+          color: AppColors.white,
+          size: 28.r
       ),
       unselectedIconTheme: IconThemeData(
-          color:AppColors.primaryColor,
-          size: 30.r
+          color:AppColors.white,
+          size: 28.r
       ),
       selectedLabelStyle: TextStyle(
-        color: Colors.white,
-        fontSize:11.sp,
-        fontFamily: "PublicSans",
-        fontWeight: FontWeight.bold
+          color: AppColors.hint,
+          fontSize:11.sp,
+          fontFamily: "publicSans-variable",
+          fontVariations: const [
+            FontVariation(
+                'wght', 600
+            )
+          ]
       ),
       unselectedLabelStyle: TextStyle(
-          color: AppColors.primaryColor,
-          fontSize: 11.sp,
-          fontFamily: "PublicSans",
-          fontWeight: FontWeight.bold,
+        color: AppColors.white,
+        fontSize: 12.sp,
+          fontFamily: "publicSans-variable",
+          fontVariations: const [
+            FontVariation(
+                'wght', 400
+            )
+          ]
 
       ),
     ),
@@ -200,10 +224,9 @@ class Style {
     textTheme: TextTheme(
 
       displayLarge:TextStyle(
-          fontSize: 12.sp,
-          fontWeight: FontWeight.w400,
-          fontFamily: "PublicSans",
-          color: AppColors.displayLargeColor,
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.displayLargeColor,
 
       ),
 
@@ -211,52 +234,45 @@ class Style {
       displaySmall:TextStyle(
           fontSize: 8.sp,
           fontWeight: FontWeight.w400,
-          fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
 
       displayMedium: TextStyle(
           fontSize: 12.sp,
           fontWeight: FontWeight.w400,
-          fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
       /// Large Title
       titleLarge: TextStyle(
           fontSize: 20.sp,
           fontWeight: FontWeight.w700,
-          fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
       /// Medium Title
       titleMedium: TextStyle(
           fontSize: 16.sp,
           fontWeight: FontWeight.w700,
-          fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
       /// SubTitle
       titleSmall: TextStyle(
           fontSize: 10.sp,
           fontWeight: FontWeight.w700,
-          fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
       headlineLarge: TextStyle(
           fontSize: 12.sp,
           fontWeight: FontWeight.w300,
-          fontFamily: "PublicSans",
           color: AppColors.titleColor),
       headlineMedium:
-          TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w300, color: AppColors.secondaryColor2),
+      TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w300, color: AppColors.secondaryColor2),
       //body normal text
       headlineSmall: TextStyle(
           fontSize: 9.sp,
           fontWeight: FontWeight.w300,
-          fontFamily: "PublicSans",
           color: AppColors.titleColor),
-    //
-    //   /// for title check box
+      //
+      //   /// for title check box
       bodyLarge: TextStyle(
           fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.black),
       bodyMedium: TextStyle(
@@ -265,28 +281,24 @@ class Style {
       bodySmall: TextStyle(
           fontSize: 10.sp,
           fontWeight: FontWeight.w300,
-          fontFamily: "PublicSans",
           color: AppColors.disableGrayColor),
-    //
-    //   /// search hint text field text
+      //
+      //   /// search hint text field text
       labelLarge: TextStyle(
           fontSize: 12.sp,
           fontWeight: FontWeight.w500,
-          fontFamily: "PublicSans",
           color: AppColors.titleColor),
 
       /// search text
       labelMedium: TextStyle(
           fontSize: 14.sp,
           fontWeight: FontWeight.w700,
-          fontFamily: "PublicSans",
           color: AppColors.primaryColor),
 
       /// label text => carPrice
       labelSmall: TextStyle(
           fontSize: 13.sp,
           fontWeight: FontWeight.w400,
-          fontFamily: "PublicSans",
           color: AppColors.titleColor),
     ),
   );

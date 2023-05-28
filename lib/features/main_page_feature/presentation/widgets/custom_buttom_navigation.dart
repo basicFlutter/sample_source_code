@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/widgets/custom_text.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
   CustomBottomNavigation({Key? key , required this.indexSelected , required this.onSelected}) : super(key: key);
@@ -13,25 +14,12 @@ class CustomBottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 358.w,
-      height: 70.h,
-      margin: EdgeInsets.only(left: 16.w,right: 16.w,bottom: 10.h),
+      width: 1.sw,
+      height: 65.h,
+      margin: EdgeInsets.only(bottom: 4.h , left: 16.w , right: 16.w),
       decoration:  BoxDecoration(
           color:Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           borderRadius:  BorderRadius.all(Radius.circular(15.r)),
-         // border: Border.all(color: AppColors.primaryColor),
-          boxShadow: [
-            BoxShadow(
-                offset: const Offset(0, 3),
-                color: Theme.of(context).brightness == Brightness.light ? AppColors.elevationDropDown : AppColors.elevationDropDownDark,
-                spreadRadius: 0,
-                blurRadius: 6
-            ),
-          //   BoxShadow(
-          //       color: Theme.of(context).colorScheme.primary,
-          //       spreadRadius: 0.1,
-          //       offset: const Offset(0, -2))
-          ]
       ),
       child: Row(
 
@@ -51,27 +39,26 @@ class CustomBottomNavigation extends StatelessWidget {
                   Container(
                     width:itemSelectedSizeWidth,
                     height: itemSelectedSizeHeight,
-                    decoration: BoxDecoration(
-                        color: indexSelected == 0 ?  Theme.of(context).primaryColor : Colors.transparent,
-                        borderRadius: BorderRadius.all(Radius.circular(15.r))
-                    ),
+                    // decoration: BoxDecoration(
+                    //     color: indexSelected == 0 ?  Theme.of(context).primaryColor : Colors.transparent,
+                    //     borderRadius: BorderRadius.all(Radius.circular(15.r))
+                    // ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width:20.r,
-                          height: 20.r,
-                          padding: EdgeInsets.all(2.r),
+                          width:23.r,
+                          height: 23.r,
+                          // padding: EdgeInsets.all(2.r),
                           child: SvgPicture.asset("assets/images/bottomNavigation/home_icon.svg",
                             color: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
                           ),
                         ),
                         SizedBox(
-                          height: 3.h,
+                          height: 6.h,
                         ),
-                        Text("Home",
-                          style: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
-                        )
+                        CustomText(text: "Home", textStyle: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle)
+
                       ],
                     ),
                   ),
@@ -111,10 +98,9 @@ class CustomBottomNavigation extends StatelessWidget {
                         SizedBox(
                           height: 5.h,
                         ),
-                        Text("Inventory",
-                          style: indexSelected == 1 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
 
-                        )
+                        CustomText(text: "Inventory", textStyle: indexSelected == 1 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle)
+
                       ],
                     ),
                   ),
@@ -154,10 +140,8 @@ class CustomBottomNavigation extends StatelessWidget {
                         SizedBox(
                           height: 5.h,
                         ),
-                        Text("Customers",
-                          style: indexSelected == 2 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
+                        CustomText(text: "Customers", textStyle: indexSelected == 2 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle)
 
-                        )
                       ],
                     ),
                   ),
@@ -200,10 +184,8 @@ class CustomBottomNavigation extends StatelessWidget {
                           height: 2.h,
                         ),
 
-                        Text("Deals",
-                          style: indexSelected == 3 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle ,
+                        CustomText(text: "Deals", textStyle: indexSelected == 3 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle)
 
-                        )
                       ],
                     ),
                   ),

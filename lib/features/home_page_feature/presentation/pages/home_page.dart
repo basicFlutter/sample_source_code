@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomBody(searchbarController:searchbarController, body: Container() ,),
     );
   }

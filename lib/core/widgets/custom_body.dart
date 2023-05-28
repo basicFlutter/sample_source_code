@@ -71,8 +71,8 @@ class CustomBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 10.h),
-                height: 93.h,
+                margin: EdgeInsets.only(top: 11.h),
+                height: 92.h,
                 width: 358.w,
 
                 child: Column(
@@ -130,15 +130,15 @@ class CustomBody extends StatelessWidget {
             Container(
               width: 35.r,
               height: 35.r,
-              padding: EdgeInsets.all(9.75.r),
+              padding: EdgeInsets.only(top: 10.5.r , bottom: 9.9.r , right: 10.49.r , left:11.37.r ),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Theme.of(context).primaryColor
               ),
               child: SvgPicture.asset(
                 AppImages.ring,
-                height: 16.5.r,
-                width: 16.5.r,
+                height: 13.13.r,
+                width: 14.6.r,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
@@ -151,7 +151,7 @@ class CustomBody extends StatelessWidget {
             Container(
               width: 35.r,
               height: 35.r,
-              padding: EdgeInsets.all(9.75.r),
+              padding: EdgeInsets.all(10.r),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Theme.of(context).primaryColor

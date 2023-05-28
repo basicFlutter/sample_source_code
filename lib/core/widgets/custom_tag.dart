@@ -31,7 +31,9 @@ class CustomTag extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(12.r)),
-          color: isActive ?? true ? Theme.of(context).colorScheme.secondary : Theme.of(context).shadowColor),
+          border: Border.all(width: 0.5 , color: Theme.of(context).primaryColor),
+          //color: isActive ?? true ? Theme.of(context).colorScheme.secondary : Theme.of(context).shadowColor
+      ),
       child: Row(
        // mainAxisSize: MainAxisSize.min ,
         mainAxisAlignment: MainAxisAlignment.center,
