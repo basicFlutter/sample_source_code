@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-// const baseUrl = 'https://api.hillzusers.com/api/';
+// const baseUrl = 'https://hillz-panel-backend.azurewebsites.net';
 const baseUrl = 'http://192.168.1.120:8000';
 // const domain = 'localhost:3000';
 const imageBaseUrl = 'https://image123.azureedge.net';
@@ -29,7 +29,7 @@ class ApiProvider extends ApiProviderInterface {
     baseUrl: baseUrl,
     connectTimeout:const Duration(milliseconds: 150000),
     headers: {
-      "Authorization" :"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY4Mjg0NDA0NywiZXhwIjoxNjgyODQ3NjQ3fQ.QHtRLfgfrW2w4A0sqk9nnt12EmT39BjScz-L6UKgPlA",
+      "Authorization" :"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImlhdCI6MTY4NTM2NTE1NiwiZXhwIjoxNjg1MzY4NzU2fQ.UMFGqSz12RMHUtShm8k7h-BsLjlYbb_ptNu2DpntgCo",
       "Content-Type": "application/json",
       "Accept": "application/json",
     },

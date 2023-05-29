@@ -26,7 +26,8 @@ class _CustomDropDownState extends State<CustomDropDown> {
   Widget build(BuildContext context) {
     return Container(
       height: 28.h,
-      width: 115.w,
+      width: 125.w,
+
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primaryContainer,
           borderRadius: BorderRadius.all(Radius.circular(6.r))),
@@ -41,11 +42,12 @@ class _CustomDropDownState extends State<CustomDropDown> {
               color: Theme.of(context).primaryColor,
               ),
             ),
-            iconSize: 8.r
+            iconSize: 17.r
           ),
             isExpanded: true,
             dropdownStyleData: DropdownStyleData(
-              width: 115.w,
+              width: 125.w,
+              offset: Offset(0, -5.h),
               padding:  EdgeInsets.symmetric(horizontal: 0 , vertical: 9.h),
               decoration: BoxDecoration(
                 color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
@@ -68,6 +70,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
 
             menuItemStyleData:  MenuItemStyleData(
                 height: 26.h,
+
                 padding: EdgeInsets.only(left: 10.w),
                 selectedMenuItemBuilder: (context , child){
                   return Container(
@@ -111,19 +114,26 @@ class _CustomDropDownState extends State<CustomDropDown> {
                   return Container(
                     alignment: AlignmentDirectional.centerStart,
 
-                    padding:  EdgeInsets.only(left: 7.w),
-                    child: Text(
-                      item.title,
-                      style:Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontVariations: [
-                            FontVariation(
-                                'wght',
-                                600
-                            )
-                          ]
-                      ),
-                      maxLines: 1,
-                    ),
+                    padding:  EdgeInsets.only(left: 5.w),
+
+                    child: CustomText(
+                      textFontWight: TextFontWight.regular,
+                      text: item.title, textStyle: Theme.of(context).textTheme.displayMedium,
+
+                    )
+
+                    // Text(
+                    //   item.title,
+                    //   style:Theme.of(context).textTheme.displayMedium?.copyWith(
+                    //       fontVariations: [
+                    //         FontVariation(
+                    //             'wght',
+                    //             600
+                    //         )
+                    //       ]
+                    //   ),
+                    //   maxLines: 1,
+                    // ),
                   );
                 },
               ).toList();
@@ -131,17 +141,26 @@ class _CustomDropDownState extends State<CustomDropDown> {
 
             items: widget.itemList.map((DropDownModel item) => DropdownMenuItem<DropDownModel>(
                 value: item,
-                child: Text(
-                  item.title,
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontVariations: [
-                        FontVariation(
-                            'wght',
-                            400
-                        )
-                      ]
-                  ),
-                ))).toList()),
+                child:
+
+                CustomText(
+                  text: item.title,
+                  textStyle: Theme.of(context).textTheme.displayMedium,
+                  textFontWight: TextFontWight.regular,
+                )
+
+                // Text(
+                //   item.title,
+                //   style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                //       fontVariations: [
+                //         FontVariation(
+                //             'wght',
+                //             400
+                //         )
+                //       ]
+                //   ),
+                // )
+            )).toList()),
       ),
     );
   }

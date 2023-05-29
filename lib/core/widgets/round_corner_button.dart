@@ -19,42 +19,40 @@ class RoundCornerButton extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(radius ?? 10.r)),
-        gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientOrange : AppColors.gradientOrangeDark
+          borderRadius: BorderRadius.all(Radius.circular(radius ?? 10.r)),
+          gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientOrange : AppColors.gradientOrangeDark
       ),
       // padding: EdgeInsets.only(top: 7.h , bottom: 8.h),
       child:Container(
         height: 13.h,
-       // color: Colors.grey,
+        // color: Colors.grey,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-         if(icon != null)
-
-            Icon(
-              Icons.add ,
-              size: 8.75.r,
-              shadows: <Shadow>[
-                Shadow(
-                  offset: Offset(0, 1),
-                  blurRadius: 1,
-                  color: Colors.black.withOpacity(0.25),
-                ),
-              ],
-              color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
-            ),
             if(icon != null)
-            SizedBox(width: 4.w),
+
+              Icon(
+                Icons.add ,
+                size: 12.r,
+                shadows: <Shadow>[
+                  Shadow(
+                    offset: Offset(0, 1),
+                    blurRadius: 1,
+                    color: Colors.black.withOpacity(0.25),
+                  ),
+                ],
+                color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
+              ),
+            if(icon != null)
+              SizedBox(width: 1.w),
             CustomText(
-                textFontWight: TextFontWight.semiBold,
+                textFontWight: TextFontWight.regular,
                 text: title,
-            isShadow: true
-            ,textStyle: Theme.of(context).textTheme.displaySmall?.copyWith(
-              color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
-
-
-            ))
+                isShadow: true,
+                textStyle: Theme.of(context).textTheme.displayMedium?.copyWith(
+                  color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
+                ))
           ],
         ),
       ),

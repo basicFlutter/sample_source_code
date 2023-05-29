@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/widgets/custom_text.dart';
 
 import '../constants/app_dimensions.dart';
 import '../constants/app_styles.dart';
@@ -44,10 +46,15 @@ class CustomTag extends StatelessWidget {
           SizedBox(
             width: 4.5.w,
           ),
-          Text(
-            tagString,
-            style: Theme.of(context).textTheme.headlineSmall,
+          CustomText(text: tagString,
+            textStyle:
+          Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: Theme.of(context).brightness == Brightness.light ? AppColors.secondary : AppColors.secondary
           ),
+            textFontWight: TextFontWight.regular,
+
+          )
+
 
         ],
       ),

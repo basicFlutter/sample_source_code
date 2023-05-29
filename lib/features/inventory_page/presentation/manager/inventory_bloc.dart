@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/get_inventpries_status.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/inventory_page_status.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/search_inventory_status.dart';
+import 'package:new_panel/main.dart';
 
 import '../../../../core/exceptions/failure.dart';
 import '../../domain/entities/inventory_entity.dart';

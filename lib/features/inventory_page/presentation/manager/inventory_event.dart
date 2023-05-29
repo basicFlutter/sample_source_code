@@ -9,6 +9,10 @@ class ChangeSelectModeEvent extends InventoryEvent{
  ChangeSelectModeEvent({required this.isSelectMode});
 }
 
+class GetInventoriesInitializeEvent extends InventoryEvent{
+ GetInventoriesInitializeEvent();
+}
+
 class GetInventoriesEvent extends InventoryEvent{
  final String stateType ;
 

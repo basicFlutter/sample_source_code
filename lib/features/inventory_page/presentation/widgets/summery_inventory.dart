@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
@@ -9,10 +10,12 @@ import 'package:new_panel/core/widgets/circular_button.dart';
 import 'package:new_panel/core/widgets/custom_dropdown.dart';
 import 'package:new_panel/core/widgets/custom_tag.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
+import 'package:new_panel/features/inventory_page/presentation/manager/inventory_bloc.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/search_inventory.dart';
 
 class SummeryInventory extends StatefulWidget {
-  SummeryInventory({Key? key}) : super(key: key);
+  SummeryInventory({Key? key , required this.filterList}) : super(key: key);
+  List<String> filterList ;
 
   @override
   State<SummeryInventory> createState() => _SummeryInventoryState();
@@ -52,26 +55,41 @@ class _SummeryInventoryState extends State<SummeryInventory> {
 
   }
 
+  double getHeight(){
+    double height = 110.h;
+    if(searchIsOpen && widget.filterList.isEmpty){
+      height = 163.h;
+    }else if(searchIsOpen && widget.filterList.isNotEmpty){
+      height = 214.h;
+    }else if(searchIsOpen == false && widget.filterList.isNotEmpty){
+      height = 161;
+    }
+
+    return height;
+
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(
-        milliseconds: 150
+          milliseconds: 150
       ),
-      height: searchIsOpen ? 159.h :106.h,
+      height: getHeight(),
 
-      constraints: BoxConstraints(
-        minHeight: 110.h,
-        maxHeight: 159.h
-      ),
+      // constraints: BoxConstraints(
+      //     minHeight: 110.h,
+      //     maxHeight: 221.h
+      // ),
       // width: 358.w,
       // color: Colors.green,
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       child: Column(
         children: [
           SizedBox(
-            height: 10.h,
+            height: 11.h,
           ),
           Wrap(
             alignment: WrapAlignment.center,
@@ -81,7 +99,8 @@ class _SummeryInventoryState extends State<SummeryInventory> {
             children: [
               CustomTag(
                   tagString: 'Total Purchase Price: \$32,270,000',
-                  onTap: () {},
+                  onTap: () {
+                  },
                   width: 177.5.w,
                   icon: Icon(
                     Icons.price_change,
@@ -106,7 +125,7 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                     "assets/images/total_icon.svg" ,
                     width: 12.r ,
                     height: 12.r,
-                   // color:  Theme.of(context).colorScheme.primary,
+                    // color:  Theme.of(context).colorScheme.primary,
                   )
               ),
               CustomTag(
@@ -115,8 +134,8 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                 onTap: () {},
                 icon:  Icon(
                   Icons.circle,
-                color: Theme.of(context).brightness == Brightness.light ? AppColors.active : AppColors.activeDark,
-                //  color: Colors.lightGreenAccent,
+                  color: Theme.of(context).brightness == Brightness.light ? AppColors.active : AppColors.activeDark,
+                  //  color: Colors.lightGreenAccent,
                   size: 8.r,
                 ),
               ),
@@ -129,83 +148,104 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                   icon: Icon(
                     Icons.circle,
                     size: 8.r,
-                   color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive : AppColors.deActiveDark,
+                    color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive : AppColors.deActiveDark,
                   )),
             ],
           ),
           SizedBox(
-            height: 11.h,
+            height: 10.h,
           ),
           Row(
             children: [
-               Expanded(
-                 child:  Row(
-                children: [
+              Expanded(
+                child:  Row(
+                  children: [
 
-                  CircularButton(
-                      onTap: (){
-                      },
-                      radius: 28.r,
-                      padding: EdgeInsets.all(7.r),
-                      child: SvgPicture.asset("assets/images/new_filter_icon.svg",
-                        color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
-    )
-                  ),
-                       SizedBox(width: 11.w),
-                  CircularButton(
-                      onTap: (){
-                        searchIsOpen = searchIsOpen ? false :true ;
-                        if(searchIsOpen){
-                          visibleSearch = false;
-                        }else{
-                          visibleSearch = true;
-                        }
-                        changeVisibility();
-                        setState(() {
+                    CircularButton(
+                        onTap: (){
+                        },
+                        radius: 28.r,
+                        padding: EdgeInsets.all(7.r),
+                        child: SvgPicture.asset("assets/images/new_filter_icon.svg",
+                          color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
+                        )
+                    ),
+                    SizedBox(width: 11.w),
+                    CircularButton(
+                        onTap: (){
+                          searchIsOpen = searchIsOpen ? false :true ;
+                          if(searchIsOpen){
+                            visibleSearch = false;
+                           // widget.filterList = ["dfasf"];
 
-                        });
-                      },
-                      radius: 28.r,
-                      padding: EdgeInsets.all(7.r),
-                      child: SvgPicture.asset("assets/images/search_icon.svg" ,
-                        color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,)
-                  ),
+                          }else{
+                            visibleSearch = true;
+                            widget.filterList.clear();
+                          }
+                         // BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: widget.filterList.isNotEmpty));
 
-                     SizedBox(width: 11.w),
+                          changeVisibility();
 
-                  RoundCornerButton(
-                    width: 106.w,
-                    height: 28.h,
-                    title: "Add Inventory",
-                    icon: Icons.add,
+                          setState(() {
 
-                  )
+                          });
+                        },
+                        radius: 28.r,
+                        padding: EdgeInsets.all(7.r),
+                        child: SvgPicture.asset("assets/images/search_icon.svg" ,
+                          color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,)
+                    ),
+
+                    SizedBox(width: 11.w),
+
+                    RoundCornerButton(
+                      width: 106.w,
+                      height: 28.h,
+                      radius: 14.r,
+                      title: "Add Inventory",
+                      icon: Icons.add,
+
+                    )
 
 
-                ],
-              ),),
+                  ],
+                ),),
               CustomDropDown(
                 itemList: items,
               )
             ],
           ),
+          Visibility(
+              visible: visibleSearch,
+              child: SizedBox( height: 10.h)),
 
           Visibility(
-            visible: visibleSearch,
+              visible: visibleSearch,
               child: SearchInventory(
-                onTapSuffixIcon: (){
+                fieldHint: "Inventory Search",
+                searchbarController: searchController,
+                onTapSuffix: (){
+                  searchIsOpen = searchIsOpen ? false :true ;
+                  if(searchIsOpen){
+                    visibleSearch = false;
+                    widget.filterList.clear();
+                  }else{
+                    visibleSearch = true;
+                    widget.filterList= ["dfasdf"];
+                  }
 
+                  changeVisibility();
+                  setState(() {
+
+                  });
                 },
-                onTapPrefixIcon: (){
-
-                },
-                inventorySearchController: searchController,
-
-
               )
 
-          )
+          ),
 
+          // Visibility(
+          //     visible: visibleSearch,
+          //     child: SizedBox( height: 15.h)),
         ],
       ),
     );

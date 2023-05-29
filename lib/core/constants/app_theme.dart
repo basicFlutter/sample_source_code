@@ -224,7 +224,7 @@ class Style {
     textTheme: TextTheme(
 
       displayLarge:TextStyle(
-        fontSize: 12.sp,
+        fontSize: 13.sp,
         fontWeight: FontWeight.w400,
         color: AppColors.displayLargeColor,
 
@@ -232,7 +232,7 @@ class Style {
 
       /// for Driven by Future,Run Faster, Cost Less in login page
       displaySmall:TextStyle(
-          fontSize: 8.sp,
+          fontSize: 11.sp,
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
@@ -245,59 +245,54 @@ class Style {
       /// Large Title
       titleLarge: TextStyle(
           fontSize: 20.sp,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
       /// Medium Title
       titleMedium: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w700,
+          fontSize: 19.sp,
+          fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
       /// SubTitle
       titleSmall: TextStyle(
-          fontSize: 10.sp,
-          fontWeight: FontWeight.w700,
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
       headlineLarge: TextStyle(
           fontSize: 12.sp,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
-      headlineMedium:
-      TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w300, color: AppColors.secondaryColor2),
+      headlineMedium: TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w400, color: AppColors.secondaryColor2),
       //body normal text
       headlineSmall: TextStyle(
           fontSize: 9.sp,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
       //
       //   /// for title check box
       bodyLarge: TextStyle(
           fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.black),
       bodyMedium: TextStyle(
-          fontSize: 10.sp, fontWeight: FontWeight.w700, color: AppColors.primaryColor),
+          fontSize: 9.sp, fontWeight: FontWeight.w400, color: AppColors.primaryColor),
 
-      bodySmall: TextStyle(
-          fontSize: 10.sp,
-          fontWeight: FontWeight.w300,
-          color: AppColors.disableGrayColor),
       //
       //   /// search hint text field text
       labelLarge: TextStyle(
-          fontSize: 12.sp,
-          fontWeight: FontWeight.w500,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
       /// search text
       labelMedium: TextStyle(
-          fontSize: 14.sp,
-          fontWeight: FontWeight.w700,
+          fontSize: 15.sp,
+          fontWeight: FontWeight.w400,
           color: AppColors.primaryColor),
 
       /// label text => carPrice
       labelSmall: TextStyle(
-          fontSize: 13.sp,
+          fontSize: 14.sp,
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
     ),

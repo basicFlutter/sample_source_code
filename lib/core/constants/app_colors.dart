@@ -18,7 +18,41 @@ class AppColors {
   static const Color activeDark = Color(0xff67F051);
   static const Color deActive = Color(0xffC9D2DA);
   static const Color deActiveDark = Color(0xffC9D2DA);
+  static const Color backgroundCard = Color(0xffFEFEFE);
+  static const Color backgroundCardDark = Color(0xffECF0F1);
 
+  static  Shadow shadow = Shadow(
+    blurRadius: 4,
+    offset: const Offset(0, 1),
+    color: Colors.black.withOpacity(0.14)
+  );
+
+  static BoxShadow boxShadow = BoxShadow(
+    color: Colors.black.withOpacity(0.14),
+    spreadRadius: 0,
+    blurRadius: 4,
+    offset: const Offset(0, 1),
+  );
+
+  static BoxShadow boxShadowDark = BoxShadow(
+    color: Colors.black.withOpacity(0.14),
+    spreadRadius: 0,
+    blurRadius: 4,
+    offset: const Offset(0, 1),
+  );
+
+  static BoxShadow boxShadowInventory = BoxShadow(
+    color: Colors.black.withOpacity(0.14),
+    spreadRadius: 0,
+    blurRadius: 4,
+    offset: const Offset(0, 3),
+  );
+  static BoxShadow boxShadowInventoryDark = BoxShadow(
+    color: Colors.black.withOpacity(0.14),
+    spreadRadius: 0,
+    blurRadius: 4,
+    offset: const Offset(0, 3),
+  );
 
 
 
