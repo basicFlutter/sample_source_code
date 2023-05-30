@@ -6,7 +6,8 @@ class CircularButton extends StatelessWidget {
  final Widget child;
  final GestureTapCallback onTap;
  final EdgeInsets? padding;
-  const CircularButton({Key? key ,required this.onTap , this.padding,required this.radius , required this.child}) : super(key: key);
+ final Gradient? gradient;
+  const CircularButton({Key? key ,required this.onTap ,  this.gradient ,this.padding,required this.radius , required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class CircularButton extends StatelessWidget {
         padding: padding,
         decoration: BoxDecoration(
         shape: BoxShape.circle,
-        gradient:Theme.of(context).brightness == Brightness.light ? AppColors.gradientGreen : AppColors.gradientGreenDark
+        gradient: gradient ?? (Theme.of(context).brightness == Brightness.light ? AppColors.gradientGreen : AppColors.gradientGreenDark)
 
         ),
         child: Center(child: child),

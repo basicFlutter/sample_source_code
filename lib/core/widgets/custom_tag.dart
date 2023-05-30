@@ -48,9 +48,8 @@ class CustomTag extends StatelessWidget {
           ),
           CustomText(text: tagString,
             textStyle:
-          Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).brightness == Brightness.light ? AppColors.secondary : AppColors.secondary
-          ),
+          Theme.of(context).textTheme.bodyMedium,
+            textColor: Theme.of(context).brightness == Brightness.light ? AppColors.secondary : AppColors.secondary,
             textFontWight: TextFontWight.regular,
 
           )

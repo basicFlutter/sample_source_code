@@ -6,14 +6,20 @@ class CustomText extends StatelessWidget {
   final String text ;
   final TextStyle? textStyle;
   final TextFontWight? textFontWight;
+  final bool? dollarSign;
+  final bool? specialPrice;
   final bool? isShadow ;
-  const CustomText({Key? key , required this.text , this.isShadow ,required this.textStyle, this.textFontWight}) : super(key: key);
+  final Color? textColor;
+  const CustomText({Key? key , required this.text , this.isShadow ,required this.textStyle, this.textFontWight , this.dollarSign , this.specialPrice , this.textColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      text ,
+      (dollarSign ?? false) ? "\$$text":text ,
       style: textStyle?.copyWith(
+
+          decoration: (specialPrice ?? false )? TextDecoration.lineThrough : null,
+           color: textColor ?? textStyle?.color,
            fontVariations:textFontWight != null ? [
                 FontVariation(
             'wght',
@@ -27,12 +33,14 @@ class CustomText extends StatelessWidget {
 
         shadows:(isShadow ?? false) ? <Shadow>[
           Shadow(
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
             blurRadius: 1,
             color: Colors.black.withOpacity(0.25),
           ),
         ] : null,
-    ), );
+    ),
+
+    );
   }
 }
 

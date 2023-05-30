@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/models/drop_down_model.dart';
@@ -161,14 +162,22 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                 child:  Row(
                   children: [
 
+
                     CircularButton(
                         onTap: (){
                         },
                         radius: 28.r,
-                        padding: EdgeInsets.all(7.r),
-                        child: SvgPicture.asset("assets/images/new_filter_icon.svg",
-                          color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
-                        )
+                        // padding: EdgeInsets.only(top: 3.r),
+                      child: Icon(MdiIcons.filterOutline,size: 18.r,
+                        shadows: <Shadow>[
+                          Shadow(
+                            offset: Offset(0, 1),
+                            blurRadius: 1,
+                            color: Colors.black.withOpacity(0.25),
+                          ),
+                        ],
+                        color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark
+                        ,),
                     ),
                     SizedBox(width: 11.w),
                     CircularButton(
@@ -191,9 +200,20 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                           });
                         },
                         radius: 28.r,
-                        padding: EdgeInsets.all(7.r),
-                        child: SvgPicture.asset("assets/images/search_icon.svg" ,
-                          color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,)
+                        // padding: EdgeInsets.all(7.r),
+                     child: Icon(Icons.search,size: 18.r,
+                       shadows: <Shadow>[
+                         Shadow(
+                           offset: Offset(0, 1),
+                           blurRadius: 1,
+                           color: Colors.black.withOpacity(0.25),
+                         ),
+                       ],
+                     color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark
+                       ,),
+                        // child: SvgPicture.asset("assets/images/search_icon.svg" ,
+                        //   color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,)
+                        //
                     ),
 
                     SizedBox(width: 11.w),

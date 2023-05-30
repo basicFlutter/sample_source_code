@@ -50,9 +50,8 @@ class RoundCornerButton extends StatelessWidget {
                 textFontWight: TextFontWight.regular,
                 text: title,
                 isShadow: true,
-                textStyle: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
-                ))
+                textColor: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
+                textStyle: Theme.of(context).textTheme.displayMedium)
           ],
         ),
       ),

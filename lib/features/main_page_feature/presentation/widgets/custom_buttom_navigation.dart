@@ -57,7 +57,10 @@ class CustomBottomNavigation extends StatelessWidget {
                         SizedBox(
                           height: 6.h,
                         ),
-                        CustomText(text: "Home", textStyle: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle)
+                        CustomText(text: "Home",
+                            textStyle: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedLabelStyle :
+                            Theme.of(context).bottomNavigationBarTheme.unselectedLabelStyle
+                        )
 
                       ],
                     ),
