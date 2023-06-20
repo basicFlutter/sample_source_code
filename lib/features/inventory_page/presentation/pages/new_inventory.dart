@@ -28,7 +28,8 @@ class _NewInventoryState extends State<NewInventory> {
     super.initState();
 
   }
-   List<String> filterList = ["adfasdfadsf"];
+   List<String> filterList = [];
+  bool visibleSearch = false;
   @override
   Widget build(BuildContext context) {
 
@@ -45,27 +46,47 @@ class _NewInventoryState extends State<NewInventory> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children:  [
-                SummeryInventory(filterList: [],),
+                SummeryInventory(
+                  filterList: filterList,
+                  changeVisibilitySearch: (visibleSearchValue){
+                    visibleSearch = visibleSearchValue;
+                    setState(() {
+
+                    });
+                  },
+                  filterChanged: (listOfFilter){
+                    filterList = listOfFilter;
+                    logger.w(filterList);
+                    setState(() {
+
+                    });
+                  },
+                ),
                 BlocBuilder<InventoryBloc , InventoryState>(
                   builder: (context , state){
                     if(state.getInventoryStatus is LoadingGetInventoryStatus){
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
                     if(state.inventoryPageStatus is ChangeSelectModeStatus){
-                      ChangeSelectModeStatus cha = state.inventoryPageStatus as ChangeSelectModeStatus;
-                      if(cha.isSelectMode){
-                        filterList = ["fasdf"];
-                      }else{
-                        filterList.clear();
-                      }
+                      ChangeSelectModeStatus changeSelectModeStatus = state.inventoryPageStatus as ChangeSelectModeStatus;
+                      // if(changeSelectModeStatus.isSelectMode){
+                      //   filterList = ["fasdf"];
+                      // }else{
+                      //   filterList.clear();
+                      // }
+
                     }
                     if (state.getInventoryStatus is SuccessGetInventoryStatus) {
                       SuccessGetInventoryStatus successState =state.getInventoryStatus as SuccessGetInventoryStatus;
                       List<InventoryEntity> inventoryList = successState.allInventory;
                       logger.w(inventoryList.length);
-                      return  NewInventoryList(inventories: inventoryList ,summeryIsExpanded: filterList.isNotEmpty,);
+                      return  NewInventoryList(
+                        inventories: inventoryList ,
+                        summeryIsExpandedFromSearch: visibleSearch,
+                        summeryIsExpandedFromFilter: filterList.isNotEmpty,
+                      );
                     }
-                    return SizedBox();
+                    return const SizedBox();
 
                   },
                 )

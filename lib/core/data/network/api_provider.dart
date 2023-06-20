@@ -29,7 +29,7 @@ class ApiProvider extends ApiProviderInterface {
     baseUrl: baseUrl,
     connectTimeout:const Duration(milliseconds: 150000),
     headers: {
-      "Authorization" :"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImlhdCI6MTY4NTQzNzk2OCwiZXhwIjoxNjg1NDQxNTY4fQ.KHy9OLK-ZIBtFGVL0JNF3FQp4ZdT1NSXVD1eTG8ID2Q",
+      "Authorization" :"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImlhdCI6MTY4NzI2NjUxOCwiZXhwIjoxNjg3MjcwMTE4fQ.Ofm0-flkYI7RxBAglCo_BrEaMeNfSKEzNQzKWZsWOdE",
       "Content-Type": "application/json",
       "Accept": "application/json",
     },

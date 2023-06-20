@@ -5,9 +5,12 @@ import 'package:new_panel/features/inventory_page/presentation/widgets/new_inven
 import 'package:new_panel/main.dart';
 
 class NewInventoryList extends StatefulWidget {
-  const NewInventoryList({Key? key , required this.inventories , required this.summeryIsExpanded}) : super(key: key);
+  const NewInventoryList({Key? key , required this.inventories , required this.summeryIsExpandedFromSearch, required this.summeryIsExpandedFromFilter}) : super(key: key);
  final List<InventoryEntity> inventories ;
- final bool summeryIsExpanded ;
+
+ final bool summeryIsExpandedFromFilter ;
+ final bool summeryIsExpandedFromSearch ;
+
 
   @override
   State<NewInventoryList> createState() => _NewInventoryListState();
@@ -15,12 +18,14 @@ class NewInventoryList extends StatefulWidget {
 
 class _NewInventoryListState extends State<NewInventoryList> {
 
+  bool isSelectedMode = false;
   @override
   Widget build(BuildContext context) {
-    logger.e(widget.summeryIsExpanded);
+    logger.w(widget.summeryIsExpandedFromFilter);
+    logger.w(widget.summeryIsExpandedFromSearch);
     return Container(
       width: 1.sw,
-      // color: Colors.blue,
+      //color: Colors.blue,
 
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -31,10 +36,18 @@ class _NewInventoryListState extends State<NewInventoryList> {
             width: 1.sw,
             // height: 464.h,
             // color: Colors.red,
-            constraints: BoxConstraints(
-              // maxHeight: widget.summeryIsExpanded? 457.h : 564.h, // in ok hast vali bayad state avaz beshe b delay
-              maxHeight: 571.h,
-              minHeight: 457.h
+            constraints: widget.summeryIsExpandedFromFilter && widget.summeryIsExpandedFromSearch ? BoxConstraints(
+              maxHeight:  457.h , // in ok hast vali bayad state avaz beshe b delay
+              // maxHeight: 571.h,
+
+            ):widget.summeryIsExpandedFromSearch ? BoxConstraints(
+              maxHeight:  510.h,
+
+
+            ):BoxConstraints(
+              maxHeight:  564.h,
+
+
             ),
             child: ListView.builder(
                 itemCount: widget.inventories.length,
@@ -43,7 +56,26 @@ class _NewInventoryListState extends State<NewInventoryList> {
 
                 itemBuilder: (context , index){
                   return  NewInventoryItem(
+                    selectedThisVehicle: (isSelected , vehicleID){
+                      if(isSelected){
+
+                      }else{
+
+                      }
+                      logger.e(vehicleID);
+                    },
                     inventoryEntity: widget.inventories[index],
+                    onLongPress: (vehicleId){
+                      isSelectedMode = !isSelectedMode;
+                      setState(() {
+
+                      });
+                    },
+
+                    onTap: (vehicleId){
+
+                    },
+                    isSelectedMode: isSelectedMode,
                   );
 
             }),

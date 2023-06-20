@@ -51,7 +51,7 @@ class CustomBottomNavigation extends StatelessWidget {
                           height: 23.r,
                           // padding: EdgeInsets.all(2.r),
                           child: SvgPicture.asset("assets/images/bottomNavigation/home_icon.svg",
-                            color: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                            color: indexSelected == 0 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme?.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme?.color,
                           ),
                         ),
                         SizedBox(
@@ -95,7 +95,7 @@ class CustomBottomNavigation extends StatelessWidget {
                           height: 28.r,
                           padding: EdgeInsets.symmetric(vertical: 4.r),
                           child: SvgPicture.asset("assets/images/bottomNavigation/car_transport_icon.svg",
-                            color: indexSelected == 1 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                            color: indexSelected == 1 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme?.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme?.color,
                           ),
                         ),
                         SizedBox(
@@ -136,7 +136,7 @@ class CustomBottomNavigation extends StatelessWidget {
                           height: 28.r,
                           padding: EdgeInsets.symmetric(vertical: 1.r,horizontal: 2.r),
                           child: SvgPicture.asset("assets/images/bottomNavigation/customer_icon.svg",
-                            color: indexSelected == 2 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                            color: indexSelected == 2 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme?.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme?.color,
 
                           ),
                         ),
@@ -179,7 +179,7 @@ class CustomBottomNavigation extends StatelessWidget {
                           padding: EdgeInsets.symmetric(vertical: 5.95.r,horizontal: 0),
 
                           child: SvgPicture.asset("assets/images/bottomNavigation/handshake_hands_icon.svg",
-                            color: indexSelected == 3 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme!.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme!.color,
+                            color: indexSelected == 3 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme?.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme?.color,
 
                           ),
                         ),

@@ -8,6 +8,7 @@ class Style {
   static ThemeData lightTheme = ThemeData(
 
     splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
     fontFamily: "publicSans-variable",
     primaryColor: AppColors.primary,
 
@@ -127,6 +128,12 @@ class Style {
           ]
 
       ),
+    ),
+    checkboxTheme: CheckboxThemeData(
+      checkColor: MaterialStateProperty.all(AppColors.white),
+
+      fillColor: MaterialStateProperty.all(Colors.transparent),
+      shape: const CircleBorder(),
     ),
     //
     //

@@ -5,6 +5,7 @@ class AppColors {
   static const Color primary = Color(0xff01458C);
   static const Color primary2 = Color(0xff3E6A9D);
   static const Color primary3 = Color(0xffE0F0FA);
+  static const Color primary3Dark = Color(0xffE0F0FA);
 
   static const Color secondary = Color(0xff000A32);
   static const Color secondary2 = Color(0xffC9D2DA);
@@ -13,6 +14,7 @@ class AppColors {
   static const Color secondary4Dark = Color(0xff1F2C39);
 
   static const Color black = Color(0xff000000);
+  static const Color blackDark = Color(0xff000000);
   static const Color white = Color(0xffFFFFFF);
   static const Color whiteDark = Color(0xffFFFFFF);
   static const Color active = Color(0xff67F051);
@@ -55,6 +57,46 @@ class AppColors {
     offset: const Offset(0, 3),
   );
 
+  static BoxShadow toggleSwitchShadow = BoxShadow(
+    color: Colors.black.withOpacity(0.25),
+    spreadRadius: 0,
+    blurRadius: 6,
+    offset: const Offset(2, 1),
+  );
+
+  static BoxShadow toggleSwitchShadowDark = BoxShadow(
+    color: Colors.black.withOpacity(0.25),
+    spreadRadius: 3,
+    blurRadius: 8,
+    offset: const Offset(2, 1),
+  );
+
+  static List<BoxShadow> switchShadow = [
+
+    BoxShadow(
+      color: Colors.black.withOpacity(0.1),
+    ),
+    const BoxShadow(
+      color: AppColors.white,
+      spreadRadius: -3.0,
+      blurRadius: 8,
+      offset: Offset(0, 6)
+    ),
+
+  ];
+  static List<BoxShadow> switchShadowDark = [
+
+    BoxShadow(
+      color: Colors.black.withOpacity(0.1),
+    ),
+    const BoxShadow(
+        color: AppColors.white,
+        spreadRadius: -3.0,
+        blurRadius: 8,
+        offset: Offset(0, 6)
+    ),
+
+  ];
 
 
   static const Color hint = Color(0xffFFF06A);

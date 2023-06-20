@@ -12,11 +12,14 @@ import 'package:new_panel/core/widgets/custom_dropdown.dart';
 import 'package:new_panel/core/widgets/custom_tag.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/inventory_bloc.dart';
+import 'package:new_panel/features/inventory_page/presentation/pages/filter_page.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/search_inventory.dart';
 
 class SummeryInventory extends StatefulWidget {
-  SummeryInventory({Key? key , required this.filterList}) : super(key: key);
+  SummeryInventory({Key? key , required this.filterList ,required this.changeVisibilitySearch ,required this.filterChanged}) : super(key: key);
   List<String> filterList ;
+  Function(List<String>) filterChanged;
+  Function(bool) changeVisibilitySearch;
 
   @override
   State<SummeryInventory> createState() => _SummeryInventoryState();
@@ -164,7 +167,14 @@ class _SummeryInventoryState extends State<SummeryInventory> {
 
 
                     CircularButton(
-                        onTap: (){
+                        onTap: () async {
+                         List<String> filterList = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FilterPage()));
+                         // BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: widget.filterList.isNotEmpty));
+                         widget.filterChanged(filterList);
+                         setState(() {
+
+                         });
+
                         },
                         radius: 28.r,
                         // padding: EdgeInsets.only(top: 3.r),
@@ -183,21 +193,19 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                     CircularButton(
                         onTap: (){
                           searchIsOpen = searchIsOpen ? false :true ;
-                          if(searchIsOpen){
-                            visibleSearch = false;
-                           // widget.filterList = ["dfasf"];
-
-                          }else{
-                            visibleSearch = true;
-                            widget.filterList.clear();
-                          }
+                          // if(searchIsOpen){
+                          //   visibleSearch = false;
+                          // }else{
+                          //   visibleSearch = true;
+                          // }
                          // BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: widget.filterList.isNotEmpty));
-
+                          widget.changeVisibilitySearch(searchIsOpen);
                           changeVisibility();
+                          // setState(() {
+                          //
+                          // });
 
-                          setState(() {
 
-                          });
                         },
                         radius: 28.r,
                         // padding: EdgeInsets.all(7.r),

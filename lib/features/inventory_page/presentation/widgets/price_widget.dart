@@ -6,9 +6,10 @@ import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/gradeint_text.dart';
 
 class PriceWidget extends StatelessWidget {
-  const PriceWidget({Key? key , required this.price , required this.specialPrice}) : super(key: key);
+  const PriceWidget({Key? key , required this.price , required this.specialPrice , this.showEditIcon}) : super(key: key);
   final String? price;
   final String? specialPrice;
+  final bool? showEditIcon ;
 
 
   @override
@@ -21,12 +22,15 @@ class PriceWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SvgPicture.asset("assets/images/edit_icon.svg"),
-              SizedBox(width: 5.34.w),
+              Visibility(
+                  visible: showEditIcon ??true,
+                  child: SvgPicture.asset("assets/images/edit_icon.svg")),
+              SizedBox(width: (showEditIcon ??true) ? 5.34.w :0),
               GradientText(
                 text: specialPrice?? price??"0",
                 textStyle: Theme.of(context).textTheme.bodyLarge,
                 textFontWight: TextFontWight.bold,
+                addSeparator: true,
                 dollarSign: true,
                 gradient:  Theme.of(context).brightness == Brightness.light ? AppColors.gradientBlue : AppColors.gradientBlueDark
               ),
@@ -42,6 +46,7 @@ class PriceWidget extends StatelessWidget {
             textColor: Theme.of(context).brightness == Brightness.light ? AppColors.secondary4 : AppColors.secondary4Dark,
             textFontWight: TextFontWight.bold,
             dollarSign: true,
+            addSeparator: true,
             specialPrice: true,
           ):
           const SizedBox()

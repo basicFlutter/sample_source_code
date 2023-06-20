@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
 class GradientText extends StatelessWidget {
-  const GradientText({Key? key , required this.text , required this.gradient ,this.specialPrice , this.dollarSign , this.textFontWight, this.textStyle}) : super(key: key);
+  const GradientText({Key? key , this.addSeparator ,required this.text , required this.gradient ,this.specialPrice , this.dollarSign , this.textFontWight, this.textStyle}) : super(key: key);
   final String text ;
   final TextStyle? textStyle;
   final TextFontWight? textFontWight;
   final bool? dollarSign;
   final bool? specialPrice;
   final Gradient gradient;
+  final bool? addSeparator;
   @override
   Widget build(BuildContext context) {
     return ShaderMask(
@@ -23,6 +24,7 @@ class GradientText extends StatelessWidget {
           textFontWight: textFontWight,
           dollarSign: dollarSign,
           specialPrice: specialPrice,
+          addSeparator: addSeparator,
         )
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CustomText extends StatelessWidget {
   final String text ;
@@ -10,12 +11,15 @@ class CustomText extends StatelessWidget {
   final bool? specialPrice;
   final bool? isShadow ;
   final Color? textColor;
-  const CustomText({Key? key , required this.text , this.isShadow ,required this.textStyle, this.textFontWight , this.dollarSign , this.specialPrice , this.textColor}) : super(key: key);
+  final bool? addSeparator;
+  const CustomText({Key? key ,this.addSeparator ,required this.text , this.isShadow ,required this.textStyle, this.textFontWight , this.dollarSign , this.specialPrice , this.textColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
+     ( addSeparator ?? false )? (dollarSign ?? false) ? "\$${NumberFormat.decimalPattern().format(int.parse(text))}":NumberFormat.compact().format(int.parse(text)):
       (dollarSign ?? false) ? "\$$text":text ,
+      overflow: TextOverflow.ellipsis,
       style: textStyle?.copyWith(
 
           decoration: (specialPrice ?? false )? TextDecoration.lineThrough : null,
