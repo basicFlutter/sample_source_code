@@ -10,10 +10,14 @@ import 'package:new_panel/core/models/drop_down_model.dart';
 import 'package:new_panel/core/widgets/circular_button.dart';
 import 'package:new_panel/core/widgets/custom_dropdown.dart';
 import 'package:new_panel/core/widgets/custom_tag.dart';
+import 'package:new_panel/core/widgets/custom_text.dart';
+import 'package:new_panel/core/widgets/icon_gradient.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/inventory_bloc.dart';
-import 'package:new_panel/features/inventory_page/presentation/pages/filter_page.dart';
+import 'package:new_panel/features/filter_inventory_page/presentation/pages/filter_page.dart';
+import 'package:new_panel/features/inventory_page/presentation/widgets/filter_list_item.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/search_inventory.dart';
+import 'package:new_panel/main.dart';
 
 class SummeryInventory extends StatefulWidget {
   SummeryInventory({Key? key , required this.filterList ,required this.changeVisibilitySearch ,required this.filterChanged}) : super(key: key);
@@ -47,7 +51,7 @@ class _SummeryInventoryState extends State<SummeryInventory> {
   void changeVisibility() async{
 
     if(visibleSearch == false){
-      await Future.delayed(const Duration(milliseconds: 150));
+      await Future.delayed(const Duration(milliseconds:120));
       visibleSearch = true;
     }else{
       visibleSearch = false;
@@ -66,7 +70,7 @@ class _SummeryInventoryState extends State<SummeryInventory> {
     }else if(searchIsOpen && widget.filterList.isNotEmpty){
       height = 214.h;
     }else if(searchIsOpen == false && widget.filterList.isNotEmpty){
-      height = 161;
+      height = 161.h;
     }
 
     return height;
@@ -77,6 +81,7 @@ class _SummeryInventoryState extends State<SummeryInventory> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return AnimatedContainer(
       duration: const Duration(
           milliseconds: 150
@@ -181,7 +186,7 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                       child: Icon(MdiIcons.filterOutline,size: 18.r,
                         shadows: <Shadow>[
                           Shadow(
-                            offset: Offset(0, 1),
+                            offset: const Offset(0, 1),
                             blurRadius: 1,
                             color: Colors.black.withOpacity(0.25),
                           ),
@@ -256,12 +261,12 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                   searchIsOpen = searchIsOpen ? false :true ;
                   if(searchIsOpen){
                     visibleSearch = false;
-                    widget.filterList.clear();
+
                   }else{
                     visibleSearch = true;
-                    widget.filterList= ["dfasdf"];
-                  }
 
+                  }
+                  widget.changeVisibilitySearch(searchIsOpen);
                   changeVisibility();
                   setState(() {
 
@@ -270,6 +275,31 @@ class _SummeryInventoryState extends State<SummeryInventory> {
               )
 
           ),
+
+          Visibility(
+              visible: widget.filterList.isNotEmpty,
+              child: SizedBox( height: 15.h)),
+
+          Visibility(
+              visible: widget.filterList.isNotEmpty,
+              child: SizedBox(
+                width: screenSize.width,
+                height: 36.h,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: widget.filterList.length,
+                    itemBuilder: (context , index){
+
+                    return FilterListItem(
+                      filterName: widget.filterList[index],
+                      onTap: (){
+                        logger.w("click on filter ${widget.filterList[index]}");
+                      },
+                    );
+
+                }),
+
+          )),
 
           // Visibility(
           //     visible: visibleSearch,
