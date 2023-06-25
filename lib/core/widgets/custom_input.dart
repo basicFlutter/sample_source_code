@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/widgets/custom_text.dart';
+import 'package:new_panel/main.dart';
 
 import '../constants/app_dimensions.dart';
 import '../utils/app_input_utils.dart';
 
-class CustomInput extends StatelessWidget {
+class CustomInput extends StatefulWidget {
   final TextEditingController inputController;
-  final String label;
-  final int? maxLines;
+
   final Function()? onTap;
+  final int? maxLines;
   final bool? hasMoneyFormat;
   final bool? isRequired;
   final String? prefixText;
@@ -20,12 +22,15 @@ class CustomInput extends StatelessWidget {
   final int? maxLength;
   final bool? readOnly;
   final bool? hasEmailFormat;
+  final Color? prefixIconColor;
   final bool? hasDifferentHeight;
   final TextInputType? keyboardType;
   final FloatingLabelBehavior? floatingLabelBehavior;
   final TextStyle? labelStyle;
-  final Color? prefixIconColor;
-  String ? helper ;
+  final bool? isPhone;
+  final String? hint;
+  final bool? separator;
+  final CustomText? suffixText;
 
 
   CustomInput(
@@ -46,111 +51,120 @@ class CustomInput extends StatelessWidget {
         this.labelStyle,
         this.prefixIconColor,
         required this.inputController,
-        required this.label})
+        this.isPhone,
+        this.hint,
+        this.separator,
+        this.suffixText
+       })
       : super(key: key);
 
   @override
+  State<CustomInput> createState() => _CustomInputState();
+}
+
+class _CustomInputState extends State<CustomInput> {
+  String ? helper ;
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 66.h,
-      child: TextFormField( controller: inputController,
-        inputFormatters: hasMoneyFormat == true ?? false
-            ? [ThousandsSeparatorInputFormatter()]
-            : null,
-        readOnly: readOnly ?? false,
-        onTap: onTap,
-        maxLength: maxLength,
-        keyboardType: keyboardType ?? TextInputType.text,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        scrollPadding: EdgeInsets.only(bottom: 300.h),
+    return TextFormField( controller: widget.inputController,
+      inputFormatters: widget.separator ?? false
+          ? [ThousandsSeparatorInputFormatter()]
+          : null,
+      readOnly: widget.readOnly ?? false,
+      onTap: widget.onTap,
+      maxLength: widget.maxLength,
+      keyboardType: widget.keyboardType ?? TextInputType.text,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+     scrollPadding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom*1.1),
 
-        style:TextStyle(
-          fontSize: 16.sp,
-          fontFamily: "PublicSans",
-          fontWeight: FontWeight.w400,
-          // color: Theme.of(context).brightness == Brightness.light ? AppColors.textColorTextField : AppColors.textColorTextFieldDark
-          // color: Colors.red
-        ),
-        validator: hasEmailFormat ?? false
-            ? (value) {
+      style:Theme.of(context).textTheme.labelSmall?.copyWith(
+        fontWeight: FontWeight.w900,
+        color: Theme.of(context).primaryColor
+      ),
+      autocorrect: false,
+      validator: widget.hasEmailFormat ?? false
+          ? (value) {
 
-          final bool emailValid = RegExp(
-              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-              .hasMatch(value!);
-          if (!emailValid) {
-            helper = 'invalid email';
-            return helper;
-          }
-          if (value == '') {
-            return '$label is required';
-          } else {
-            return null;
-          }
+        final bool emailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(value!);
+        if (!emailValid) {
+          helper = 'invalid email';
+          return helper;
         }
-            : isRequired ?? false
-            ? label == 'phone'
-            ? (value) {
-          if (value!.length < 10) {
-            return 'phone should be 10 digits';
-          }
+        if (value == '') {
+          return 'Required';
+        } else {
           return null;
         }
-            : (value) {
-          if (value == '') {
-            return '$label is required';
-
-          }
-          return null;
+      }
+          : widget.isRequired ?? false
+          ? (widget.isPhone ??false)
+          ? (value) {
+        if (value!.length < 10) {
+          return 'phone should be 10 digits';
         }
-            : (value) {
-          return null;
-        },
-        maxLines: maxLines ?? 1,
-        minLines: hasDifferentHeight ?? true ? null : 1,
+        return null;
+      }
+          : (value) {
+        if (value == '') {
+          return 'Required';
 
-        decoration: InputDecoration(
+        }
+        return null;
+      }
+          : (value) {
+        return null;
+      },
+      maxLines: widget.maxLines ?? 1,
+      minLines: widget.hasDifferentHeight ?? true ? null : 1,
+      cursorColor: Theme.of(context).brightness == Brightness.light ? AppColors.orange :AppColors.orangeDark,
 
-          constraints: BoxConstraints(
-            minHeight: 48.h
-          ),
-         // /contentPadding: EdgeInsets.only(left: 14.w , top: 12.h ,bottom: 12.h),
-            isDense: true,
+      decoration: InputDecoration(
 
-           // counterText: '',
-         //   errorText: '',
-            // helperStyle: Theme.of(context).inputDecorationTheme.helperStyle,
-            prefixText: prefixText,
-            suffixIcon: suffixIcon != null
-                ? Icon(
-              suffixIcon,
-              color: Theme.of(context).inputDecorationTheme.suffixIconColor,
-            )
-                : null,
-            prefixIcon: prefixIcon != null
-                ? Icon(
-              prefixIcon,
+
+
+          isDense: true,
+
+         counterText: '',
+       //   errorText: '',
+          // helperStyle: Theme.of(context).inputDecorationTheme.helperStyle,
+          prefixText: widget.prefixText,
+          suffixIcon: widget.suffixIcon != null
+              ? Icon(
+            widget.suffixIcon,
+            color: Theme.of(context).inputDecorationTheme.suffixIconColor,
+          )
+              : null,
+          prefixIcon: widget.prefixIcon != null
+              ? Icon(
+            widget.prefixIcon,
+            color: Theme.of(context).inputDecorationTheme.prefixIconColor,
+          )
+              : widget.hasMoneyFormat ?? false
+              ?  Icon(
+              Icons.attach_money,
               color: Theme.of(context).inputDecorationTheme.prefixIconColor,
-            )
-                : hasMoneyFormat ?? false
-                ?  Icon(
-                Icons.attach_money,
-                color: Theme.of(context).inputDecorationTheme.prefixIconColor
+            size: 16.h,
 
-            )
-                : null,
-            focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
-            border: Theme.of(context).inputDecorationTheme.border,
-            enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
-            floatingLabelBehavior:
-            floatingLabelBehavior ?? FloatingLabelBehavior.auto,
-            label: Text(
-                isRequired ?? false ? '$label *' : label,
-                style:Theme.of(context).inputDecorationTheme.labelStyle
-            ),
-            hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
-            errorStyle: Theme.of(context).inputDecorationTheme.errorStyle,
-            // fillColor: Theme.of(context).brightness == Brightness.light ? AppColors.textColorTextField : AppColors.textColorTextFieldDark
-        ),
+          )
+              : null,
+
+          suffix: widget.inputController.text.trim() != ""? Padding(padding: EdgeInsets.only(right: 10.w), child: widget.suffixText,) : null,
+
+          focusedBorder: InputBorder.none,
+          border: InputBorder.none,
+          enabledBorder:InputBorder.none,
+          floatingLabelBehavior:
+          widget.floatingLabelBehavior ?? FloatingLabelBehavior.never,
+
+        hintText: widget.hint,
+          hintStyle: Theme.of(context).textTheme.labelSmall?.copyWith(
+            fontWeight: FontWeight.w400,
+            color: Theme.of(context).brightness == Brightness.light ?AppColors.secondary2 :AppColors.secondary2Dark
+          ),
+          errorStyle: Theme.of(context).inputDecorationTheme.errorStyle,
       ),
     );
   }

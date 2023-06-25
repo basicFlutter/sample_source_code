@@ -3,9 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 
 class IconGradient extends StatelessWidget {
-  const IconGradient({Key? key , required this.iconSize , this.gradient , this.onTap}) : super(key: key);
+  const IconGradient({Key? key , required this.iconSize , required this.icon,this.gradient , this.onTap}) : super(key: key);
   final Gradient? gradient;
   final double iconSize;
+  final IconData icon;
   final GestureTapCallback? onTap;
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class IconGradient extends StatelessWidget {
         blendMode: BlendMode.srcIn,
         shaderCallback: (Rect bounds) => (gradient??(Theme.of(context).brightness == Brightness.light ? AppColors.gradientBlue :AppColors.gradientBlueDark)).createShader(bounds),
         child: Icon(
-          Icons.close ,
+         icon ,
           size: iconSize,
         ),
       ),

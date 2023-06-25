@@ -60,6 +60,7 @@ dependencies:
   simple_gradient_text: 1.2.4
   material_design_icons_flutter: ^6.0.7096
   flutter_localization: ^0.1.12
+  syncfusion_flutter_sliders: ^22.1.34
 
 
 

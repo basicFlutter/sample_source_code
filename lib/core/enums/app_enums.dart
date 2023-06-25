@@ -6,3 +6,9 @@ enum InventoryState{
   appraisal,
   delete
 }
+
+enum OdometerType{
+  km,
+  mile,
+  hour
+}

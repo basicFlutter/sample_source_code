@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 class AppColors {
 
   static const Color primary = Color(0xff01458C);
+  static const Color primaryDark = Color(0xff01458C);
   static const Color primary2 = Color(0xff3E6A9D);
   static const Color primary3 = Color(0xffE0F0FA);
   static const Color primary3Dark = Color(0xffE0F0FA);
 
   static const Color secondary = Color(0xff000A32);
+  static const Color secondaryDark = Color(0xff000A32);
   static const Color secondary2 = Color(0xffC9D2DA);
+  static const Color secondary2Dark = Color(0xffC9D2DA);
   static const Color secondary3 = Color(0xffDCE0E4);
   static const Color secondary4 = Color(0xff1F2C39);
   static const Color secondary4Dark = Color(0xff1F2C39);
+
 
   static const Color black = Color(0xff000000);
   static const Color blackDark = Color(0xff000000);
@@ -21,6 +25,10 @@ class AppColors {
   static const Color activeDark = Color(0xff67F051);
   static const Color deActive = Color(0xffC9D2DA);
   static const Color deActiveDark = Color(0xffC9D2DA);
+  static const Color input = Color(0xffF7F9F9);
+  static const Color inputDark = Color(0xffF7F9F9);
+  static const Color orange = Color(0xffFF8147);
+  static const Color orangeDark = Color(0xffFF8147);
   static const Color backgroundCard = Color(0xffFEFEFE);
   static const Color backgroundCardDark = Color(0xffECF0F1);
 
@@ -34,6 +42,34 @@ class AppColors {
     color: Colors.black.withOpacity(0.14),
     spreadRadius: 0,
     blurRadius: 4,
+    offset: const Offset(0, 1),
+  );
+
+  static BoxShadow toggleButtonShadow = BoxShadow(
+    color: Colors.black.withOpacity(0.1),
+    spreadRadius: 0,
+    blurRadius: 2,
+    offset: const Offset(0, 2),
+  );
+  static BoxShadow toggleButtonShadowDark = BoxShadow(
+    color: Colors.black.withOpacity(0.1),
+    spreadRadius: 0,
+    blurRadius: 2,
+    offset: const Offset(0, 2),
+  );
+
+
+
+  static BoxShadow inputShadow = BoxShadow(
+    color: Colors.black.withOpacity(0.15),
+    spreadRadius: 0,
+    blurRadius: 2,
+    offset: const Offset(0, 1),
+  );
+  static BoxShadow inputShadowDark = BoxShadow(
+    color: Colors.black.withOpacity(0.15),
+    spreadRadius: 0,
+    blurRadius: 2,
     offset: const Offset(0, 1),
   );
 
@@ -184,8 +220,7 @@ class AppColors {
         Color(0xffFF601E),
         Color(0xffFF5100),
       ]);
-  static const Color input = Color(0xffF7F9F9);
-  static const Color inputDark = Color(0xffF7F9F9);
+
 
 
 

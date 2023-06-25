@@ -35,6 +35,7 @@ class FilterListItem extends StatelessWidget {
 
                 IconGradient(
                   iconSize: 12.r,
+                  icon:  Icons.close,
                 )
               ],
             )
