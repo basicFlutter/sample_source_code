@@ -19,9 +19,13 @@ class _TitleInputState extends State<TitleInput> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox( height: 35.h),
-        CustomText(text: widget.title, textStyle: Theme.of(context).textTheme.labelLarge , textFontWight: TextFontWight.bold,
+        CustomText(text: widget.title,
+          textStyle: Theme.of(context).textTheme.labelLarge ,
+          textFontWight: TextFontWight.semiBold,
+          letterSpace: 0.05,
+
         ),
-        SizedBox( height: 15.h),
+        SizedBox( height: 8.h),
         widget.child
       ],
     );

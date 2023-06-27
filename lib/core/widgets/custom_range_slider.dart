@@ -28,8 +28,9 @@ class _CustomRangeSliderState extends State<CustomRangeSlider> {
           thumbShape: RoundSliderThumbShape(enabledThumbRadius: 20.r ),
           overlayShape: SliderComponentShape.noOverlay
       ),
-      child: SizedBox(
+      child: Container(
         width: widget.width ?? 358.w,
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: RangeSlider(
           min: widget.min,
           max: widget.max,

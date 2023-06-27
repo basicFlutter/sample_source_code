@@ -68,8 +68,10 @@ class _TextFieldWithBackState extends State<TextFieldWithBack> {
              SizedBox(width: 12.w),
           if(widget.prefixText!= null )
             CustomText(text: widget.prefixText!,
-            textStyle: Theme.of(context).textTheme.labelSmall,
+            textStyle: Theme.of(context).textTheme.displayMedium,
             textFontWight: TextFontWight.semiBold,
+              letterSpace: 0.5,
+              textColor: Theme.of(context).primaryColor,
           ) ,
           if(widget.prefixText!= null )  SizedBox(width: 2.w),
           if(widget.hasSeparator??false)

@@ -1,22 +1,31 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/main.dart';
 
 
-class SimpleSuggestion extends StatelessWidget {
-  SimpleSuggestion({Key? key , required this.characters ,required this.controller , required this.focusNode ,required this.suggestionsList , required this.textChanged});
+class SimpleSuggestion extends StatefulWidget {
+  SimpleSuggestion({Key? key , required this.characters ,this.hint,required this.controller , required this.focusNode ,required this.suggestionsList , required this.textChanged});
 
 
-  final  List<String> suggestionsList;
+    List<String> suggestionsList;
   Function(String?) textChanged;
 
 
   TextEditingController controller ;
   FocusNode focusNode;
+  final String? hint;
 
   // TextEditingController _textEditingController = TextEditingController();
   String characters;
+
+  @override
+  State<SimpleSuggestion> createState() => _SimpleSuggestionState();
+}
+
+class _SimpleSuggestionState extends State<SimpleSuggestion> {
   List<TextSpan> _getHighlightedTextSpans(String searchQuery , String text, BuildContext context) {
     List<TextSpan> spans = [];
 
@@ -35,7 +44,13 @@ class SimpleSuggestion extends StatelessWidget {
       // Add the preceding non-matching text
       if (index > start) {
         spans.add(TextSpan(text: text.substring(start, index) ,
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.w400,overflow: TextOverflow.fade,)
+            style: Theme.of(context).textTheme.displayMedium?.copyWith(
+              fontVariations: [
+                const FontVariation(
+                    'wght', 400
+                )
+              ],
+              overflow: TextOverflow.fade,)
         ),
 
 
@@ -46,7 +61,13 @@ class SimpleSuggestion extends StatelessWidget {
       spans.add(
         TextSpan(
             text: text.substring(index, index + searchQuery.length),
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.w400 , color: Theme.of(context).brightness == Brightness.light ? AppColors.orange :AppColors.orangeDark,overflow: TextOverflow.fade,)
+            style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.w700 ,
+            fontVariations: [
+              const FontVariation(
+                  'wght', 600
+              )
+            ],
+            color: Theme.of(context).brightness == Brightness.light ? AppColors.orange :AppColors.orangeDark,overflow: TextOverflow.fade,)
         ),
       );
 
@@ -57,12 +78,37 @@ class SimpleSuggestion extends StatelessWidget {
     // Add the remaining non-matching text
     if (start < text.length) {
       spans.add(TextSpan(text: text.substring(start, text.length) ,
-          style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.w400 , overflow: TextOverflow.fade,)
+          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+            fontVariations: [
+              const FontVariation(
+                  'wght', 400
+              )
+            ],
+            overflow: TextOverflow.fade,)
 
       ));
     }
 
     return spans;
+  }
+
+
+  void _onChanged(String text) async {
+
+
+    compare(a, b) {
+      String match = widget.controller.text.toLowerCase();
+      int aMatch = a.toLowerCase().indexOf(match);
+      int bMatch = b.toLowerCase().indexOf(match);
+      return aMatch.compareTo(bMatch);
+    }
+
+    widget.suggestionsList.sort(compare);
+    widget.suggestionsList = widget.suggestionsList.reversed.toList();
+    logger.w(widget.suggestionsList);
+    setState(() {
+
+    });
   }
 
   @override
@@ -85,18 +131,17 @@ class SimpleSuggestion extends StatelessWidget {
 
         builder: (context, constraints) => RawAutocomplete<String>(
           // focusNode: _focusNode,
-          textEditingController: controller,
-          focusNode: focusNode,
+          textEditingController: widget.controller,
+          focusNode: widget.focusNode,
 
           optionsBuilder: (TextEditingValue textEditingValue) {
             if (textEditingValue.text == '') {
-              return  Iterable<String>.empty();
+              return  const Iterable<String>.empty();
             }
-            return suggestionsList.where((String option) {
-
-              return option.contains(textEditingValue.text.toLowerCase());
+            return widget.suggestionsList.where((String option) {
 
 
+              return option.toLowerCase().contains(textEditingValue.text.toLowerCase()) ;
 
             });
           },
@@ -119,12 +164,22 @@ class SimpleSuggestion extends StatelessWidget {
 
               style:Theme.of(context).textTheme.labelSmall?.copyWith(
                   fontWeight: FontWeight.w900,
-                  color: Theme.of(context).primaryColor
+                  letterSpacing: 0.5
               ),
-              scrollPadding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom*1.1),
+              scrollPadding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom*2),
               decoration:  InputDecoration(
                   isDense: true,
                   border: InputBorder.none,
+                  hintText: widget.hint,
+                  hintStyle: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      fontVariations: [
+                        FontVariation(
+                            'wght', 400
+                        )
+                      ],
+                      letterSpacing: 0.5,
+                      color: Theme.of(context).brightness == Brightness.light ?AppColors.secondary2.withOpacity(0.6) :AppColors.secondary2Dark
+                  ),
                   floatingLabelBehavior: FloatingLabelBehavior.never,
                   focusedBorder: InputBorder.none,
                   contentPadding: EdgeInsets.only(left: 12.w , top: 11.h)
@@ -132,10 +187,10 @@ class SimpleSuggestion extends StatelessWidget {
               ),
 
 
-              onChanged: (value){
-                characters = value;
-                textChanged(value);
-
+              onChanged: (value) async{
+                widget.characters = value.toLowerCase();
+                widget.textChanged(value);
+                _onChanged(value);
               },
 
             );
@@ -160,32 +215,44 @@ class SimpleSuggestion extends StatelessWidget {
                   child:ListView.separated(
                     padding: EdgeInsets.only(top: 0),
 
-                    separatorBuilder: (_, __) => Container(height: 1,
+                    separatorBuilder: (_, __) => Container(height: 0.5,
+                        margin: EdgeInsets.symmetric(horizontal: 15.w),
                         color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive: AppColors.deActiveDark
 
                     ),
                     itemBuilder: (BuildContext context, int index) {
-                      String suggestion = suggestionsList[index];
-                      return Container(
-                        height: 44.h,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25),
-                              child: RichText(
-                                text: TextSpan(
-                                  children: _getHighlightedTextSpans( characters,suggestion,context),
+                      String suggestion = widget.suggestionsList[index];
+                      return Material(
+                        child: InkWell(
+                          onTap: (){
+                            onSelected(suggestion);
+                          },
+
+                          child: Container(
+                            height: 44.h,
+                            width: 358.w,
+
+
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:  EdgeInsets.only(left: 25.w),
+                                  child: RichText(
+                                    text: TextSpan(
+                                      children: _getHighlightedTextSpans( widget.characters,suggestion,context),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       );
                     },
 
-                    itemCount: suggestionsList.length,
+                    itemCount: widget.suggestionsList.length,
                   )
               ),
             );

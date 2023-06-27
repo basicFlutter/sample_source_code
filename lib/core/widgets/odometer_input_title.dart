@@ -31,10 +31,10 @@ class _OdometerInputTitleState extends State<OdometerInputTitle> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomText(
-              text: "Odometer", textStyle: Theme
-                .of(context)
-                .textTheme
-                .labelLarge, textFontWight: TextFontWight.bold,
+              text: "Odometer",
+              textStyle: Theme.of(context).textTheme.labelLarge ,
+              textFontWight: TextFontWight.semiBold,
+              letterSpace: 0.05,
             ),
             CustomToggleOdometerType(
               odometerType: odometerType,

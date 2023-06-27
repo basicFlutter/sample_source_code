@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,7 +82,7 @@ class _CustomInputState extends State<CustomInput> {
 
       style:Theme.of(context).textTheme.labelSmall?.copyWith(
         fontWeight: FontWeight.w900,
-        color: Theme.of(context).primaryColor
+        letterSpacing: 0.5
       ),
       autocorrect: false,
       validator: widget.hasEmailFormat ?? false
@@ -161,8 +163,13 @@ class _CustomInputState extends State<CustomInput> {
 
         hintText: widget.hint,
           hintStyle: Theme.of(context).textTheme.labelSmall?.copyWith(
-            fontWeight: FontWeight.w400,
-            color: Theme.of(context).brightness == Brightness.light ?AppColors.secondary2 :AppColors.secondary2Dark
+              fontVariations: [
+                FontVariation(
+                    'wght', 400
+                )
+              ],
+              letterSpacing: 0.5,
+            color: Theme.of(context).brightness == Brightness.light ?AppColors.secondary2.withOpacity(0.6) :AppColors.secondary2Dark
           ),
           errorStyle: Theme.of(context).inputDecorationTheme.errorStyle,
       ),

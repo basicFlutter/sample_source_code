@@ -12,7 +12,8 @@ class CustomText extends StatelessWidget {
   final bool? isShadow ;
   final Color? textColor;
   final bool? addSeparator;
-  const CustomText({Key? key ,this.addSeparator ,required this.text , this.isShadow ,required this.textStyle, this.textFontWight , this.dollarSign , this.specialPrice , this.textColor}) : super(key: key);
+  final double? letterSpace;
+  const CustomText({Key? key ,this.addSeparator ,this.letterSpace,required this.text , this.isShadow ,required this.textStyle, this.textFontWight , this.dollarSign , this.specialPrice , this.textColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,7 @@ class CustomText extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       style: textStyle?.copyWith(
 
+       letterSpacing: letterSpace,
           decoration: (specialPrice ?? false )? TextDecoration.lineThrough : null,
            color: textColor ?? textStyle?.color,
            fontVariations:textFontWight != null ? [

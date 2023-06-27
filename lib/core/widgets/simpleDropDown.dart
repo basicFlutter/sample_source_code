@@ -53,12 +53,15 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
                 iconSize: 17.r
             ),
             isExpanded: true,
-            dropdownStyleData: DropdownStyleData(
 
+            dropdownStyleData: DropdownStyleData(
               offset: Offset(0, -5.h),
+
+
               padding:  EdgeInsets.symmetric(horizontal: 0 , vertical: 9.h),
               decoration: BoxDecoration(
                   color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
+
                   borderRadius: BorderRadius.all(Radius.circular(6.r)),
                   boxShadow: [
                     BoxShadow(
@@ -78,8 +81,7 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
 
             menuItemStyleData:  MenuItemStyleData(
                 height: 33.h,
-
-                padding: EdgeInsets.only(left: 10.w),
+                padding: EdgeInsets.only(left: 10.w,),
                 selectedMenuItemBuilder: (context , child){
                   return Container(
 
@@ -97,7 +99,9 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
                           text: dropDownValue?.title??"",
                           textStyle: Theme.of(context).textTheme.displayMedium,
                           textFontWight: TextFontWight.medium,
+                          // textColor: Theme.of(context).primaryColor,
                           textColor: Theme.of(context).primaryColor,
+
                         )
 
                       ],
@@ -111,6 +115,7 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
                 dropDownValue = value!;
               });
             },
+
 
             value: dropDownValue,
             underline: const SizedBox(),
@@ -129,6 +134,7 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
                         text: item.title,
                         textFontWight: TextFontWight.medium,
                         textStyle: Theme.of(context).textTheme.labelSmall,
+                        letterSpace: 0.05,
 
                       )
 

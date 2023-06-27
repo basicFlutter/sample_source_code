@@ -24,7 +24,11 @@ class _SliderPriceState extends State<SliderPrice> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText(text: "Price", textStyle: Theme.of(context).textTheme.labelLarge , textFontWight: TextFontWight.bold,),
+        CustomText(text: "Price",
+          textStyle: Theme.of(context).textTheme.labelLarge ,
+          textFontWight: TextFontWight.semiBold,
+          letterSpace: 0.05,
+        ),
         SizedBox( height: 20.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

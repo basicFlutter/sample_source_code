@@ -237,6 +237,11 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                       radius: 14.r,
                       title: "Add Inventory",
                       icon: Icons.add,
+                      textStyle: Theme.of(context).textTheme.displayMedium,
+                      textFontWight: TextFontWight.regular,
+                      onTap: (){
+
+                      },
 
                     )
 

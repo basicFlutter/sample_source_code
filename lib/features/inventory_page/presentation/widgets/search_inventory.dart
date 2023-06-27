@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -71,7 +73,12 @@ class _SearchbarInventory extends State<SearchInventory> {
                         // Icon(Icons.search , color: Colors.red,),
                         hintText:widget.fieldHint ??  'Search All',
                         hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
-                            color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive : AppColors.deActiveDark
+                            fontVariations: [
+                              FontVariation(
+                                  'wght', 400
+                              )
+                            ],
+                            color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive.withOpacity(0.8) : AppColors.deActiveDark
                         ),
                         filled: true ,
                         fillColor: Theme.of(context).brightness == Brightness.light ? AppColors.white :AppColors.whiteDark

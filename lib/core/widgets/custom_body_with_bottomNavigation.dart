@@ -8,14 +8,15 @@ import 'package:new_panel/features/main_page_feature/presentation/widgets/custom
 
 import '../constants/app_images.dart';
 GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>() ;
-class CustomBody extends StatelessWidget {
+class CustomBodyWithBottomNavigation extends StatelessWidget {
   final TextEditingController searchbarController;
 
   final Widget body;
   final bool? showBottomNavigation;
 
-  CustomBody(
-      {Key? key, required this.searchbarController, required this.body , this.showBottomNavigation})
+  int indexPageSelected;
+  CustomBodyWithBottomNavigation(
+      {Key? key, required this.searchbarController, required this.body , this.showBottomNavigation , required this.indexPageSelected})
       : super(key: key);
 
   List<Widget> pageList = [
@@ -24,7 +25,7 @@ class CustomBody extends StatelessWidget {
     Container(),
     Container()
   ];
-  int indexPageSelected = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,17 @@ class CustomBody extends StatelessWidget {
 
       resizeToAvoidBottomInset: false,
       drawerEnableOpenDragGesture: false,
+      bottomNavigationBar: CustomBottomNavigation(
+        onSelected: (index) {
+          if(index != indexPageSelected ){
+
+          }
+          indexPageSelected = index;
+
+        },
+        indexSelected: indexPageSelected,
+      ),
+
       backgroundColor: Theme.of(context).colorScheme.background,
       // drawer: Drawer(
       //

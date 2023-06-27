@@ -5,10 +5,11 @@ import 'package:new_panel/core/widgets/circular_button.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
 class AppBarCustom extends StatelessWidget {
-  const AppBarCustom({Key? key , this.title , this.actions , this.height}) : super(key: key);
+  const AppBarCustom({Key? key , this.title , this.actions , this.height , this.onTapBack}) : super(key: key);
   final String? title;
   final Widget? actions;
   final double? height;
+  final GestureTapCallback? onTapBack;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,13 @@ class AppBarCustom extends StatelessWidget {
         children: [
           CircularButton(
               gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientOrange : AppColors.gradientOrangeDark,
-              onTap: (){}, radius: 35.r,
+              onTap: (){
+                if(onTapBack != null){
+                  onTapBack!();
+                }else{
+                Navigator.of(context).pop();
+                }
+              }, radius: 35.r,
               child: Icon(
                 Icons.arrow_back_outlined,
                 size: 20.r,
