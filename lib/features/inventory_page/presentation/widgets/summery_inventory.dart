@@ -247,7 +247,11 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                 return FilterListItem(
                   filterName: widget.filterList[index],
                   onTap: (){
-                    logger.w("click on filter ${widget.filterList[index]}");
+                    widget.filterList.removeAt(index);
+                   // logger.w("click on filter ${widget.filterList[index]}");
+                    setState(() {
+
+                    });
                   },
                 );
 
