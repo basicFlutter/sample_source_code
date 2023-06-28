@@ -9,8 +9,9 @@ import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/icon_gradient.dart';
 
 class SimpleDropDown extends StatefulWidget {
-  const SimpleDropDown({Key? key , required this.itemList}) : super(key: key);
+  SimpleDropDown({Key? key , required this.itemList , required this.onSelected}) : super(key: key);
   final List<DropDownModel> itemList;
+  Function(DropDownModel) onSelected;
   @override
   State<SimpleDropDown> createState() => _SimpleDropDownState();
 }
@@ -56,12 +57,11 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
 
             dropdownStyleData: DropdownStyleData(
               offset: Offset(0, -5.h),
-
+              maxHeight: 114.h,
 
               padding:  EdgeInsets.symmetric(horizontal: 0 , vertical: 9.h),
               decoration: BoxDecoration(
                   color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
-
                   borderRadius: BorderRadius.all(Radius.circular(6.r)),
                   boxShadow: [
                     BoxShadow(
@@ -114,6 +114,7 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
               setState(() {
                 dropDownValue = value!;
               });
+              widget.onSelected(value!);
             },
 
 

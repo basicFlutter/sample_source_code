@@ -12,3 +12,10 @@ enum OdometerType{
   mile,
   hour
 }
+
+enum BottomNavigationItemEnum{
+  home,
+  inventory,
+  customer,
+  deals
+}

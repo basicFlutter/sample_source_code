@@ -105,7 +105,7 @@ class _SimpleSuggestionState extends State<SimpleSuggestion> {
 
     widget.suggestionsList.sort(compare);
     widget.suggestionsList = widget.suggestionsList.reversed.toList();
-    logger.w(widget.suggestionsList);
+
     setState(() {
 
     });

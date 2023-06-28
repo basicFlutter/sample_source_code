@@ -7,6 +7,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/models/drop_down_model.dart';
+import 'package:new_panel/core/params/filter_params.dart';
 import 'package:new_panel/core/widgets/circular_button.dart';
 import 'package:new_panel/core/widgets/custom_dropdown.dart';
 import 'package:new_panel/core/widgets/custom_tag.dart';
@@ -20,10 +21,9 @@ import 'package:new_panel/features/inventory_page/presentation/widgets/search_in
 import 'package:new_panel/main.dart';
 
 class SummeryInventory extends StatefulWidget {
-  SummeryInventory({Key? key , required this.filterList ,required this.changeVisibilitySearch ,required this.filterChanged}) : super(key: key);
+  SummeryInventory({Key? key , required this.filterList }) : super(key: key);
   List<String> filterList ;
-  Function(List<String>) filterChanged;
-  Function(bool) changeVisibilitySearch;
+
 
   @override
   State<SummeryInventory> createState() => _SummeryInventoryState();
@@ -49,51 +49,25 @@ class _SummeryInventoryState extends State<SummeryInventory> {
   bool visibleSearch = false;
 
   void changeVisibility() async{
-
     if(visibleSearch == false){
-      await Future.delayed(const Duration(milliseconds:120));
       visibleSearch = true;
     }else{
       visibleSearch = false;
     }
-
     setState(() {
-
     });
 
   }
 
-  double getHeight(){
-    double height = 110.h;
-    if(searchIsOpen && widget.filterList.isEmpty){
-      height = 163.h;
-    }else if(searchIsOpen && widget.filterList.isNotEmpty){
-      height = 214.h;
-    }else if(searchIsOpen == false && widget.filterList.isNotEmpty){
-      height = 161.h;
-    }
-
-    return height;
-
-
-  }
-
-
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    return AnimatedContainer(
-      duration: const Duration(
-          milliseconds: 150
-      ),
-      height: getHeight(),
+    return Container(
 
-      // constraints: BoxConstraints(
-      //     minHeight: 110.h,
-      //     maxHeight: 221.h
-      // ),
-      // width: 358.w,
-      // color: Colors.green,
+      constraints: BoxConstraints(
+          minHeight: 110.h,
+      ),
+
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       child: Column(
         children: [
@@ -134,7 +108,6 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                     "assets/images/total_icon.svg" ,
                     width: 12.r ,
                     height: 12.r,
-                    // color:  Theme.of(context).colorScheme.primary,
                   )
               ),
               CustomTag(
@@ -144,7 +117,6 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                 icon:  Icon(
                   Icons.circle,
                   color: Theme.of(context).brightness == Brightness.light ? AppColors.active : AppColors.activeDark,
-                  //  color: Colors.lightGreenAccent,
                   size: 8.r,
                 ),
               ),
@@ -169,20 +141,15 @@ class _SummeryInventoryState extends State<SummeryInventory> {
               Expanded(
                 child:  Row(
                   children: [
-
-
                     CircularButton(
                         onTap: () async {
-                         List<String> filterList = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FilterPage()));
-                         // BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: widget.filterList.isNotEmpty));
-                         widget.filterChanged(filterList);
-                         setState(() {
-
-                         });
-
+                          List<String>? filterParams = await Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  FilterPage()));
+                          if(filterParams != null && filterParams.isNotEmpty){
+                            widget.filterList = filterParams;
+                            setState(() {});
+                          }
                         },
                         radius: 28.r,
-                        // padding: EdgeInsets.only(top: 3.r),
                       child: Icon(MdiIcons.filterOutline,size: 18.r,
                         shadows: <Shadow>[
                           Shadow(
@@ -198,19 +165,8 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                     CircularButton(
                         onTap: (){
                           searchIsOpen = searchIsOpen ? false :true ;
-                          // if(searchIsOpen){
-                          //   visibleSearch = false;
-                          // }else{
-                          //   visibleSearch = true;
-                          // }
-                         // BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: widget.filterList.isNotEmpty));
-                          widget.changeVisibilitySearch(searchIsOpen);
+
                           changeVisibility();
-                          // setState(() {
-                          //
-                          // });
-
-
                         },
                         radius: 28.r,
                         // padding: EdgeInsets.all(7.r),
@@ -253,11 +209,13 @@ class _SummeryInventoryState extends State<SummeryInventory> {
               )
             ],
           ),
+          if(visibleSearch)
           Visibility(
               visible: visibleSearch,
               child: SizedBox( height: 10.h)),
 
-          Visibility(
+             if(visibleSearch)
+             Visibility(
               visible: visibleSearch,
               child: SearchInventory(
                 fieldHint: "Inventory Search",
@@ -266,49 +224,36 @@ class _SummeryInventoryState extends State<SummeryInventory> {
                   searchIsOpen = searchIsOpen ? false :true ;
                   if(searchIsOpen){
                     visibleSearch = false;
-
                   }else{
                     visibleSearch = true;
-
                   }
-                  widget.changeVisibilitySearch(searchIsOpen);
                   changeVisibility();
-                  setState(() {
-
-                  });
                 },
               )
 
           ),
+          if(widget.filterList.isNotEmpty)
+          SizedBox( height: 15.h),
+          if(widget.filterList.isNotEmpty)
+          SizedBox(
+            width: screenSize.width,
+            height: 50.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: widget.filterList.length,
+                padding: EdgeInsets.only(bottom: 14.h),
+                itemBuilder: (context , index){
 
-          Visibility(
-              visible: widget.filterList.isNotEmpty,
-              child: SizedBox( height: 15.h)),
+                return FilterListItem(
+                  filterName: widget.filterList[index],
+                  onTap: (){
+                    logger.w("click on filter ${widget.filterList[index]}");
+                  },
+                );
 
-          Visibility(
-              visible: widget.filterList.isNotEmpty,
-              child: SizedBox(
-                width: screenSize.width,
-                height: 36.h,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: widget.filterList.length,
-                    itemBuilder: (context , index){
+            }),
 
-                    return FilterListItem(
-                      filterName: widget.filterList[index],
-                      onTap: (){
-                        logger.w("click on filter ${widget.filterList[index]}");
-                      },
-                    );
-
-                }),
-
-          )),
-
-          // Visibility(
-          //     visible: visibleSearch,
-          //     child: SizedBox( height: 15.h)),
+          ),
         ],
       ),
     );

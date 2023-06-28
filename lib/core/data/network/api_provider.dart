@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:new_panel/core/constants/constants.dart';
+import 'package:new_panel/core/data/cache/cache_provider.dart';
+import 'package:new_panel/main.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 // const baseUrl = 'https://hillz-panel-backend.azurewebsites.net';
@@ -13,6 +16,7 @@ abstract class ApiProviderInterface {
   Future<Response> put(path, {Map? data});
   Future<Response> post(path, {Map? data});
   Future<Response> delete(path);
+  Future<void> setToken();
   void initLogger();
 }
 
@@ -25,17 +29,22 @@ class ApiProvider extends ApiProviderInterface {
     return _singleton;
   }
 
+
   static BaseOptions options = BaseOptions(
     baseUrl: baseUrl,
     connectTimeout:const Duration(milliseconds: 150000),
     headers: {
-      "Authorization" :"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImlhdCI6MTY4NzU4MjQ2NywiZXhwIjoxNjg3NTg2MDY3fQ.NYFtXymZeI2bttU--VHUcpDOyH6C13l_1zpnIukaf9o",
+     // "Authorization" :"Bearer ${_singleton.getToken()}",
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
   );
 
   final Dio _dio = Dio(options);
+
+  Future<String?> getToken()async{
+    return await CacheProvider.getString("accessToken");
+  }
 
   @override
   Future<Response> get(path, {dynamic data}) async => await _dio.get(
@@ -60,7 +69,7 @@ class ApiProvider extends ApiProviderInterface {
       );
 
   @override
-  void initLogger() {
+  void initLogger() async{
     _dio.interceptors.add(PrettyDioLogger(
       requestHeader: true,
       requestBody: true,
@@ -68,5 +77,13 @@ class ApiProvider extends ApiProviderInterface {
       responseHeader: false,
       compact: false,
     ));
+
+  }
+
+  @override
+  Future<void> setToken() async{
+    // _dio.options.headers.addAll({"Authorization" : "Bearer ${await CacheProvider.getString("accessToken")}"});
+    _dio.options.headers.addAll({"Authorization" : "Bearer ${Constants.accessToken}"});
+    logger.w(_dio.options.headers);
   }
 }

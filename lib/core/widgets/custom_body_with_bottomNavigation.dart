@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:global_bottom_navigation_bar/widgets/bottom_navigation_item.dart';
+import 'package:new_panel/core/enums/app_enums.dart';
 import 'package:new_panel/core/widgets/searchbar_widget.dart';
 import 'package:new_panel/features/home_page_feature/presentation/pages/home_page.dart';
 import 'package:new_panel/features/inventory_page/presentation/pages/new_inventory.dart';
+import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
 import 'package:new_panel/features/main_page_feature/presentation/widgets/custom_buttom_navigation.dart';
 
 import '../constants/app_images.dart';
@@ -14,14 +17,15 @@ class CustomBodyWithBottomNavigation extends StatelessWidget {
   final Widget body;
   final bool? showBottomNavigation;
 
+
   int indexPageSelected;
   CustomBodyWithBottomNavigation(
-      {Key? key, required this.searchbarController, required this.body , this.showBottomNavigation , required this.indexPageSelected})
+      {Key? key, required this.searchbarController ,required this.body , this.showBottomNavigation , required this.indexPageSelected})
       : super(key: key);
 
   List<Widget> pageList = [
     const HomePage(),
-    const NewInventory(),
+     NewInventory(),
     Container(),
     Container()
   ];
@@ -36,10 +40,12 @@ class CustomBodyWithBottomNavigation extends StatelessWidget {
       drawerEnableOpenDragGesture: false,
       bottomNavigationBar: CustomBottomNavigation(
         onSelected: (index) {
-          if(index != indexPageSelected ){
 
-          }
-          indexPageSelected = index;
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder) {
+          return  MainPage(
+          );
+          }));
+
 
         },
         indexSelected: indexPageSelected,

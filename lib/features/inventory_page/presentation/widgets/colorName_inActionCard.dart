@@ -23,7 +23,7 @@ class ColorNameInActionCard extends StatelessWidget {
         ),
       ),
       width: 148.w,
-      height: 16.h,
+      height: 36.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

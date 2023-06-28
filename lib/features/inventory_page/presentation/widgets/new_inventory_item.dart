@@ -39,6 +39,7 @@ class NewInventoryItem extends StatelessWidget {
       },
       onLongPress: (){
         onLongPress(inventoryEntity!.id!);
+
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

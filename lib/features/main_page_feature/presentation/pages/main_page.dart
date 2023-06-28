@@ -17,7 +17,7 @@ import '../../../home_page_feature/presentation/pages/home_page.dart';
 import '../widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+   MainPage({Key? key }) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -26,13 +26,13 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   List<Widget> pageList = [
     const HomePage(),
-    const NewInventory(),
+     NewInventory(),
     Container(),
     Container()
   ];
-  int indexPageSelected = 0;
-  ThemeMode themeMode = ThemeMode.light;
 
+  ThemeMode themeMode = ThemeMode.light;
+  int indexPageSelected = 0;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeSwitcherBloc, ThemeSwitcherState>(
@@ -74,7 +74,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                   alignment: Alignment.bottomCenter,
                   child: CustomBottomNavigation(
                     onSelected: (index) {
-                      indexPageSelected = index;
+                     indexPageSelected = index;
                       setState(() {});
                     },
                     indexSelected: indexPageSelected,

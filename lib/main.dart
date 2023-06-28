@@ -6,6 +6,8 @@ import 'package:new_panel/core/data/network/api_provider.dart';
 import 'package:new_panel/core/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_panel/core/suggestions/presentation/manager/suggestion_bloc.dart';
+import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
 import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
 
 import 'package:new_panel/features/theme_switcher/presentation/manager/theme_switcher_bloc.dart';
@@ -40,7 +42,10 @@ class MyApp extends StatelessWidget {
 
       providers: [
         BlocProvider<ThemeSwitcherBloc>(
-          create: (context) => locator<ThemeSwitcherBloc>()..add(const GetThemeModeEvent()),)
+          create: (context) => locator<ThemeSwitcherBloc>()..add(const GetThemeModeEvent()),),
+
+        BlocProvider<SuggestionsBloc>(
+          create: (context) => SuggestionsBloc(suggestionsUseCase: locator()),)
       ],
       child: ScreenUtilInit(
 
@@ -69,7 +74,7 @@ class MyApp extends StatelessWidget {
           );
         },
         // child:   const MainPage(),
-        child:   const MainPage(),
+        child:   const LoginPage(),
       ),
     );
   }

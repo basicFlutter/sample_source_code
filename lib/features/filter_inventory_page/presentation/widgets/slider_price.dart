@@ -8,16 +8,16 @@ import 'package:new_panel/features/filter_inventory_page/presentation/widgets/ti
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SliderPrice extends StatefulWidget {
-  const SliderPrice({Key? key}) : super(key: key);
-
+  const SliderPrice({Key? key , required this.priceFromController, required this.priceToController}) : super(key: key);
+  final TextEditingController priceFromController ;
+  final TextEditingController priceToController ;
   @override
   State<SliderPrice> createState() => _SliderPriceState();
 }
 
 class _SliderPriceState extends State<SliderPrice> {
-  RangeValues rangeValues =const RangeValues(1000,6000000);
-  TextEditingController priceFromController = TextEditingController();
-  TextEditingController priceToController = TextEditingController();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +39,12 @@ class _SliderPriceState extends State<SliderPrice> {
           ],
         ),
         CustomRangeSlider(
-          rangeValues: rangeValues,
+          // rangeValues: rangeValues,
           min: 0,
           max: 9999999,
           onChange: (value){
-            priceFromController.text = NumberFormat.decimalPattern().format(value.start.toInt());
-            priceToController.text = NumberFormat.decimalPattern().format(value.end.toInt());
+            widget.priceFromController.text = NumberFormat.decimalPattern().format(value.start.toInt());
+            widget.priceToController.text = NumberFormat.decimalPattern().format(value.end.toInt());
           },
         ),
         SizedBox( height: 25.h),
@@ -53,7 +53,7 @@ class _SliderPriceState extends State<SliderPrice> {
              SizedBox(
                width: 172.w,
                child: TextFieldWithBack(
-                 controller: priceFromController,
+                 controller: widget.priceFromController,
                  textInputType: TextInputType.number,
                  prefixText: "From:",
                  hasSeparator: true,
@@ -65,7 +65,7 @@ class _SliderPriceState extends State<SliderPrice> {
              SizedBox(
                width: 172.w,
                child: TextFieldWithBack(
-                 controller: priceToController,
+                 controller: widget.priceToController,
                  textInputType: TextInputType.number,
                  prefixText: "To :",
                  hasSeparator: true,

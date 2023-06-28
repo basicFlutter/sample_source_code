@@ -20,7 +20,7 @@ class CustomBody extends StatelessWidget {
 
   List<Widget> pageList = [
     const HomePage(),
-    const NewInventory(),
+     NewInventory(),
     Container(),
     Container()
   ];

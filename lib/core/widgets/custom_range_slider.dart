@@ -4,8 +4,8 @@ import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/gradient_track_slider_shape.dart';
 
 class CustomRangeSlider extends StatefulWidget {
-   CustomRangeSlider({Key? key , required this.rangeValues , this.width ,required this.onChange , required this.min , required this.max}) : super(key: key);
-   RangeValues rangeValues;
+   CustomRangeSlider({Key? key ,ngeValues , this.width ,required this.onChange , required this.min , required this.max}) : super(key: key);
+   // RangeValues rangeValues;
   Function(RangeValues rangeValue) onChange;
   double min ;
   double max;
@@ -16,6 +16,7 @@ class CustomRangeSlider extends StatefulWidget {
 }
 
 class _CustomRangeSliderState extends State<CustomRangeSlider> {
+  RangeValues rangeValues =const RangeValues(1000,6000000);
   @override
   Widget build(BuildContext context) {
     return SliderTheme(
@@ -36,10 +37,10 @@ class _CustomRangeSliderState extends State<CustomRangeSlider> {
           max: widget.max,
 
 
-          values: widget.rangeValues,
+          values: rangeValues,
           onChanged: (value) {
             setState(() {
-              widget.rangeValues = value;
+              rangeValues = value;
             });
             widget.onChange(value);
           },
