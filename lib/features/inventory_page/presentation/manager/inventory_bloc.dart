@@ -3,12 +3,13 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
+import 'package:new_panel/core/exceptions/failure.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/get_inventpries_status.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/inventory_page_status.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/search_inventory_status.dart';
+
 import 'package:new_panel/main.dart';
 
-import '../../../../core/exceptions/failure.dart';
 import '../../domain/entities/inventory_entity.dart';
 import '../../domain/use_cases/get_inventory_usecase.dart';
 import '../../domain/use_cases/get_whole_inventory_use_case.dart';

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_images.dart';
-import '../../../../core/data/network/api_provider.dart';
-import '../../../../core/utils/app_utils.dart';
+import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/constants/app_images.dart';
+import 'package:new_panel/core/data/network/api_provider.dart';
+import 'package:new_panel/core/utils/app_utils.dart';
+
 import '../../../inventory_detail_page/presentation/pages/inventory_detail.dart';
 import '../../domain/entities/inventory_entity.dart';
 import '../manager/inventory_bloc.dart';

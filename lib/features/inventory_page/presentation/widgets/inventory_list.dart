@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/vehicle_item.dart';
+
 import '../../domain/entities/inventory_entity.dart';
 
 

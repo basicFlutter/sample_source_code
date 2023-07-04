@@ -5,6 +5,8 @@ import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/gradeint_text.dart';
 
+
+
 class PriceWidget extends StatelessWidget {
   const PriceWidget({Key? key , required this.price , required this.specialPrice , this.showEditIcon}) : super(key: key);
   final String? price;

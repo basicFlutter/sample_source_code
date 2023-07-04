@@ -8,8 +8,11 @@ import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/features/inventory_page/domain/entities/inventory_entity.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/action_card_inventory.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/price_widget.dart';
+
 import 'package:new_panel/main.dart';
+
 import 'dart:math' as math;
+
 
 class NewInventoryItem extends StatelessWidget {
    NewInventoryItem({Key? key , required this.inventoryEntity , required this.isSelectedMode ,required this.selectedThisVehicle ,required this.onTap , required this.onLongPress}) : super(key: key);

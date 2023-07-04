@@ -5,11 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/service_locator.dart';
-import 'package:new_panel/core/widgets/custom_tag.dart';
+import 'package:new_panel/core/widgets/custom_body.dart';
 import 'package:new_panel/core/widgets/dialog_close_button.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/get_inventpries_status.dart';
 
-import '../../../../core/widgets/custom_body.dart';
+
+
 import '../manager/inventory_bloc.dart';
 import '../manager/status/inventory_page_status.dart';
 import '../widgets/inventory_list.dart';

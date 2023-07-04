@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/features/inventory_page/domain/entities/inventory_entity.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/inventory_bloc.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/new_inventory_item.dart';
+
 import 'package:new_panel/main.dart';
 
 class NewInventoryList extends StatefulWidget {

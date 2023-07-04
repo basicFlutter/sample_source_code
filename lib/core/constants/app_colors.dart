@@ -12,9 +12,12 @@ class AppColors {
   static const Color secondaryDark = Color(0xff000A32);
   static const Color secondary2 = Color(0xffC9D2DA);
   static const Color secondary2Dark = Color(0xffC9D2DA);
-  static const Color secondary3 = Color(0xffDCE0E4);
+  static const Color secondary3 = Color(0xff898989);
+  static const Color secondary3Dark = Color(0xff898989);
   static const Color secondary4 = Color(0xff1F2C39);
   static const Color secondary4Dark = Color(0xff1F2C39);
+  static const Color borderButtonColor = Color(0xff0382C1);
+  static const Color borderButtonColorDark = Color(0xff0382C1);
 
 
   static const Color black = Color(0xff000000);
@@ -43,6 +46,18 @@ class AppColors {
     spreadRadius: 0,
     blurRadius: 4,
     offset: const Offset(0, 1),
+  );
+  static BoxShadow boxShadowMenu =  BoxShadow(
+    color: Colors.black.withOpacity(0.15),
+    spreadRadius: 0,
+    blurRadius: 9,
+    offset: const Offset(0, 2),
+  );
+  static BoxShadow boxShadowMenuDark =  BoxShadow(
+    color: Colors.black.withOpacity(0.15),
+    spreadRadius: 0,
+    blurRadius: 9,
+    offset: const Offset(0, 2),
   );
 
   static BoxShadow toggleButtonShadow = BoxShadow(
@@ -194,6 +209,14 @@ class AppColors {
 
 
   static const LinearGradient gradientPink = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xffE83E5E),
+        Color(0xffE33455),
+      ]);
+
+  static const LinearGradient gradientPinkDark = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [

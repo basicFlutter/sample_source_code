@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
+
 class TotalCostInActionCard extends StatelessWidget {
   const TotalCostInActionCard({Key? key , required this.totalCost}) : super(key: key);
   final String? totalCost;

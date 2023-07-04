@@ -1,0 +1,2555 @@
+{
+    "billofsaleId": 7792,
+    "Final": [
+        {
+            "sec": {
+                "id": 1,
+                "items": [
+                    {
+                        "id": 493297,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "BUYER'S FULL NAME",
+                        "section": 1,
+                        "part_name": "buyer_full_name",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2001,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "id": 493298,
+                        "value": "G6459-38809-35929",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "DRIVER'S LICENCE No.",
+                        "section": 1,
+                        "part_name": "driver_licence_no",
+                        "order": 10,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2002,
+                        "BillOfSaleDefinition": {
+                            "order": 10
+                        }
+                    },
+                    {
+                        "id": 493299,
+                        "value": "Pickering",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "CITY / TOWN",
+                        "section": 1,
+                        "part_name": "buyer_city",
+                        "order": 5,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2003,
+                        "BillOfSaleDefinition": {
+                            "order": 5
+                        }
+                    },
+                    {
+                        "id": 493300,
+                        "value": "Other",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "PROVINCE",
+                        "section": 1,
+                        "part_name": "buyer_province",
+                        "order": 6,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2004,
+                        "BillOfSaleDefinition": {
+                            "order": 6
+                        }
+                    },
+                    {
+                        "id": 493301,
+                        "value": "81255 BAYLY ST UN1201 ICKERING ",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "PURCHASER'S ADDRESS",
+                        "section": 1,
+                        "part_name": "buyer_address",
+                        "order": 4,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2005,
+                        "BillOfSaleDefinition": {
+                            "order": 4
+                        }
+                    },
+                    {
+                        "id": 493302,
+                        "value": "09/29/2024",
+                        "part_type": "date",
+                        "part_type_description": "",
+                        "part_front_name": "EXPIRY DATE",
+                        "section": 1,
+                        "part_name": "driver_expiry_date",
+                        "order": 11,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2006,
+                        "BillOfSaleDefinition": {
+                            "order": 11
+                        }
+                    },
+                    {
+                        "id": 493303,
+                        "value": "L1W0B6",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "POSTAL CODE",
+                        "section": 1,
+                        "part_name": "buyer_postal_code",
+                        "order": 7,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2007,
+                        "BillOfSaleDefinition": {
+                            "order": 7
+                        }
+                    },
+                    {
+                        "id": 493304,
+                        "value": "-",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "HOME TELEPHONE No.",
+                        "section": 1,
+                        "part_name": "buyer_phone_number",
+                        "order": 8,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2008,
+                        "BillOfSaleDefinition": {
+                            "order": 8
+                        }
+                    },
+                    {
+                        "id": 493305,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "BUSINESS TELEPHONE No.",
+                        "section": 1,
+                        "part_name": "buyer_fax_number",
+                        "order": 9,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2009,
+                        "BillOfSaleDefinition": {
+                            "order": 9
+                        }
+                    },
+                    {
+                        "id": 493306,
+                        "value": "-",
+                        "part_type": "email",
+                        "part_type_description": "",
+                        "part_front_name": "E-MAIL ADDRESS",
+                        "section": 1,
+                        "part_name": "buyer_email_address",
+                        "order": 12,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2010,
+                        "BillOfSaleDefinition": {
+                            "order": 12
+                        }
+                    },
+                    {
+                        "id": 493307,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "NAME OF INSURANCE COMPANY",
+                        "section": 1,
+                        "part_name": "insurance_company",
+                        "order": 13,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2011,
+                        "BillOfSaleDefinition": {
+                            "order": 13
+                        }
+                    },
+                    {
+                        "id": 493308,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "POLICY NO.",
+                        "section": 1,
+                        "part_name": "policy_number",
+                        "order": 14,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2012,
+                        "BillOfSaleDefinition": {
+                            "order": 14
+                        }
+                    },
+                    {
+                        "id": 493309,
+                        "value": null,
+                        "part_type": "date",
+                        "part_type_description": "",
+                        "part_front_name": "EXPIRY DATE",
+                        "section": 1,
+                        "part_name": "expiry_date",
+                        "order": 15,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2013,
+                        "BillOfSaleDefinition": {
+                            "order": 15
+                        }
+                    },
+                    {
+                        "id": 493310,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "AGENT",
+                        "section": 1,
+                        "part_name": "agent",
+                        "order": 16,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2014,
+                        "BillOfSaleDefinition": {
+                            "order": 16
+                        }
+                    },
+                    {
+                        "id": 493311,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "AGENT PHONE NO.",
+                        "section": 1,
+                        "part_name": "agent_phone_number",
+                        "order": 17,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2015,
+                        "BillOfSaleDefinition": {
+                            "order": 17
+                        }
+                    },
+                    {
+                        "id": 493361,
+                        "value": "JASMINE ffffff",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "FIRST",
+                        "section": 1,
+                        "part_name": "buyer_first_name",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2090,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "id": 493362,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "MIDDLE INITIAL",
+                        "section": 1,
+                        "part_name": "buyer_middle_name",
+                        "order": 2,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2091,
+                        "BillOfSaleDefinition": {
+                            "order": 2
+                        }
+                    },
+                    {
+                        "id": 493363,
+                        "value": "GONZALESffffff ",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "LAST",
+                        "section": 1,
+                        "part_name": "buyer_last_name",
+                        "order": 3,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2092,
+                        "BillOfSaleDefinition": {
+                            "order": 3
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 2,
+                "items": [
+                    {
+                        "id": 493312,
+                        "value": "Toyota",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "MAKE",
+                        "section": 2,
+                        "part_name": "vehicle_make",
+                        "order": 2,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2016,
+                        "BillOfSaleDefinition": {
+                            "order": 2
+                        }
+                    },
+                    {
+                        "id": 493313,
+                        "value": "2017",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "YEAR",
+                        "section": 2,
+                        "part_name": "vehicle_year",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2017,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "id": 493314,
+                        "value": "RAV4",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "MODEL",
+                        "section": 2,
+                        "part_name": "vehicle_model",
+                        "order": 3,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2018,
+                        "BillOfSaleDefinition": {
+                            "order": 3
+                        }
+                    },
+                    {
+                        "id": 493315,
+                        "value": "Gray",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "COLOUR",
+                        "section": 2,
+                        "part_name": "vehicle_colour",
+                        "order": 5,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2020,
+                        "BillOfSaleDefinition": {
+                            "order": 5
+                        }
+                    },
+                    {
+                        "id": 493316,
+                        "value": "142600",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "DISTANCE TRAVELLED",
+                        "section": 2,
+                        "part_name": "vehicle_distance_travelled",
+                        "order": 8,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2021,
+                        "BillOfSaleDefinition": {
+                            "order": 8
+                        }
+                    },
+                    {
+                        "id": 493317,
+                        "value": null,
+                        "part_type": "date",
+                        "part_type_description": "",
+                        "part_front_name": "DELIVERY DATE",
+                        "section": 2,
+                        "part_name": "vehicle_delivery_date",
+                        "order": 10,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2025,
+                        "BillOfSaleDefinition": {
+                            "order": 10
+                        }
+                    },
+                    {
+                        "id": 493318,
+                        "value": "2T3WFREV6HW313823",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "V.I.N. #",
+                        "section": 2,
+                        "part_name": "vehicle_vin_numbe",
+                        "order": 7,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2027,
+                        "BillOfSaleDefinition": {
+                            "order": 7
+                        }
+                    },
+                    {
+                        "id": 493364,
+                        "value": "110-3243",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "STOCK #",
+                        "section": 2,
+                        "part_name": "vehicle_stock_no",
+                        "order": 6,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2093,
+                        "BillOfSaleDefinition": {
+                            "order": 6
+                        }
+                    },
+                    {
+                        "id": 493365,
+                        "value": "XLE FWD",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "TRIM LEVEL",
+                        "section": 2,
+                        "part_name": "vehicle_trim",
+                        "order": 4,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2094,
+                        "BillOfSaleDefinition": {
+                            "order": 4
+                        }
+                    },
+                    {
+                        "id": 493366,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "MTO BRAND",
+                        "section": 2,
+                        "part_name": "vehicle_mto_brands",
+                        "order": 12,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2095,
+                        "BillOfSaleDefinition": {
+                            "order": 12
+                        }
+                    },
+                    {
+                        "id": 493367,
+                        "value": null,
+                        "part_type": "date",
+                        "part_type_description": "",
+                        "part_front_name": "MFR’S WARRANTY IN-SERVICE DATE",
+                        "section": 2,
+                        "part_name": "vehicle_mfrs_warranty_date",
+                        "order": 9,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2096,
+                        "BillOfSaleDefinition": {
+                            "order": 9
+                        }
+                    },
+                    {
+                        "id": 493368,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "DETAILS OF DELIVERY",
+                        "section": 2,
+                        "part_name": "vehicle_details_delivery",
+                        "order": 11,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2097,
+                        "BillOfSaleDefinition": {
+                            "order": 11
+                        }
+                    },
+                    {
+                        "id": 493392,
+                        "value": "KMS",
+                        "part_type": "checkbox",
+                        "part_type_description": "KMS@@MILES",
+                        "part_front_name": "DISTANCE TRAVELLED",
+                        "section": 2,
+                        "part_name": "vehicle_distance_travelled_type",
+                        "order": 8,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2302,
+                        "BillOfSaleDefinition": {
+                            "order": 8
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 3,
+                "items": [
+                    {
+                        "id": 493319,
+                        "value": "235555",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "HST #",
+                        "section": 3,
+                        "part_name": "dealership_hst_number",
+                        "order": 2,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-07-02T08:19:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2028,
+                        "BillOfSaleDefinition": {
+                            "order": 2
+                        }
+                    },
+                    {
+                        "id": 493320,
+                        "value": "12345692",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "Dealer #",
+                        "section": 3,
+                        "part_name": "dealership_dealer_number",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2029,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "id": 493321,
+                        "value": "06/28/2023",
+                        "part_type": "date",
+                        "part_type_description": "",
+                        "part_front_name": "DATE",
+                        "section": 3,
+                        "part_name": "dealership_date",
+                        "order": 3,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2030,
+                        "BillOfSaleDefinition": {
+                            "order": 3
+                        }
+                    },
+                    {
+                        "id": 493387,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "Tol Free",
+                        "section": 3,
+                        "part_name": "dealership_toll_free",
+                        "order": 4,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2297,
+                        "BillOfSaleDefinition": {
+                            "order": 4
+                        }
+                    },
+                    {
+                        "id": 493388,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "Tel",
+                        "section": 3,
+                        "part_name": "dealership_tell",
+                        "order": 5,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2298,
+                        "BillOfSaleDefinition": {
+                            "order": 5
+                        }
+                    },
+                    {
+                        "id": 493389,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "Fax",
+                        "section": 3,
+                        "part_name": "dealership_fax",
+                        "order": 6,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2299,
+                        "BillOfSaleDefinition": {
+                            "order": 6
+                        }
+                    },
+                    {
+                        "id": 493390,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "Email",
+                        "section": 3,
+                        "part_name": "dealership_email",
+                        "order": 7,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2300,
+                        "BillOfSaleDefinition": {
+                            "order": 7
+                        }
+                    },
+                    {
+                        "id": 493391,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "Website",
+                        "section": 3,
+                        "part_name": "dealership_website",
+                        "order": 8,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2301,
+                        "BillOfSaleDefinition": {
+                            "order": 8
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 4,
+                "items": [
+                    {
+                        "id": 493322,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "V.I.N. #",
+                        "section": 4,
+                        "part_name": "trade_in_vin_number",
+                        "order": 6,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2031,
+                        "BillOfSaleDefinition": {
+                            "order": 6
+                        }
+                    },
+                    {
+                        "id": 493323,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "EXACT DISTANCE THAT THE VEHICLE HAS TRAVELLED",
+                        "section": 4,
+                        "part_name": "trade_in_distance",
+                        "order": 7,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2032,
+                        "BillOfSaleDefinition": {
+                            "order": 7
+                        }
+                    },
+                    {
+                        "id": 493324,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "YEAR",
+                        "section": 4,
+                        "part_name": "trade_in_year",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2033,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "id": 493325,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "MAKE",
+                        "section": 4,
+                        "part_name": "trade_in_make",
+                        "order": 2,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2034,
+                        "BillOfSaleDefinition": {
+                            "order": 2
+                        }
+                    },
+                    {
+                        "id": 493326,
+                        "value": "",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "COLOUR",
+                        "section": 4,
+                        "part_name": "trade_in_colour",
+                        "order": 5,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2035,
+                        "BillOfSaleDefinition": {
+                            "order": 5
+                        }
+                    },
+                    {
+                        "id": 493327,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "MODEL",
+                        "section": 4,
+                        "part_name": "trade_in_model",
+                        "order": 3,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2036,
+                        "BillOfSaleDefinition": {
+                            "order": 3
+                        }
+                    },
+                    {
+                        "id": 493381,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "TRIM LEVEL",
+                        "section": 4,
+                        "part_name": "trade_in_trim",
+                        "order": 4,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2110,
+                        "BillOfSaleDefinition": {
+                            "order": 4
+                        }
+                    },
+                    {
+                        "id": 493382,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "H.S.T. REGISTRANT / REGISTRATION No.",
+                        "section": 4,
+                        "part_name": "trade_in_hst_registration_no",
+                        "order": 9,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2111,
+                        "BillOfSaleDefinition": {
+                            "order": 9
+                        }
+                    },
+                    {
+                        "id": 493383,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "LIEN HOLDER",
+                        "section": 4,
+                        "part_name": "trade_in_lien_holder",
+                        "order": 10,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2112,
+                        "BillOfSaleDefinition": {
+                            "order": 10
+                        }
+                    },
+                    {
+                        "id": 493384,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "AMOUNT",
+                        "section": 4,
+                        "part_name": "trade_in_amount",
+                        "order": 11,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2113,
+                        "BillOfSaleDefinition": {
+                            "order": 11
+                        }
+                    },
+                    {
+                        "id": 493386,
+                        "value": null,
+                        "part_type": "checkbox",
+                        "part_type_description": "KMS@@MILES",
+                        "part_front_name": "",
+                        "section": 4,
+                        "part_name": "trade_in_odometer_type",
+                        "order": 8,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2296,
+                        "BillOfSaleDefinition": {
+                            "order": 8
+                        }
+                    },
+                    {
+                        "id": 493394,
+                        "value": "",
+                        "part_type": "checkbox",
+                        "part_type_description": "GAS@@DIESEL@@HYBRID/ELECTRIC",
+                        "part_front_name": "FUEL",
+                        "section": 4,
+                        "part_name": "trade_in_fuel",
+                        "order": 12,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2304,
+                        "BillOfSaleDefinition": {
+                            "order": 12
+                        }
+                    },
+                    {
+                        "id": 493395,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "# OF CYL",
+                        "section": 4,
+                        "part_name": "trade_in_cylinders",
+                        "order": 13,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2305,
+                        "BillOfSaleDefinition": {
+                            "order": 13
+                        }
+                    },
+                    {
+                        "id": 493408,
+                        "value": "",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "Stock NO",
+                        "section": 4,
+                        "part_name": "trade_in_stockNo",
+                        "order": 14,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2327,
+                        "BillOfSaleDefinition": {
+                            "order": 14
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 5,
+                "items": [
+                    {
+                        "id": 493328,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "COMPANY",
+                        "section": 5,
+                        "part_name": "warranty_company",
+                        "order": 2,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2037,
+                        "BillOfSaleDefinition": {
+                            "order": 2
+                        }
+                    },
+                    {
+                        "id": 493329,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "MONTHS",
+                        "section": 5,
+                        "part_name": "warranty_period_days",
+                        "order": 3,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2038,
+                        "BillOfSaleDefinition": {
+                            "order": 3
+                        }
+                    },
+                    {
+                        "id": 493330,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "KM",
+                        "section": 5,
+                        "part_name": "warranty_period_kilometer",
+                        "order": 4,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2039,
+                        "BillOfSaleDefinition": {
+                            "order": 4
+                        }
+                    },
+                    {
+                        "id": 493331,
+                        "value": " ",
+                        "part_type": "textarea",
+                        "part_type_description": "",
+                        "part_front_name": "DESCRIPTION",
+                        "section": 5,
+                        "part_name": "warranty_extended_warranty_description",
+                        "order": 5,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2040,
+                        "BillOfSaleDefinition": {
+                            "order": 5
+                        }
+                    },
+                    {
+                        "id": 493385,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "RETAIL VALUE IF INCLUDED IN VEHICLE SELLING PRICE",
+                        "section": 5,
+                        "part_name": "warranty_extended_amount",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2114,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 6,
+                "items": [
+                    {
+                        "part_front_name": "AMOUNT OF PAYMENTS",
+                        "part_name": "financing_total_payment_int",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "AMOUNT OF PAYMENTS",
+                        "part_name": "financing_total_payment_float",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "id": 493332,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "AMOUNT OF PAYMENTS",
+                        "section": 6,
+                        "part_name": "financing_total_payment",
+                        "order": 5,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2041,
+                        "BillOfSaleDefinition": {
+                            "order": 5
+                        }
+                    },
+                    {
+                        "part_front_name": "PURCHASER'S INITIALS",
+                        "part_name": "financing_buyers_intials_int",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "PURCHASER'S INITIALS",
+                        "part_name": "financing_buyers_intials_float",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "id": 493333,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "PURCHASER'S INITIALS",
+                        "section": 6,
+                        "part_name": "financing_buyers_intials",
+                        "order": 8,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2042,
+                        "BillOfSaleDefinition": {
+                            "order": 8
+                        }
+                    },
+                    {
+                        "part_front_name": "NO. OF PAYMENTS",
+                        "part_name": "financing_payments_term_int",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "NO. OF PAYMENTS",
+                        "part_name": "financing_payments_term_float",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "id": 493334,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "NO. OF PAYMENTS",
+                        "section": 6,
+                        "part_name": "financing_payments_term",
+                        "order": 3,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2044,
+                        "BillOfSaleDefinition": {
+                            "order": 3
+                        }
+                    },
+                    {
+                        "part_front_name": "PAYMENTS START ON",
+                        "part_name": "financing_payment_start_date_int",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "PAYMENTS START ON",
+                        "part_name": "financing_payment_start_date_float",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "id": 493335,
+                        "value": null,
+                        "part_type": "date",
+                        "part_type_description": "",
+                        "part_front_name": "PAYMENTS START ON",
+                        "section": 6,
+                        "part_name": "financing_payment_start_date",
+                        "order": 7,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2047,
+                        "BillOfSaleDefinition": {
+                            "order": 7
+                        }
+                    },
+                    {
+                        "part_front_name": "CREDIT APPROVAL",
+                        "part_name": "financing_credit_approvel_int",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "CREDIT APPROVAL",
+                        "part_name": "financing_credit_approvel_float",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "id": 493336,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "CREDIT APPROVAL",
+                        "section": 6,
+                        "part_name": "financing_credit_approvel",
+                        "order": 9,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2049,
+                        "BillOfSaleDefinition": {
+                            "order": 9
+                        }
+                    },
+                    {
+                        "part_front_name": "COST OF BORROWING ",
+                        "part_name": "price_cost_of_borrowing_int",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "COST OF BORROWING ",
+                        "part_name": "price_cost_of_borrowing_float",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "id": 493345,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "COST OF BORROWING ",
+                        "section": 6,
+                        "part_name": "price_cost_of_borrowing",
+                        "order": 6,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2068,
+                        "BillOfSaleDefinition": {
+                            "order": 6
+                        }
+                    },
+                    {
+                        "part_front_name": "INTEREST RATE %",
+                        "part_name": "financing_interest_rate_int",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "INTEREST RATE %",
+                        "part_name": "financing_interest_rate_float",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "id": 493399,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "INTEREST RATE %",
+                        "section": 6,
+                        "part_name": "financing_interest_rate",
+                        "order": 2,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2309,
+                        "BillOfSaleDefinition": {
+                            "order": 2
+                        }
+                    },
+                    {
+                        "part_front_name": "AMOUNT TO BE FINANCED",
+                        "part_name": "price_to_be_financed_int",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "AMOUNT TO BE FINANCED",
+                        "part_name": "price_to_be_financed_float",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "id": 493406,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "AMOUNT TO BE FINANCED",
+                        "section": 6,
+                        "part_name": "price_to_be_financed",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2325,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "part_front_name": "PAYMENT TYPE",
+                        "part_name": "payment_type_int",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "PAYMENT TYPE",
+                        "part_name": "payment_type_float",
+                        "part_type": "disable",
+                        "section": 6,
+                        "value": null
+                    },
+                    {
+                        "id": 493407,
+                        "value": null,
+                        "part_type": "select",
+                        "part_type_description": "Monthly@@Bi-Weekly",
+                        "part_front_name": "PAYMENT TYPE",
+                        "section": 6,
+                        "part_name": "payment_type",
+                        "order": 4,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2326,
+                        "BillOfSaleDefinition": {
+                            "order": 4
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 7,
+                "items": [
+                    {
+                        "id": 493337,
+                        "value": "gggggggggggggdf fdgdfgdfgdf test ttttttttttttttttttttttttttttt",
+                        "part_type": "textarea",
+                        "part_type_description": "",
+                        "part_front_name": "DISCLOSURE SHEET",
+                        "section": 7,
+                        "part_name": "comment_separate_disclosure_text",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2051,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "id": 493338,
+                        "value": "Farshid Dehghani",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "SALESPERSON’S NAME (PLEASE PRINT)",
+                        "section": 7,
+                        "part_name": "comment_sales_person_name",
+                        "order": 2,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-07-02T08:19:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2052,
+                        "BillOfSaleDefinition": {
+                            "order": 2
+                        }
+                    },
+                    {
+                        "id": 493339,
+                        "value": "register nu771mber7158515587",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "REGISTRATION NO.",
+                        "section": 7,
+                        "part_name": "comment_sales_person_reg_number",
+                        "order": 3,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-07-02T08:19:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2053,
+                        "BillOfSaleDefinition": {
+                            "order": 3
+                        }
+                    },
+                    {
+                        "id": 493340,
+                        "value": "",
+                        "part_type": "file",
+                        "part_type_description": "",
+                        "part_front_name": "SALESPERSON’S SIGNATURE",
+                        "section": 7,
+                        "part_name": "comment_sales_person_signature",
+                        "order": 4,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-07-02T08:19:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2054,
+                        "BillOfSaleDefinition": {
+                            "order": 4
+                        }
+                    },
+                    {
+                        "id": 493341,
+                        "value": "002153326222",
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "DEALER REGISTRATION No.",
+                        "section": 7,
+                        "part_name": "comment_sales_manager_reg_number",
+                        "order": 5,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-07-02T08:19:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2062,
+                        "BillOfSaleDefinition": {
+                            "order": 5
+                        }
+                    },
+                    {
+                        "id": 493376,
+                        "value": "hanie mirabbasi2",
+                        "part_type": "textarea",
+                        "part_type_description": "",
+                        "part_front_name": "NAME OF OFFICIAL (PLEASE PRINT)",
+                        "section": 7,
+                        "part_name": "comment_official_name",
+                        "order": 6,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-07-02T08:19:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2105,
+                        "BillOfSaleDefinition": {
+                            "order": 6
+                        }
+                    },
+                    {
+                        "id": 493377,
+                        "value": "002153326222",
+                        "part_type": "textarea",
+                        "part_type_description": "",
+                        "part_front_name": "ACCEPTOR’S REGISTRATION No.",
+                        "section": 7,
+                        "part_name": "comment_accepter_reg_number",
+                        "order": 7,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2106,
+                        "BillOfSaleDefinition": {
+                            "order": 7
+                        }
+                    },
+                    {
+                        "id": 493378,
+                        "value": "Azerila",
+                        "part_type": "textarea",
+                        "part_type_description": "",
+                        "part_front_name": "TITLE",
+                        "section": 7,
+                        "part_name": "comment_title",
+                        "order": 8,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2107,
+                        "BillOfSaleDefinition": {
+                            "order": 8
+                        }
+                    },
+                    {
+                        "id": 493379,
+                        "value": "06/28/2023",
+                        "part_type": "textarea",
+                        "part_type_description": "",
+                        "part_front_name": "DATE",
+                        "section": 7,
+                        "part_name": "comment_date",
+                        "order": 9,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2108,
+                        "BillOfSaleDefinition": {
+                            "order": 9
+                        }
+                    },
+                    {
+                        "id": 493380,
+                        "value": null,
+                        "part_type": "textarea",
+                        "part_type_description": "",
+                        "part_front_name": "ACCEPTOR'S SIGNATURE",
+                        "section": 7,
+                        "part_name": "comment_accepter_signature",
+                        "order": 10,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2109,
+                        "BillOfSaleDefinition": {
+                            "order": 10
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 8,
+                "items": [
+                    {
+                        "part_front_name": "SELLING PRICE",
+                        "part_name": "price_sales_price_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "20999"
+                    },
+                    {
+                        "part_front_name": "SELLING PRICE",
+                        "part_name": "price_sales_price_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493342,
+                        "value": "20999",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "SELLING PRICE",
+                        "section": 8,
+                        "part_name": "price_sales_price",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2063,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "part_front_name": "TOTAL BALANCE DUE",
+                        "part_name": "price_balance_due_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "24823"
+                    },
+                    {
+                        "part_front_name": "TOTAL BALANCE DUE",
+                        "part_name": "price_balance_due_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "37"
+                    },
+                    {
+                        "id": 493343,
+                        "value": "24823.37",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "TOTAL BALANCE DUE",
+                        "section": 8,
+                        "part_name": "price_balance_due",
+                        "order": 32,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2066,
+                        "BillOfSaleDefinition": {
+                            "order": 32
+                        }
+                    },
+                    {
+                        "part_front_name": "EXTENDED WARRANTY",
+                        "part_name": "price_extended_warranty_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "EXTENDED WARRANTY",
+                        "part_name": "price_extended_warranty_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493344,
+                        "value": "",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "EXTENDED WARRANTY",
+                        "section": 8,
+                        "part_name": "price_extended_warranty",
+                        "order": 3,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2067,
+                        "BillOfSaleDefinition": {
+                            "order": 3
+                        }
+                    },
+                    {
+                        "part_front_name": "LIEN REGISTRATION FEE",
+                        "part_name": "price_lien_registration_and_admin_fee_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "LIEN REGISTRATION FEE",
+                        "part_name": "price_lien_registration_and_admin_fee_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493346,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "LIEN REGISTRATION FEE",
+                        "section": 8,
+                        "part_name": "price_lien_registration_and_admin_fee",
+                        "order": 25,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2070,
+                        "BillOfSaleDefinition": {
+                            "order": 25
+                        }
+                    },
+                    {
+                        "part_front_name": "R.S.T. ON INSURANCE",
+                        "part_name": "price_rst_on_insurance_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "R.S.T. ON INSURANCE",
+                        "part_name": "price_rst_on_insurance_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493347,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "R.S.T. ON INSURANCE",
+                        "section": 8,
+                        "part_name": "price_rst_on_insurance",
+                        "order": 22,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2072,
+                        "BillOfSaleDefinition": {
+                            "order": 22
+                        }
+                    },
+                    {
+                        "part_front_name": "PAYABLE ON DELIVERY\r\n(CERTIFIED FUNDS ONLY)",
+                        "part_name": "price_payable_on_delivery_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "PAYABLE ON DELIVERY\r\n(CERTIFIED FUNDS ONLY)",
+                        "part_name": "price_payable_on_delivery_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493348,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "PAYABLE ON DELIVERY\r\n(CERTIFIED FUNDS ONLY)",
+                        "section": 8,
+                        "part_name": "price_payable_on_delivery",
+                        "order": 23,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2074,
+                        "BillOfSaleDefinition": {
+                            "order": 23
+                        }
+                    },
+                    {
+                        "part_front_name": "DEPOSIT",
+                        "part_name": "price_deposit_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "DEPOSIT",
+                        "part_name": "price_deposit_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493349,
+                        "value": "",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "DEPOSIT",
+                        "section": 8,
+                        "part_name": "price_deposit",
+                        "order": 18,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2075,
+                        "BillOfSaleDefinition": {
+                            "order": 18
+                        }
+                    },
+                    {
+                        "part_front_name": "DEPOSIT",
+                        "part_name": "price_deposit_type_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "DEPOSIT",
+                        "part_name": "price_deposit_type_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493350,
+                        "value": "",
+                        "part_type": "select",
+                        "part_type_description": "CASH@@CHEQUE@@CREDIT CARD@@DEBIT CARD",
+                        "part_front_name": "DEPOSIT",
+                        "section": 8,
+                        "part_name": "price_deposit_type",
+                        "order": 19,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2076,
+                        "BillOfSaleDefinition": {
+                            "order": 19
+                        }
+                    },
+                    {
+                        "part_front_name": "SUB-TOTAL",
+                        "part_name": "price_sub_total_1_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "21649"
+                    },
+                    {
+                        "part_front_name": "SUB-TOTAL",
+                        "part_name": "price_sub_total_1_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493351,
+                        "value": "21649",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "SUB-TOTAL",
+                        "section": 8,
+                        "part_name": "price_sub_total_1",
+                        "order": 8,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2078,
+                        "BillOfSaleDefinition": {
+                            "order": 8
+                        }
+                    },
+                    {
+                        "part_front_name": "HST REGISTRANTS ONLY\r\nH.S.T. ON SUB-TOTAL",
+                        "part_name": "price_hst_registrants_sub_total_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "HST REGISTRANTS ONLY\r\nH.S.T. ON SUB-TOTAL",
+                        "part_name": "price_hst_registrants_sub_total_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493352,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "HST REGISTRANTS ONLY\r\nH.S.T. ON SUB-TOTAL",
+                        "section": 8,
+                        "part_name": "price_hst_registrants_sub_total",
+                        "order": 11,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2080,
+                        "BillOfSaleDefinition": {
+                            "order": 11
+                        }
+                    },
+                    {
+                        "part_front_name": "LICENCE FEE",
+                        "part_name": "price_licence_fee_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "360"
+                    },
+                    {
+                        "part_front_name": "LICENCE FEE",
+                        "part_name": "price_licence_fee_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493353,
+                        "value": "360",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "LICENCE FEE",
+                        "section": 8,
+                        "part_name": "price_licence_fee",
+                        "order": 12,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2081,
+                        "BillOfSaleDefinition": {
+                            "order": 12
+                        }
+                    },
+                    {
+                        "part_front_name": "DEDUCT\r\nTRADE-IN ALLOWANCE (IF ANY)",
+                        "part_name": "price_less_trade_in_allowance_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "DEDUCT\r\nTRADE-IN ALLOWANCE (IF ANY)",
+                        "part_name": "price_less_trade_in_allowance_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493354,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "DEDUCT\r\nTRADE-IN ALLOWANCE (IF ANY)",
+                        "section": 8,
+                        "part_name": "price_less_trade_in_allowance",
+                        "order": 9,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2082,
+                        "BillOfSaleDefinition": {
+                            "order": 9
+                        }
+                    },
+                    {
+                        "part_front_name": "PAYOUT LIEN ON TRADE-IN",
+                        "part_name": "price_payout_lien_against_trade_in_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "PAYOUT LIEN ON TRADE-IN",
+                        "part_name": "price_payout_lien_against_trade_in_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493355,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "PAYOUT LIEN ON TRADE-IN",
+                        "section": 8,
+                        "part_name": "price_payout_lien_against_trade_in",
+                        "order": 15,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2084,
+                        "BillOfSaleDefinition": {
+                            "order": 15
+                        }
+                    },
+                    {
+                        "part_front_name": "NET AMOUNT TO\r\nBE FINANCED",
+                        "part_name": "price_total_to_be_financed_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "NET AMOUNT TO\r\nBE FINANCED",
+                        "part_name": "price_total_to_be_financed_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493356,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "NET AMOUNT TO\r\nBE FINANCED",
+                        "section": 8,
+                        "part_name": "price_total_to_be_financed",
+                        "order": 27,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2085,
+                        "BillOfSaleDefinition": {
+                            "order": 27
+                        }
+                    },
+                    {
+                        "part_front_name": "GASOLINE",
+                        "part_name": "price_gasoline_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "GASOLINE",
+                        "part_name": "price_gasoline_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493357,
+                        "value": "",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "GASOLINE",
+                        "section": 8,
+                        "part_name": "price_gasoline",
+                        "order": 14,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2086,
+                        "BillOfSaleDefinition": {
+                            "order": 14
+                        }
+                    },
+                    {
+                        "part_front_name": "NET DIFFERENCE",
+                        "part_name": "price_net_difference_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "21649"
+                    },
+                    {
+                        "part_front_name": "NET DIFFERENCE",
+                        "part_name": "price_net_difference_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493369,
+                        "value": "21649",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "NET DIFFERENCE",
+                        "section": 8,
+                        "part_name": "price_net_difference",
+                        "order": 10,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2098,
+                        "BillOfSaleDefinition": {
+                            "order": 10
+                        }
+                    },
+                    {
+                        "part_front_name": "HST NON-REGISTRANTS ONLY\r\nH.S.T. ON NET DIFFERENCE",
+                        "part_name": "price_hst_non_registrants_difference_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "2814"
+                    },
+                    {
+                        "part_front_name": "HST NON-REGISTRANTS ONLY\r\nH.S.T. ON NET DIFFERENCE",
+                        "part_name": "price_hst_non_registrants_difference_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "37"
+                    },
+                    {
+                        "id": 493370,
+                        "value": "2814.37",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "HST NON-REGISTRANTS ONLY\r\nH.S.T. ON NET DIFFERENCE",
+                        "section": 8,
+                        "part_name": "price_hst_non_registrants_difference",
+                        "order": 13,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2099,
+                        "BillOfSaleDefinition": {
+                            "order": 13
+                        }
+                    },
+                    {
+                        "part_front_name": "HST REGISTRANTS ONLY DEDUCT\r\nH.S.T. PAYABLE ON TRADE-IN",
+                        "part_name": "price_hst_non_registrants_tradein_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "HST REGISTRANTS ONLY DEDUCT\r\nH.S.T. PAYABLE ON TRADE-IN",
+                        "part_name": "price_hst_non_registrants_tradein_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493371,
+                        "value": "",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "HST REGISTRANTS ONLY DEDUCT\r\nH.S.T. PAYABLE ON TRADE-IN",
+                        "section": 8,
+                        "part_name": "price_hst_non_registrants_tradein",
+                        "order": 16,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2100,
+                        "BillOfSaleDefinition": {
+                            "order": 16
+                        }
+                    },
+                    {
+                        "part_front_name": "SUB-TOTAL",
+                        "part_name": "price_sub_total_2_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "24823"
+                    },
+                    {
+                        "part_front_name": "SUB-TOTAL",
+                        "part_name": "price_sub_total_2_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "37"
+                    },
+                    {
+                        "id": 493372,
+                        "value": "24823.37",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "SUB-TOTAL",
+                        "section": 8,
+                        "part_name": "price_sub_total_2",
+                        "order": 17,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2101,
+                        "BillOfSaleDefinition": {
+                            "order": 17
+                        }
+                    },
+                    {
+                        "part_front_name": "INSURANCE  LIFE / LOSS OF INC.",
+                        "part_name": "price_life_loss_insurance_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "INSURANCE  LIFE / LOSS OF INC.",
+                        "part_name": "price_life_loss_insurance_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493373,
+                        "value": "",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "INSURANCE  LIFE / LOSS OF INC.",
+                        "section": 8,
+                        "part_name": "price_life_loss_insurance",
+                        "order": 20,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2102,
+                        "BillOfSaleDefinition": {
+                            "order": 20
+                        }
+                    },
+                    {
+                        "part_front_name": "INSURANCE  DISABILITY / GAP",
+                        "part_name": "price_disability_other_insurance_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "INSURANCE  DISABILITY / GAP",
+                        "part_name": "price_disability_other_insurance_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493374,
+                        "value": "",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "INSURANCE  DISABILITY / GAP",
+                        "section": 8,
+                        "part_name": "price_disability_other_insurance",
+                        "order": 21,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2103,
+                        "BillOfSaleDefinition": {
+                            "order": 21
+                        }
+                    },
+                    {
+                        "part_front_name": "BALANCE FINANCED\r\nSUBJECT TO APPROVAL",
+                        "part_name": "price_balance_finances_approval_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "BALANCE FINANCED\r\nSUBJECT TO APPROVAL",
+                        "part_name": "price_balance_finances_approval_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493375,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "BALANCE FINANCED\r\nSUBJECT TO APPROVAL",
+                        "section": 8,
+                        "part_name": "price_balance_finances_approval",
+                        "order": 26,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2104,
+                        "BillOfSaleDefinition": {
+                            "order": 26
+                        }
+                    },
+                    {
+                        "part_front_name": "DISCOUNT",
+                        "part_name": "price_discount_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "DISCOUNT",
+                        "part_name": "price_discount_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493393,
+                        "value": "",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "DISCOUNT",
+                        "section": 8,
+                        "part_name": "price_discount",
+                        "order": 2,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2303,
+                        "BillOfSaleDefinition": {
+                            "order": 2
+                        }
+                    },
+                    {
+                        "part_front_name": "SAFETY",
+                        "part_name": "price_safety_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "SAFETY",
+                        "part_name": "price_safety_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493396,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "SAFETY",
+                        "section": 8,
+                        "part_name": "price_safety",
+                        "order": 4,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2306,
+                        "BillOfSaleDefinition": {
+                            "order": 4
+                        }
+                    },
+                    {
+                        "part_front_name": "FINANCE FEE",
+                        "part_name": "price_finance_fee_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "FINANCE FEE",
+                        "part_name": "price_finance_fee_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493397,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "FINANCE FEE",
+                        "section": 8,
+                        "part_name": "price_finance_fee",
+                        "order": 6,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2307,
+                        "BillOfSaleDefinition": {
+                            "order": 6
+                        }
+                    },
+                    {
+                        "part_front_name": "OMVIC FEE",
+                        "part_name": "price_omvic_fee_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": "650"
+                    },
+                    {
+                        "part_front_name": "OMVIC FEE",
+                        "part_name": "price_omvic_fee_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493398,
+                        "value": "650",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "OMVIC FEE",
+                        "section": 8,
+                        "part_name": "price_omvic_fee",
+                        "order": 5,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2308,
+                        "BillOfSaleDefinition": {
+                            "order": 5
+                        }
+                    },
+                    {
+                        "part_front_name": "Extra Fee 1",
+                        "part_name": "extra_fee_1_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "Extra Fee 1",
+                        "part_name": "extra_fee_1_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493400,
+                        "value": "",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "Extra Fee 1",
+                        "section": 8,
+                        "part_name": "extra_fee_1",
+                        "order": 7,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2318,
+                        "BillOfSaleDefinition": {
+                            "order": 7
+                        }
+                    },
+                    {
+                        "part_front_name": "Extra Fee 2 (Not Taxable)",
+                        "part_name": "extra_fee_2_int",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "part_front_name": "Extra Fee 2 (Not Taxable)",
+                        "part_name": "extra_fee_2_float",
+                        "part_type": "disable",
+                        "section": 8,
+                        "value": null
+                    },
+                    {
+                        "id": 493401,
+                        "value": "",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "Extra Fee 2 (Not Taxable)",
+                        "section": 8,
+                        "part_name": "extra_fee_2",
+                        "order": 24,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:57.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2319,
+                        "BillOfSaleDefinition": {
+                            "order": 24
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 9,
+                "items": [
+                    {
+                        "id": 493358,
+                        "value": null,
+                        "part_type": "boolean",
+                        "part_type_description": "",
+                        "part_front_name": "TRADE IN ENABLE",
+                        "section": 9,
+                        "part_name": "trade_in_enable",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2087,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "id": 493402,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "DECRIPTION",
+                        "section": 9,
+                        "part_name": "guaranty_description",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2321,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    },
+                    {
+                        "id": 493403,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "DAYS",
+                        "section": 9,
+                        "part_name": "guaranty_days",
+                        "order": 2,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2322,
+                        "BillOfSaleDefinition": {
+                            "order": 2
+                        }
+                    },
+                    {
+                        "id": 493404,
+                        "value": null,
+                        "part_type": "text",
+                        "part_type_description": "",
+                        "part_front_name": "KM",
+                        "section": 9,
+                        "part_name": "guaranty_km",
+                        "order": 3,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2323,
+                        "BillOfSaleDefinition": {
+                            "order": 3
+                        }
+                    },
+                    {
+                        "id": 493405,
+                        "value": "0",
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "has guaranty",
+                        "section": 9,
+                        "part_name": "has_guaranty",
+                        "order": 5,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:43:56.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2324,
+                        "BillOfSaleDefinition": {
+                            "order": 5
+                        }
+                    },
+                    {
+                        "id": 493409,
+                        "value": null,
+                        "part_type": "number",
+                        "part_type_description": "",
+                        "part_front_name": "Appraisal Date",
+                        "section": 9,
+                        "part_name": "appraisal_date",
+                        "order": 6,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2328,
+                        "BillOfSaleDefinition": {
+                            "order": 6
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 10,
+                "items": [
+                    {
+                        "id": 493359,
+                        "value": null,
+                        "part_type": "boolean",
+                        "part_type_description": "",
+                        "part_front_name": "WARRANTY ENABLE",
+                        "section": 10,
+                        "part_name": "warranty_enable",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2088,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "sec": {
+                "id": 11,
+                "items": [
+                    {
+                        "id": 493360,
+                        "value": null,
+                        "part_type": "boolean",
+                        "part_type_description": "",
+                        "part_front_name": "FINANCING ENABLE",
+                        "section": 11,
+                        "part_name": "financing_enable",
+                        "order": 1,
+                        "createdAt": "2023-06-28T06:22:54.000Z",
+                        "updatedAt": "2023-06-28T06:22:54.000Z",
+                        "frk_BOS_id": 7792,
+                        "frk_BOSD_id": 2089,
+                        "BillOfSaleDefinition": {
+                            "order": 1
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "ProvinceId": 1,
+    "ProvinceName": "Ontario",
+    "TradeIn": false,
+    "mvd_bos": {
+        "id": 25049,
+        "mvd_id": null,
+        "bos_id": null,
+        "tradein_id": null,
+        "is_lease_agreement": 0,
+        "bos_type": 1,
+        "is_ucda_bos": 1,
+        "is_from_wizard": 0,
+        "frk_dealership_id": 0,
+        "seller_id": null,
+        "seller_full_name": null,
+        "Approved_id": null,
+        "Approved_full_name": null,
+        "is_appraisal_form": 0,
+        "is_terminated": 0,
+        "is_cancelled": 0,
+        "delivery_date": null,
+        "delivery_time": null,
+        "other_explain": null,
+        "deal_date": null,
+        "condition": null,
+        "createdAt": "2023-06-28T06:22:54.000Z",
+        "updatedAt": "2023-06-28T06:22:56.000Z",
+        "frk_customer_id": 39618,
+        "frk_mvd_id": 57739,
+        "frk_bos_id": 7792,
+        "frk_tradein_id": null,
+        "frk_wholesale_id": null,
+        "frk_ucda_presets_id": null
+    }
+}

@@ -5,19 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
-import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/models/drop_down_model.dart';
-import 'package:new_panel/core/params/filter_params.dart';
 import 'package:new_panel/core/widgets/circular_button.dart';
 import 'package:new_panel/core/widgets/custom_dropdown.dart';
 import 'package:new_panel/core/widgets/custom_tag.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
-import 'package:new_panel/core/widgets/icon_gradient.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
-import 'package:new_panel/features/inventory_page/presentation/manager/inventory_bloc.dart';
 import 'package:new_panel/features/filter_inventory_page/presentation/pages/filter_page.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/filter_list_item.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/search_inventory.dart';
+
 import 'package:new_panel/main.dart';
 
 class SummeryInventory extends StatefulWidget {
@@ -210,38 +207,33 @@ class _SummeryInventoryState extends State<SummeryInventory> {
             ],
           ),
           if(visibleSearch)
-          Visibility(
-              visible: visibleSearch,
-              child: SizedBox( height: 10.h)),
+          SizedBox( height: 10.h),
 
              if(visibleSearch)
-             Visibility(
-              visible: visibleSearch,
-              child: SearchInventory(
-                fieldHint: "Inventory Search",
-                searchbarController: searchController,
-                onTapSuffix: (){
-                  searchIsOpen = searchIsOpen ? false :true ;
-                  if(searchIsOpen){
-                    visibleSearch = false;
-                  }else{
-                    visibleSearch = true;
-                  }
-                  changeVisibility();
-                },
-              )
-
-          ),
+             SearchInventory(
+               fieldHint: "Inventory Search",
+               searchbarController: searchController,
+               onTapSuffix: (){
+                 searchIsOpen = searchIsOpen ? false :true ;
+                 if(searchIsOpen){
+                   visibleSearch = false;
+                 }else{
+                   visibleSearch = true;
+                 }
+                 changeVisibility();
+               },
+             ),
           if(widget.filterList.isNotEmpty)
           SizedBox( height: 15.h),
           if(widget.filterList.isNotEmpty)
           SizedBox(
             width: screenSize.width,
-            height: 50.h,
+            height: 40.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
               itemCount: widget.filterList.length,
-                padding: EdgeInsets.only(bottom: 14.h),
+                // padding: EdgeInsets.only(bottom: 14.h),
                 itemBuilder: (context , index){
 
                 return FilterListItem(

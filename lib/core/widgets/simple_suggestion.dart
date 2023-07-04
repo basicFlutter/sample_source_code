@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+
 import 'package:new_panel/main.dart';
 
 
@@ -114,9 +115,9 @@ class _SimpleSuggestionState extends State<SimpleSuggestion> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 38.h,
+      height: 45.h,
 
-      //    padding: EdgeInsets.only(left:  12.w,right: 12.w),
+         padding: EdgeInsets.only(top: 2.h),
       decoration: BoxDecoration(
         color: Theme.of(context).brightness== Brightness.light ? AppColors.input  : AppColors.inputDark,
         borderRadius: BorderRadius.all(Radius.circular(10.r)),

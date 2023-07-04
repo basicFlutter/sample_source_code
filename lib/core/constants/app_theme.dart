@@ -4,6 +4,8 @@ import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:new_panel/core/constants/app_colors.dart";
 
+
+
 class Style {
   static ThemeData lightTheme = ThemeData(
 
@@ -295,7 +297,7 @@ class Style {
       labelMedium: TextStyle(
           fontSize: 15.sp,
           fontWeight: FontWeight.w400,
-          color: AppColors.primaryColor),
+          color: AppColors.titleColor),
 
       /// label text => carPrice
       labelSmall: TextStyle(

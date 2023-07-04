@@ -8,6 +8,7 @@ import 'package:new_panel/core/models/drop_down_model.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/icon_gradient.dart';
 
+
 class SimpleDropDown extends StatefulWidget {
   SimpleDropDown({Key? key , required this.itemList , required this.onSelected}) : super(key: key);
   final List<DropDownModel> itemList;
@@ -27,7 +28,7 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 38.h,
+      height: 45.h,
 
       decoration: BoxDecoration(
           color: Theme.of(context).brightness == Brightness.light ? AppColors.input : AppColors.inputDark,

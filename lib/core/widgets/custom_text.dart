@@ -13,17 +13,19 @@ class CustomText extends StatelessWidget {
   final Color? textColor;
   final bool? addSeparator;
   final double? letterSpace;
-  const CustomText({Key? key ,this.addSeparator ,this.letterSpace,required this.text , this.isShadow ,required this.textStyle, this.textFontWight , this.dollarSign , this.specialPrice , this.textColor}) : super(key: key);
+  final bool? multiLine;
+  const CustomText({Key? key ,this.addSeparator ,this.multiLine ,this.letterSpace,required this.text , this.isShadow ,required this.textStyle, this.textFontWight , this.dollarSign , this.specialPrice , this.textColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
      ( addSeparator ?? false )? (dollarSign ?? false) ? "\$${NumberFormat.decimalPattern().format(int.parse(text))}":NumberFormat.compact().format(int.parse(text)):
       (dollarSign ?? false) ? "\$$text":text ,
-      overflow: TextOverflow.ellipsis,
+      overflow: (multiLine ?? false)? TextOverflow.visible:TextOverflow.ellipsis,
+      // textScaleFactor: 1.0,
       style: textStyle?.copyWith(
 
-       letterSpacing: letterSpace,
+       letterSpacing: letterSpace ??0,
           decoration: (specialPrice ?? false )? TextDecoration.lineThrough : null,
            color: textColor ?? textStyle?.color,
            fontVariations:textFontWight != null ? [
