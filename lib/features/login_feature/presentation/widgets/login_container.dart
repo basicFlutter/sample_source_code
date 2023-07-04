@@ -9,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/core/widgets/check_box_with_text.dart';
+import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_divider_with_text.dart';
 import 'package:new_panel/core/widgets/custom_error_widget.dart';
 import 'package:new_panel/core/widgets/custom_space.dart';
