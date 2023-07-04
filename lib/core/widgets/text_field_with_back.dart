@@ -4,6 +4,7 @@ import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/custom_input.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
+
 class TextFieldWithBack extends StatefulWidget {
   const TextFieldWithBack({Key? key ,
     required this.controller ,
@@ -47,55 +48,67 @@ class _TextFieldWithBackState extends State<TextFieldWithBack> {
   @override
   Widget build(BuildContext context) {
     return Container(
-
-      height: 38.h,
-
-      decoration: BoxDecoration(
-      color: Theme.of(context).brightness== Brightness.light ? AppColors.input  : AppColors.inputDark,
-        borderRadius: BorderRadius.all(Radius.circular(10.r)),
-
-        boxShadow: [
-
-          Theme.of(context).brightness == Brightness.light ?AppColors.inputShadow :AppColors.inputShadowDark
-
-        ],
-      ),
-      child:
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      height: 73.h,
+      // color: Colors.green,
+      child: Stack(
         children: [
+          Container(
 
-             SizedBox(width: 12.w),
-          if(widget.prefixText!= null )
-            CustomText(text: widget.prefixText!,
-            textStyle: Theme.of(context).textTheme.displayMedium,
-            textFontWight: TextFontWight.semiBold,
-              letterSpace: 0.5,
-              textColor: Theme.of(context).primaryColor,
-          ) ,
-          if(widget.prefixText!= null )  SizedBox(width: 2.w),
-          if(widget.hasSeparator??false)
-            Icon( Icons.attach_money,
-              color: Theme.of(context).primaryColor,
-              size: 16.h,
+            height: 45.h,
+
+            decoration: BoxDecoration(
+            color: Theme.of(context).brightness== Brightness.light ? AppColors.input  : AppColors.inputDark,
+              borderRadius: BorderRadius.all(Radius.circular(10.r)),
+
+              boxShadow: [
+
+                Theme.of(context).brightness == Brightness.light ?AppColors.inputShadow :AppColors.inputShadowDark
+
+              ],
             ),
 
-          Expanded(
-            child: CustomInput(
-              inputController: widget.controller,
-              hint: widget.hint,
-              keyboardType: widget.textInputType,
-              readOnly: widget.readOnly,
-              isPhone: widget.isPhone,
-              isRequired: widget.isRequired,
-              maxLines: widget.maxLines,
-              maxLength: widget.maxLength,
-              separator: widget.hasSeparator,
-              suffixText: widget.suffixText,
+
+          ),
+          Padding(
+            padding:  EdgeInsets.only(top: 6.h),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+
+                SizedBox(width: 12.w),
+                if(widget.prefixText!= null )
+                  CustomText(text: widget.prefixText!,
+                    textStyle: Theme.of(context).textTheme.displayMedium,
+                    textFontWight: TextFontWight.semiBold,
+                    letterSpace: 0.5,
+                    textColor: Theme.of(context).primaryColor,
+                  ) ,
+                if(widget.prefixText!= null )  SizedBox(width: 2.w),
+                if(widget.hasSeparator??false)
+                  Icon( Icons.attach_money,
+                    color: Theme.of(context).primaryColor,
+                    size: 16.h,
+                  ),
+
+                Expanded(
+                  child: CustomInput(
+                    inputController: widget.controller,
+                    hint: widget.hint,
+                    keyboardType: widget.textInputType,
+                    readOnly: widget.readOnly,
+                    isPhone: widget.isPhone,
+                    isRequired: widget.isRequired,
+                    maxLines: widget.maxLines,
+                    maxLength: widget.maxLength,
+                    separator: widget.hasSeparator,
+                    suffixText: widget.suffixText,
 
 
+                  ),
+                )
+              ],
             ),
-          )
+          ),
         ],
       ),
     );
