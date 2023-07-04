@@ -1,7 +1,7 @@
 
-import 'package:new_panel/core/exceptions/error_model.dart';
 
-import '../../../../../core/exceptions/failure.dart';
+
+import 'package:new_panel/core/exceptions/failure.dart';
 
 abstract class LoginStatus {}
 

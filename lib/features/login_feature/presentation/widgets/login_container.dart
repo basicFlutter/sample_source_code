@@ -7,24 +7,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_panel/core/constants/app_images.dart';
-import 'package:new_panel/core/transition_animation/TransitionAnimation.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
-import 'package:new_panel/core/widgets/active_button.dart';
 import 'package:new_panel/core/widgets/check_box_with_text.dart';
-import 'package:new_panel/core/widgets/custom_body.dart';
+import 'package:new_panel/core/widgets/custom_divider_with_text.dart';
 import 'package:new_panel/core/widgets/custom_error_widget.dart';
-import 'package:new_panel/core/widgets/custom_input.dart';
 import 'package:new_panel/core/widgets/custom_space.dart';
-import 'package:new_panel/core/widgets/de_active_button.dart';
+import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/large_title.dart';
 import 'package:new_panel/core/widgets/login_button.dart';
 import 'package:new_panel/core/widgets/login_google_button.dart';
 import 'package:new_panel/core/widgets/text_field_with_back.dart';
+import 'package:new_panel/features/filter_inventory_page/presentation/widgets/title_input.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
-import 'package:new_panel/features/theme_switcher/presentation/manager/theme_switcher_bloc.dart';
-import 'package:new_panel/main.dart';
 
-import '../../../../core/widgets/custom_divider_with_text.dart';
+import 'package:new_panel/main.dart';
 import '../manager/login_bloc.dart';
 import '../manager/status/login_status.dart';
 
@@ -88,63 +84,78 @@ class _LoginContainerState extends State<LoginContainer> {
           builder: (context, state) {
             return Container(
               width: 1.sw,
-              height: 850.h,
-              child: Form(
-                key: formKey,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      _title(),
-                      CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is FailedLoginStatus ? true : false  , iconSrc: AppImages.testSvg) ,
+              height: 926.h,
+              decoration: const BoxDecoration(
 
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      SizedBox(
-                        width: 172.w,
-                        child: TextFieldWithBack(
-                          controller: userNameController,
-                          textInputType: TextInputType.text,
-                          hint: "login",
+                image: DecorationImage(
+                  image: AssetImage("assets/images/login_bacl.png"),
+                  fit: BoxFit.cover
+                )
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CustomContainer(
+                    width: 1.sw,
+                    height: 470.h,
+                    color: Colors.white,
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(30.r), topRight: Radius.circular(30.r)),
+                    // margin: EdgeInsets.only( bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
 
-                        ),
-                      ),
-                      // CustomInput(
-                      //   inputController: userNameController,
-                      //   // label: "Username",
-                      //   isRequired: true,
-                      // ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      SizedBox(
-                        width: 172.w,
-                        child: TextFieldWithBack(
-                          controller: passwordController,
-                          textInputType: TextInputType.text,
-                          hint: "Password",
+                          SizedBox(
+                            height: 24.3.h,
+                          ),
+                          _title(),
+                          CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is FailedLoginStatus ? true : false  , iconSrc: AppImages.testSvg) ,
 
-                        ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          TitleInput(
+                            title: "User Name",
+
+                            child: TextFieldWithBack(
+                              controller: userNameController,
+                              textInputType: TextInputType.text,
+                              hint: "User Name",
+                              // isRequired: true,
+
+                            ),
+                          ),
+
+
+                          TitleInput(
+                            title: "Password",
+
+
+                            child: TextFieldWithBack(
+                              controller: passwordController,
+                              textInputType: TextInputType.text,
+                              hint: "Password",
+
+                              // isRequired: true,
+
+                            ),
+                          ),
+
+                          _rememberAndForgetPass(),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          _buttons(context, state),
+                          CustomVerticalSpace(space: 18.h,) ,
+                          _registerButton(context),
+                        ],
                       ),
-                      // CustomInput(
-                      //   inputController: passwordController,
-                      //
-                      //   // label: "Password",
-                      //   isRequired: true,
-                      // ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      _rememberAndForgetPass(),
-                      SizedBox(
-                        height: 18.h,
-                      ),
-                      _buttons(context, state),
-                      CustomVerticalSpace(space: 18.h,) ,
-                      _registerButton(context),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             );
           },
@@ -240,9 +251,7 @@ class _LoginContainerState extends State<LoginContainer> {
           SizedBox(
             width: 8.w,
           ),
-          const LargeTitle(
-            text: "Login",
-          )
+          CustomText(text: "Login", textStyle: Theme.of(context).textTheme.labelLarge , textFontWight: TextFontWight.bold,)
         ],
       ),
     );
@@ -268,11 +277,15 @@ class _LoginContainerState extends State<LoginContainer> {
           },
           text: "Login",
         ),
-         CustomVerticalSpace(space: 18.h,),
+         SizedBox(
+           height: 10.h,
+         ),
         const CustomDividerWithText(
           text: 'OR',
         ),
-        CustomVerticalSpace(space: 18.h,),
+        SizedBox(
+          height: 10.h,
+        ),
         LoginGoogleButton(
             isLoading: state.loginStatus is LoadingGoogleStatus ? true : false,
             onTap: () {

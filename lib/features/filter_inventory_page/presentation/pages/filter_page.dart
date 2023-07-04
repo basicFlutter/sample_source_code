@@ -10,9 +10,7 @@ import 'package:new_panel/core/suggestions/presentation/manager/status/get_body_
 import 'package:new_panel/core/suggestions/presentation/manager/status/get_color_status.dart';
 import 'package:new_panel/core/suggestions/presentation/manager/suggestion_bloc.dart';
 import 'package:new_panel/core/widgets/appBar.dart';
-import 'package:new_panel/core/widgets/custom_body.dart';
 import 'package:new_panel/core/widgets/custom_body_with_bottomNavigation.dart';
-import 'package:new_panel/core/widgets/custom_dropdown.dart';
 import 'package:new_panel/core/widgets/odometer_input_title.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:new_panel/core/widgets/simpleDropDown.dart';
@@ -20,7 +18,6 @@ import 'package:new_panel/core/widgets/simple_suggestion.dart';
 import 'package:new_panel/core/widgets/text_field_with_back.dart';
 import 'package:new_panel/features/filter_inventory_page/presentation/widgets/slider_price.dart';
 import 'package:new_panel/features/filter_inventory_page/presentation/widgets/title_input.dart';
-import 'package:new_panel/main.dart';
 
 
 class FilterPage extends StatefulWidget {
@@ -136,6 +133,7 @@ class _FilterPageState extends State<FilterPage> {
                         ),
                         TitleInput(
                           title: "Total Cost",
+                          marginTop: 0,
                           child: Row(
                             children: [
                               SizedBox(
@@ -246,6 +244,7 @@ class _FilterPageState extends State<FilterPage> {
                           builder: (context, state) {
                             return TitleInput(
                                 title: "Body Style",
+
                                 child: SimpleDropDown(
                                   itemList: bodyStyleList,
                                   onSelected: (dropDownValue){
@@ -276,6 +275,7 @@ class _FilterPageState extends State<FilterPage> {
                           builder: (context, state) {
                             return TitleInput(
                                 title: "Color",
+                                marginTop: 35.h,
                                 child: SimpleSuggestion(
                                   suggestionsList: colorList,
                                   controller: colorController,
