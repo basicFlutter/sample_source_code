@@ -9,7 +9,7 @@ class TextFieldWithBack extends StatefulWidget {
   const TextFieldWithBack({Key? key ,
     required this.controller ,
     this.textInputType,
-     this.suffixIcon,
+    this.suffixIcon,
     this.maxLength,
     this.readOnly,
     this.hasEmailFormat,
@@ -21,11 +21,12 @@ class TextFieldWithBack extends StatefulWidget {
     this.prefixText,
     this.hint,
     this.isPhone,
-    this.suffixText
+    this.suffixText,
+    this.readOnlyText
   }) : super(key: key);
 
- final TextEditingController controller ;
- final TextInputType? textInputType;
+  final TextEditingController controller ;
+  final TextInputType? textInputType;
   final int? maxLines;
   final bool? hasSeparator;
   final bool? isRequired;
@@ -39,6 +40,7 @@ class TextFieldWithBack extends StatefulWidget {
   final bool? hasEmailFormat;
   final Color? prefixIconColor;
   final CustomText? suffixText;
+  final String? readOnlyText;
 
   @override
   State<TextFieldWithBack> createState() => _TextFieldWithBackState();
@@ -57,7 +59,7 @@ class _TextFieldWithBackState extends State<TextFieldWithBack> {
             height: 45.h,
 
             decoration: BoxDecoration(
-            color: Theme.of(context).brightness== Brightness.light ? AppColors.input  : AppColors.inputDark,
+              color: Theme.of(context).brightness== Brightness.light ? AppColors.input  : AppColors.inputDark,
               borderRadius: BorderRadius.all(Radius.circular(10.r)),
 
               boxShadow: [
@@ -70,7 +72,7 @@ class _TextFieldWithBackState extends State<TextFieldWithBack> {
 
           ),
           Padding(
-            padding:  EdgeInsets.only(top: 6.h),
+            padding:  EdgeInsets.only(top: (widget.readOnly??false) ? 0 : 6.h),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -81,7 +83,7 @@ class _TextFieldWithBackState extends State<TextFieldWithBack> {
                     textStyle: Theme.of(context).textTheme.displayMedium,
                     textFontWight: TextFontWight.semiBold,
                     letterSpace: 0.5,
-                    textColor: Theme.of(context).primaryColor,
+                    textColor: Theme.of(context).brightness == Brightness.light ? AppColors.secondary  : AppColors.secondaryDark,
                   ) ,
                 if(widget.prefixText!= null )  SizedBox(width: 2.w),
                 if(widget.hasSeparator??false)
@@ -91,7 +93,23 @@ class _TextFieldWithBackState extends State<TextFieldWithBack> {
                   ),
 
                 Expanded(
-                  child: CustomInput(
+                  child: (widget.readOnly ?? false) ?
+                  SizedBox(
+                    height: 45.h,
+                    // color: Colors.red,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomText(text:widget.readOnlyText!, textStyle: Theme.of(context).textTheme.labelSmall,
+                         addSeparator: widget.hasSeparator,
+                          textFontWight: TextFontWight.medium,
+                          textColor: Theme.of(context).primaryColor,
+                        
+                        ),
+                      ],
+                    ),
+                  ) :CustomInput(
                     inputController: widget.controller,
                     hint: widget.hint,
                     keyboardType: widget.textInputType,

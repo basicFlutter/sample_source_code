@@ -9,6 +9,7 @@ import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/icon_gradient.dart';
 
 
+
 class SimpleDropDown extends StatefulWidget {
   SimpleDropDown({Key? key , required this.itemList , required this.onSelected}) : super(key: key);
   final List<DropDownModel> itemList;
@@ -58,7 +59,7 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
 
             dropdownStyleData: DropdownStyleData(
               offset: Offset(0, -5.h),
-              maxHeight: 114.h,
+              maxHeight: 180.h,
 
               padding:  EdgeInsets.symmetric(horizontal: 0 , vertical: 9.h),
               decoration: BoxDecoration(
@@ -81,12 +82,12 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
             ),
 
             menuItemStyleData:  MenuItemStyleData(
-                height: 33.h,
+                height: 40.h,
                 padding: EdgeInsets.only(left: 10.w,),
                 selectedMenuItemBuilder: (context , child){
                   return Container(
 
-                    height: 33.h,
+                    height: 40.h,
                     decoration: BoxDecoration(
                         color: Theme.of(context).brightness == Brightness.light ? AppColors.input : AppColors.inputDark,
                         borderRadius: BorderRadius.all(Radius.circular(5.r))
@@ -98,10 +99,11 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
 
                         CustomText(
                           text: dropDownValue?.title??"",
-                          textStyle: Theme.of(context).textTheme.displayMedium,
+                          textStyle: Theme.of(context).textTheme.labelSmall,
                           textFontWight: TextFontWight.medium,
                           // textColor: Theme.of(context).primaryColor,
                           textColor: Theme.of(context).primaryColor,
+
 
                         )
 
@@ -136,7 +138,8 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
                         text: item.title,
                         textFontWight: TextFontWight.medium,
                         textStyle: Theme.of(context).textTheme.labelSmall,
-                        letterSpace: 0.05,
+                        textColor: Theme.of(context).primaryColor
+
 
                       )
 
@@ -162,12 +165,18 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
                 child:
 
                 Container(
+                  height: 40.h,
                   margin: EdgeInsets.symmetric(horizontal: 15.w),
 
-                  child: CustomText(
-                    text: item.title,
-                    textStyle: Theme.of(context).textTheme.displayLarge,
-                    textFontWight: TextFontWight.medium,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomText(
+                        text: item.title,
+                        textStyle: Theme.of(context).textTheme.labelSmall,
+                        textFontWight: TextFontWight.medium,
+                      ),
+                    ],
                   ),
                 )
 

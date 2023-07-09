@@ -140,6 +140,11 @@ flutter:
         - asset: assets/fonts/PublicSans-VariableFont_wght.ttf
           weight: 400
 
+    - family: heebo-variable
+      fonts:
+        - asset: assets/fonts/Heebo-VariableFont_wght.ttf
+          weight: 400
+
 
     - family: PublicSans
       fonts:

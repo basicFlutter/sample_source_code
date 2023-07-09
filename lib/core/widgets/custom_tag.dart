@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
+
 import '../constants/app_dimensions.dart';
 import '../constants/app_styles.dart';
 
@@ -48,7 +49,7 @@ class CustomTag extends StatelessWidget {
           ),
           CustomText(text: tagString,
             textStyle:
-          Theme.of(context).textTheme.bodyMedium,
+          Theme.of(context).textTheme.bodyLarge,
             textColor: Theme.of(context).brightness == Brightness.light ? AppColors.secondary : AppColors.secondary,
             textFontWight: TextFontWight.regular,
 

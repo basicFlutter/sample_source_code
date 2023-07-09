@@ -11,7 +11,7 @@ class Style {
 
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
-    fontFamily: "publicSans-variable",
+    fontFamily: "heebo-variable",
     primaryColor: AppColors.primary,
 
     colorScheme: const ColorScheme(
@@ -112,7 +112,6 @@ class Style {
       selectedLabelStyle: TextStyle(
           color: AppColors.hint,
           fontSize:11.sp,
-          fontFamily: "publicSans-variable",
           fontVariations: const [
             FontVariation(
                 'wght', 600
@@ -122,7 +121,6 @@ class Style {
       unselectedLabelStyle: TextStyle(
         color: AppColors.white,
         fontSize: 12.sp,
-          fontFamily: "publicSans-variable",
           fontVariations: const [
             FontVariation(
                 'wght', 400

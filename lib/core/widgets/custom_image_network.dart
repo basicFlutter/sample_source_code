@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/constants/constants.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/gradeint_text.dart';
+
+import '../constants/app_colors.dart';
+
+
 
 class CustomImageNetwork extends StatelessWidget {
   const CustomImageNetwork({Key? key , required this.url , this.boxFit , this.showAge , this.age}) : super(key: key);
@@ -49,7 +52,7 @@ class CustomImageNetwork extends StatelessWidget {
             child: Center(
               child: GradientText(
                 text: age!.toString(),
-                textStyle: Theme.of(context).textTheme.bodyLarge,
+                textStyle: Theme.of(context).textTheme.displayMedium,
                 textFontWight: TextFontWight.bold,
                 gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientBlue : AppColors.gradientBlueDark,
               ),

@@ -5,6 +5,8 @@ import 'package:new_panel/core/enums/app_enums.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/custom_toggle_odometer_type.dart';
 import 'package:new_panel/core/widgets/text_field_with_back.dart';
+import 'package:new_panel/features/filter_inventory_page/presentation/widgets/title_input.dart';
+
 
 class OdometerInputTitle extends StatefulWidget {
    OdometerInputTitle({Key? key  , required this.onChangeOdometerType , required this.odometerFromController , required this.odometerToController}) : super(key: key);
@@ -28,14 +30,19 @@ class _OdometerInputTitleState extends State<OdometerInputTitle> {
         SizedBox(height: 35.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            CustomText(
-              text: "Odometer",
-              textStyle: Theme.of(context).textTheme.labelLarge ,
-              textFontWight: TextFontWight.semiBold,
-              letterSpace: 0.05,
+            TitleInput(
+              title: "Odometer",
+              child: null,
+              marginTop: 0.h,
             ),
+            // CustomText(
+            //   text: "Odometer",
+            //   textStyle: Theme.of(context).textTheme.labelSmall ,
+            //   textFontWight: TextFontWight.bold,
+            //   letterSpace: 0.05,
+            // ),
             CustomToggleOdometerType(
               odometerType: odometerType,
               onChange: (OdometerType odometerType){
@@ -49,7 +56,7 @@ class _OdometerInputTitleState extends State<OdometerInputTitle> {
 
           ],
         ),
-        SizedBox(height: 15.h),
+        SizedBox(height: 8.h),
         Row(
           children: [
             SizedBox(

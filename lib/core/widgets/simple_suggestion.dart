@@ -45,12 +45,13 @@ class _SimpleSuggestionState extends State<SimpleSuggestion> {
       // Add the preceding non-matching text
       if (index > start) {
         spans.add(TextSpan(text: text.substring(start, index) ,
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
               fontVariations: [
                 const FontVariation(
-                    'wght', 400
+                    'wght', 500
                 )
               ],
+              letterSpacing: 0,
               overflow: TextOverflow.fade,)
         ),
 
@@ -62,12 +63,13 @@ class _SimpleSuggestionState extends State<SimpleSuggestion> {
       spans.add(
         TextSpan(
             text: text.substring(index, index + searchQuery.length),
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.w700 ,
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
             fontVariations: [
               const FontVariation(
                   'wght', 600
               )
             ],
+              letterSpacing: 0,
             color: Theme.of(context).brightness == Brightness.light ? AppColors.orange :AppColors.orangeDark,overflow: TextOverflow.fade,)
         ),
       );
@@ -79,12 +81,13 @@ class _SimpleSuggestionState extends State<SimpleSuggestion> {
     // Add the remaining non-matching text
     if (start < text.length) {
       spans.add(TextSpan(text: text.substring(start, text.length) ,
-          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
             fontVariations: [
               const FontVariation(
-                  'wght', 400
-              )
+                  'wght', 500
+              ),
             ],
+            letterSpacing: 0,
             overflow: TextOverflow.fade,)
 
       ));
@@ -117,7 +120,7 @@ class _SimpleSuggestionState extends State<SimpleSuggestion> {
     return Container(
       height: 45.h,
 
-         padding: EdgeInsets.only(top: 2.h),
+      //    padding: EdgeInsets.only(left:  12.w,right: 12.w),
       decoration: BoxDecoration(
         color: Theme.of(context).brightness== Brightness.light ? AppColors.input  : AppColors.inputDark,
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
@@ -164,8 +167,14 @@ class _SimpleSuggestionState extends State<SimpleSuggestion> {
               focusNode: focusNode,
 
               style:Theme.of(context).textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 0.5
+                fontVariations: [
+                  FontVariation(
+                      'wght', 500
+                  )
+                ],
+                letterSpacing: 0,
+                color: Theme.of(context).primaryColor
+
               ),
               scrollPadding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom*2),
               decoration:  InputDecoration(
@@ -178,7 +187,7 @@ class _SimpleSuggestionState extends State<SimpleSuggestion> {
                             'wght', 400
                         )
                       ],
-                      letterSpacing: 0.5,
+                      letterSpacing: 0,
                       color: Theme.of(context).brightness == Brightness.light ?AppColors.secondary2.withOpacity(0.6) :AppColors.secondary2Dark
                   ),
                   floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -199,62 +208,67 @@ class _SimpleSuggestionState extends State<SimpleSuggestion> {
           optionsViewBuilder: (BuildContext context,
               AutocompleteOnSelected<String> onSelected,
               Iterable<String> options) {
-            return Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                  height: 134.h,
-                  width: 358.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                      color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
-                      boxShadow: [
-                        AppColors.boxShadow
-                      ]
-                  ),
-
-                  // width: Get.width*0.4,
-                  child:ListView.separated(
-                    padding: EdgeInsets.only(top: 0),
-
-                    separatorBuilder: (_, __) => Container(height: 0.5,
-                        margin: EdgeInsets.symmetric(horizontal: 15.w),
-                        color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive: AppColors.deActiveDark
-
+            return Padding(
+              padding:  EdgeInsets.only(top: 8.h),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                    height: 134.h,
+                    width: 358.w,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(8.r)),
+                        color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
+                        boxShadow: [
+                          AppColors.boxShadow
+                        ]
                     ),
-                    itemBuilder: (BuildContext context, int index) {
-                      String suggestion = widget.suggestionsList[index];
-                      return Material(
-                        child: InkWell(
-                          onTap: (){
-                            onSelected(suggestion);
-                          },
 
-                          child: Container(
-                            height: 44.h,
-                            width: 358.w,
+                    // width: Get.width*0.4,
+                    child:ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.only(top: 0),
+
+                      separatorBuilder: (_, __) => Container(height: 0.5,
+                          margin: EdgeInsets.symmetric(horizontal: 15.w),
+                          color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive: AppColors.deActiveDark
+
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        String suggestion = widget.suggestionsList[index];
+                        return Material(
+                          child: InkWell(
+                            onTap: (){
+                              onSelected(suggestion);
+                            },
+
+                            child: Container(
+                              height: 44.h,
+                              width: 358.w,
+                              color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
 
 
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding:  EdgeInsets.only(left: 25.w),
-                                  child: RichText(
-                                    text: TextSpan(
-                                      children: _getHighlightedTextSpans( widget.characters,suggestion,context),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding:  EdgeInsets.only(left: 25.w),
+                                    child: RichText(
+                                      text: TextSpan(
+                                        children: _getHighlightedTextSpans( widget.characters,suggestion,context),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
 
-                    itemCount: widget.suggestionsList.length,
-                  )
+                      itemCount: widget.suggestionsList.length,
+                    )
+                ),
               ),
             );
           },

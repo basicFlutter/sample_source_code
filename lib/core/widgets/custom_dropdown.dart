@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/models/drop_down_model.dart';
-import 'package:new_panel/core/widgets/custom_text.dart';
+
+import '../constants/app_colors.dart';
+import 'custom_text.dart';
+
 
 class CustomDropDown extends StatefulWidget {
   const CustomDropDown({Key? key , required this.itemList}) : super(key: key);
@@ -62,20 +64,20 @@ class _CustomDropDownState extends State<CustomDropDown> {
                     BoxShadow(
                         color: Theme.of(context).colorScheme.primary,
                         spreadRadius: 0.1,
-                        offset: const Offset(0, -2))
+                        offset: const Offset(0, 4))
                   ]
               ),
               elevation: 8,
             ),
 
             menuItemStyleData:  MenuItemStyleData(
-                height: 26.h,
+                height: 35.h,
 
-                padding: EdgeInsets.only(left: 10.w),
+                padding: EdgeInsets.only(left: 10.w,top: 0),
                 selectedMenuItemBuilder: (context , child){
                   return Container(
                     width: 150.w,
-                    height: 26.h,
+                    height: 35.h,
                     decoration: BoxDecoration(
                         color: Theme.of(context).brightness == Brightness.light ? AppColors.input : AppColors.inputDark,
                         borderRadius: BorderRadius.all(Radius.circular(5.r))
@@ -88,8 +90,9 @@ class _CustomDropDownState extends State<CustomDropDown> {
                         ),
                         CustomText(
                             text: dropDownValue?.title??"",
-                            textStyle: Theme.of(context).textTheme.displayMedium,
+                            textStyle: Theme.of(context).textTheme.displayLarge,
                           textFontWight: TextFontWight.medium,
+                          textColor: Theme.of(context).primaryColor,
                         )
 
                       ],
@@ -114,7 +117,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
                   return Container(
                     alignment: AlignmentDirectional.centerStart,
 
-                    padding:  EdgeInsets.only(left: 5.w),
+                    padding:  EdgeInsets.only(left: 10.w),
 
                     child: CustomText(
                       textFontWight: TextFontWight.regular,
@@ -145,7 +148,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
 
                 CustomText(
                   text: item.title,
-                  textStyle: Theme.of(context).textTheme.displayMedium,
+                  textStyle: Theme.of(context).textTheme.displayLarge,
                   textFontWight: TextFontWight.regular,
                 )
 

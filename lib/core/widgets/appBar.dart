@@ -4,6 +4,8 @@ import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/circular_button.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
+
+
 class AppBarCustom extends StatelessWidget {
   const AppBarCustom({Key? key , this.title , this.actions , this.height , this.onTapBack}) : super(key: key);
   final String? title;
@@ -17,6 +19,7 @@ class AppBarCustom extends StatelessWidget {
     return    Container(
       width: screenSize.width,
       height: height,
+
 
       margin: EdgeInsets.only(top: 12.h),
       child: Row(
@@ -39,15 +42,20 @@ class AppBarCustom extends StatelessWidget {
                 color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
               )),
 
+          if(title != null)
           Expanded(
               child: Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding:  EdgeInsets.only(top: 5.h),
-                    child: CustomText(text: title!, textStyle: Theme.of(context).textTheme.titleLarge , textFontWight: TextFontWight.bold,),
+                    child: CustomText(
+                      text: title!,
+                      textStyle: Theme.of(context).textTheme.titleLarge ,
+                      textFontWight: TextFontWight.bold,
+                    ),
                   ))),
-          if(actions!= null)
-            actions!
+          if(actions!= null) actions!
+
 
         ],
       ),

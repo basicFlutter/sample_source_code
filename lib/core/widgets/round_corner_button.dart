@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/widgets/custom_loading.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
 
@@ -20,7 +21,8 @@ class RoundCornerButton extends StatelessWidget {
   final String? svgIconPath;
   final double? iconSize;
   final double? paddingBetweenIconAndText;
-  const RoundCornerButton({Key? key,this.textStyle,required this.onTap,this.paddingBetweenIconAndText ,this.iconSize ,this.svgIconPath,this.gradientBackGround,this.textFontWight,required this.width ,required this.title ,this.icon ,required this.height  , this.radius}) : super(key: key);
+  final bool? isLoading;
+  const RoundCornerButton({Key? key,this.textStyle,required this.onTap,this.isLoading,this.paddingBetweenIconAndText ,this.iconSize ,this.svgIconPath,this.gradientBackGround,this.textFontWight,required this.width ,required this.title ,this.icon ,required this.height  , this.radius}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,12 +65,17 @@ class RoundCornerButton extends StatelessWidget {
                     child: SvgPicture.asset(svgIconPath!)),
               if(svgIconPath != null)
                 SizedBox(width: 6.w),
-              CustomText(
+              if(isLoading ?? false)
+                 SizedBox(
+                    height: height*0.6,
+                    child: const CustomLoading(lightColor: true,)),
+              if((isLoading ?? false) == false)
+                CustomText(
                   textFontWight: textFontWight ?? TextFontWight.bold,
                   text: title,
                   isShadow: true,
                   textColor: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
-                  textStyle: textStyle ?? Theme.of(context).textTheme.displayLarge)
+                  textStyle: textStyle ?? Theme.of(context).textTheme.labelMedium)
             ],
           ),
         ),

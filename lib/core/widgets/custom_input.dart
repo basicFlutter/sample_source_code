@@ -1,14 +1,10 @@
 
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
-import 'package:new_panel/main.dart';
-
-import '../constants/app_dimensions.dart';
 import '../utils/app_input_utils.dart';
 
 class CustomInput extends StatefulWidget {
@@ -70,7 +66,7 @@ class _CustomInputState extends State<CustomInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField( controller: widget.inputController,
-      inputFormatters: widget.separator ?? false
+      inputFormatters: (widget.separator ?? false)
           ? [ThousandsSeparatorInputFormatter()]
           : null,
       readOnly: widget.readOnly ?? false,
@@ -81,8 +77,13 @@ class _CustomInputState extends State<CustomInput> {
      scrollPadding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom*1.1),
 
       style:Theme.of(context).textTheme.labelSmall?.copyWith(
-        fontWeight: FontWeight.w900,
-        letterSpacing: 0.5
+          fontVariations: [
+            FontVariation(
+                'wght', 500
+            )
+          ],
+        letterSpacing: 0,
+        color: Theme.of(context).primaryColor
       ),
       autocorrect: false,
       validator: widget.hasEmailFormat ?? false
@@ -161,6 +162,8 @@ class _CustomInputState extends State<CustomInput> {
           floatingLabelBehavior:
           widget.floatingLabelBehavior ?? FloatingLabelBehavior.never,
 
+
+
         hintText: widget.hint,
           hintStyle: Theme.of(context).textTheme.labelSmall?.copyWith(
               fontVariations: [
@@ -168,7 +171,7 @@ class _CustomInputState extends State<CustomInput> {
                     'wght', 400
                 )
               ],
-              letterSpacing: 0.5,
+              letterSpacing: 0,
             color: Theme.of(context).brightness == Brightness.light ?AppColors.secondary2.withOpacity(0.6) :AppColors.secondary2Dark
           ),
           errorStyle: Theme.of(context).inputDecorationTheme.errorStyle,
