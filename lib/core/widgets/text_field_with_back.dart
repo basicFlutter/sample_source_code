@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/widgets/back_textField.dart';
 import 'package:new_panel/core/widgets/custom_input.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
@@ -47,6 +48,9 @@ class TextFieldWithBack extends StatefulWidget {
 }
 
 class _TextFieldWithBackState extends State<TextFieldWithBack> {
+  bool hasError = false;
+  final GlobalKey<BackTextFieldState> backTextFieldKey = GlobalKey<BackTextFieldState>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,23 +58,27 @@ class _TextFieldWithBackState extends State<TextFieldWithBack> {
       // color: Colors.green,
       child: Stack(
         children: [
-          Container(
+          BackTextField(
+              key: backTextFieldKey,
 
-            height: 45.h,
-
-            decoration: BoxDecoration(
-              color: Theme.of(context).brightness== Brightness.light ? AppColors.input  : AppColors.inputDark,
-              borderRadius: BorderRadius.all(Radius.circular(10.r)),
-
-              boxShadow: [
-
-                Theme.of(context).brightness == Brightness.light ?AppColors.inputShadow :AppColors.inputShadowDark
-
-              ],
-            ),
-
-
-          ),
+              isRequired: widget.isRequired),
+          // Container(
+          //
+          //   height: 45.h,
+          //
+          //   decoration: BoxDecoration(
+          //     color: Theme.of(context).brightness== Brightness.light ? AppColors.input  : AppColors.inputDark,
+          //     borderRadius: BorderRadius.all(Radius.circular(10.r)),
+          //
+          //     boxShadow: [
+          //
+          //       Theme.of(context).brightness == Brightness.light ?AppColors.inputShadow :AppColors.inputShadowDark
+          //
+          //     ],
+          //   ),
+          //
+          //
+          // ),
           Padding(
             padding:  EdgeInsets.only(top: (widget.readOnly??false) ? 0 : 6.h),
             child: Row(
@@ -120,6 +128,36 @@ class _TextFieldWithBackState extends State<TextFieldWithBack> {
                     maxLength: widget.maxLength,
                     separator: widget.hasSeparator,
                     suffixText: widget.suffixText,
+                    hasEmailFormat: widget.hasEmailFormat,
+                    validateFunction: (validate)async{
+                      if(validate != null){
+
+
+                        hasError = true;
+                        backTextFieldKey.currentState?.hasError= true;
+
+                        Future.delayed(Duration.zero, () async {
+
+                          backTextFieldKey.currentState?.setState(() {
+                          });
+
+                        });
+                        // setState(() {
+                        //
+                        // });
+
+                      }else{
+
+                        hasError = false;
+                        backTextFieldKey.currentState?.hasError= false;
+                        Future.delayed(Duration.zero, () async {
+                          backTextFieldKey.currentState?.setState(() {
+
+                          });
+                        });
+
+                      }
+                    },
 
 
                   ),

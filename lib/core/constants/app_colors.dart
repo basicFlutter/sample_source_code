@@ -34,6 +34,14 @@ class AppColors {
   static const Color orangeDark = Color(0xffFF8147);
   static const Color backgroundCard = Color(0xffFEFEFE);
   static const Color backgroundCardDark = Color(0xffECF0F1);
+  static const Color errorLighter = Color(0xffFFE7D9);
+  static const Color errorLighterDark = Color(0xffFFE7D9);
+
+  static const Color errorDarker = Color(0xff7A0C2E);
+  static const Color errorDarkerDark = Color(0xff7A0C2E);
+
+  static const Color errorColor = Color(0xffFF0000);
+  static const Color errorColorDark = Color(0xffFF0000);
 
   static  Shadow shadow = Shadow(
     blurRadius: 4,
@@ -263,7 +271,7 @@ class AppColors {
   static const Color customLightGray = Color(0xffD9D9D9);
   static const Color unselectedColor = Color(0xff918686); // item navigationbar
   static const Color disableGrayColor = Color(0xff4F5962); // price
-  static const Color errorColor = Color(0xffCA0000);
+
   //static const Color white = Color(0xffFFFFFF);
   static const Color iconColorsOnPrimary = Color(0xffFFFFFF);
   static const Color displayLargeColor = Color(0xff0A0A0A);

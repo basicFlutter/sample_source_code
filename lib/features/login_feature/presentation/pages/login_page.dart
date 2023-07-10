@@ -16,12 +16,14 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: BlocProvider(
-        create: (context) => LoginBloc(loginUseCase: locator(), authGoogleUseCase: locator()),
-          child: LoginContainer()
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        body: BlocProvider(
+          create: (context) => LoginBloc(loginUseCase: locator(), authGoogleUseCase: locator())..add(CheckLoginRemember()),
+            child: const LoginContainer()
 
+        ),
       ),
     );
   }

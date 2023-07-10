@@ -18,6 +18,7 @@ class LoginMapModel {
   }
   String? _username;
   String? _password;
+
 LoginMapModel copyWith({  String? username,
   String? password,
 }) => LoginMapModel(  username: username ?? _username,
@@ -25,6 +26,12 @@ LoginMapModel copyWith({  String? username,
 );
   String? get username => _username;
   String? get password => _password;
+  set setUserName(String name) {
+   _username = name;
+  }
+  set setPassword(String pass) {
+    _password = pass;
+  }
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

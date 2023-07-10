@@ -22,7 +22,10 @@ class RoundCornerButton extends StatelessWidget {
   final double? iconSize;
   final double? paddingBetweenIconAndText;
   final bool? isLoading;
-  const RoundCornerButton({Key? key,this.textStyle,required this.onTap,this.isLoading,this.paddingBetweenIconAndText ,this.iconSize ,this.svgIconPath,this.gradientBackGround,this.textFontWight,required this.width ,required this.title ,this.icon ,required this.height  , this.radius}) : super(key: key);
+  final Color? backGroundColor;
+  final Color? textColor;
+
+  const RoundCornerButton({Key? key,this.textStyle,required this.onTap,this.textColor,this.backGroundColor,this.isLoading,this.paddingBetweenIconAndText ,this.iconSize ,this.svgIconPath,this.gradientBackGround,this.textFontWight,required this.width ,required this.title ,this.icon ,required this.height  , this.radius}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,8 @@ class RoundCornerButton extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(radius ?? 10.r)),
-            gradient: gradientBackGround ?? (Theme.of(context).brightness == Brightness.light ? AppColors.gradientOrange : AppColors.gradientOrangeDark)
+            color: backGroundColor,
+            gradient: backGroundColor== null ? gradientBackGround ?? (Theme.of(context).brightness == Brightness.light ? AppColors.gradientOrange : AppColors.gradientOrangeDark):null
         ),
         // padding: EdgeInsets.only(top: 7.h , bottom: 8.h),
         child:Container(
@@ -74,7 +78,7 @@ class RoundCornerButton extends StatelessWidget {
                   textFontWight: textFontWight ?? TextFontWight.bold,
                   text: title,
                   isShadow: true,
-                  textColor: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
+                  textColor: textColor ?? (Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark),
                   textStyle: textStyle ?? Theme.of(context).textTheme.labelMedium)
             ],
           ),

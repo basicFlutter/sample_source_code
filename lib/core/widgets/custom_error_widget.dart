@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/subtitle.dart';
+
 
 class CustomErrorWidget extends StatefulWidget {
   final String errorText ;
@@ -44,30 +47,38 @@ class _CustomErrorWidgetState extends State<CustomErrorWidget> {
             minHeight: 51.h,
           ),
           decoration: BoxDecoration(
-            color: Theme.of(context).errorColor.withOpacity(0.2),
-            borderRadius: BorderRadius.all(Radius.circular(8.r))
+              color: Theme.of(context).brightness == Brightness.light ? AppColors.errorLighter : AppColors.errorLighterDark,
+              borderRadius: BorderRadius.all(Radius.circular(8.r))
           ),
 
-          child: Row(children: [
-            Padding(
-              padding:  EdgeInsets.only(top: 13.w , bottom: 13.w,left: 16.h , right: 12.h),
-              child:  widget.iconSrc != null ?  SvgPicture.string(widget.iconSrc!) : SizedBox(
-                width: 20.w,
-                height: 20.w,
+          child: Row(
+            children: [
+              Padding(
+                padding:  EdgeInsets.only(top: 13.w , bottom: 13.w,left: 10.w),
+                child:  widget.iconSrc != null ?  SvgPicture.string(widget.iconSrc!) : SizedBox(
+                  width: 20.w,
+                  height: 20.w,
+                ),
+
               ),
 
-            ),
+              // Padding(
+              //   padding:  EdgeInsets.only(top: 13.w , bottom: 13.w,left: 16.h , right: 12.h),
+              //   child: Icon(Icons.error , color: Theme.of(context).errorColor),
+              // ) ,
+              Container(
+                  width: 300.w,
 
-            // Padding(
-            //   padding:  EdgeInsets.only(top: 13.w , bottom: 13.w,left: 16.h , right: 12.h),
-            //   child: Icon(Icons.error , color: Theme.of(context).errorColor),
-            // ) ,
-            Container(
-              width: 316.h,
-                padding: EdgeInsets.symmetric(vertical: 14.h),
+                  padding: EdgeInsets.symmetric(vertical: 14.h,horizontal: 10.w),
 
-                child: Subtitle(text: widget.errorText))
-          ],),
+                  child: CustomText(
+                    text: widget.errorText,
+                    multiLine: true,
+                    textStyle: Theme.of(context).textTheme.displaySmall,
+                    textColor: Theme.of(context).brightness == Brightness.light ? AppColors.errorDarker : AppColors.errorDarkerDark,
+                  )
+              )
+            ],),
         ),
       ),
     );

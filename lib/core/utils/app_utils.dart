@@ -1,28 +1,118 @@
+
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppUtils {
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showMessage(
       {String? title,
       required String message,
+
       required BuildContext context,
-      required bool isShowingError}) {
-    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        padding: EdgeInsets.all(10),
-        backgroundColor: isShowingError
-            ? Theme.of(context).errorColor
-            : Theme.of(context).hintColor,
-        content: Row(
-          children: [
-            Text(
-              message,
-             // style: AppStyles.body2,
+     }) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+
+
+        SnackBar(
+
+          dismissDirection: DismissDirection.up,
+        duration: const Duration(milliseconds: 1500),
+        // padding: EdgeInsets.all(10),
+
+        backgroundColor: Colors.transparent,
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.only(
+              bottom: 1.sh - 100,),
+        elevation: 0,
+        //     ? Theme.of(context).errorColor
+        //     : Theme.of(context).brightness == Brightness.light ? AppColors.active : AppColors.activeDark,
+        content:
+        Container(
+          width: 0.9.sw,
+         // height: 65.h,
+          decoration:  BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10.r)),
+            boxShadow: [
+              Theme.of(context).brightness == Brightness.light ? AppColors.boxShadowMenu : AppColors.boxShadowMenuDark
+            ],
+          ),
+          child: Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.r),
+              child: BackdropFilter(
+
+                filter: ImageFilter.blur(
+                  sigmaX: 2.0,
+                  sigmaY: 2.0,
+                ),
+                child: Material(
+                  type: MaterialType.transparency,
+
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.light ? Colors.white.withOpacity(0.6) : AppColors.whiteDark.withOpacity(0.8),
+
+                    ),
+                    width: 0.9.sw,
+                //    height: 65.h,
+
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(vertical: 10.h),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              children: [
+
+                                if(title!=null)
+                                SizedBox(
+                                  width: 0.85.sw,
+                                  child: CustomText(text: title,
+                                    textStyle: Theme.of(context).textTheme.labelLarge ,
+                                    textFontWight: TextFontWight.semiBold,
+                                    // textColor: Theme.of(context).brightness == Brightness.light ? AppColors.active : AppColors.activeDark,
+                                    textColor: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                SizedBox(
+                                  width: 0.85.sw,
+                                  child: CustomText(text: message,
+                                    textStyle: Theme.of(context).textTheme.labelSmall ,
+                                    textFontWight: TextFontWight.semiBold,
+                                    // textColor: Theme.of(context).brightness == Brightness.light ? AppColors.active : AppColors.activeDark,
+                                //    textColor: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ],
-        )));
+          ),
+        ),
+
+    ));
+
+
+
+
 
     // Fluttertoast.showToast(
     //   msg: message,
@@ -34,6 +124,9 @@ class AppUtils {
     //   fontSize: 16.0,
     // );
   }
+
+
+
 
   static void sendForCall({required String phone}) async {
     await launchUrl(Uri.parse("tel://$phone"));

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/widgets/custom_text.dart';
 
 class CustomDividerWithText extends StatelessWidget {
   final String text ;
@@ -14,16 +16,16 @@ class CustomDividerWithText extends StatelessWidget {
           child:  Container(
               margin: const EdgeInsets.only(left: 10.0, right: 20.0),
               child: Divider(
-                color: Theme.of(context).dividerColor,
+                color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive :AppColors.deActiveDark,
                 height: 36,
               )),
         ),
-        Text(text , style: Theme.of(context).textTheme.headlineSmall),
+        CustomText(text: text, textStyle: Theme.of(context).textTheme.displaySmall),
         Expanded(
           child:  Container(
               margin: const EdgeInsets.only(left: 20.0, right: 10.0),
               child: Divider(
-                color: Theme.of(context).dividerColor,
+                color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive :AppColors.deActiveDark,
                 height: 36,
               )),
         ),

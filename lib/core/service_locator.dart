@@ -4,6 +4,10 @@ import 'package:new_panel/core/suggestions/data/data_sources/remote/suggestions_
 import 'package:new_panel/core/suggestions/data/repositories/suggestions_repository_impl.dart';
 import 'package:new_panel/core/suggestions/domain/repositories/suggestions_rpository.dart';
 import 'package:new_panel/core/suggestions/domain/use_cases/suggestions_usecase.dart';
+import 'package:new_panel/features/forgotPassword_feature/data/data_sources/forgot_password_data_provider.dart';
+import 'package:new_panel/features/forgotPassword_feature/data/repositories/forgot_password_repostitory_impl.dart';
+import 'package:new_panel/features/forgotPassword_feature/domain/repositories/forgot_password_repository.dart';
+import 'package:new_panel/features/forgotPassword_feature/domain/use_cases/forgot_password_useCase.dart';
 import 'package:new_panel/features/inventory_page/domain/use_cases/get_whole_inventory_use_case.dart';
 import 'package:new_panel/features/login_feature/data/data_sources/login_remote_data.dart';
 import 'package:new_panel/features/login_feature/data/repositories/login_repository_imp.dart';
@@ -28,6 +32,7 @@ serviceLocator() async {
   locator.registerSingleton<InventoryRemoteData>(InventoryRemoteData());
   locator.registerSingleton<LoginRemoteData>(LoginRemoteData());
   locator.registerSingleton<SuggestionApiProvider>(SuggestionApiProvider());
+  locator.registerSingleton<ForgotPasswordDataProvider>(ForgotPasswordDataProvider());
 
 
   ///############################################## Repository #############################
@@ -40,7 +45,8 @@ serviceLocator() async {
 
   locator.registerSingleton<LoginRepository>(
       LoginRepositoryImp(loginRemoteData: locator()));
-
+  locator.registerSingleton<ForgotPasswordRepository>(
+      ForgotPasswordRepositoryImpl(forgotPasswordDataProvider: locator()));
   ///############################################## UseCase #############################
   locator.registerSingleton<SuggestionsUseCase>(
       SuggestionsUseCase(suggestionsRepository: locator()));
@@ -56,6 +62,9 @@ serviceLocator() async {
 
   locator.registerSingleton<GetWholeInventoryUseCase>(
       GetWholeInventoryUseCase(inventoryRepository: locator()));
+
+  locator.registerSingleton<ForgotPasswordUseCase>(
+      ForgotPasswordUseCase(forgotPasswordRepository: locator()));
 
 
   ///############################################## Bloc #############################

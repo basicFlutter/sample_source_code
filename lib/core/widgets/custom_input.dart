@@ -29,7 +29,7 @@ class CustomInput extends StatefulWidget {
   final String? hint;
   final bool? separator;
   final CustomText? suffixText;
-
+  Function(String?)? validateFunction;
 
   CustomInput(
       {Key? key,
@@ -52,7 +52,8 @@ class CustomInput extends StatefulWidget {
         this.isPhone,
         this.hint,
         this.separator,
-        this.suffixText
+        this.suffixText,
+        this.validateFunction
        })
       : super(key: key);
 
@@ -78,7 +79,7 @@ class _CustomInputState extends State<CustomInput> {
 
       style:Theme.of(context).textTheme.labelSmall?.copyWith(
           fontVariations: [
-            FontVariation(
+            const FontVariation(
                 'wght', 500
             )
           ],
@@ -90,15 +91,18 @@ class _CustomInputState extends State<CustomInput> {
           ? (value) {
 
         final bool emailValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            r"^[a-zA-Z\d.a-zA-Z\d.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
             .hasMatch(value!);
         if (!emailValid) {
-          helper = 'invalid email';
+          helper = 'Invalid Email';
+          widget.validateFunction!("'Required'");
           return helper;
         }
         if (value == '') {
+          widget.validateFunction!("'Required'");
           return 'Required';
         } else {
+          widget.validateFunction!(null);
           return null;
         }
       }
@@ -106,18 +110,23 @@ class _CustomInputState extends State<CustomInput> {
           ? (widget.isPhone ??false)
           ? (value) {
         if (value!.length < 10) {
-          return 'phone should be 10 digits';
+          widget.validateFunction!('phone should be 10 digits');
+          return 'Phone should be 10 Digits';
         }
+        widget.validateFunction!(null);
         return null;
       }
           : (value) {
         if (value == '') {
+          widget.validateFunction!("'Required'");
           return 'Required';
 
         }
+        widget.validateFunction!(null);
         return null;
       }
           : (value) {
+        widget.validateFunction!(null);
         return null;
       },
       maxLines: widget.maxLines ?? 1,

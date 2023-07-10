@@ -7,8 +7,10 @@ class LoginRemoteData{
 
   Future<dynamic> login(Map<String , dynamic> data ) async {
     Response res = await ApiProvider().post('$baseUrl/auth/login' , data:data );
+    // Response res = await ApiProvider().post('$baseUrl/api/user/customer/login' , data:data );
     return res;
   }
+
 
   Future<dynamic> authGoogle(String googleId ) async{
     Response res = await ApiProvider().post('$baseUrl/auth/google/verifyById' , data: {"id" :googleId.toString()});

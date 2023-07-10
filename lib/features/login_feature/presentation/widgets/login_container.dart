@@ -6,9 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/core/widgets/check_box_with_text.dart';
+import 'package:new_panel/core/widgets/custom_check_box.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_divider_with_text.dart';
 import 'package:new_panel/core/widgets/custom_error_widget.dart';
@@ -17,11 +19,17 @@ import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/large_title.dart';
 import 'package:new_panel/core/widgets/login_button.dart';
 import 'package:new_panel/core/widgets/login_google_button.dart';
+import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:new_panel/core/widgets/text_field_with_back.dart';
-import 'package:new_panel/features/filter_inventory_page/presentation/widgets/title_input.dart';
+import 'package:new_panel/core/widgets/text_field_with_back_with_label.dart';
+import 'package:new_panel/features/forgotPassword_feature/presentation/pages/forgot_password_page.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
+import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
 
 import 'package:new_panel/main.dart';
+
+import 'package:page_transition/page_transition.dart';
+
 import '../manager/login_bloc.dart';
 import '../manager/status/login_status.dart';
 
@@ -39,8 +47,10 @@ class _LoginContainerState extends State<LoginContainer> {
   }
 
   final GlobalKey<FormState> formKey = GlobalKey();
+  final GlobalKey<FormState> formKeyUserName = GlobalKey();
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   bool isRememberMe = false;
   String? googleId;
 
@@ -51,9 +61,9 @@ class _LoginContainerState extends State<LoginContainer> {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     // Optional clientId
     serverClientId:
-        "361382020837-pkfp5m8tjnuncugtbnr3ro6rflpt14ra.apps.googleusercontent.com",
+    "361382020837-pkfp5m8tjnuncugtbnr3ro6rflpt14ra.apps.googleusercontent.com",
     clientId:
-        "361382020837-91div34dgrr1i2nsh533hhdcv9vd7rpl.apps.googleusercontent.com",
+    "361382020837-91div34dgrr1i2nsh533hhdcv9vd7rpl.apps.googleusercontent.com",
     scopes: <String>[
       'email',
       'profile',
@@ -64,34 +74,38 @@ class _LoginContainerState extends State<LoginContainer> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
+      child: Scaffold(
 
-          // bodyHeight: 357.h,
-          // spaceFromBottom:40.11.h ,
-          // spaceFromTop: 39.69.h,
+        // bodyHeight: 357.h,
+        // spaceFromBottom:40.11.h ,
+        // spaceFromTop: 39.69.h,
 
-          body: BlocConsumer<LoginBloc, LoginState>(
+        body: BlocConsumer<LoginBloc, LoginState>(
 
-            listener: (context , state){
-              if(state.loginStatus is FailedLoginStatus){
-                FailedLoginStatus failedLoginStatus = state.loginStatus as FailedLoginStatus;
-                isVisibleError = true;
-                messageError = failedLoginStatus.error.message??"";
-              }
-              if(state.loginStatus is SuccessLoginStatus){
-                isVisibleError = false;
-              }
-            },
+          listener: (context , state){
+            if(state.loginStatus is FailedLoginStatus){
+              FailedLoginStatus failedLoginStatus = state.loginStatus as FailedLoginStatus;
+              isVisibleError = true;
+              messageError = failedLoginStatus.error.message??"";
+            }
+            if(state.loginStatus is SuccessLoginStatus){
+              isVisibleError = false;
+              Navigator.of(context).push(MaterialPageRoute(builder: (builder) {
+                return  MainPage();
+                // return  DashboardCustomerPage();
+              }));
+            }
+          },
           builder: (context, state) {
             return Container(
               width: 1.sw,
-              height: 926.h,
+              height: 850.h,
               decoration: const BoxDecoration(
 
-                image: DecorationImage(
-                  image: AssetImage("assets/images/login_bacl.png"),
-                  fit: BoxFit.cover
-                )
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/login_bacl.png"),
+                      fit: BoxFit.cover
+                  )
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -99,50 +113,45 @@ class _LoginContainerState extends State<LoginContainer> {
                 children: [
                   CustomContainer(
                     width: 1.sw,
-                    height: 470.h,
-                    color: Colors.white,
+                    // height: 507.h,
+
+                    color:Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(30.r), topRight: Radius.circular(30.r)),
+
                     // margin: EdgeInsets.only( bottom: MediaQuery.of(context).viewInsets.bottom),
                     child: Form(
-                      key: formKey,
+                      key: formKeyUserName,
                       child: Column(
                         children: [
 
                           SizedBox(
-                            height: 24.3.h,
+                            height: 15.h,
                           ),
                           _title(),
                           CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is FailedLoginStatus ? true : false  , iconSrc: AppImages.testSvg) ,
 
                           SizedBox(
-                            height: 20.h,
+                            height: 15.h,
                           ),
-                          TitleInput(
-                            title: "User Name",
+                          TextFieldWithBackWithLabel(
+                            controller: userNameController,
+                            textInputType: TextInputType.text,
+                            hint: "Hanie Karani",
+                            label: "User Name",
+                            isRequired: true,
 
-                            child: TextFieldWithBack(
-                              controller: userNameController,
-                              textInputType: TextInputType.text,
-                              hint: "User Name",
-                              // isRequired: true,
-
-                            ),
                           ),
+                          TextFieldWithBackWithLabel(
+                            controller: passwordController,
+                            textInputType: TextInputType.text,
+                            usePassword : true,
+                            label: "Password",
+                            hint: "Password",
+                            // formKey: formKeyUserName,
+                            isRequired: true,
+                            suffixIcon: Icons.visibility,
 
-
-                          TitleInput(
-                            title: "Password",
-
-
-                            child: TextFieldWithBack(
-                              controller: passwordController,
-                              textInputType: TextInputType.text,
-                              hint: "Password",
-
-                              // isRequired: true,
-
-                            ),
                           ),
 
                           _rememberAndForgetPass(),
@@ -150,8 +159,13 @@ class _LoginContainerState extends State<LoginContainer> {
                             height: 10.h,
                           ),
                           _buttons(context, state),
-                          CustomVerticalSpace(space: 18.h,) ,
+                          SizedBox(
+                            height: 30.h,
+                          ),
                           _registerButton(context),
+                          SizedBox(
+                            height: 25.h,
+                          ),
                         ],
                       ),
                     ),
@@ -161,28 +175,31 @@ class _LoginContainerState extends State<LoginContainer> {
             );
           },
         ),
-    ),
-      );
+      ),
+    );
   }
 
 
   Widget _rememberAndForgetPass() {
     return Container(
-      height: 40.h,
-     // color: Colors.red,
+      height: 25.h,
+      // color: Colors.red,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-           Flexible(
-             child: CheckBoxWithText(
-                onCheck: (value) {
-                  isRememberMe = value;
-                },
-                text: "Remember me",
-                isChecked: isRememberMe,
-              ),
-           ),
+          Flexible(
+            child: CustomCheckBox(
+              onChecked: (value) {
+                isRememberMe = value!;
+              },
+              text: "Remember me",
+              isChecked: isRememberMe,
+              rectangleShape: true,
+            ),
+          ),
+
+
 
           TextButton(
               style: TextButton.styleFrom(
@@ -191,19 +208,28 @@ class _LoginContainerState extends State<LoginContainer> {
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
               onPressed: () {
+
                 FocusScope.of(context).unfocus();
-                // Navigator.of(context).push(
-                // AnimationTransitionClass.createRouteAnimation(
-                // const ForgetPassPage(),
-                // textDirection: TextDirection.rtl,
-                // isSlide: false
-                // ));
+
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade,
+                      child: const ForgotPasswordPage()
+                  ),
+                );
+
 
               },
-              child: Text(
-                'Forgot password?',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ))
+              child: CustomText(
+                text: 'Forgot password?',
+                textStyle:Theme.of(context).textTheme.displaySmall ,
+                textFontWight: TextFontWight.medium,
+                textColor: Theme.of(context).primaryColor,
+              )
+
+
+          )
         ],
       ),
     );
@@ -215,10 +241,8 @@ class _LoginContainerState extends State<LoginContainer> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Not Registered?',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          CustomText(text: 'Not Registered?', textStyle: Theme.of(context).textTheme.displaySmall),
+
           // MediumTitle(text: '') ,
           TextButton(
               style: TextButton.styleFrom(
@@ -228,14 +252,17 @@ class _LoginContainerState extends State<LoginContainer> {
               ),
               onPressed: () {
                 FocusScope.of(context).unfocus();
+
               },
-              child: Text(
-                'Create Account',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium
-                    ?.copyWith(color: Theme.of(context).primaryColor),
-              ))
+              child:
+
+              CustomText(
+                text: 'Create Account',
+                textStyle: Theme.of(context).textTheme.displaySmall ,
+                textColor: Theme.of(context).primaryColor,
+              ),
+          )
+
         ],
       ),
     );
@@ -243,7 +270,7 @@ class _LoginContainerState extends State<LoginContainer> {
 
   Widget _title() {
     return SizedBox(
-      height: 48.h,
+      height: 24.h,
       child: Row(
         children: [
           SvgPicture.asset(
@@ -261,38 +288,46 @@ class _LoginContainerState extends State<LoginContainer> {
   Widget _buttons(BuildContext context, LoginState state) {
     return Column(
       children: [
-        CustomButton(
+        RoundCornerButton(
+          height: 46.h,
+          width:  358.w,
           isLoading: state.loginStatus is LoadingLoginStatus ? true : false,
           onTap: () {
             FocusScope.of(context).unfocus();
-            if (formKey.currentState!.validate()) {
+            // formKeyUserName.currentState!.validate();
+            if (formKeyUserName.currentState!.validate()) {
               LoginMapModel userInfo = LoginMapModel(
-                  // username: userNameController.text,
-                  // password: passwordController.text
-                  username: "mirabbasi",
-                  password: "hanie@1376"
+                username: userNameController.text,
+                password: passwordController.text
+                  // username: "customer",
+                  // password: "987654321"
 
               );
-              BlocProvider.of<LoginBloc>(context).add(DoLoginEvent(loginInfo: userInfo, context: context, isRememberMe:isRememberMe));
+              BlocProvider.of<LoginBloc>(context).add(DoLoginEvent(loginInfo: userInfo, isRememberMe:isRememberMe));
             }
           },
-          text: "Login",
+          title: "Login",
         ),
-         SizedBox(
-           height: 10.h,
-         ),
+        SizedBox(
+          height: 10.h,
+        ),
         const CustomDividerWithText(
           text: 'OR',
         ),
         SizedBox(
           height: 10.h,
         ),
-        LoginGoogleButton(
-            isLoading: state.loginStatus is LoadingGoogleStatus ? true : false,
-            onTap: () {
-              FocusScope.of(context).unfocus();
-              _onTapLoginGoogle(context);
-            })
+        RoundCornerButton(
+          height: 46.h,
+          width:  358.w,
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            _onTapLoginGoogle(context);
+          },
+          svgIconPath: "assets/images/ic_google.svg",
+          gradientBackGround: Theme.of(context).brightness == Brightness.light ? AppColors.gradientBlue : AppColors.gradientBlueDark,
+          title: "Continue With Google",
+        ),
       ],
     );
   }
@@ -303,22 +338,25 @@ class _LoginContainerState extends State<LoginContainer> {
 
       logger.i('YOU WANT TO CHOOSE GOOGLE ACCOUNT ');
       await _googleSignIn.signIn().then((result) {
-        BlocProvider.of<LoginBloc>(context)
-            .add(LoginWithGoogleEvent(googleId: (result?.id)!, isRememberMe: isRememberMe, context: context ));
+        if(result?.id != null){
+          BlocProvider.of<LoginBloc>(context)
+              .add(LoginWithGoogleEvent(googleId: (result?.id)!, isRememberMe: isRememberMe, context: context ));
 
-        logger.i('google id ${result?.id}');
-        result?.authentication.then((googleKey) {
-          logger.i(googleKey.accessToken);
-          logger.i(googleKey.idToken);
-          logger.i(_googleSignIn.currentUser?.displayName);
-        }).catchError((err) {
-          logger.e(err);
-        });
+          logger.i('google id ${result?.id}');
+          result?.authentication.then((googleKey) {
+            logger.i(googleKey.accessToken);
+            logger.i(googleKey.idToken);
+            logger.i(_googleSignIn.currentUser?.displayName);
+          }).catchError((err) {
+            logger.e(err);
+          });
+        }
+
       }).catchError((err) {
         AppUtils.showMessage(
-            message: 'Something went wrong',
+            message: err,
             context: context,
-            isShowingError: true);
+           );
         logger.e(err);
       });
     }
