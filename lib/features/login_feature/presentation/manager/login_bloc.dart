@@ -10,7 +10,6 @@ import 'package:new_panel/core/data/network/api_provider.dart';
 import 'package:new_panel/core/exceptions/failure.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
-import 'package:new_panel/features/login_feature/domain/entities/customer_login_entity.dart';
 import 'package:new_panel/features/login_feature/domain/entities/login_response_entity.dart';
 import 'package:new_panel/features/login_feature/presentation/manager/status/login_status.dart';
 
@@ -53,7 +52,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       // Either<ResponseError, LoginResponseEntity> response =
       //     await loginUseCase.call(event.loginInfo);
-      Either<ResponseError, CustomerLoginEntity> response =
+      Either<ResponseError, LoginResponseEntity> response =
           await loginUseCase.call(event.loginInfo);
 
     //   response.fold((ResponseError error) {
@@ -77,9 +76,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     response.fold((ResponseError error) {
         emit(state.copyWith(newLoginStatus: FailedLoginStatus(error: error)));
-      }, (CustomerLoginEntity data) {
-        Constants.accessToken = data.token??"";
-        Constants.customerInformation = data.user;
+      }, (LoginResponseEntity loginResponseEntity) {
+        Constants.accessToken = loginResponseEntity.accessToken??"";
+        logger.w(Constants.accessToken);
         // CacheProvider.saveString('refreshToken', data.refreshToken!);
         if(event.isRememberMe){
           CacheProvider.saveString('userName',event.loginInfo.username!);

@@ -5,10 +5,8 @@ import 'package:dio/dio.dart';
 import 'package:new_panel/core/exceptions/error_model.dart';
 import 'package:new_panel/core/exceptions/failure.dart';
 import 'package:new_panel/features/login_feature/data/models/assign_google_response_model.dart';
-import 'package:new_panel/features/login_feature/data/models/customer_login_model.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
 import 'package:new_panel/features/login_feature/domain/entities/assign_google_response_entity.dart';
-import 'package:new_panel/features/login_feature/domain/entities/customer_login_entity.dart';
 
 import 'package:new_panel/main.dart';
 
@@ -24,11 +22,10 @@ class LoginRepositoryImp implements LoginRepository {
   LoginRepositoryImp({required this.loginRemoteData});
 
   @override
-  Future<Either<ResponseError, CustomerLoginEntity>> login(LoginMapModel data) async {
+  Future<Either<ResponseError, LoginResponseEntity>> login(LoginMapModel data) async {
     try {
       Response result = await loginRemoteData.login(data.toJson());
-      // LoginResponseEntity response = LoginResponseModel.fromJson(result.data);
-      CustomerLoginEntity response = CustomerLoginModel.fromJson(result.data);
+      LoginResponseEntity response = LoginResponseModel.fromJson(result.data);
 
       return Right(response);
     } on DioError catch (error) {

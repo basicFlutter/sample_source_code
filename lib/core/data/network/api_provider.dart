@@ -4,8 +4,9 @@ import 'package:new_panel/core/data/cache/cache_provider.dart';
 import 'package:new_panel/main.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-// const baseUrl = 'https://hillz-panel-backend.azurewebsites.net';
-const baseUrl = 'http://192.168.1.120:8000';
+const baseUrl = 'https://hillz-panel-backend.azurewebsites.net';
+// const baseUrl = 'http://192.168.1.120:8000';
+// const baseUrl = 'https://api.test333web.ca';
 // const domain = 'localhost:3000';
 const imageBaseUrl = 'https://image123.azureedge.net';
 
