@@ -13,7 +13,7 @@ class CheckLoginRemember extends LoginEvent{
 }
 
 class DoLoginEvent extends LoginEvent {
-  final LoginMapModel loginInfo;
+  final LoginInputParams loginInfo;
 
   final bool isRememberMe;
 

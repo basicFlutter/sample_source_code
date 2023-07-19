@@ -1,7 +1,11 @@
 abstract class GetWholeInventoriesStatus {}
 
-class FailedWholeInventoriesStatus extends GetWholeInventoriesStatus {}
+class WholeInventoriesLoading extends GetWholeInventoriesStatus {}
 
-class SuccessWholeInventoriesStatus extends GetWholeInventoriesStatus {}
+class WholeInventoriesCompleted extends GetWholeInventoriesStatus {}
 
-class LoadingWholeInventoriesStatus extends GetWholeInventoriesStatus {}
+
+class WholeInventoriesError extends GetWholeInventoriesStatus {}
+
+
+

@@ -7,7 +7,6 @@ class LoginRemoteData{
 
   Future<dynamic> login(Map<String , dynamic> data ) async {
     Response res = await ApiProvider().post('$baseUrl/auth/login' , data:data );
-    // Response res = await ApiProvider().post('$baseUrl/api/user/customer/login' , data:data );
     return res;
   }
 

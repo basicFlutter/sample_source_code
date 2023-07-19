@@ -47,11 +47,11 @@ class NewInventory extends StatelessWidget {
                   ),
                   BlocBuilder<InventoryBloc , InventoryState>(
                     builder: (context , state){
-                      if(state.getInventoryStatus is LoadingGetInventoryStatus){
+                      if(state.getInventoryStatus is GetInventoryLoading){
                         return const Expanded(child: CustomLoading());
                       }
-                      if (state.getInventoryStatus is SuccessGetInventoryStatus) {
-                        SuccessGetInventoryStatus successState =state.getInventoryStatus as SuccessGetInventoryStatus;
+                      if (state.getInventoryStatus is GetInventoryCompleted) {
+                        GetInventoryCompleted successState =state.getInventoryStatus as GetInventoryCompleted;
                         List<InventoryEntity> inventoryList = successState.allInventory;
                         if(inventoryList.isEmpty) {
                           return  const Expanded(

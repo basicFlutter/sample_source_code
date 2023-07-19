@@ -1,14 +1,24 @@
+import 'package:new_panel/core/exceptions/failure.dart';
+
 import '../../../domain/entities/inventory_entity.dart';
 
 abstract class GetInventoryStatus {}
 
-class FailedGetInventoryStatus extends GetInventoryStatus { }
 
-class SuccessGetInventoryStatus extends GetInventoryStatus {
+class GetInventoryLoading extends GetInventoryStatus {}
+
+
+class GetInventoryCompleted extends GetInventoryStatus {
   List<InventoryEntity> allInventory ;
   List<InventoryEntity> currentPageInventory ;
 
-  SuccessGetInventoryStatus({required this.allInventory , required this.currentPageInventory});
+  GetInventoryCompleted({required this.allInventory , required this.currentPageInventory});
 }
 
-class LoadingGetInventoryStatus extends GetInventoryStatus {}
+
+
+
+class GetInventoryError extends GetInventoryStatus {
+  final ResponseError responseError;
+  GetInventoryError({required this.responseError});
+}

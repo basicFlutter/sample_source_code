@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:new_panel/core/data/error_handling/error_handling.dart';
 import 'package:new_panel/core/exceptions/failure.dart';
 import 'package:new_panel/core/exceptions/server_exception.dart';
 import 'package:new_panel/features/inventory_page/data/data_sources/inventory_remote_data.dart';
@@ -13,7 +15,7 @@ class InventoryRepositoryImp implements InventoryRepository {
   InventoryRepositoryImp({required this.inventoryRemoteData});
 
   @override
-  Future<Either<Failure, List<InventoryEntity>>> getInventories(
+  Future<Either<ResponseError, List<InventoryEntity>>> getInventories(
       {required String stateType}) async {
     try {
       final result =
@@ -27,13 +29,17 @@ class InventoryRepositoryImp implements InventoryRepository {
       }
 
       return Right(inventories);
-    } on ServerException catch (error) {
-      return Left(ServerFailure(error: error));
+    } on DioError catch (error) {
+      ResponseError responseError =  ErrorHandling().getResponseError(
+          response: error,
+          fromMethod: "getInventories"
+      );
+      return Left(responseError);
     }
   }
 
   @override
-  Future<Either<Failure, List<InventoryEntity>>> getWholeInventories()async {
+  Future<Either<ResponseError, List<InventoryEntity>>> getWholeInventories()async {
     try {
       final result =
       await inventoryRemoteData.getWholeInventories();
@@ -46,8 +52,12 @@ class InventoryRepositoryImp implements InventoryRepository {
       }
 
       return Right(inventories);
-    } on ServerException catch (error) {
-      return Left(ServerFailure(error: error));
+    } on DioError catch (error) {
+      ResponseError responseError =  ErrorHandling().getResponseError(
+          response: error,
+          fromMethod: "getWholeInventories"
+      );
+      return Left(responseError);
     }
   }
 }

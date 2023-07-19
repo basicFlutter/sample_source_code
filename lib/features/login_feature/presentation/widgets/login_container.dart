@@ -23,7 +23,7 @@ import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:new_panel/core/widgets/text_field_with_back.dart';
 import 'package:new_panel/core/widgets/text_field_with_back_with_label.dart';
 import 'package:new_panel/features/forgotPassword_feature/presentation/pages/forgot_password_page.dart';
-import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
+import 'package:new_panel/core/params/login_input_params.dart';
 import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
 
 import 'package:new_panel/main.dart';
@@ -296,7 +296,7 @@ class _LoginContainerState extends State<LoginContainer> {
             FocusScope.of(context).unfocus();
             // formKeyUserName.currentState!.validate();
             if (formKeyUserName.currentState!.validate()) {
-              LoginMapModel userInfo = LoginMapModel(
+              LoginInputParams userInfo = LoginInputParams(
                 username: userNameController.text,
                 password: passwordController.text
                   // username: "customer",

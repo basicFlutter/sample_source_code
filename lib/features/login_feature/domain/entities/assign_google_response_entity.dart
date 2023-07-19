@@ -8,7 +8,6 @@ class AssignGoogleResponseEntity extends Equatable{
    const AssignGoogleResponseEntity({ this.id,  this.googleId});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [id , googleId];
 
 }

@@ -63,16 +63,16 @@ class _InventoryPageState extends State<InventoryPage> {
                       state.inventoryPageStatus as ChangeSelectModeStatus;
                   isSelect = currentState.isSelectMode;
                 }
-                if (state.getInventoryStatus is SuccessGetInventoryStatus) {
-                  SuccessGetInventoryStatus successState =
-                      state.getInventoryStatus as SuccessGetInventoryStatus;
+                if (state.getInventoryStatus is GetInventoryCompleted) {
+                  GetInventoryCompleted successState =
+                      state.getInventoryStatus as GetInventoryCompleted;
 
                   return CustomBody(
                     searchbarController: searchbarController,
                     body: _inventoryBody(context, successState),
                   );
                 } else if (state.getInventoryStatus
-                    is LoadingGetInventoryStatus) {
+                    is GetInventoryLoading) {
                   return CustomBody(
                     searchbarController: searchbarController,
                     body: Center(
@@ -89,7 +89,7 @@ class _InventoryPageState extends State<InventoryPage> {
         ));
   }
 
-  Widget _inventoryBody(BuildContext context, SuccessGetInventoryStatus state) {
+  Widget _inventoryBody(BuildContext context, GetInventoryCompleted state) {
     return NestedScrollView(
       body: InventoryList(
         inventories: state.allInventory,

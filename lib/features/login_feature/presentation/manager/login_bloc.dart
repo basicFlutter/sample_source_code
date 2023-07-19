@@ -9,7 +9,7 @@ import 'package:new_panel/core/data/cache/cache_provider.dart';
 import 'package:new_panel/core/data/network/api_provider.dart';
 import 'package:new_panel/core/exceptions/failure.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
-import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
+import 'package:new_panel/core/params/login_input_params.dart';
 import 'package:new_panel/features/login_feature/domain/entities/login_response_entity.dart';
 import 'package:new_panel/features/login_feature/presentation/manager/status/login_status.dart';
 
@@ -38,7 +38,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       if(( userName!= null && userName != "" ) && (password != null && password.trim() != "") ){
 
-        LoginMapModel loginMapModel = LoginMapModel();
+        LoginInputParams loginMapModel = LoginInputParams();
         loginMapModel.setUserName = userName;
         loginMapModel.setPassword = password;
         add(DoLoginEvent(isRememberMe: true , loginInfo: loginMapModel));

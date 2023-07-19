@@ -30,38 +30,45 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
       {required this.getInventoryUseCase,
       required this.getWholeInventoriesUseCase})
       : super(InventoryState()) {
-    on<InventoryEvent>((event, emit) {});
+
 
     on<ChangeSelectModeEvent>((event, emit) {
       emit(state.copyWith(
-          newInventoryPageStatus:
-              ChangeSelectModeStatus(isSelectMode: event.isSelectMode)));
+          newInventoryPageStatus: ChangeSelectModeStatus(isSelectMode: event.isSelectMode))
+      );
     });
 
-    on<GetInventoriesEvent>((event, emit) async {
-      emit(state.copyWith(newInventoryStatus: LoadingGetInventoryStatus()));
 
-      Either<Failure, List<InventoryEntity>> response =
+
+
+    on<GetInventoriesEvent>((event, emit) async {
+      emit(state.copyWith(newInventoryStatus: GetInventoryLoading()));
+
+      Either<ResponseError, List<InventoryEntity>> response =
           await getInventoryUseCase.call(event.stateType);
 
       response.fold((error) {
-        emit(state.copyWith(newInventoryStatus: FailedGetInventoryStatus()));
+        emit(state.copyWith(newInventoryStatus: GetInventoryError(responseError: error)));
       }, (List<InventoryEntity> data) {
         inventories.addAll(data);
         emit(state.copyWith(
-            newInventoryStatus: SuccessGetInventoryStatus(
-                allInventory: inventories, currentPageInventory: [])));
+            newInventoryStatus: GetInventoryCompleted(allInventory: inventories, currentPageInventory: [])));
       });
     });
 
-    on<GetWholeInventoriesEvent>((event, emit) {});
+
+
+
+    on<GetWholeInventoriesEvent>((event, emit) {
+
+    });
+
+
+
 
     on<SearchInventoryEvent>((event, emit) {
-      print('QUERY IS ${event.searchQuery}') ;
       if(event.searchQuery == ''){
-
-        emit(state.copyWith(newInventoryStatus: SuccessGetInventoryStatus(allInventory: inventories, currentPageInventory: [])));
-
+        emit(state.copyWith(newInventoryStatus: GetInventoryCompleted(allInventory: inventories, currentPageInventory: [])));
       } else {
         searchedInventories.clear();
         for (var element in inventories) {
@@ -80,8 +87,10 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
             searchedInventories.add(element) ;
           }
         }
-        emit(state.copyWith(newInventoryStatus: SuccessGetInventoryStatus(allInventory: searchedInventories, currentPageInventory: [] , )));
+        emit(state.copyWith(newInventoryStatus: GetInventoryCompleted(allInventory: searchedInventories, currentPageInventory: [] , )));
       }
      });
+
   }
+
 }
