@@ -15,7 +15,7 @@ class GetInventoryUseCase extends BaseUseCase<List<InventoryEntity> , String  > 
   GetInventoryUseCase({required this.inventoryRepository});
 
   @override
-  Future<Either<Failure, List<InventoryEntity>>> call(String  params) {
+  Future<Either<ResponseError, List<InventoryEntity>>> call(String  params) {
     return inventoryRepository.getInventories(stateType: params ) ;
   }
 

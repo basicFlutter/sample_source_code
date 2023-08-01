@@ -29,7 +29,7 @@ class ErrorModel {
 }
 
   ErrorModel.fromJson(dynamic json) {
-    _act = json['act'];
+    _act = json['act']?.toString();
     _alertType = json['alertType'];
     _data = json['data'];
     _entity = json['entity'];

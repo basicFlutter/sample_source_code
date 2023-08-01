@@ -15,7 +15,7 @@ class GetWholeInventoryUseCase extends BaseUseCase<List<InventoryEntity> , Map  
   GetWholeInventoryUseCase({required this.inventoryRepository});
 
   @override
-  Future<Either<Failure, List<InventoryEntity>>> call(params) {
+  Future<Either<ResponseError, List<InventoryEntity>>> call(params) {
     return inventoryRepository.getWholeInventories() ;
   }
 

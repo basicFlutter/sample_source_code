@@ -13,7 +13,7 @@ class CheckLoginRemember extends LoginEvent{
 }
 
 class DoLoginEvent extends LoginEvent {
-  final LoginMapModel loginInfo;
+  final LoginInputParams loginInfo;
 
   final bool isRememberMe;
 
@@ -35,6 +35,7 @@ class LoginWithGoogleEvent extends LoginEvent {
   final String googleId;
   final BuildContext context ;
   final bool isRememberMe;
+
 
   LoginWithGoogleEvent({ required this.context , required this.googleId, required this.isRememberMe});
 

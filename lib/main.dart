@@ -23,6 +23,7 @@ void main() async{
 
   ApiProvider().initLogger();
 
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

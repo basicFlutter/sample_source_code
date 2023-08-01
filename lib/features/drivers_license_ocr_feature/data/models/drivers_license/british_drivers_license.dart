@@ -197,7 +197,7 @@ class BritishDriversLicense extends DriversLicenseRepository{
     dayFix = dayFix?.replaceAll(RegExp(r"t" ,caseSensitive: false), "1");
     dayFix = dayFix?.replaceAll(RegExp(r"d" ,caseSensitive: false), "0");
     if(yearFix!= null && monthFix != null && dayFix != null){
-      fixedDate = "$yearFix-${monthFix.inCaps}-$dayFix";
+      fixedDate = "$yearFix-${monthFix.capitalizeFirstChar}-$dayFix";
     }
     logger.i("after fix date $fixedDate");
     return fixedDate;

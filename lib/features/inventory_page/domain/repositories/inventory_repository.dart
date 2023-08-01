@@ -4,6 +4,6 @@ import 'package:new_panel/features/inventory_page/domain/entities/inventory_enti
 
 
 abstract class InventoryRepository {
-  Future<Either<Failure , List<InventoryEntity>>> getInventories({required String stateType });
-  Future<Either<Failure , List<InventoryEntity>>> getWholeInventories();
+  Future<Either<ResponseError , List<InventoryEntity>>> getInventories({required String stateType });
+  Future<Either<ResponseError , List<InventoryEntity>>> getWholeInventories();
 }

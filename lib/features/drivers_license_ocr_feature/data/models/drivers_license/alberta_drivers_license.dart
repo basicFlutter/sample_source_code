@@ -488,7 +488,7 @@ class AlbertaDriversLicense extends DriversLicenseRepository {
           ?.group(0);
       String monthReplacement = '';
       if (month != null) {
-        monthReplacement = month.inCaps;
+        monthReplacement = month.capitalizeFirstChar;
         myDate3 = myDate3.replaceAll(month, monthReplacement);
       }
 

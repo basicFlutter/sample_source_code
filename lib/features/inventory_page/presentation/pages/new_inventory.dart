@@ -67,19 +67,23 @@ class NewInventory extends StatelessWidget {
                   ),
                   BlocBuilder<InventoryBloc , InventoryState>(
                     builder: (context , state){
-                      if(state.getInventoryStatus is LoadingGetInventoryStatus){
+
+                      if(state.getInventoryStatus is GetInventoryLoading) {
                         return const Expanded(
 
                             child: Center(child: CustomLoading()));
                       }
-                      if (state.getInventoryStatus is SuccessGetInventoryStatus) {
-                        SuccessGetInventoryStatus successState =state.getInventoryStatus as SuccessGetInventoryStatus;
+
+                      if (state.getInventoryStatus is GetInventoryCompleted) {
+                        GetInventoryCompleted successState =state.getInventoryStatus as GetInventoryCompleted;
                         List<InventoryEntity> inventoryList = successState.allInventory;
                         if(inventoryList.isEmpty) {
-                          return  const EmptyList(
-                          title: "No Cars Shared Yet!",
-                          subTitle: "Select +Add Inventory to Share Car.",
-                        );
+                          return  const Expanded(
+                            child: EmptyList(
+                            title: "No Cars Shared Yet!",
+                            subTitle: "Select +Add Inventory to Share car.",
+                        ),
+                          );
                         }
                         return  Flexible(
                           child: NewInventoryList(

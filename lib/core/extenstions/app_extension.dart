@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-extension CapExtension on String {
-  String get inCaps => '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
-  String get allInCaps => toUpperCase();
-  String get capitalizeFirsTofEach => split(" ").map((str) => str.capitalizeFirsTofEach).join(" ");
-}
 
-extension RemoveAllWhiteSpace on String {
-  String get removeAllWhiteSpace => replaceAll(RegExp(r"\s*"), "");
-}
 
 
 extension ReplaceFrenchCharacters on String {
+
+  /// onta rio => ontario
+  String get removeAllWhiteSpace => replaceAll(RegExp(r"\s*"), "");
+
+  /// ôntàrio => ontario
   String get replaceFrenchCharacters => replaceFrenchCharactersFunction(this);
+
+  /// 500000 => 500,000
+  String get addSeparator {
+    String mainString = this;
+    var formatter = NumberFormat.decimalPattern('en_us');
+    return  formatter.format(int.parse(mainString.replaceAll(" ", ""))).toString();
+  }
+
+  /// jun => Jun
+  /// test => Test
+  String get capitalizeFirstChar => '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
+  /// test => TEST
+  String get capitalizeAllChar => toUpperCase();
+  /// test test => Test Test
+  String get capitalizeFirsTofEach => split(" ").map((str) => str.capitalizeFirsTofEach).join(" ");
+
 }
+
 
 
 

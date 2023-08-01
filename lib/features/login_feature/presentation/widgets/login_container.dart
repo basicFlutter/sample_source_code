@@ -18,7 +18,7 @@ import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:new_panel/core/widgets/text_field_with_back_with_label.dart';
 import 'package:new_panel/features/forgotPassword_feature/presentation/pages/forgot_password_page.dart';
-import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
+import 'package:new_panel/core/params/login_input_params.dart';
 import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
 
 import 'package:new_panel/main.dart';
@@ -30,7 +30,7 @@ import '../manager/status/login_status.dart';
 
 class LoginContainer extends StatefulWidget {
   const LoginContainer({Key? key , required this.loginMapModel}) : super(key: key);
-  final LoginMapModel loginMapModel;
+  final LoginInputParams loginMapModel;
   @override
   State<LoginContainer> createState() => _LoginContainerState();
 }
@@ -86,8 +86,8 @@ class _LoginContainerState extends State<LoginContainer> {
           listener: (context , state){
             logger.w(state.loginStatus);
             logger.i(state.checkLoginStatus);
-            if(state.loginStatus is FailedLoginStatus){
-              FailedLoginStatus failedLoginStatus = state.loginStatus as FailedLoginStatus;
+            if(state.loginStatus is LoginStatusError){
+              LoginStatusError failedLoginStatus = state.loginStatus as LoginStatusError;
               isVisibleError = true;
               messageError = failedLoginStatus.error.message??"";
               logger.e(messageError);
@@ -134,7 +134,7 @@ class _LoginContainerState extends State<LoginContainer> {
                             height: 25.h,
                           ),
                           _title(),
-                          CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is FailedLoginStatus ? true : false  ) ,
+                          CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is LoginStatusError ? true : false  ) ,
 
                           SizedBox(
                             height: 20.h,
@@ -303,16 +303,18 @@ class _LoginContainerState extends State<LoginContainer> {
         RoundCornerButton(
           height: 46.h,
           width:  358.w,
-          isLoading: state.loginStatus is LoadingLoginStatus ,
+          isLoading: state.loginStatus is LoginStatusLoading ,
           onTap: () {
             FocusScope.of(context).unfocus();
             // formKeyUserName.currentState!.validate();
             if (formKeyUserName.currentState!.validate()) {
-              LoginMapModel userInfo = LoginMapModel(
-                  username: userNameController.text,
-                  password: passwordController.text
-                // username: "customer",
-                // password: "987654321"
+
+              LoginInputParams userInfo = LoginInputParams(
+                username: userNameController.text,
+                password: passwordController.text
+                  // username: "customer",
+                  // password: "987654321"
+
 
               );
               BlocProvider.of<LoginBloc>(context).add(DoLoginEvent(loginInfo: userInfo, isRememberMe:isRememberMe));

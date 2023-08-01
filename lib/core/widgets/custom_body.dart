@@ -5,11 +5,12 @@ import 'package:new_panel/core/constants/blurMenu.dart';
 import 'package:new_panel/core/constants/blurMenuItem.dart';
 import 'package:new_panel/core/constants/constants.dart';
 import 'package:new_panel/core/data/cache/cache_provider.dart';
+import 'package:new_panel/core/params/login_input_params.dart';
 import 'package:new_panel/core/widgets/appBar.dart';
 import 'package:new_panel/core/widgets/searchbar_widget.dart';
 import 'package:new_panel/features/home_page_feature/presentation/pages/home_page.dart';
 import 'package:new_panel/features/inventory_page/presentation/pages/new_inventory.dart';
-import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
+import 'package:new_panel/features/login_feature/data/models/login_response_model.dart';
 import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
 import 'package:new_panel/features/main_page_feature/presentation/widgets/custom_buttom_navigation.dart';
 import 'package:new_panel/main.dart';
@@ -193,7 +194,7 @@ class CustomBody extends StatelessWidget {
                           PageTransition(
                               type: PageTransitionType.fade,
                               duration: const Duration(milliseconds: 200),
-                              child:   LoginPage(loginMapModel: LoginMapModel())
+                              child:   LoginPage(loginMapModel: LoginInputParams())
                           ),
                         );
 

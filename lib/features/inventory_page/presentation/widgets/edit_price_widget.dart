@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/extenstions/app_extension.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_date_picker.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
@@ -23,6 +24,13 @@ class EditPriceWidget extends StatefulWidget {
 class _EditPriceWidgetState extends State<EditPriceWidget> {
   TextEditingController priceController = TextEditingController();
   TextEditingController specialPriceController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    priceController.text = widget.price?.addSeparator??"";
+    specialPriceController.text = widget.specialPrice?.addSeparator??"";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +54,7 @@ class _EditPriceWidgetState extends State<EditPriceWidget> {
           TitleInput(
             title: "Special Price",
             child: TextFieldWithBack(
-              controller: priceController,
+              controller: specialPriceController,
               hasSeparator: true,
               textInputType: TextInputType.number,
 

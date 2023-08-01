@@ -9,6 +9,7 @@ import 'package:new_panel/features/login_feature/presentation/manager/status/che
 import 'package:new_panel/features/login_feature/presentation/manager/status/login_status.dart';
 import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
 import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
+import 'package:new_panel/main.dart';
 
 import 'package:page_transition/page_transition.dart';
 
@@ -45,7 +46,20 @@ class SplashScreen extends StatelessWidget {
                       PageTransition(
                           type: PageTransitionType.fade,
                           duration: const Duration(milliseconds: 200),
-                          child:   MainPage()
+                          child:   const MainPage()
+                      ),
+                    );
+                  }
+                  if(state.loginStatus is LoginStatusError){
+                    LoginStatusError loginStatusError = state.loginStatus as LoginStatusError;
+                    Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.fade,
+                          duration: const Duration(milliseconds: 200),
+                          child:   LoginPage(
+                            loginMapModel: loginStatusError.loginMapModel,
+                          )
                       ),
                     );
                   }

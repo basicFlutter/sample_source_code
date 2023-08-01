@@ -1,6 +1,7 @@
 
+
 import 'package:new_panel/core/models/drop_down_model.dart';
-import 'package:new_panel/features/login_feature/data/models/user_customer.dart';
+
 
 class Constants {
   static const cdnBaseUrl = 'https://image123.azureedge.net';
@@ -8,7 +9,6 @@ class Constants {
 
   static String? accessToken = "";
 
-  static User? customerInformation ;
 
   static const genderFemale = 1;
   static const genderMale = 2;
