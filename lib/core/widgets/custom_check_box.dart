@@ -16,14 +16,14 @@ class CustomCheckBox extends StatefulWidget {
   final bool? rectangleShape;
 
 
-   CustomCheckBox({Key? key,required this.onChecked ,
-     this.iconSize,
-     this.padding,
-     this.text ,
-     required this.isChecked ,
-     this.margin ,
-     this.rectangleShape,
-     this.checkBoxSize }) : super(key: key);
+  CustomCheckBox({Key? key,required this.onChecked ,
+    this.iconSize,
+    this.padding,
+    this.text ,
+    required this.isChecked ,
+    this.margin ,
+    this.rectangleShape,
+    this.checkBoxSize }) : super(key: key);
 
   @override
   State<CustomCheckBox> createState() => CustomCheckBoxState();
@@ -62,16 +62,18 @@ class CustomCheckBoxState extends State<CustomCheckBox> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           AnimatedContainer(
-            width: 24.r,
-            height: 24.r,
+            //width: 24.r,
+            width: 19.r,
+            // height: 24.r,
+            height: 19.r,
             margin: widget.margin,
             duration: const Duration(milliseconds: 700),
             curve: Curves.fastLinearToSlowEaseIn,
             decoration: BoxDecoration(
-                gradient:widget.isChecked ? Theme.of(context).brightness == Brightness.light ? AppColors.gradientOrange : AppColors.gradientOrangeDark : null,
+                gradient:widget.isChecked ? Theme.of(context).brightness == Brightness.light ? AppColors.gradientGreen : AppColors.gradientGreenDark : null,
                 shape: (widget.rectangleShape != null && widget.rectangleShape == true ) ? BoxShape.rectangle :BoxShape.circle ,
                 border:widget.isChecked == false ?  Border.all(color: Theme.of(context).brightness == Brightness.light ? AppColors.deActive : AppColors.deActiveDark) : null,
-              borderRadius:(widget.rectangleShape != null && widget.rectangleShape == true ) ? BorderRadius.all(Radius.circular(5.r)) :null
+                borderRadius:(widget.rectangleShape != null && widget.rectangleShape == true ) ? BorderRadius.all(Radius.circular(5.r)) :null
 
             ),
 
@@ -88,7 +90,7 @@ class CustomCheckBoxState extends State<CustomCheckBox> {
               width: 6.13.w,
             ),
           if(widget.text != null)
-         CustomText(text: widget.text!, textStyle: Theme.of(context).textTheme.displayMedium)
+            CustomText(text: widget.text!, textStyle: Theme.of(context).textTheme.displayMedium)
         ],
       ),
     );

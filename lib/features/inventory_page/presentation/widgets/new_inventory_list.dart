@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_panel/features/inventory_detail_page/presentation/pages/inventory_detail.dart';
 import 'package:new_panel/features/inventory_page/domain/entities/inventory_entity.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/inventory_bloc.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/new_inventory_item.dart';
+import 'package:new_panel/features/veicle_detail_feature/presentation/pages/vehicle_detail_page.dart';
 
 import 'package:new_panel/main.dart';
+import 'package:page_transition/page_transition.dart';
 
 class NewInventoryList extends StatefulWidget {
    NewInventoryList({Key? key , required this.inventories , required this.selectedListVehicle , required this.cancelSelectedMode}) : super(key: key);
@@ -82,6 +85,16 @@ class NewInventoryListState extends State<NewInventoryList> {
               },
 
               onTap: (vehicleId){
+
+               // InventoryDetailPage
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade,
+                      duration: const Duration(milliseconds: 200),
+                      child:   VehicleDetailPage()
+                  ),
+                );
 
               },
               isSelectedMode: isSelectedMode,

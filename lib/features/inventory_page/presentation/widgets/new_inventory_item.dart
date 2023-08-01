@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/core/widgets/circular_button.dart';
+import 'package:new_panel/core/widgets/custom_bottom_sheet.dart';
 import 'package:new_panel/core/widgets/custom_check_box.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_image_network.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/features/inventory_page/domain/entities/inventory_entity.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/action_card_inventory.dart';
+import 'package:new_panel/features/inventory_page/presentation/widgets/bottom_sheet_inventory_item.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/price_widget.dart';
 
 import 'package:new_panel/main.dart';
@@ -40,6 +43,7 @@ class NewInventoryItem extends StatelessWidget {
         }else{
           onTap(inventoryEntity!.id!);
         }
+
       },
       onLongPress: (){
         onLongPress(inventoryEntity!.id!);
@@ -176,7 +180,11 @@ class NewInventoryItem extends StatelessWidget {
                                               CircularButton(
                                                 gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientBlue : AppColors.gradientBlueDark,
 
-                                                  onTap: (){},
+                                                  onTap: (){
+
+                                                  AppUtils.showCustomBottomSheet(context: context, child: BottomSheetInventoryItems());
+
+                                                  },
                                                 radius: 25.r,
                                                  child: Transform.rotate(
                                                   angle: 90 * math.pi / 180,

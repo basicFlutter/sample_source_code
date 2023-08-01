@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/enums/app_enums.dart';
+import 'package:new_panel/core/widgets/custom_bottom_sheet.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_error_snackbar.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
@@ -58,6 +59,19 @@ class AppUtils {
   }
 
 
+  
+  static Future<void> showCustomBottomSheet({required BuildContext context,required child}) async{
+    showModalBottomSheet(
+        context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(topRight: Radius.circular(36.r) , topLeft: Radius.circular(36.r)),
+        ),
+
+        builder: (builder){
+          return  CustomBottomSheet(child: child);
+        }
+    );
+  }
 
 
 

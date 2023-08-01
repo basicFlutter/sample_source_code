@@ -90,6 +90,7 @@ class NewInventory extends StatelessWidget {
                             key: newInventoryListKey,
 
                             inventories: inventoryList,
+
                             selectedListVehicle: (List<int> itemIdSelected) async{
 
 
