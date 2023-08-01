@@ -93,252 +93,250 @@ class _FilterPageState extends State<FilterPage> {
     return CustomBodyWithBottomNavigation(
         searchbarController: searchController,
         indexPageSelected: 1,
+        appBarCustom: AppBarCustom(
+          title: "Filter",
+          height: 65.h,
+          onTapBack: () {
+            Navigator.of(context).pop();
+          },
+          actions: RoundCornerButton(
+            width: 60.w,
+            height: 35.h,
+            title: "Reset",
+            onTap: () {
 
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
+            },
+          ),
+        ),
 
-            children: [
-              AppBarCustom(
-                title: "Filter",
-                height: 65.h,
-                onTapBack: () {
-                  Navigator.of(context).pop();
-                },
-                actions: RoundCornerButton(
-                  width: 60.w,
-                  height: 35.h,
-                  title: "Reset",
-                  onTap: () {
+        body: Column(
 
-                  },
-                ),
-              ),
+          children: [
 
-              SizedBox(
-                height: (670 - 69).h,
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: MediaQuery
-                        .of(context)
-                        .viewInsets
-                        .bottom),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SliderPrice(
-                          priceFromController: priceFromController,
-                          priceToController: priceToController,
-                        ),
-                        TitleInput(
-                          title: "Total Cost",
-                          marginTop: 0,
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 172.w,
-                                child: TextFieldWithBack(
-                                  controller: totalCostFromController,
-                                  textInputType: TextInputType.number,
-                                  prefixText: "From:",
-                                  hasSeparator: true,
-                                  maxLength: 9,
-                                  hint: "12,340,23",
-                                ),
+
+            SizedBox(
+              height: (670 - 69).h,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Container(
+                  margin: EdgeInsets.only(bottom: MediaQuery
+                      .of(context)
+                      .viewInsets
+                      .bottom),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SliderPrice(
+                        priceFromController: priceFromController,
+                        priceToController: priceToController,
+                      ),
+                      TitleInput(
+                        title: "Total Cost",
+                        marginTop: 0,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 172.w,
+                              child: TextFieldWithBack(
+                                controller: totalCostFromController,
+                                textInputType: TextInputType.number,
+                                prefixText: "From:",
+                                hasSeparator: true,
+                                maxLength: 9,
+                                hint: "12,340,23",
                               ),
-                              SizedBox(width: 14.w),
-                              SizedBox(
-                                width: 172.w,
-                                child: TextFieldWithBack(
-                                  controller: totalCostToController,
-                                  textInputType: TextInputType.number,
-                                  prefixText: "To :",
-                                  hasSeparator: true,
-                                  maxLength: 9,
-                                  hint: "12,340,23",
+                            ),
+                            SizedBox(width: 14.w),
+                            SizedBox(
+                              width: 172.w,
+                              child: TextFieldWithBack(
+                                controller: totalCostToController,
+                                textInputType: TextInputType.number,
+                                prefixText: "To :",
+                                hasSeparator: true,
+                                maxLength: 9,
+                                hint: "12,340,23",
 
-                                ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        TitleInput(
-                          title: "Year",
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 172.w,
-                                child: TextFieldWithBack(
-                                  controller: yearFromController,
-                                  textInputType: TextInputType.number,
-                                  prefixText: "From:",
-                                  maxLength: 4,
-                                  hint: "2016",
-                                ),
+                      ),
+                      TitleInput(
+                        title: "Year",
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 172.w,
+                              child: TextFieldWithBack(
+                                controller: yearFromController,
+                                textInputType: TextInputType.number,
+                                prefixText: "From:",
+                                maxLength: 4,
+                                hint: "2016",
                               ),
-                              SizedBox(width: 14.w),
-                              SizedBox(
-                                width: 172.w,
-                                child: TextFieldWithBack(
-                                  controller: yearToController,
-                                  textInputType: TextInputType.number,
-                                  prefixText: "To :",
-                                  maxLength: 4,
-                                  hint: "${DateTime
-                                      .now()
-                                      .year}",
+                            ),
+                            SizedBox(width: 14.w),
+                            SizedBox(
+                              width: 172.w,
+                              child: TextFieldWithBack(
+                                controller: yearToController,
+                                textInputType: TextInputType.number,
+                                prefixText: "To :",
+                                maxLength: 4,
+                                hint: "${DateTime
+                                    .now()
+                                    .year}",
 
-                                ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        TitleInput(
-                          title: "Make",
-                          child: TextFieldWithBack(
-                            controller: makeController,
-                            hint: "Infiniti",
-                          ),
+                      ),
+                      TitleInput(
+                        title: "Make",
+                        child: TextFieldWithBack(
+                          controller: makeController,
+                          hint: "Infiniti",
                         ),
-                        TitleInput(
-                            title: "Model",
-                            child: SimpleSuggestion(
-                              suggestionsList: modelList,
-                              controller: modelController,
-                              focusNode: modelFocusNode,
-                              characters: modelCharacters,
-                              hint: "Yukon Denali",
-                              textChanged: (value) {
-                                modelCharacters = value!.toLowerCase();
-                              },
-                            )
-                        ),
+                      ),
+                      TitleInput(
+                          title: "Model",
+                          child: SimpleSuggestion(
+                            suggestionsList: modelList,
+                            controller: modelController,
+                            focusNode: modelFocusNode,
+                            characters: modelCharacters,
+                            hint: "Yukon Denali",
+                            textChanged: (value) {
+                              modelCharacters = value!.toLowerCase();
+                            },
+                          )
+                      ),
 
 
-                        OdometerInputTitle(
-                          onChangeOdometerType: (OdometerType odometer) {
-                            odometerType = odometer;
-                          },
-                          odometerFromController: odometerFromController,
-                          odometerToController: odometerToController,
+                      OdometerInputTitle(
+                        onChangeOdometerType: (OdometerType odometer) {
+                          odometerType = odometer;
+                        },
+                        odometerFromController: odometerFromController,
+                        odometerToController: odometerToController,
 
-                        ),
+                      ),
 
 
-                        BlocConsumer<SuggestionsBloc, SuggestionState>(
-                          listener: (context, state) {
-                            if(state.getBodyStyleStatus is GetBodyStyleCompletedStatus){
-                              GetBodyStyleCompletedStatus getBodyStyleCompletedStatus= state.getBodyStyleStatus as GetBodyStyleCompletedStatus;
+                      BlocConsumer<SuggestionsBloc, SuggestionState>(
+                        listener: (context, state) {
+                          if(state.getBodyStyleStatus is GetBodyStyleCompletedStatus){
+                            GetBodyStyleCompletedStatus getBodyStyleCompletedStatus= state.getBodyStyleStatus as GetBodyStyleCompletedStatus;
 
-                              for(BodyStyleEntity bodyStyle in getBodyStyleCompletedStatus.bodyStyleEntityList){
-                                if(bodyStyle.name != null){
-                                  bodyStyleList.add(
-                                      DropDownModel(title: bodyStyle.name!)
-                                  );
-                                }
-                              }
-
-                            }
-                          },
-                          builder: (context, state) {
-                            return TitleInput(
-                                title: "Body Style",
-
-                                child: SimpleDropDown(
-                                  itemList: bodyStyleList,
-                                  onSelected: (dropDownValue){
-                                    bodyStyle = dropDownValue.title;
-                                  },
-                                )
-                            );
-                          },
-                        ),
-
-                        BlocConsumer<SuggestionsBloc, SuggestionState>(
-                          listener: (context, state) {
-                            if (state
-                                .getColorStatus is GetColorCompletedStatus) {
-                              GetColorCompletedStatus getColorCompletedStatus = state
-                                  .getColorStatus as GetColorCompletedStatus;
-                              List<
-                                  ColorEntity> colorListEntity = getColorCompletedStatus
-                                  .colorList;
-                              colorList.clear();
-                              for (ColorEntity color in colorListEntity) {
-                                if (color.name != null) {
-                                  colorList.add(color.name!);
-                                }
+                            for(BodyStyleEntity bodyStyle in getBodyStyleCompletedStatus.bodyStyleEntityList){
+                              if(bodyStyle.name != null){
+                                bodyStyleList.add(
+                                    DropDownModel(title: bodyStyle.name!)
+                                );
                               }
                             }
-                          },
-                          builder: (context, state) {
-                            return TitleInput(
-                                title: "Color",
-                                marginTop: 35.h,
-                                child: SimpleSuggestion(
-                                  suggestionsList: colorList,
-                                  controller: colorController,
-                                  focusNode: colorFocusNode,
-                                  characters: colorCharacters,
-                                  hint: "Green",
-                                  textChanged: (value) {
-                                    colorCharacters = value!.toLowerCase();
-                                  },
-                                )
-                            );
-                          },
-                        ),
+
+                          }
+                        },
+                        builder: (context, state) {
+                          return TitleInput(
+                              title: "Body Style",
+
+                              child: SimpleDropDown(
+                                itemList: bodyStyleList,
+                                onSelected: (dropDownValue){
+                                  bodyStyle = dropDownValue.title;
+                                },
+                              )
+                          );
+                        },
+                      ),
+
+                      BlocConsumer<SuggestionsBloc, SuggestionState>(
+                        listener: (context, state) {
+                          if (state
+                              .getColorStatus is GetColorCompletedStatus) {
+                            GetColorCompletedStatus getColorCompletedStatus = state
+                                .getColorStatus as GetColorCompletedStatus;
+                            List<
+                                ColorEntity> colorListEntity = getColorCompletedStatus
+                                .colorList;
+                            colorList.clear();
+                            for (ColorEntity color in colorListEntity) {
+                              if (color.name != null) {
+                                colorList.add(color.name!);
+                              }
+                            }
+                          }
+                        },
+                        builder: (context, state) {
+                          return TitleInput(
+                              title: "Color",
+                              marginTop: 35.h,
+                              child: SimpleSuggestion(
+                                suggestionsList: colorList,
+                                controller: colorController,
+                                focusNode: colorFocusNode,
+                                characters: colorCharacters,
+                                hint: "Green",
+                                textChanged: (value) {
+                                  colorCharacters = value!.toLowerCase();
+                                },
+                              )
+                          );
+                        },
+                      ),
 
 
-                        SizedBox(
-                          height: 30.h,
-                        ),
+                      SizedBox(
+                        height: 30.h,
+                      ),
 
-                        RoundCornerButton(
-                          width: 169.w,
-                          title: "Done",
-                          height: 46.h,
-                          onTap: () async{
+                      RoundCornerButton(
+                        width: 169.w,
+                        title: "Done",
+                        height: 46.h,
+                        onTap: () async{
 
-                            FilterParams filterParams = FilterParams(
-                                odometerType: odometerType,
-                                minOdometer: odometerFromController.text,
-                                maxOdometer: odometerToController.text,
-                                minYear: yearFromController.text,
-                                maxYear: yearToController.text,
-                                minPrice: priceFromController.text,
-                                maxPrice: priceFromController.text,
-                                minTotalCost: totalCostFromController.text,
-                                maxTotalCost: totalCostToController.text,
-                                bodyStyle: bodyStyle,
-                                make: makeController.text,
-                                model: modelController.text,
-                                color: colorController.text
-                            );
+                          FilterParams filterParams = FilterParams(
+                              odometerType: odometerType,
+                              minOdometer: odometerFromController.text,
+                              maxOdometer: odometerToController.text,
+                              minYear: yearFromController.text,
+                              maxYear: yearToController.text,
+                              minPrice: priceFromController.text,
+                              maxPrice: priceFromController.text,
+                              minTotalCost: totalCostFromController.text,
+                              maxTotalCost: totalCostToController.text,
+                              bodyStyle: bodyStyle,
+                              make: makeController.text,
+                              model: modelController.text,
+                              color: colorController.text
+                          );
 
-                            List<String> filterList = filterParams.toList();
+                          List<String> filterList = filterParams.toList();
 
-                            Navigator.pop(context,filterList);
+                          Navigator.pop(context,filterList);
 
-                          },
-                        ),
-
-
-                        SizedBox(
-                          height: 30.h,
-                        ),
+                        },
+                      ),
 
 
-                      ],
-                    ),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+
+
+                    ],
                   ),
                 ),
-              )
+              ),
+            )
 
 
-            ],
-          ),
+          ],
         )
     );
   }

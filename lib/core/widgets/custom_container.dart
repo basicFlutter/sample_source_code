@@ -8,7 +8,7 @@ class CustomContainer extends StatelessWidget {
     this.padding,
     this.border ,
     required this.child ,
-    required this.width ,
+     this.width ,
     this.height,
     this.gradient ,
     this.color ,
@@ -19,7 +19,7 @@ class CustomContainer extends StatelessWidget {
   final Gradient? gradient;
   final Color? color;
   final List<BoxShadow>? boxShadow;
-  final double width;
+  final double? width;
   final double? height;
   final Widget child;
   final BoxBorder? border;

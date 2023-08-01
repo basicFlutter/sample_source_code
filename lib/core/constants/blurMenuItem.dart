@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
@@ -10,9 +11,11 @@ import 'package:new_panel/core/widgets/icon_gradient.dart';
 class BlurMenuItem extends StatelessWidget {
   final String text;
   final String? imagePath;
+  final String? imageSvgPath;
   final IconData? icon;
+  final String? partName;
 
-  const BlurMenuItem( {Key? key,required this.text,this.imagePath ,this.icon})
+  const BlurMenuItem( {Key? key,required this.text,this.imagePath ,this.icon , required this.partName ,  this.imageSvgPath})
       : super(key: key);
 
   @override
@@ -42,14 +45,14 @@ class BlurMenuItem extends StatelessWidget {
                 )),
           ),
 
-        if(icon != null)
+        if(icon != null || imageSvgPath!=null)
           CustomContainer(
             width: 30.r,
             height: 30.r,
             shape: BoxShape.circle,
             color: Theme.of(context).brightness == Brightness.light ? AppColors.primary3 : AppColors.primary3Dark,
             child: Center(
-                child: IconGradient(
+                child: imageSvgPath!=null? SvgPicture.asset(imageSvgPath!): IconGradient(
                   icon: icon!,
                   iconSize : 16.r,
                 )
@@ -58,7 +61,7 @@ class BlurMenuItem extends StatelessWidget {
           ),
 
         SizedBox(
-          width: imagePath != null ? 9.w : icon != null ? 10.w : 0,
+          width: imagePath != null || imageSvgPath!=null? 9.w : icon != null ? 10.w : 0,
         ),
 
         CustomText(text:text,

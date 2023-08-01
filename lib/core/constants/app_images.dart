@@ -62,6 +62,34 @@ class AppImages {
   static String user = 'assets/images/menu/user.svg';
   static String vendor = 'assets/images/menu/vendor.svg';
 
+  ///###################
+
+  static String errorIcon = 'assets/images/error_icon_notification.svg';
+  static String successfulIcon = 'assets/images/successful_icon.svg';
+  static String warningIcon = 'assets/images/warning_icon.svg';
+  static String informationIcon = 'assets/images/information_icon.svg';
+
+
+  static String passwordIcon = 'assets/images/password_icon.svg';
+  static String tradeIcon = 'assets/images/trade_icon.svg';
+  static String creditIcon = 'assets/images/credit_icon.svg';
+
+  static String lightSplash = 'assets/images/light_splash.png';
+  static String darkSplash = 'assets/images/dark_splash.png';
+
+  static String changePasswordIcon = 'assets/images/change_password_icon.svg';
+  static String changePasswordIconDark = 'assets/images/change_password_icon.svg';
+
+  static String totalCostIcon = 'assets/images/totalCostIcon.svg';
+  static String totalCostIconDark = 'assets/images/totalCostIcon.svg';
+
+
+  static String uploadFileIcon = 'assets/images/upload_file_icon.svg';
+  static String uploadFileIconDark = 'assets/images/totalCostIcon.svg';
+
+
+
+
 
 
 

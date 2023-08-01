@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/constants/app_images.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
 
@@ -19,12 +20,11 @@ class TotalCostInActionCard extends StatelessWidget {
           SizedBox(width: 1.w),
           SizedBox(
               width: 10.w ,height: 9.h,
-              child: SvgPicture.asset("assets/images/totalCostIcon.svg" )),
+              child: SvgPicture.asset(Theme.of(context).brightness == Brightness.light ? AppImages.totalCostIcon : AppImages.totalCostIconDark )),
           SizedBox(width: 6.w),
           CustomText(text: "Total cost:",
             textStyle: Theme.of(context).textTheme.bodyLarge ,
             textFontWight: TextFontWight.bold,
-
             textColor: Theme.of(context).brightness == Brightness.light ? AppColors.black : AppColors.blackDark,
           ),
           SizedBox(width: 1.w),

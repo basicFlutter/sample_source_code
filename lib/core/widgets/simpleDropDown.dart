@@ -11,9 +11,10 @@ import 'package:new_panel/core/widgets/icon_gradient.dart';
 
 
 class SimpleDropDown extends StatefulWidget {
-  SimpleDropDown({Key? key , required this.itemList , required this.onSelected}) : super(key: key);
+  SimpleDropDown({Key? key , required this.itemList , this.initValue, required this.onSelected}) : super(key: key);
   final List<DropDownModel> itemList;
   Function(DropDownModel) onSelected;
+  final DropDownModel ? initValue;
   @override
   State<SimpleDropDown> createState() => _SimpleDropDownState();
 }
@@ -24,7 +25,7 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    dropDownValue =  widget.itemList[0];
+    dropDownValue = widget.initValue ?? widget.itemList[0];
   }
   @override
   Widget build(BuildContext context) {

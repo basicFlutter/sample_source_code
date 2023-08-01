@@ -15,7 +15,10 @@ class BosBottomNavigation extends StatelessWidget {
     this.rightButtonSvgPath,
     this.rightButtonIcon,
     this.iconSize,
-    this.paddingBetweenIconAndText
+    this.paddingBetweenIconAndText,
+    this.leftButtonLoading,
+    this.rightButtonLoading
+
   }) : super(key: key);
   final GestureTapCallback onTapLeftButton;
   final GestureTapCallback onTapRightButton;
@@ -27,6 +30,8 @@ class BosBottomNavigation extends StatelessWidget {
   final IconData? leftButtonIcon;
   final double? iconSize;
   final double? paddingBetweenIconAndText;
+  final bool? leftButtonLoading ;
+  final bool? rightButtonLoading ;
 
 
 
@@ -50,6 +55,7 @@ class BosBottomNavigation extends StatelessWidget {
             svgIconPath: leftButtonSvgPath,
             icon: leftButtonIcon,
             iconSize: iconSize,
+            isLoading: leftButtonLoading,
             paddingBetweenIconAndText: paddingBetweenIconAndText,
             gradientBackGround: Theme.of(context).brightness == Brightness.light ? AppColors.gradientBlue : AppColors.gradientBlueDark,
           ),
@@ -62,6 +68,7 @@ class BosBottomNavigation extends StatelessWidget {
             svgIconPath: rightButtonSvgPath,
             icon: rightButtonIcon,
             iconSize: iconSize,
+            isLoading: rightButtonLoading,
             paddingBetweenIconAndText: paddingBetweenIconAndText,
             gradientBackGround: Theme.of(context).brightness == Brightness.light ? AppColors.gradientGreen : AppColors.gradientGreenDark,
 

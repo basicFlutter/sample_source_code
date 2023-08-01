@@ -10,7 +10,7 @@ class CustomErrorWidget extends StatefulWidget {
   final String errorText ;
   final bool isVisible;
   final String? iconSrc;
-  const CustomErrorWidget({Key? key , required this.errorText , required this.isVisible , required this.iconSrc}) : super(key: key);
+  const CustomErrorWidget({Key? key , required this.errorText , required this.isVisible ,  this.iconSrc}) : super(key: key);
 
   @override
   State<CustomErrorWidget> createState() => _CustomErrorWidgetState();
@@ -44,20 +44,22 @@ class _CustomErrorWidgetState extends State<CustomErrorWidget> {
           width: 380.w,
           margin: EdgeInsets.only( top: 20.h),
           constraints: BoxConstraints(
-            minHeight: 51.h,
+            minHeight: 25.h,
           ),
           decoration: BoxDecoration(
-              color: Theme.of(context).brightness == Brightness.light ? AppColors.errorLighter : AppColors.errorLighterDark,
+              // color: Theme.of(context).brightness == Brightness.light ? AppColors.errorLighter : AppColors.errorLighterDark,
+             // color: Colors.red.withOpacity(0.2),
               borderRadius: BorderRadius.all(Radius.circular(8.r))
           ),
 
           child: Row(
             children: [
               Padding(
-                padding:  EdgeInsets.only(top: 13.w , bottom: 13.w,left: 10.w),
+                padding:  EdgeInsets.only(top: 13.h , bottom: 13.h,left: 0.w),
                 child:  widget.iconSrc != null ?  SvgPicture.string(widget.iconSrc!) : SizedBox(
-                  width: 20.w,
-                  height: 20.w,
+                  width: 25.r,
+                  height: 25.r,
+                  child: SvgPicture.asset("assets/images/error_icon.svg"),
                 ),
 
               ),
@@ -74,8 +76,9 @@ class _CustomErrorWidgetState extends State<CustomErrorWidget> {
                   child: CustomText(
                     text: widget.errorText,
                     multiLine: true,
-                    textStyle: Theme.of(context).textTheme.displaySmall,
-                    textColor: Theme.of(context).brightness == Brightness.light ? AppColors.errorDarker : AppColors.errorDarkerDark,
+                    textStyle: Theme.of(context).textTheme.labelSmall,
+                    textFontWight: TextFontWight.regular,
+                    textColor: Theme.of(context).brightness == Brightness.light ? AppColors.errorColor : AppColors.errorColorDark,
                   )
               )
             ],),

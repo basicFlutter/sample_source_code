@@ -19,3 +19,27 @@ enum BottomNavigationItemEnum{
   customer,
   deals
 }
+
+
+enum DriversLicenceModel{
+  ontarioDriversLicence,
+  britishDriversLicence,
+  albertaDriversLicence,
+  unKnowDriversLicence
+}
+
+
+enum MessageType{
+  successful,
+  error,
+  warning,
+  information
+}
+
+
+enum VerificationType{
+  changePassword
+}
+
+
+

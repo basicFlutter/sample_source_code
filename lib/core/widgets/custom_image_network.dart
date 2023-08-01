@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/constants.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/gradeint_text.dart';
@@ -9,25 +12,55 @@ import '../constants/app_colors.dart';
 
 
 class CustomImageNetwork extends StatelessWidget {
-  const CustomImageNetwork({Key? key , required this.url , this.boxFit , this.showAge , this.age}) : super(key: key);
+  const CustomImageNetwork({Key? key , required this.url , this.imageSvgPath,this.imageFile ,this.imageSvgSource,this.imageHeight , this.imageWidth,this.boxFit , this.showAge , this.age}) : super(key: key);
   final String? url;
   final BoxFit? boxFit;
   final bool? showAge;
   final num? age;
+  final double? imageWidth;
+  final double? imageHeight;
+  final File? imageFile;
+  final String? imageSvgPath;
+  final String? imageSvgSource;
+
   @override
   Widget build(BuildContext context) {
-    return  url != null ?Stack(
+    return  url != null || imageFile!=null || imageSvgPath != null ?Stack(
       alignment: Alignment.center,
       children: [
 
+        if(imageFile != null)
+        SizedBox(
+            height: imageHeight,
+            width: imageWidth,
+            child: Image.file(imageFile! , fit: boxFit ?? BoxFit.cover,)),
+        if(imageSvgPath != null )
+          SizedBox(
+              height: imageHeight,
+              width: imageWidth,
+              child: SvgPicture.asset(imageSvgPath!)),
+        if(imageSvgSource != null)
+          SizedBox(
+              height: imageHeight,
+              width: imageWidth,
+              child: SvgPicture.string(imageSvgSource!)
+          ),
+
+        if(url != null && imageFile == null && url?.trim() != "")
         Image.network(
           Constants.cdnBaseUrl+url!,
-          cacheWidth: 100,
-          cacheHeight: 100,
+          cacheWidth: 200,
+          cacheHeight: 200,
+          height:imageHeight,
+          width: imageWidth,
           fit: boxFit ?? BoxFit.cover,
           errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-            return const Center(
-              child: Icon(Icons.error_outline),
+            return SizedBox(
+              height:imageHeight,
+              width: imageWidth,
+              child: const Center(
+                child: Icon(Icons.error_outline),
+              ),
             );
           },
         ),
@@ -59,10 +92,10 @@ class CustomImageNetwork extends StatelessWidget {
             ),
 
           ),
-        ) : SizedBox() ,
+        ) : const SizedBox() ,
 
       ],
-    ) : const Center(
+    ):const Center(
       child: Icon(Icons.error_outline),
     );
   }

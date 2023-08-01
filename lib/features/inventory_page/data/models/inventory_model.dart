@@ -22,7 +22,7 @@ String inventoryModelToJson(InventoryModel data) => json.encode(data.toJson());
 class InventoryModel extends InventoryEntity
 {
   InventoryModel({
-      String? id, 
+      int? id,
       Vehicles? vehicles, 
       num? odometer, 
       String? stockNO, 
@@ -55,7 +55,7 @@ class InventoryModel extends InventoryEntity
 }
 
   InventoryModel.fromJson(dynamic json) {
-    _id = json['id'].toString();
+    _id = json['id'];
     _vehicles = json['Vehicles'] != null ? Vehicles.fromJson(json['Vehicles']) : null;
     _odometer = json['odometer'];
     _stockNO = json['stock_NO'];
@@ -76,7 +76,7 @@ class InventoryModel extends InventoryEntity
     _totalCost = json['totalCost'];
     _age = json['age'];
   }
-  String? _id;
+  int? _id;
   Vehicles? _vehicles;
   num? _odometer;
   String? _stockNO;
@@ -91,7 +91,7 @@ class InventoryModel extends InventoryEntity
   num? _vehicleStatus;
   num? _totalCost;
   num? _age;
-InventoryModel copyWith({  String? id,
+InventoryModel copyWith({  int? id,
   Vehicles? vehicles,
   num? odometer,
   String? stockNO,
@@ -122,7 +122,7 @@ InventoryModel copyWith({  String? id,
   totalCost: totalCost ?? _totalCost,
   age: age ?? _age,
 );
-  String? get id => _id;
+  int? get id => _id;
   Vehicles? get vehicles => _vehicles;
   num? get odometer => _odometer;
   String? get stockNO => _stockNO;

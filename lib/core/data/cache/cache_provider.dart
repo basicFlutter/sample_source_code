@@ -1,56 +1,67 @@
-import 'package:shared_preferences/shared_preferences.dart';
+
+
+import 'package:encrypt_shared_preferences/provider.dart';
 
 class CacheProvider{
 
   static save(String key , dynamic value) async{
-    SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+    await EncryptedSharedPreferences.initialize("1234567891234567");
+    var sharedPrefs =  EncryptedSharedPreferences.getInstance();
+
     if (value is bool) {
-      sharedPrefs.setBool(key, value);
+      sharedPrefs.setBoolean(key, value);
     } else if (value is String) {
       sharedPrefs.setString(key, value);
     } else if (value is int) {
       sharedPrefs.setInt(key, value);
     } else if (value is double) {
       sharedPrefs.setDouble(key, value);
-    } else if (value is List<String>) {
-      sharedPrefs.setStringList(key, value);
     }
+    // else if (value is List<String>) {
+    //   sharedPrefs.setStringList(key, value);
+    // }
   }
 
   static Future<bool> saveString(String key , String value) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool result = await prefs.setString(key, value);
+    await EncryptedSharedPreferences.initialize("1234567891234567");
+    var sharedPrefs =  EncryptedSharedPreferences.getInstance();
+    bool result = await sharedPrefs.setString(key, value);
     return result;
   }
 
 
   static void saveInt(String key , int value) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(key, value);
+    await EncryptedSharedPreferences.initialize("1234567891234567");
+    var sharedPrefs =  EncryptedSharedPreferences.getInstance();
+    await sharedPrefs.setInt(key, value);
   }
 
 
 
   static void saveBool(String key , bool value) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(key, value);
+    await EncryptedSharedPreferences.initialize("1234567891234567");
+    var sharedPrefs =  EncryptedSharedPreferences.getInstance();
+    await sharedPrefs.setBoolean(key, value);
   }
 
   static Future<String?> getString(String key ) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? stringValue = prefs.getString(key);
+    await EncryptedSharedPreferences.initialize("1234567891234567");
+    var sharedPrefs =  EncryptedSharedPreferences.getInstance();
+    String? stringValue = sharedPrefs.getString(key);
     return stringValue;
   }
 
   static Future<int> getInt(String key ) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int intValue = prefs.getInt(key) ?? 0;
+    await EncryptedSharedPreferences.initialize("1234567891234567");
+    var sharedPrefs =  EncryptedSharedPreferences.getInstance();
+    int intValue = sharedPrefs.getInt(key) ?? 0;
     return intValue;
   }
 
   static Future<bool> getBool(String key ) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool boolValue = prefs.getBool(key) ?? false;
+    await EncryptedSharedPreferences.initialize("1234567891234567");
+    var sharedPrefs =  EncryptedSharedPreferences.getInstance();
+    bool boolValue = sharedPrefs.getBoolean(key) ?? false;
     return boolValue;
   }
 

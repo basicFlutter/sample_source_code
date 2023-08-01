@@ -4,9 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/custom_loading.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
+import 'package:new_panel/main.dart';
 
 
-class RoundCornerButton extends StatelessWidget {
+class RoundCornerButton extends StatefulWidget {
 
   final double width;
   final double height;
@@ -24,20 +25,28 @@ class RoundCornerButton extends StatelessWidget {
   final bool? isLoading;
   final Color? backGroundColor;
   final Color? textColor;
+  final bool? hasShadow;
+   bool? isDeActive;
 
-  const RoundCornerButton({Key? key,this.textStyle,required this.onTap,this.textColor,this.backGroundColor,this.isLoading,this.paddingBetweenIconAndText ,this.iconSize ,this.svgIconPath,this.gradientBackGround,this.textFontWight,required this.width ,required this.title ,this.icon ,required this.height  , this.radius}) : super(key: key);
+   RoundCornerButton({Key? key,this.textStyle,this.isDeActive,this.hasShadow,required this.onTap,this.textColor,this.backGroundColor,this.isLoading,this.paddingBetweenIconAndText ,this.iconSize ,this.svgIconPath,this.gradientBackGround,this.textFontWight,required this.width ,required this.title ,this.icon ,required this.height  , this.radius}) : super(key: key);
+
+  @override
+  State<RoundCornerButton> createState() => RoundCornerButtonState();
+}
+
+class RoundCornerButtonState extends State<RoundCornerButton> {
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
-        width: width,
-        height: height,
+        width: widget.width,
+        height: widget.height,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(radius ?? 10.r)),
-            color: backGroundColor,
-            gradient: backGroundColor== null ? gradientBackGround ?? (Theme.of(context).brightness == Brightness.light ? AppColors.gradientOrange : AppColors.gradientOrangeDark):null
+            borderRadius: BorderRadius.all(Radius.circular(widget.radius ?? 10.r)),
+            color:  widget.backGroundColor ?? ((widget.isDeActive ?? false) ? Theme.of(context).brightness == Brightness.light ? AppColors.secondary2 :AppColors.secondary2Dark : widget.backGroundColor),
+            gradient: widget.backGroundColor== null && ((widget.isDeActive ?? false) == false) ? widget.gradientBackGround ??  (Theme.of(context).brightness == Brightness.light ? AppColors.gradientOrange : AppColors.gradientOrangeDark):null
         ),
         // padding: EdgeInsets.only(top: 7.h , bottom: 8.h),
         child:Container(
@@ -47,39 +56,39 @@ class RoundCornerButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if(icon != null)
+              if(widget.icon != null)
                 Icon(
-                  icon ,
-                  size: iconSize ?? 12.r,
+                  widget.icon ,
+                  size: widget.iconSize ?? 12.r,
                   shadows: <Shadow>[
                     Shadow(
                       offset: Offset(0, 1),
                       blurRadius: 1,
                       color: Colors.black.withOpacity(0.25),
                     ),
-                  ],
+                  ] ,
                   color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
                 ),
-              if(icon != null)
-                SizedBox(width:paddingBetweenIconAndText?? 1.w),
-              if(svgIconPath != null)
+              if(widget.icon != null)
+                SizedBox(width:widget.paddingBetweenIconAndText?? 1.w),
+              if(widget.svgIconPath != null)
                 SizedBox(
                     width: 22.r,
                     height: 22.r,
-                    child: SvgPicture.asset(svgIconPath!)),
-              if(svgIconPath != null)
+                    child: SvgPicture.asset(widget.svgIconPath!)),
+              if(widget.svgIconPath != null)
                 SizedBox(width: 6.w),
-              if(isLoading ?? false)
+              if(widget.isLoading ?? false)
                  SizedBox(
-                    height: height*0.6,
+                    height: widget.height*0.6,
                     child: const CustomLoading(lightColor: true,)),
-              if((isLoading ?? false) == false)
-                CustomText(
-                  textFontWight: textFontWight ?? TextFontWight.bold,
-                  text: title,
-                  isShadow: true,
-                  textColor: textColor ?? (Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark),
-                  textStyle: textStyle ?? Theme.of(context).textTheme.labelMedium)
+              if((widget.isLoading ?? false) == false)
+                 CustomText(
+                  textFontWight: widget.textFontWight == null && (widget.isDeActive ?? false)== false ? TextFontWight.bold :  widget.textFontWight,
+                  text: widget.title,
+                  isShadow: widget.hasShadow ?? (widget.isDeActive ?? false) == false,
+                  textColor:  widget.textColor == null && (widget.isDeActive ?? false)== false ? (Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark) :widget.textColor,
+                  textStyle: widget.textStyle ?? Theme.of(context).textTheme.labelMedium)
             ],
           ),
         ),

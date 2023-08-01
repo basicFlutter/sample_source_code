@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:global_bottom_navigation_bar/widgets/bottom_navigation_item.dart';
+import 'package:new_panel/core/constants/blurMenu.dart';
+import 'package:new_panel/core/constants/blurMenuItem.dart';
+import 'package:new_panel/core/data/cache/cache_provider.dart';
 import 'package:new_panel/core/enums/app_enums.dart';
+import 'package:new_panel/core/widgets/appBar.dart';
 import 'package:new_panel/core/widgets/searchbar_widget.dart';
 import 'package:new_panel/features/home_page_feature/presentation/pages/home_page.dart';
 import 'package:new_panel/features/inventory_page/presentation/pages/new_inventory.dart';
+import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
+import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
 import 'package:new_panel/features/main_page_feature/presentation/pages/main_page.dart';
 import 'package:new_panel/features/main_page_feature/presentation/widgets/custom_buttom_navigation.dart';
+import 'package:new_panel/main.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../constants/app_images.dart';
 GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>() ;
@@ -15,12 +23,14 @@ class CustomBodyWithBottomNavigation extends StatelessWidget {
   final TextEditingController searchbarController;
 
   final Widget body;
-  final bool? showBottomNavigation;
+  final AppBarCustom? appBarCustom;
+  final  Function(BlurMenuItem item)? onClickedItemMenu;
+  List<BlurMenuItem>? menuItemList;
 
 
   int indexPageSelected;
   CustomBodyWithBottomNavigation(
-      {Key? key, required this.searchbarController ,required this.body , this.showBottomNavigation , required this.indexPageSelected})
+      {Key? key, required this.searchbarController ,required this.body , required this.indexPageSelected , this.menuItemList , this.onClickedItemMenu , this.appBarCustom })
       : super(key: key);
 
   List<Widget> pageList = [
@@ -29,6 +39,9 @@ class CustomBodyWithBottomNavigation extends StatelessWidget {
     Container(),
     Container()
   ];
+  bool menuIsOpen = false;
+  OverlayEntry? overlayEntry;
+
 
 
   @override
@@ -42,7 +55,7 @@ class CustomBodyWithBottomNavigation extends StatelessWidget {
         onSelected: (index) {
 
           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder) {
-          return  MainPage(
+          return  const MainPage(
           );
           }));
 
@@ -118,12 +131,128 @@ class CustomBodyWithBottomNavigation extends StatelessWidget {
                     ),
                   ],),
               ),
-              body,
+              // if(appBarCustom!= null)
+              //   SizedBox(
+              //     height: 8.h,
+              //   ),
+              if(appBarCustom!= null)
+                appBarCustom!,
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: body),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _showBlurMenu(BuildContext context) {
+    final overlayState = Overlay.of(context);
+
+
+    if(overlayEntry != null){
+      overlayEntry?.remove();
+      overlayEntry = null;
+    }else{
+      overlayEntry = OverlayEntry(
+
+          builder: (context) {
+            return Positioned(
+              top: 95.h,
+              right: 16.w,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
+                  overlayEntry?.remove();
+                  overlayEntry = null;
+                },
+                child: BlurMenu(
+                    width: 190.w,
+                    height: 210.h,
+                    itemHeight: 45.h,
+                    onSelect: (BlurMenuItem item){
+                      logger.i("on Selected Function called ${item.text}");
+                      if(item.partName == "profile"){
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //       type: PageTransitionType.fade,
+                        //       duration: const Duration(milliseconds: 200),
+                        //       child:   ProfileSettingPage(
+                        //         userInformation: Constants.customerInformation!,
+                        //       )
+                        //   ),
+                        // );
+                      }else if(item.partName == "Password and security"){
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //       type: PageTransitionType.fade,
+                        //       duration: const Duration(milliseconds: 200),
+                        //       child:   PasswordAndSecurityPage(
+                        //         userInformation: Constants.customerInformation!,
+                        //       )
+                        //   ),
+                        // );
+                      }else if(item.partName == "trade"){
+
+                      }else if(item.partName == "credit"){
+
+                      }else if(item.partName == "LogOut"){
+
+                        /// need add event logOut in login feature and call this event for logout and clear userName and Password
+                        CacheProvider.saveString('userName',"");
+                        CacheProvider.saveString('password',"");
+                        //Constants.customerInformation?.password = "";
+
+                        Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.fade,
+                              duration: const Duration(milliseconds: 200),
+                              child:   LoginPage(loginMapModel: LoginMapModel())
+                          ),
+                        );
+
+                      }
+                      if(onClickedItemMenu != null){
+                        onClickedItemMenu!(item);
+                      }
+                      Future.delayed(
+                        const Duration(milliseconds: 150),
+                            () {
+                          overlayEntry?.remove();
+                          overlayEntry = null;
+                          menuIsOpen = false;
+                        },
+                      );
+                    },
+
+                    items: menuItemList??[
+                      BlurMenuItem(text: "John Bee",imagePath: AppImages.profileTest , partName: "profileOne",),
+                      const BlurMenuItem(text: "My Profile", icon: Icons.settings, partName: "profile",),
+                      BlurMenuItem(text: "Password and security", imageSvgPath: AppImages.passwordIcon, partName: "Password and security",),
+                      BlurMenuItem(text: "My Trade",imageSvgPath: AppImages.tradeIcon,partName: "trade"),
+                      BlurMenuItem(text: "My Credit Application",imageSvgPath: AppImages.creditIcon,partName: "credit"),
+                      BlurMenuItem(text: "Log Out",imageSvgPath: AppImages.creditIcon,partName: "LogOut"),
+                    ]
+
+                ),
+              ),
+            );
+          });
+      overlayState.insert(overlayEntry!);
+    }
+
+
+    // if(menuIsOpen){
+    //   overlayEntry?.remove();
+    //   menuIsOpen = true;
+    // }else{
+    // overlayState.insert(overlayEntry!);
+    // menuIsOpen = true;
+    // }
   }
 
   Widget _topOptions(BuildContext context) {
@@ -195,24 +324,29 @@ class CustomBodyWithBottomNavigation extends StatelessWidget {
             SizedBox(
               width: 10.w,
             ),
-            Container(
-              width: 48.r,
-              height: 48.r,
+            InkWell(
+              onTap: (){
+                _showBlurMenu(context);
+              },
+              child: Container(
+                width: 48.r,
+                height: 48.r,
 
-              decoration: BoxDecoration(
+                decoration: BoxDecoration(
 
-                  borderRadius: BorderRadius.circular(50.r),
-                  border: Border.all(color: Theme.of(context).primaryColor)),
-              child: Padding(
-                padding:  EdgeInsets.all(2.r),
-                child: ClipRRect(
                     borderRadius: BorderRadius.circular(50.r),
-                    child: Image.asset(
-                      AppImages.profileTest,
-                      fit: BoxFit.cover,
-                      width: 40.r,
-                      height: 40.r,
-                    )),
+                    border: Border.all(color: Theme.of(context).primaryColor)),
+                child: Padding(
+                  padding:  EdgeInsets.all(2.r),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50.r),
+                      child: Image.asset(
+                        AppImages.profileTest,
+                        fit: BoxFit.cover,
+                        width: 40.r,
+                        height: 40.r,
+                      )),
+                ),
               ),
             )
           ],

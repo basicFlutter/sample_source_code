@@ -3,9 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 
 class BackTextField extends StatefulWidget {
-   BackTextField({Key? key , required this.isRequired }) : super(key: key);
+   BackTextField({Key? key , required this.isRequired , this.heightTextField}) : super(key: key);
 
    bool? isRequired;
+   final double? heightTextField;
 
   @override
   State<BackTextField> createState() => BackTextFieldState();
@@ -17,7 +18,7 @@ class BackTextFieldState extends State<BackTextField> {
   Widget build(BuildContext context) {
     return   Container(
 
-      height: 45.h,
+      height: widget.heightTextField ?? 45.h,
 
       decoration: BoxDecoration(
         color: Theme.of(context).brightness== Brightness.light ? AppColors.input  : AppColors.inputDark,

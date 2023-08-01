@@ -7,20 +7,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
-import 'package:new_panel/core/constants/app_images.dart';
+import 'package:new_panel/core/enums/app_enums.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
-import 'package:new_panel/core/widgets/check_box_with_text.dart';
 import 'package:new_panel/core/widgets/custom_check_box.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_divider_with_text.dart';
 import 'package:new_panel/core/widgets/custom_error_widget.dart';
-import 'package:new_panel/core/widgets/custom_space.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
-import 'package:new_panel/core/widgets/large_title.dart';
-import 'package:new_panel/core/widgets/login_button.dart';
-import 'package:new_panel/core/widgets/login_google_button.dart';
+
 import 'package:new_panel/core/widgets/round_corner_button.dart';
-import 'package:new_panel/core/widgets/text_field_with_back.dart';
 import 'package:new_panel/core/widgets/text_field_with_back_with_label.dart';
 import 'package:new_panel/features/forgotPassword_feature/presentation/pages/forgot_password_page.dart';
 import 'package:new_panel/features/login_feature/data/models/login_map_model.dart';
@@ -34,17 +29,14 @@ import '../manager/login_bloc.dart';
 import '../manager/status/login_status.dart';
 
 class LoginContainer extends StatefulWidget {
-  const LoginContainer({Key? key}) : super(key: key);
-
+  const LoginContainer({Key? key , required this.loginMapModel}) : super(key: key);
+  final LoginMapModel loginMapModel;
   @override
   State<LoginContainer> createState() => _LoginContainerState();
 }
 
 class _LoginContainerState extends State<LoginContainer> {
-  @override
-  void initState() {
-    super.initState();
-  }
+
 
   final GlobalKey<FormState> formKey = GlobalKey();
   final GlobalKey<FormState> formKeyUserName = GlobalKey();
@@ -57,6 +49,16 @@ class _LoginContainerState extends State<LoginContainer> {
   bool isVisibleError = false;
   String messageError = '';
   String srcIconError = '';
+
+  @override
+  void initState() {
+    super.initState();
+    userNameController.text = widget.loginMapModel.username??"";
+    passwordController.text = widget.loginMapModel.password??"";
+    if(widget.loginMapModel.username!=null && widget.loginMapModel.password != null){
+      isRememberMe = true;
+    }
+  }
 
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     // Optional clientId
@@ -81,12 +83,14 @@ class _LoginContainerState extends State<LoginContainer> {
         // spaceFromTop: 39.69.h,
 
         body: BlocConsumer<LoginBloc, LoginState>(
-
           listener: (context , state){
+            logger.w(state.loginStatus);
+            logger.i(state.checkLoginStatus);
             if(state.loginStatus is FailedLoginStatus){
               FailedLoginStatus failedLoginStatus = state.loginStatus as FailedLoginStatus;
               isVisibleError = true;
               messageError = failedLoginStatus.error.message??"";
+              logger.e(messageError);
             }
             if(state.loginStatus is SuccessLoginStatus){
               isVisibleError = false;
@@ -97,7 +101,8 @@ class _LoginContainerState extends State<LoginContainer> {
             }
           },
           builder: (context, state) {
-            return Container(
+
+            return   Container(
               width: 1.sw,
               height: 850.h,
               decoration: const BoxDecoration(
@@ -126,13 +131,13 @@ class _LoginContainerState extends State<LoginContainer> {
                         children: [
 
                           SizedBox(
-                            height: 15.h,
+                            height: 25.h,
                           ),
                           _title(),
-                          CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is FailedLoginStatus ? true : false  , iconSrc: AppImages.testSvg) ,
+                          CustomErrorWidget(errorText: messageError, isVisible: state.loginStatus is FailedLoginStatus ? true : false  ) ,
 
                           SizedBox(
-                            height: 15.h,
+                            height: 20.h,
                           ),
                           TextFieldWithBackWithLabel(
                             controller: userNameController,
@@ -141,6 +146,9 @@ class _LoginContainerState extends State<LoginContainer> {
                             label: "User Name",
                             isRequired: true,
 
+                          ),
+                          SizedBox(
+                            height: 13.h,
                           ),
                           TextFieldWithBackWithLabel(
                             controller: passwordController,
@@ -153,10 +161,13 @@ class _LoginContainerState extends State<LoginContainer> {
                             suffixIcon: Icons.visibility,
 
                           ),
+                          SizedBox(
+                            height: 11.h,
+                          ),
 
                           _rememberAndForgetPass(),
                           SizedBox(
-                            height: 10.h,
+                            height: 35.h,
                           ),
                           _buttons(context, state),
                           SizedBox(
@@ -164,7 +175,7 @@ class _LoginContainerState extends State<LoginContainer> {
                           ),
                           _registerButton(context),
                           SizedBox(
-                            height: 25.h,
+                            height: 27.h,
                           ),
                         ],
                       ),
@@ -173,6 +184,8 @@ class _LoginContainerState extends State<LoginContainer> {
                 ],
               ),
             );
+
+
           },
         ),
       ),
@@ -201,34 +214,29 @@ class _LoginContainerState extends State<LoginContainer> {
 
 
 
-          TextButton(
-              style: TextButton.styleFrom(
-                minimumSize: Size.zero,
-                padding: EdgeInsets.zero,
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          InkWell(
+            onTap: (){
+              FocusScope.of(context).unfocus();
+
+              Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: const ForgotPasswordPage()
+                ),
+              );
+            },
+            child: Container(
+              height: 25.h,
+              child: Center(
+                  child:  CustomText(
+                    text: 'Forgot password?',
+                    textStyle:Theme.of(context).textTheme.displaySmall ,
+                    textFontWight: TextFontWight.medium,
+                    textColor: Theme.of(context).primaryColor,
+                  )
               ),
-              onPressed: () {
-
-                FocusScope.of(context).unfocus();
-
-                Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      child: const ForgotPasswordPage()
-                  ),
-                );
-
-
-              },
-              child: CustomText(
-                text: 'Forgot password?',
-                textStyle:Theme.of(context).textTheme.displaySmall ,
-                textFontWight: TextFontWight.medium,
-                textColor: Theme.of(context).primaryColor,
-              )
-
-
+            ),
           )
         ],
       ),
@@ -241,26 +249,30 @@ class _LoginContainerState extends State<LoginContainer> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomText(text: 'Not Registered?', textStyle: Theme.of(context).textTheme.displaySmall),
+          CustomText(text: 'Not Registered?',
+            textStyle: Theme.of(context).textTheme.labelSmall ,
+            textFontWight: TextFontWight.regular,
+          ),
 
           // MediumTitle(text: '') ,
           TextButton(
-              style: TextButton.styleFrom(
-                minimumSize: Size.zero,
-                padding: EdgeInsets.zero,
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-              onPressed: () {
-                FocusScope.of(context).unfocus();
+            style: TextButton.styleFrom(
+              minimumSize: Size.zero,
+              padding: EdgeInsets.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            onPressed: () {
+              FocusScope.of(context).unfocus();
 
-              },
-              child:
+            },
+            child:
 
-              CustomText(
-                text: 'Create Account',
-                textStyle: Theme.of(context).textTheme.displaySmall ,
-                textColor: Theme.of(context).primaryColor,
-              ),
+            CustomText(
+              text: 'Create Account',
+              textStyle: Theme.of(context).textTheme.labelSmall ,
+              textFontWight: TextFontWight.semiBold,
+              textColor: Theme.of(context).primaryColor,
+            ),
           )
 
         ],
@@ -291,16 +303,16 @@ class _LoginContainerState extends State<LoginContainer> {
         RoundCornerButton(
           height: 46.h,
           width:  358.w,
-          isLoading: state.loginStatus is LoadingLoginStatus ? true : false,
+          isLoading: state.loginStatus is LoadingLoginStatus ,
           onTap: () {
             FocusScope.of(context).unfocus();
             // formKeyUserName.currentState!.validate();
             if (formKeyUserName.currentState!.validate()) {
               LoginMapModel userInfo = LoginMapModel(
-                username: userNameController.text,
-                password: passwordController.text
-                  // username: "customer",
-                  // password: "987654321"
+                  username: userNameController.text,
+                  password: passwordController.text
+                // username: "customer",
+                // password: "987654321"
 
               );
               BlocProvider.of<LoginBloc>(context).add(DoLoginEvent(loginInfo: userInfo, isRememberMe:isRememberMe));
@@ -353,10 +365,8 @@ class _LoginContainerState extends State<LoginContainer> {
         }
 
       }).catchError((err) {
-        AppUtils.showMessage(
-            message: err,
-            context: context,
-           );
+        AppUtils.showCustomNotification(context: context, messageType: MessageType.error, message:err);
+
         logger.e(err);
       });
     }

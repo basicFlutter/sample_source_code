@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:global_bottom_navigation_bar/widgets/bottom_navigation_item.dart';
 import 'package:global_bottom_navigation_bar/widgets/scaffold_bottom_navigation.dart';
 import 'package:new_panel/core/constants/app_theme.dart';
-import 'package:new_panel/features/inventory_page/presentation/pages/inventory_page.dart';
 import 'package:new_panel/features/inventory_page/presentation/pages/new_inventory.dart';
 import 'package:new_panel/features/main_page_feature/presentation/widgets/custom_buttom_navigation.dart';
 import 'package:new_panel/features/theme_switcher/presentation/manager/theme_switcher_bloc.dart';
@@ -17,7 +16,7 @@ import '../../../home_page_feature/presentation/pages/home_page.dart';
 import '../widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
-   MainPage({Key? key }) : super(key: key);
+   const MainPage({Key? key }) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();

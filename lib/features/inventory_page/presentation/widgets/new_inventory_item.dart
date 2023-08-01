@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/circular_button.dart';
 import 'package:new_panel/core/widgets/custom_check_box.dart';
+import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_image_network.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/features/inventory_page/domain/entities/inventory_entity.dart';
@@ -18,13 +19,13 @@ class NewInventoryItem extends StatelessWidget {
    NewInventoryItem({Key? key , required this.inventoryEntity , required this.isSelectedMode ,required this.selectedThisVehicle ,required this.onTap , required this.onLongPress}) : super(key: key);
  final InventoryEntity? inventoryEntity;
   final bool isSelectedMode ;
-  Function(String vehicleId) onTap;
-  Function(String vehicleId) onLongPress;
+  Function(int vehicleId) onTap;
+  Function(int vehicleId) onLongPress;
   bool itemSelected = false;
   GlobalKey<CustomCheckBoxState> checkBoxKey = GlobalKey<CustomCheckBoxState>();
 
 
-   Function(bool isSelected , String vehicleId) selectedThisVehicle;
+   Function(bool isSelected , int vehicleId) selectedThisVehicle;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class NewInventoryItem extends StatelessWidget {
           itemSelected = !itemSelected;
 
         checkBoxKey.currentState?.updateState();
-          logger.w(itemSelected);
+
         }else{
           onTap(inventoryEntity!.id!);
         }
@@ -56,9 +57,10 @@ class NewInventoryItem extends StatelessWidget {
                 isChecked: itemSelected,
                 margin: EdgeInsets.only(right: 16.w , left: 16.w),
                 onChecked: (newValue){
-                  itemSelected = !itemSelected;
 
-                  selectedThisVehicle(itemSelected,inventoryEntity!.id!);
+                  itemSelected = newValue!;
+
+                  selectedThisVehicle(newValue!,inventoryEntity!.id!);
                 },
               )
 
@@ -66,18 +68,16 @@ class NewInventoryItem extends StatelessWidget {
           ),
 
 
-          Container(
+          CustomContainer(
             width:isSelectedMode?318.w : 358.w,
             height: 136.h,
             margin: EdgeInsets.only(bottom: 7.h),
-            decoration: BoxDecoration(
-              color: Theme.of(context).brightness == Brightness.light ? AppColors.backgroundCard : AppColors.backgroundCardDark,
-              // gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientBackgroundCard : AppColors.gradientBackgroundCardDark,
+            color: Theme.of(context).brightness == Brightness.light ? AppColors.backgroundCard : AppColors.backgroundCardDark,
                 borderRadius: BorderRadius.all(Radius.circular(5.r)),
               boxShadow: [
                 Theme.of(context).brightness == Brightness.light ? AppColors.boxShadow : AppColors.boxShadowDark
-              ]
-            ),
+              ],
+
 
             child: Column(
               children: [
@@ -162,7 +162,7 @@ class NewInventoryItem extends StatelessWidget {
                                         PriceWidget(
                                           price: inventoryEntity?.sellPrice?.toString(),
                                           specialPrice: inventoryEntity?.specialPrice?.toString(),
-                                          showEditIcon: !isSelectedMode,
+                                          isEditable: !isSelectedMode,
                                         ),
 
                                         const Expanded(child: SizedBox()),

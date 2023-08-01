@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import '../../data/models/inventory_model.dart';
 
 class InventoryEntity extends Equatable {
-  final String? id;
+  final int? id;
   final Vehicles? vehicles;
   final num? odometer;
   final String? stockNO;

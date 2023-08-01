@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/enums/app_enums.dart';
 import 'package:new_panel/core/service_locator.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
@@ -124,12 +125,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                         child: BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
                                           listener: (context , state){
                                             if(state.forgotPasswordStatus is ForgotPasswordCompleted){
-                                              AppUtils.showMessage(
-                                                  title: "Successfully",
-                                                  message: "The new Password has been sent to your Email.",
-                                                  context: context,
+                                              AppUtils.showCustomNotification(context: context, messageType: MessageType.successful, message: "The new Password has been sent to your Email.");
 
-                                              );
                                               Navigator.of(context).pop();
                                             }
                                           },

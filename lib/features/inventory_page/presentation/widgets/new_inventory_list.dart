@@ -8,18 +8,21 @@ import 'package:new_panel/features/inventory_page/presentation/widgets/new_inven
 import 'package:new_panel/main.dart';
 
 class NewInventoryList extends StatefulWidget {
-  const NewInventoryList({Key? key , required this.inventories }) : super(key: key);
+   NewInventoryList({Key? key , required this.inventories , required this.selectedListVehicle , required this.cancelSelectedMode}) : super(key: key);
  final List<InventoryEntity> inventories ;
+ Function(List<int> itemIdSelected) selectedListVehicle;
+ Function() cancelSelectedMode;
 
 
 
   @override
-  State<NewInventoryList> createState() => _NewInventoryListState();
+  State<NewInventoryList> createState() => NewInventoryListState();
 }
 
-class _NewInventoryListState extends State<NewInventoryList> {
+class NewInventoryListState extends State<NewInventoryList> {
 
   bool isSelectedMode = false;
+  List<int> itemSelectedIdList = [];
   @override
   Widget build(BuildContext context) {
 
@@ -48,17 +51,31 @@ class _NewInventoryListState extends State<NewInventoryList> {
           itemBuilder: (context , index){
             return  NewInventoryItem(
               selectedThisVehicle: (isSelected , vehicleID){
+
                 if(isSelected){
+                  itemSelectedIdList.add(vehicleID);
 
                 }else{
+                  itemSelectedIdList.removeWhere((element) => element == vehicleID);
 
                 }
-                logger.e(vehicleID);
+                widget.selectedListVehicle(itemSelectedIdList);
+
+               // logger.e(itemSelectedIdList);
+
               },
               inventoryEntity: widget.inventories[index],
               onLongPress: (vehicleId){
                 isSelectedMode = !isSelectedMode;
+                if(isSelectedMode){
+                  widget.selectedListVehicle(itemSelectedIdList);
+                }else{
+                  itemSelectedIdList.clear();
+                 widget.cancelSelectedMode();
+                }
                 BlocProvider.of<InventoryBloc>(context).add(ChangeSelectModeEvent(isSelectMode: isSelectedMode));
+
+
                 // setState(() {
                 //
                 // });

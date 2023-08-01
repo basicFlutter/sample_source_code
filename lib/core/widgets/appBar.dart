@@ -7,8 +7,9 @@ import 'package:new_panel/core/widgets/custom_text.dart';
 
 
 class AppBarCustom extends StatelessWidget {
-  const AppBarCustom({Key? key , this.title , this.actions , this.height , this.onTapBack}) : super(key: key);
+  const AppBarCustom({Key? key , this.title , this.actions , this.height , this.onTapBack , this.subTitle}) : super(key: key);
   final String? title;
+  final String? subTitle;
   final Widget? actions;
   final double? height;
   final GestureTapCallback? onTapBack;
@@ -22,6 +23,7 @@ class AppBarCustom extends StatelessWidget {
 
 
       margin: EdgeInsets.only(top: 12.h),
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment:MainAxisAlignment.spaceBetween,
@@ -46,13 +48,27 @@ class AppBarCustom extends StatelessWidget {
           Expanded(
               child: Align(
                   alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding:  EdgeInsets.only(top: 5.h),
-                    child: CustomText(
-                      text: title!,
-                      textStyle: Theme.of(context).textTheme.titleLarge ,
-                      textFontWight: TextFontWight.bold,
-                    ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 5.h,
+                      ),
+
+                      CustomText(
+                        text: title!,
+                        textStyle: Theme.of(context).textTheme.titleLarge ,
+                        textFontWight: TextFontWight.bold,
+                      ),
+
+                      if(subTitle!= null)
+                        CustomText(text: subTitle!,
+                          textStyle: Theme.of(context).textTheme.displayLarge ,
+                          textFontWight: TextFontWight.regular,
+                          textColor: Theme.of(context).brightness == Brightness.light ? AppColors.secondary3 : AppColors.secondary3Dark,),
+
+
+
+                    ],
                   ))),
           if(actions!= null) actions!
 

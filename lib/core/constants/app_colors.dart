@@ -34,14 +34,31 @@ class AppColors {
   static const Color orangeDark = Color(0xffFF8147);
   static const Color backgroundCard = Color(0xffFEFEFE);
   static const Color backgroundCardDark = Color(0xffECF0F1);
-  static const Color errorLighter = Color(0xffFFE7D9);
-  static const Color errorLighterDark = Color(0xffFFE7D9);
+  static  Color barrierColor = Colors.black.withOpacity(0.2);
+  static  Color barrierColorDark =  Colors.black.withOpacity(0.2);
+  static  Color customGreen =   const Color(0xff06A9A2);
+  static  Color customGreenDark =  const Color(0xff06A9A2);
 
-  static const Color errorDarker = Color(0xff7A0C2E);
-  static const Color errorDarkerDark = Color(0xff7A0C2E);
+
+  // static const Color errorLighter = Color(0xffFFE7D9);
+  // static const Color errorLighterDark = Color(0xffFFE7D9);
+  //
+  // static const Color errorDarker = Color(0xff7A0C2E);
+  // static const Color errorDarkerDark = Color(0xff7A0C2E);
+
+
+
+  static const Color successfulColor = Color(0xff00DF80);
+  static const Color successfulColorDark = Color(0xff00DF80);
 
   static const Color errorColor = Color(0xffFF0000);
   static const Color errorColorDark = Color(0xffFF0000);
+
+  static const Color warningColor = Color(0xffFFD21E);
+  static const Color warningColorDark = Color(0xffFFD21E);
+
+  static const Color informationColor = Color(0xff007DFF);
+  static const Color informationColorDark = Color(0xff007DFF);
 
   static  Shadow shadow = Shadow(
     blurRadius: 4,
@@ -55,6 +72,7 @@ class AppColors {
     blurRadius: 4,
     offset: const Offset(0, 1),
   );
+
   static BoxShadow boxShadowMenu =  BoxShadow(
     color: Colors.black.withOpacity(0.15),
     spreadRadius: 0,
@@ -207,6 +225,23 @@ class AppColors {
         Color(0xff06A9A2),
       ]);
 
+  static  LinearGradient gradientGreenWithOpacity = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        const Color(0xff13D3CB).withOpacity(0.15),
+        const Color(0xff06A9A2).withOpacity(0.15),
+      ]);
+
+  static  LinearGradient gradientGreenWithOpacityDark = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        const Color(0xff13D3CB).withOpacity(0.15),
+        const Color(0xff06A9A2).withOpacity(0.15),
+      ]);
+
+
   static const LinearGradient gradientGreenDark = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
@@ -214,6 +249,8 @@ class AppColors {
         Color(0xff13D3CB),
         Color(0xff06A9A2),
       ]);
+
+
 
 
   static const LinearGradient gradientPink = LinearGradient(

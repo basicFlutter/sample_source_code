@@ -54,10 +54,12 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
       });
     });
 
-    on<GetWholeInventoriesEvent>((event, emit) {});
+    on<GetWholeInventoriesEvent>((event, emit) {
+
+    });
 
     on<SearchInventoryEvent>((event, emit) {
-      print('QUERY IS ${event.searchQuery}') ;
+      logger.w('QUERY IS ${event.searchQuery}') ;
       if(event.searchQuery == ''){
 
         emit(state.copyWith(newInventoryStatus: SuccessGetInventoryStatus(allInventory: inventories, currentPageInventory: [])));

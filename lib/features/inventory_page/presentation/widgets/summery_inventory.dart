@@ -14,19 +14,23 @@ import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:new_panel/features/filter_inventory_page/presentation/pages/filter_page.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/filter_list_item.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/search_inventory.dart';
+import 'package:new_panel/features/inventory_page/presentation/widgets/selected_state_widget.dart';
 
 import 'package:new_panel/main.dart';
 
 class SummeryInventory extends StatefulWidget {
-  SummeryInventory({Key? key , required this.filterList }) : super(key: key);
+  SummeryInventory({Key? key , required this.filterList , required this.onTapDoneButton}) : super(key: key);
   List<String> filterList ;
+  GestureTapCallback onTapDoneButton;
+
+
 
 
   @override
-  State<SummeryInventory> createState() => _SummeryInventoryState();
+  State<SummeryInventory> createState() => SummeryInventoryState();
 }
 
-class _SummeryInventoryState extends State<SummeryInventory> {
+class SummeryInventoryState extends State<SummeryInventory> {
   String dropDownValue = 'Inventory';
 
   TextEditingController searchController = TextEditingController();
@@ -44,6 +48,8 @@ class _SummeryInventoryState extends State<SummeryInventory> {
 
   bool searchIsOpen = false;
   bool visibleSearch = false;
+   bool inSelectedMode = false;
+   List<int> vehicleIdSelected = [];
 
   void changeVisibility() async{
     if(visibleSearch == false){
@@ -66,7 +72,19 @@ class _SummeryInventoryState extends State<SummeryInventory> {
       ),
 
       margin: EdgeInsets.symmetric(horizontal: 16.w),
-      child: Column(
+      child:
+     inSelectedMode ? SelectedStateWidget(
+        vehicleIdListSelected: vehicleIdSelected,
+        onTapDoneButton: (){
+          vehicleIdSelected.clear();
+          inSelectedMode = false;
+          widget.onTapDoneButton();
+          setState(() {
+
+          });
+        },
+      ) :
+      Column(
         children: [
           SizedBox(
             height: 11.h,

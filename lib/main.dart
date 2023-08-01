@@ -10,6 +10,7 @@ import 'package:new_panel/core/data/network/api_provider.dart';
 import 'package:new_panel/core/service_locator.dart';
 import 'package:new_panel/core/suggestions/presentation/manager/suggestion_bloc.dart';
 import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
+import 'package:new_panel/features/splash_feature/presentation/pages/splash_page.dart';
 import 'package:new_panel/features/theme_switcher/presentation/manager/theme_switcher_bloc.dart';
 
 
@@ -74,7 +75,7 @@ class MyApp extends StatelessWidget {
           );
         },
         // child:   const MainPage(),
-        child:   const LoginPage(),
+        child:  const SplashScreen()
         // child:    DashboardCustomerPage(),
       ),
     );

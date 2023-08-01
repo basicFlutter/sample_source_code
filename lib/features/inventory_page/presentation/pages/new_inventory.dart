@@ -9,6 +9,7 @@ import 'package:new_panel/features/inventory_page/domain/entities/inventory_enti
 import 'package:new_panel/features/inventory_page/presentation/manager/inventory_bloc.dart';
 import 'package:new_panel/features/inventory_page/presentation/manager/status/get_inventpries_status.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/new_inventory_list.dart';
+import 'package:new_panel/features/inventory_page/presentation/widgets/selected_state_widget.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/summery_inventory.dart';
 
 import 'package:new_panel/main.dart';
@@ -23,6 +24,9 @@ class NewInventory extends StatelessWidget {
   List<String> filterList =[] ;
 
   bool visibleSearch = false;
+  bool inSelectedMode = false;
+  GlobalKey<SummeryInventoryState> summaryInventoryKey = GlobalKey<SummeryInventoryState>();
+  GlobalKey<NewInventoryListState> newInventoryListKey = GlobalKey<NewInventoryListState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +46,31 @@ class NewInventory extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children:  [
+
+                    // inSelectedMode ?   SelectedStateWidget(
+                    //   itemSelectedCount: [],
+                    //   onTapDownButton: (){
+                    //
+                    //   },
+                    //
+                    // ) :
                   SummeryInventory(
                     filterList: filterList,
+                    key: summaryInventoryKey,
+                    onTapDoneButton: (){
+                      newInventoryListKey.currentState?.isSelectedMode = false;
+                      newInventoryListKey.currentState?.setState(() {
+
+                      });
+                    },
+
                   ),
                   BlocBuilder<InventoryBloc , InventoryState>(
                     builder: (context , state){
                       if(state.getInventoryStatus is LoadingGetInventoryStatus){
-                        return const CustomLoading();
+                        return const Expanded(
+
+                            child: Center(child: CustomLoading()));
                       }
                       if (state.getInventoryStatus is SuccessGetInventoryStatus) {
                         SuccessGetInventoryStatus successState =state.getInventoryStatus as SuccessGetInventoryStatus;
@@ -56,12 +78,32 @@ class NewInventory extends StatelessWidget {
                         if(inventoryList.isEmpty) {
                           return  const EmptyList(
                           title: "No Cars Shared Yet!",
-                          subTitle: "Select +Add Inventory to Share car.",
+                          subTitle: "Select +Add Inventory to Share Car.",
                         );
                         }
                         return  Flexible(
                           child: NewInventoryList(
-                            inventories: inventoryList ,
+                            key: newInventoryListKey,
+
+                            inventories: inventoryList,
+                            selectedListVehicle: (List<int> itemIdSelected) async{
+
+
+                              summaryInventoryKey.currentState?.inSelectedMode = true;
+                              summaryInventoryKey.currentState?.vehicleIdSelected = itemIdSelected;
+                              summaryInventoryKey.currentState?.setState(() {
+
+                              });
+                            }, cancelSelectedMode: () {
+
+                            summaryInventoryKey.currentState?.vehicleIdSelected.clear();
+                            summaryInventoryKey.currentState?.inSelectedMode = false;
+                            summaryInventoryKey.currentState?.setState(() {
+
+                            });
+                          } ,
+
+
                           ),
                         );
                       }

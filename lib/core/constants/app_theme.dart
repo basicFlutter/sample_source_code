@@ -1,5 +1,6 @@
 import "dart:ui";
 
+import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:new_panel/core/constants/app_colors.dart";
@@ -11,6 +12,7 @@ class Style {
 
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
+   // fontFamily: "publicSans-variable",
     fontFamily: "heebo-variable",
     primaryColor: AppColors.primary,
 
@@ -41,6 +43,12 @@ class Style {
       backgroundColor:MaterialStateProperty.all(AppColors.primary3),
     ),
 
+    // cupertinoOverrideTheme: CupertinoThemeData(
+    //     textTheme: CupertinoTextThemeData(
+    //       dateTimePickerTextStyle: TextStyle(color: Colors.blue, fontSize: 16),
+    //       pickerTextStyle: TextStyle(color: Colors.red, fontSize: 12),
+    //     )
+    // ),
 
     //
     // checkboxTheme: CheckboxThemeData(
@@ -121,6 +129,7 @@ class Style {
       unselectedLabelStyle: TextStyle(
         color: AppColors.white,
         fontSize: 12.sp,
+
           fontVariations: const [
             FontVariation(
                 'wght', 400
@@ -280,9 +289,9 @@ class Style {
       //
       //   /// for title check box
       bodyLarge: TextStyle(
-          fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.black),
+          fontSize: 10.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
       bodyMedium: TextStyle(
-          fontSize: 9.sp, fontWeight: FontWeight.w400, color: AppColors.primaryColor),
+          fontSize: 9.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
 
       //
       //   /// search hint text field text
@@ -303,6 +312,7 @@ class Style {
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
     ),
+
   );
 
   static ThemeData darkTheme = ThemeData(

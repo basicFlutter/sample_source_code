@@ -5,6 +5,9 @@ import 'package:new_panel/core/exceptions/failure.dart';
 
 abstract class LoginStatus {}
 
+class LoginStatusInit extends LoginStatus{
+}
+
 class LoadingLoginStatus extends LoginStatus{
 }
 

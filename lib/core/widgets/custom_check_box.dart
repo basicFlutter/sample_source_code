@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
+import 'package:new_panel/main.dart';
 
 
 class CustomCheckBox extends StatefulWidget {
@@ -38,6 +39,8 @@ class CustomCheckBoxState extends State<CustomCheckBox> {
   }
 
   void updateState() {
+    widget.isChecked = ! widget.isChecked;
+    widget.onChecked(widget.isChecked);
     setState(() {
       // update the state here
     });
