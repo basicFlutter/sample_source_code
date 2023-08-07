@@ -15,13 +15,15 @@ class CustomExpansion extends StatefulWidget {
     required this.title,
     required this.contentExpansion,
     required this.iconSvgPath,
-    this.initializeExpanded
+    this.initializeExpanded,
+    this.subTitle
 
   }) : super(key: key);
 
   final Widget contentExpansion;
   final String iconSvgPath;
   final String title;
+  final String? subTitle;
   final bool? initializeExpanded;
 
 
@@ -41,7 +43,7 @@ class _CustomExpansionState extends State<CustomExpansion> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(bottom: 18.h),
+      padding:  EdgeInsets.only(bottom: 15.h),
       child: CustomContainer(
         boxShadow: [
           Theme.of(context).brightness == Brightness.light ? AppColors.boxShadow : AppColors.boxShadowDark
@@ -58,7 +60,7 @@ class _CustomExpansionState extends State<CustomExpansion> {
             // headerPadding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 12.h),
             headerSplashColor: Colors.transparent,
             contentBackgroundColor: Colors.transparent,
-            contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
+            contentPadding: EdgeInsets.only(left: 10.w , right: 10.w ,bottom: 15.h),
             //  contentRadius: 12.0,
 
           ),
@@ -84,8 +86,19 @@ class _CustomExpansionState extends State<CustomExpansion> {
                 width: 28.w,
               ),
 
-              CustomText(text: widget.title, textStyle: Theme.of(context).textTheme.labelMedium ,
-                textFontWight: TextFontWight.medium,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(text: widget.title, textStyle: Theme.of(context).textTheme.labelSmall ,
+                    textFontWight: TextFontWight.semiBold,
+                  ),
+                 // if(widget.subTitle != null)
+                   CustomText(text: "Click for show more Detail", textStyle: Theme.of(context).textTheme.displayLarge ,
+                     textFontWight: TextFontWight.regular,
+                     textColor: Theme.of(context).brightness == Brightness.light ? AppColors.secondary3 : AppColors.secondary3Dark,
+                   ),
+                ],
               )
 
             ],

@@ -86,13 +86,16 @@ class NewInventoryListState extends State<NewInventoryList> {
 
               onTap: (vehicleId){
 
+                logger.w(vehicleId);
                // InventoryDetailPage
                 Navigator.push(
                   context,
                   PageTransition(
                       type: PageTransitionType.fade,
                       duration: const Duration(milliseconds: 200),
-                      child:   VehicleDetailPage()
+                      child:   VehicleDetailPage(
+                        id: vehicleId,
+                      )
                   ),
                 );
 

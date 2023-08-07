@@ -239,6 +239,8 @@ class Style {
     iconTheme: IconThemeData(color: Colors.grey[700]),
     textTheme: TextTheme(
 
+
+
       displayLarge:TextStyle(
         fontSize: 13.sp,
         fontWeight: FontWeight.w400,
@@ -277,9 +279,11 @@ class Style {
           color: AppColors.titleColor),
 
       headlineLarge: TextStyle(
-          fontSize: 12.sp,
-          fontWeight: FontWeight.w400,
-          color: AppColors.titleColor),
+          fontSize: 31.sp,
+          color: AppColors.titleColor,
+        fontFamily: "publicSans-variable",
+
+      ),
       headlineMedium: TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w400, color: AppColors.secondaryColor2),
       //body normal text
       headlineSmall: TextStyle(
@@ -292,7 +296,8 @@ class Style {
           fontSize: 10.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
       bodyMedium: TextStyle(
           fontSize: 9.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
-
+      bodySmall: TextStyle(
+          fontSize: 17.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
       //
       //   /// search hint text field text
       labelLarge: TextStyle(

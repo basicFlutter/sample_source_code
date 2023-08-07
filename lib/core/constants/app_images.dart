@@ -87,6 +87,74 @@ class AppImages {
   static String uploadFileIcon = 'assets/images/upload_file_icon.svg';
   static String uploadFileIconDark = 'assets/images/totalCostIcon.svg';
 
+  static String editIconGradient = 'assets/images/edit_icon_gradient.svg';
+  static String editIconGradientDark = 'assets/images/edit_icon_gradient.svg';
+
+  static String calenderIcon = 'assets/images/calender_icon.svg';
+  static String calenderIconDark = 'assets/images/calender_icon.svg';
+
+  static String gasGageIcon = 'assets/images/gas_gage_icon.png';
+  static String gasGageIconDark = 'assets/images/gas_gage_icon.png';
+
+  static String gasStationIcon = 'assets/images/gas_station_icon.png';
+  static String gasStationIconDark = 'assets/images/gas_station_icon.png';
+
+  static String detailIcon = 'assets/images/detail_icon.svg';
+  static String detailIconDark = 'assets/images/detail_icon.svg';
+
+  static String optionIcon = 'assets/images/option_icon.svg';
+  static String optionIconDark = 'assets/images/option_icon.svg';
+
+  static String commentIcon = 'assets/images/comment_icon.svg';
+  static String commentIconDark = 'assets/images/comment_icon.svg';
+
+  static String securityIcon = 'assets/images/security_icon.svg';
+  static String securityIconDark = 'assets/images/security_icon.svg';
+
+  static String fileIcon = 'assets/images/file_icon.svg';
+  static String fileIconDark = 'assets/images/file_icon.svg';
+
+  static String noteIcon = 'assets/images/note_icon.svg';
+  static String noteIconDark = 'assets/images/note_icon.svg';
+
+  static String carIcon = 'assets/images/car_icon.svg';
+  static String carIconDark = 'assets/images/car_icon.svg';
+
+  static String costIcon = 'assets/images/cost_icon.svg';
+  static String costIconDark = 'assets/images/cost_icon.svg';
+
+  static String dealIcon = 'assets/images/deal_icon.svg';
+  static String dealIconDark = 'assets/images/deal_icon.svg';
+
+  static String commissionIcon = 'assets/images/commission_icon.svg';
+  static String commissionIconDark = 'assets/images/commission_icon.svg';
+
+  static String historyIcon = 'assets/images/history_icon.svg';
+  static String historyIconDark = 'assets/images/history_icon.svg';
+
+  static String makeIcon = 'assets/images/make_icon.svg';
+  static String makeIconDark = 'assets/images/make_icon.svg';
+
+  static String modelIcon = 'assets/images/model_icon.svg';
+  static String modelIconDark = 'assets/images/model_icon.svg';
+
+  static String odometerIcon = 'assets/images/odometer_icon.svg';
+  static String odometerIconDark = 'assets/images/odometer_icon.svg';
+
+  static String transmissionIcon = 'assets/images/transmission_icon.svg';
+  static String transmissionIconDark = 'assets/images/transmission_icon.svg';
+
+  static String bodyStyleIcon = 'assets/images/bodyStyle_icon.svg';
+  static String bodyStyleIconDark = 'assets/images/bodyStyle_icon.svg';
+
+  static String vinGradientIcon = 'assets/images/vin_gradient_icon.svg';
+  static String vinGradientIconDark = 'assets/images/vin_gradient_icon.svg';
+
+  static String barcodeScannerIcon = 'assets/images/barcode_scanner_icon.svg';
+  static String barcodeScannerIconDark = 'assets/images/barcode_scanner_icon.svg';
+
+  static String uploadIcon = 'assets/images/upload_icon.svg';
+  static String uploadIconDark = 'assets/images/upload_icon.svg';
 
 
 

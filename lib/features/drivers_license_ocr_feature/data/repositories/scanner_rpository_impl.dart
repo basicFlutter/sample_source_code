@@ -2,19 +2,23 @@ import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:new_panel/core/constants/constants.dart';
 import 'package:new_panel/core/exceptions/failure.dart';
 import 'package:new_panel/core/params/input_image_drivers_license.dart';
 import 'package:new_panel/core/utils/coordinates_translator.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/local/object_detection.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/local/process_ocr.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/entities/object_detect_entity.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/domain/entities/vin_number_entity.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/repositories/scanner_repository.dart';
 
 import 'package:new_panel/main.dart';
 
 class ScannerRepositoryImpl extends ScannerRepository{
   ObjectDetection objectDetection = ObjectDetection();
-  ScannerRepositoryImpl();
+  // ProcessOcr processOcr;
+  // ScannerRepositoryImpl({required this.processOcr});
   bool isBusy = false;
   @override
   Future<Either<ResponseError, ObjectDetectEntity>> detectDriversLicense({required InputObjectDetectPropertyParams inputImageDetectionProperty})async {
@@ -251,6 +255,17 @@ class ScannerRepositoryImpl extends ScannerRepository{
 
 
       }
+
+  // @override
+  // Future<Either<ResponseError, VinNumberEntity>> detectVinNumber({required InputImage inputImage}) async{
+  //   List<TextBlock> textBlock = [];
+  //   try{
+  //     textBlock = await processOcr.imageToTextProcess(imageAdjusted ?? imageFile);
+  //
+  //   }catch (e){
+  //
+  //   }
+  // }
 
 
 

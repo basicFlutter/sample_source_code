@@ -6,13 +6,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/constants.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/gradeint_text.dart';
+import 'package:new_panel/core/widgets/shimmer_loading.dart';
 
 import '../constants/app_colors.dart';
 
 
 
 class CustomImageNetwork extends StatelessWidget {
-  const CustomImageNetwork({Key? key , required this.url , this.imageSvgPath,this.imageFile ,this.imageSvgSource,this.imageHeight , this.imageWidth,this.boxFit , this.showAge , this.age}) : super(key: key);
+  const CustomImageNetwork({Key? key , required this.url , this.imageSvgPath,this.imageFile ,this.imageSvgSource,this.imageHeight , this.imageWidth,this.boxFit , this.showAge , this.age , this.borderRadius , this.cacheHeight , this.cacheWidth}) : super(key: key);
   final String? url;
   final BoxFit? boxFit;
   final bool? showAge;
@@ -22,6 +23,9 @@ class CustomImageNetwork extends StatelessWidget {
   final File? imageFile;
   final String? imageSvgPath;
   final String? imageSvgSource;
+  final BorderRadius? borderRadius;
+  final int ? cacheWidth;
+  final int ? cacheHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,9 @@ class CustomImageNetwork extends StatelessWidget {
         SizedBox(
             height: imageHeight,
             width: imageWidth,
-            child: Image.file(imageFile! , fit: boxFit ?? BoxFit.cover,)),
+            child: ClipRRect(
+                borderRadius: borderRadius ?? BorderRadius.zero,
+                child: Image.file(imageFile! , fit: boxFit ?? BoxFit.cover,))),
         if(imageSvgPath != null )
           SizedBox(
               height: imageHeight,
@@ -47,22 +53,34 @@ class CustomImageNetwork extends StatelessWidget {
           ),
 
         if(url != null && imageFile == null && url?.trim() != "")
-        Image.network(
-          Constants.cdnBaseUrl+url!,
-          cacheWidth: 200,
-          cacheHeight: 200,
-          height:imageHeight,
-          width: imageWidth,
-          fit: boxFit ?? BoxFit.cover,
-          errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-            return SizedBox(
-              height:imageHeight,
-              width: imageWidth,
-              child: const Center(
-                child: Icon(Icons.error_outline),
-              ),
-            );
-          },
+        ClipRRect(
+          borderRadius: borderRadius?? BorderRadius.zero,
+          child: Image.network(
+            Constants.cdnBaseUrl+url!,
+            cacheWidth:cacheWidth ?? 200,
+            cacheHeight:cacheHeight?? 200,
+            height:imageHeight ,
+            width: imageWidth,
+            fit: boxFit ?? BoxFit.cover,
+
+
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Center(
+                child: ShimmerLoading(),
+              );
+            },
+            errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+              return SizedBox(
+                height:imageHeight,
+                width: imageWidth,
+                child: const Center(
+                  child: Icon(Icons.error_outline),
+                ),
+              );
+            },
+          ),
         ),
         (age != null )? Align(
           alignment: Alignment.topLeft,

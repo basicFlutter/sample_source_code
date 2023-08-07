@@ -10,4 +10,10 @@ class ProcessOcr {
     return recognisedText.blocks;
   }
 
+  Future<List<TextBlock>> inputImageToTextProcess(InputImage inputImage) async {
+    final textDetector = TextRecognizer(script: TextRecognitionScript.latin, );
+    final recognisedText = await textDetector.processImage(inputImage);
+    return recognisedText.blocks;
+  }
+
 }

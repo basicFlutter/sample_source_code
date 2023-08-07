@@ -281,9 +281,23 @@ class AppUtils {
     await launchUrl(Uri.parse("tel://$phone"));
   }
 
-  static void launchURL(String url) async => await canLaunchUrl(Uri.parse(url))
-      ? await launchUrl(Uri.parse(url))
-      : throw 'Could not launch $url';
+  static void launchURL({required String url , required BuildContext context}) async {
+
+    try{
+      Uri webpageUrl = Uri.parse(url);
+      if (!url.startsWith("http://") && !url.startsWith("https://")) {
+         webpageUrl = Uri.parse("http://$url");
+         if( ! await canLaunchUrl(webpageUrl)){
+           webpageUrl = Uri.parse("https://$url");
+         }
+      }
+      await launchUrl(webpageUrl);
+    }catch(e){
+      showCustomNotification(context: context, messageType: MessageType.error, message:'Could not launch $url' );
+    }
+
+
+  }
 
   static sendMessage({required String phone}) async {
     // Android

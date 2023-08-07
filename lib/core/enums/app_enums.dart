@@ -41,5 +41,11 @@ enum VerificationType{
   changePassword
 }
 
+enum ScannerMode{
+  driverLicenseScanner,
+  vinNumberScanner,
+  barcodeScanner
+}
+
 
 

@@ -12,10 +12,10 @@ class InitCameraEvent extends CameraEvent{
 }
 
 class StartDetectDriverLicense extends CameraEvent{
+ final double? scale;
  final CameraController cameraController;
  final Offset? centerOffset;
  final Size? sizeScreen;
- final double? scale;
  final Rect? overLayRect;
  final double? ratio;
  final bool? isLandscape;
@@ -23,12 +23,12 @@ class StartDetectDriverLicense extends CameraEvent{
  const StartDetectDriverLicense({
    required this.cameraController,
    this.centerOffset,
-   this.ratio,
    this.sizeScreen,
+   this.scale,
+   this.overLayRect,
+   this.ratio,
    this.isLandscape,
 
-   this.overLayRect,
-   this.scale,
    this.overlaySize
  });
   @override
@@ -69,5 +69,41 @@ class DisposeCamera extends CameraEvent{
   const DisposeCamera({required this.cameraController});
   @override
   List<Object?> get props => [cameraController];
+
+}
+
+
+class StartScanVinNumber extends CameraEvent{
+  final double? scale;
+  final CameraController cameraController;
+  final Offset? centerOffset;
+  final Size? sizeScreen;
+  final Rect? overLayRect;
+  final double? ratio;
+  final bool? isLandscape;
+  final Size? overlaySize ;
+  const StartScanVinNumber({
+    required this.cameraController,
+    this.centerOffset,
+    this.sizeScreen,
+    this.scale,
+    this.overLayRect,
+    this.ratio,
+    this.isLandscape,
+    this.overlaySize
+});
+  @override
+  List<Object?> get props => [cameraController , centerOffset,sizeScreen,scale,overLayRect,ratio,isLandscape,overlaySize];
+
+}
+
+
+class VinNumberDetected extends CameraEvent{
+  final CameraController cameraController;
+  final VinNumberEntity vinNumberEntity;
+  const VinNumberDetected({required this.vinNumberEntity , required this.cameraController});
+
+  @override
+  List<Object?> get props => [cameraController , vinNumberEntity];
 
 }

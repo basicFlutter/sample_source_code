@@ -142,7 +142,7 @@ class CustomInput extends StatelessWidget {
           return null;
         }
             : (value) {
-          logger.w(confirmText);
+
 
 
           if (value?.trim() == '' && (isRequired ??false)) {

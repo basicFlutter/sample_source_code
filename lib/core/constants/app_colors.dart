@@ -60,6 +60,9 @@ class AppColors {
   static const Color informationColor = Color(0xff007DFF);
   static const Color informationColorDark = Color(0xff007DFF);
 
+  static const Color darkBlueColor = Color(0xff2C3E50);
+  static const Color darkBlueColorDark = Color(0xff2C3E50);
+
   static  Shadow shadow = Shadow(
     blurRadius: 4,
     offset: const Offset(0, 1),
@@ -302,7 +305,7 @@ class AppColors {
   static const Color activeColor = Color(0xff65EB4F);
   static const Color primaryColor = Color(0xff00A1F0);
   static const Color lightPrimaryColor = Color(0xff43A5D7);
-  static const Color darkBlueColor = Color(0xff2C3E50);
+
   static const Color cardColor = Color(0xffecf0f1);
   static const Color backgroundColor = Color(0xffF5F5F5);
   static const Color customLightGray = Color(0xffD9D9D9);
