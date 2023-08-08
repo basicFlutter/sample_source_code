@@ -49,20 +49,46 @@ class AppImages {
   static String drawerBackground = 'assets/images/backMenu.png';
   static String hyperLink = 'assets/images/hyper_link.svg';
 
-  static String accounting = 'assets/images/menu/accounting.svg';
-  static String bhph = 'assets/images/menu/bhph.svg';
-  static String billing = 'assets/images/menu/billing.svg';
-  static String customers = 'assets/images/menu/customers.svg';
-  static String dashboard = 'assets/images/menu/dashboard.svg';
-  static String deals = 'assets/images/menu/deals.svg';
-  static String inventory = 'assets/images/menu/inventory.svg';
-  static String leads = 'assets/images/menu/leads.svg';
-  static String marketing = 'assets/images/menu/marketing.svg';
-  static String testDrive = 'assets/images/menu/testDrive.svg';
-  static String user = 'assets/images/menu/user.svg';
-  static String vendor = 'assets/images/menu/vendor.svg';
 
-  ///###################
+  /// ########################### Menu Icons #################################
+
+  static String accounting = 'assets/images/menu/acounting_icon.svg';
+  static String accountingDark = 'assets/images/menu/acounting_icon.svg';
+
+  static String bhph = 'assets/images/menu/bhph_iocn.svg';
+  static String bhphDark = 'assets/images/menu/bhph_iocn.svg';
+
+  static String billing = 'assets/images/menu/billing_icon.svg';
+  static String billingDark = 'assets/images/menu/billing_icon.svg';
+
+  static String customers = 'assets/images/menu/customers_icon.svg';
+  static String customersDark = 'assets/images/menu/customers_icon.svg';
+
+  static String dashboard = 'assets/images/menu/dashboard_icon.svg';
+  static String dashboardDark = 'assets/images/menu/dashboard_icon.svg';
+
+  static String deals = 'assets/images/menu/deal_icon.svg';
+  static String dealsDark = 'assets/images/menu/deal_icon.svg';
+
+  static String inventory = 'assets/images/menu/inventory_icon.svg';
+  static String inventoryDark = 'assets/images/menu/inventory_icon.svg';
+
+  static String leads = 'assets/images/menu/lead_icon.svg';
+  static String leadsDark = 'assets/images/menu/lead_icon.svg';
+
+  static String marketing = 'assets/images/menu/marketing_icon.svg';
+  static String marketingDark = 'assets/images/menu/marketing_icon.svg';
+
+  static String testDrive = 'assets/images/menu/test_drive_icon.svg';
+  static String testDriveDark = 'assets/images/menu/test_drive_icon.svg';
+
+  static String user = 'assets/images/menu/user_icon.svg';
+  static String userDark = 'assets/images/menu/user_icon.svg';
+
+  static String vendor = 'assets/images/menu/vendor_icon.svg';
+  static String vendorDark = 'assets/images/menu/vendor_icon.svg';
+
+  /// ########################### Menu Icons #################################
 
   static String errorIcon = 'assets/images/error_icon_notification.svg';
   static String successfulIcon = 'assets/images/successful_icon.svg';

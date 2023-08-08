@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/constants/app_images.dart';
+import 'package:new_panel/core/enums/app_enums.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_image_network.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
@@ -37,7 +38,7 @@ class CustomImageUploader extends StatelessWidget {
                 PageTransition(
                     type: PageTransitionType.fade,
                     duration: const Duration(milliseconds: 200),
-                    child:  const CameraPage()
+                    child:   const CameraPage(scannerMode: ScannerMode.driverLicenseScanner,)
                 ),
               );
              if(ocrEntity != null){

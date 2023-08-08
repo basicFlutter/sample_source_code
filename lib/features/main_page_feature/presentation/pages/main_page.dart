@@ -39,59 +39,61 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         if (state is AppThemeSwitchState) {
           themeMode = state.themeMode;
         }
-        return Scaffold(
-          key: scaffoldKey,
-          extendBodyBehindAppBar: true,
-          resizeToAvoidBottomInset: false,
-          drawer:const CustomDrawer() ,
-          body: Stack(
-            alignment: Alignment.topCenter,
-              children: [
-                pageList[indexPageSelected],
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    width: 1.sw,
-                    height: 60.h,
-                    decoration:  BoxDecoration(
-                      // color: Color(0xff00A1F0)
-                      gradient: LinearGradient(
-                        colors: [
-                          Theme.of(context).colorScheme.background,
-                          Colors.transparent,
-                        ],
-                        begin:  Alignment.bottomCenter,
-                        end:  Alignment.topCenter,
-                        stops: [1, 0],
-                        // tileMode: TileMode.clamp
+        return SafeArea(
+          child: Scaffold(
+            key: scaffoldKey,
+            extendBodyBehindAppBar: true,
+            resizeToAvoidBottomInset: false,
+            drawer:const CustomDrawer() ,
+            body: Stack(
+              alignment: Alignment.topCenter,
+                children: [
+                  pageList[indexPageSelected],
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      width: 1.sw,
+                      height: 60.h,
+                      decoration:  BoxDecoration(
+                        // color: Color(0xff00A1F0)
+                        gradient: LinearGradient(
+                          colors: [
+                            Theme.of(context).colorScheme.background,
+                            Colors.transparent,
+                          ],
+                          begin:  Alignment.bottomCenter,
+                          end:  Alignment.topCenter,
+                          stops: [1, 0],
+                          // tileMode: TileMode.clamp
+                        ),
                       ),
+
                     ),
-
                   ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: CustomBottomNavigation(
-                    onSelected: (index) {
-                     indexPageSelected = index;
-                      setState(() {});
-                    },
-                    indexSelected: indexPageSelected,
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: CustomBottomNavigation(
+                      onSelected: (index) {
+                       indexPageSelected = index;
+                        setState(() {});
+                      },
+                      indexSelected: indexPageSelected,
+                    ),
                   ),
-                ),
 
 
-              ],
+                ],
 
 
+            ),
+            // bottomNavigationBar: CustomBottomNavigation(
+            //   onSelected: (index) {
+            //     indexPageSelected = index;
+            //     setState(() {});
+            //   },
+            //   indexSelected: indexPageSelected,
+            // ),
           ),
-          // bottomNavigationBar: CustomBottomNavigation(
-          //   onSelected: (index) {
-          //     indexPageSelected = index;
-          //     setState(() {});
-          //   },
-          //   indexSelected: indexPageSelected,
-          // ),
         );
 
         //   MaterialApp(

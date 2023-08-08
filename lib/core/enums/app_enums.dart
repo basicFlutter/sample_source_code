@@ -1,4 +1,4 @@
-enum InventoryState{
+enum InventoryStateEnum{
   inventory,
   comingSoon,
   activeInventory,
@@ -45,6 +45,11 @@ enum ScannerMode{
   driverLicenseScanner,
   vinNumberScanner,
   barcodeScanner
+}
+
+enum WidgetType{
+  emptyList,
+  error
 }
 
 

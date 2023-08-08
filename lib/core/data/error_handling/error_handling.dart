@@ -24,7 +24,7 @@ class ErrorHandling {
 
     if(response.type == DioErrorType.connectionTimeout){
       return ResponseError(
-          message: "Please Check your Connection",
+          message: "Please Check your Internet Connection",
           alertType: null,
           type: null,
           data: null,

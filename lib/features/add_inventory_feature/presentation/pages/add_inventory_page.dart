@@ -8,8 +8,9 @@ import 'package:new_panel/core/widgets/custom_body.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:new_panel/core/widgets/text_field_with_back.dart';
-import 'package:new_panel/features/drivers_license_ocr_feature/presentation/pages/camera_page_global.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/presentation/pages/camera_page.dart';
 import 'package:new_panel/features/filter_inventory_page/presentation/widgets/title_input.dart';
+import 'package:new_panel/main.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AddInventoryPage extends StatefulWidget {
@@ -65,7 +66,7 @@ class _AddInventoryState extends State<AddInventoryPage> {
                     PageTransition(
                         type: PageTransitionType.fade,
                         duration: const Duration(milliseconds: 200),
-                        child:   const CameraPageGlobal(
+                        child:   const CameraPage(
                           scannerMode: ScannerMode.vinNumberScanner,
                         )
                     ),
@@ -95,11 +96,33 @@ class _AddInventoryState extends State<AddInventoryPage> {
               ),
 
               RoundCornerButton(
-                onTap: (){},
+                onTap: () async {
+
+                  List<String>? barcodeList = await Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.fade,
+                        duration: const Duration(milliseconds: 200),
+                        child:   const CameraPage(
+                          scannerMode: ScannerMode.barcodeScanner,
+                        )
+                    ),
+                  );
+                  logger.w(barcodeList);
+
+                  if(barcodeList != null){
+                    // vinNumberController.text = vinNumber;
+                    // setState(() {
+                    //
+                    // });
+                  }
+
+
+                },
                 width: 358.w,
                 height: 48.h,
                 radius: 100.r,
-                title: "BarCode Scan",
+                title: "Barcode Scan",
                 showTopLineShadow: true,
                 backGroundColor: Theme.of(context).brightness == Brightness.light ? AppColors.primary3 : AppColors.primary3Dark,
                 textColor: Theme.of(context).brightness == Brightness.light ? AppColors.secondary : AppColors.secondary3Dark,

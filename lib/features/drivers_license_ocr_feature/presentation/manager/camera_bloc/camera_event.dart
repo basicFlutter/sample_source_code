@@ -107,3 +107,43 @@ class VinNumberDetected extends CameraEvent{
   List<Object?> get props => [cameraController , vinNumberEntity];
 
 }
+
+
+class ScanBarcode extends CameraEvent{
+  final double? scale;
+  final CameraController cameraController;
+  final Offset? centerOffset;
+  final Size? sizeScreen;
+  final Rect? overLayRect;
+  final double? ratio;
+  final bool? isLandscape;
+  final Size? overlaySize ;
+
+  const ScanBarcode({
+    required this.cameraController,
+    this.centerOffset,
+    this.sizeScreen,
+    this.scale,
+    this.overLayRect,
+    this.ratio,
+    this.isLandscape,
+    this.overlaySize
+});
+
+  @override
+  List<Object?> get props => [cameraController , centerOffset,sizeScreen,scale,overLayRect,ratio,isLandscape,overlaySize];
+
+}
+
+
+class BarcodeDetected extends CameraEvent{
+  final CameraController cameraController;
+  final BarcodeEntity barcodeEntity;
+  const BarcodeDetected({required this.barcodeEntity , required this.cameraController});
+
+  @override
+  List<Object?> get props => [cameraController , barcodeEntity];
+}
+
+
+

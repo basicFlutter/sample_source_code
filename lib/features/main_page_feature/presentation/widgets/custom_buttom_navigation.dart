@@ -94,7 +94,7 @@ class CustomBottomNavigation extends StatelessWidget {
                           width: 28.r,
                           height: 28.r,
                           padding: EdgeInsets.symmetric(vertical: 4.r),
-                          child: SvgPicture.asset("assets/images/bottomNavigation/car_transport_icon.svg",
+                          child: SvgPicture.asset("assets/images/bottomNavigation/inventory_icon.svg",
                             color: indexSelected == 1 ? Theme.of(context).bottomNavigationBarTheme.selectedIconTheme?.color : Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme?.color,
                           ),
                         ),

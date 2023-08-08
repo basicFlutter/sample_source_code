@@ -7,7 +7,7 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 import 'package:new_panel/core/data/error_handling/error_handling.dart';
 import 'package:new_panel/core/enums/app_enums.dart';
 import 'package:new_panel/core/exceptions/failure.dart';
-import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/local/process_ocr.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/local/process_scanner.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/remote.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/models/drivers_license/alberta_drivers_license.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/models/drivers_license/british_drivers_license.dart';
@@ -22,7 +22,7 @@ import 'package:new_panel/main.dart';
 import 'package:string_similarity/string_similarity.dart';
 
 class OcrDriverLicenseRepositoryImpl implements OcrDriverLicenseRepository{
-  ProcessOcr processOcr;
+  ProcessScanner processOcr;
   ImproveImageDriverLicense improveImageDriverLicense;
   AddressProvider addressProvider;
   OcrDriverLicenseRepositoryImpl({required this.processOcr , required this.improveImageDriverLicense , required this.addressProvider});

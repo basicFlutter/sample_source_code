@@ -6,17 +6,18 @@ import 'package:new_panel/core/suggestions/domain/repositories/suggestions_rposi
 import 'package:new_panel/core/suggestions/domain/use_cases/suggestions_usecase.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/local/crop_image_class.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/local/object_detection.dart';
-import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/local/process_ocr.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/local/process_scanner.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/data_sources/remote.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/models/improve_image_driver_license.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/repositories/crop_image_repository_impl.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/data/repositories/ocr_driver_license_repository_impl.dart';
-import 'package:new_panel/features/drivers_license_ocr_feature/data/repositories/scanner_rpository_impl.dart';
-import 'package:new_panel/features/drivers_license_ocr_feature/data/repositories/vin_number_repository_impl.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/data/repositories/scanner_driver_license_rpository_impl.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/data/repositories/vin_number_barcode_repository_impl.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/repositories/crop_image_repository.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/repositories/ocr_driver_license_repository.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/repositories/scanner_repository.dart';
-import 'package:new_panel/features/drivers_license_ocr_feature/domain/repositories/vin_number_scanner_repository.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/domain/repositories/vin_number_barcode_scanner_repository.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/barcode_scanner_useCase.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/cameraImage_to_InputImage_UseCase.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/camera_useCase.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/crop_image_useCase.dart';
@@ -59,7 +60,7 @@ serviceLocator() async {
   locator.registerSingleton<ForgotPasswordDataProvider>(ForgotPasswordDataProvider());
   locator.registerSingleton<InventoryImageDataProvider>(InventoryImageDataProvider());
   locator.registerSingleton<CropImageClass>(CropImageClass());
-  locator.registerSingleton<ProcessOcr>(ProcessOcr());
+  locator.registerSingleton<ProcessScanner>(ProcessScanner());
   locator.registerSingleton<ImproveImageDriverLicense>(ImproveImageDriverLicense());
   locator.registerSingleton<AddressProvider>(AddressProvider());
 
@@ -82,7 +83,7 @@ serviceLocator() async {
 
 
   locator.registerSingleton<ScannerRepository>(
-      ScannerRepositoryImpl());
+      ScannerDriverLicenseRepositoryImpl());
 
   locator.registerSingleton<CropImageRepository>(
       CropImageRepositoryImpl(cropImageClass: locator()));
@@ -92,8 +93,8 @@ serviceLocator() async {
       OcrDriverLicenseRepositoryImpl(improveImageDriverLicense: locator(),processOcr: locator(),addressProvider: locator()));
 
 
-  locator.registerSingleton<VinNumberScannerRepository>(
-      VinNumberScannerRepositoryImpl(processOcr: locator()));
+  locator.registerSingleton<VinNumberBarcodeScannerRepository>(
+      VinNumberScannerRepositoryImpl(processScanner: locator()));
 
 
 
@@ -140,6 +141,9 @@ serviceLocator() async {
 
   locator.registerSingleton<VinNumberScannerUseCase>(
       VinNumberScannerUseCase(vinNumberScannerRepository: locator()));
+
+  locator.registerSingleton<BarcodeScannerUseCase>(
+      BarcodeScannerUseCase( vinNumberBarcodeScannerRepository: locator()));
 
 
   ///############################################## Bloc #############################

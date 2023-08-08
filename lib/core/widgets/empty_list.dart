@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/enums/app_enums.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
-class EmptyList extends StatelessWidget {
-  const EmptyList({Key? key , this.title , this.subTitle , this.subTitlePadding , this.titlePadding}) : super(key: key);
+class EmptyOrErrorList extends StatelessWidget {
+  const EmptyOrErrorList({Key? key , this.title , this.subTitle , this.subTitlePadding , this.titlePadding ,  this.widgetType}) : super(key: key);
   final String? title;
   final String? subTitle;
 
   final double? titlePadding;
   final double? subTitlePadding;
+  final WidgetType? widgetType;
 
 
   @override
@@ -25,9 +27,13 @@ class EmptyList extends StatelessWidget {
           SizedBox(
               width: 203.w,
               height: 189.h,
-              child: SvgPicture.asset("assets/images/car_empty.svg")),
+              child: SvgPicture.asset(
+                  widgetType != null && widgetType == WidgetType.error?
+                     "assets/images/error_car.svg" :
+                  "assets/images/car_empty.svg"
+              )),
           SizedBox(
-            height: titlePadding ?? 50.h,
+            height:widgetType != null && widgetType == WidgetType.error? 10.h: (titlePadding ?? 50.h),
           ),
           CustomText(
             text: title!,

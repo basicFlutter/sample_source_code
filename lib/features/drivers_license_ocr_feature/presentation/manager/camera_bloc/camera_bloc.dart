@@ -14,9 +14,11 @@ import 'package:new_panel/core/params/camera_image_converter_params.dart';
 import 'package:new_panel/core/params/crop_image_input_params.dart';
 import 'package:new_panel/core/params/input_image_drivers_license.dart';
 import 'package:new_panel/core/params/no_params.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/domain/entities/barcode_entity.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/entities/image_crop_file_entity.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/entities/object_detect_entity.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/entities/vin_number_entity.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/barcode_scanner_useCase.dart';
 
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/cameraImage_to_InputImage_UseCase.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/camera_useCase.dart';
@@ -24,6 +26,7 @@ import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/detect_driver_license_singleImage_useCase.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/scanner_drivers_license_useCase.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/domain/use_cases/vin_number_scanner_useCase.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/presentation/manager/camera_bloc/status/barcode_scanner_status.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/presentation/manager/camera_bloc/status/camera_status.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/presentation/manager/camera_bloc/status/crop_image_status.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/presentation/manager/camera_bloc/status/driver_license_detection_status.dart';
@@ -41,6 +44,7 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
   VinNumberScannerUseCase vinNumberScannerUseCase;
   DetectDriverLicenseSingleImageUseCase detectDriverLicenseSingleImageUseCase;
   CropImageUseCase cropImageUseCase;
+  BarcodeScannerUseCase barcodeScannerUseCase;
   Offset? centerOffset ;
   Size? sizeScreen;
   double? ratio;
@@ -56,11 +60,13 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
     required this.cameraImageToInputImageUseCase ,
     required this.detectDriversLicenseUseCase ,
     required this.vinNumberScannerUseCase,
+    required this.barcodeScannerUseCase
   }) : super(CameraState(
       cameraStatus: CameraInit() ,
       driverLicenseDetectionStatus: DriverLicenseDetectionInit() ,
       cropImageStatus: CropImageInit(),
-    vinNumberScannerStatus: VinNumberScannerInit()
+    vinNumberScannerStatus: VinNumberScannerInit(),
+    barcodeScannerStatus: BarcodeScannerInit()
   )) {
 
     on<InitCameraEvent>((event, emit) async{
@@ -288,17 +294,16 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
             if (!isDetected) {
               Either<ResponseError,
                   VinNumberEntity> result = await vinNumberScannerUseCase(
-                inputImage!
-                  // InputObjectDetectPropertyParams(
-                  //     inputImage: inputImage!,
-                  //     centerOffset: event.centerOffset ?? centerOffset!,
-                  //     ratio: event.ratio ?? ratio!,
-                  //     sizeScreen: event.sizeScreen ?? sizeScreen!,
-                  //     isLandscape: event.isLandscape ?? isLandscape!,
-                  //     overLayRect: event.overLayRect ?? overLayRect !,
-                  //     scale: event.scale ?? scale!,
-                  //     cameraLensDirection: event.cameraController.description.lensDirection
-                  // )
+                  InputObjectDetectPropertyParams(
+                      inputImage: inputImage!,
+                      centerOffset: event.centerOffset ?? centerOffset!,
+                      ratio: event.ratio ?? ratio!,
+                      sizeScreen: event.sizeScreen ?? sizeScreen!,
+                      isLandscape: event.isLandscape ?? isLandscape!,
+                      overLayRect: event.overLayRect ?? overLayRect !,
+                      scale: event.scale ?? scale!,
+                      cameraLensDirection: event.cameraController.description.lensDirection
+                  )
               );
 
               result.fold((ResponseError responseError) {
@@ -343,6 +348,102 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
 
       logger.w(event.vinNumberEntity.vinNumber);
 
+      await event.cameraController.dispose();
+      event.cameraController.removeListener(() { });
+      imageCache.clear();
+      imageCache.clearLiveImages();
+      await event.cameraController.dispose();
+      isDetected = false;
+    }
+    );
+
+
+    on<ScanBarcode>((event, emit) async{
+      CameraController cameraController = event.cameraController;
+      isStreamImageRunning = false;
+      if(event.overLayRect != null){
+        isLandscape = event.isLandscape;
+        overLayRect = event.overLayRect;
+        scale = event.scale;
+        sizeScreen = event.sizeScreen;
+        ratio = event.ratio;
+        centerOffset = event.centerOffset;
+      }
+
+      logger.w(event.overLayRect);
+
+      await cameraController.startImageStream((image) async {
+
+        // emit(state.copyWith(newDriverLicenseDetectionStatus: DriverLicenseDetectionLoading()));
+        isStreamImageRunning = true;
+        InputImage? inputImage;
+        Either<ResponseError ,InputImage? > inputImageResponse =
+        await cameraImageToInputImageUseCase(CameraImageConverterParams(inputImage: image,indexCamera: cameraIndexGlobal));
+
+        inputImageResponse.fold((l){
+
+        }, (InputImage? input){
+          inputImage  = input;
+        });
+
+        /// ########################################
+
+        if (inputImage != null) {
+          if (!isDetected) {
+            Either<ResponseError,
+                BarcodeEntity> result = await barcodeScannerUseCase(
+
+              InputObjectDetectPropertyParams(
+                  inputImage: inputImage!,
+                  centerOffset: event.centerOffset ?? centerOffset!,
+                  ratio: event.ratio ?? ratio!,
+                  sizeScreen: event.sizeScreen ?? sizeScreen!,
+                  isLandscape: event.isLandscape ?? isLandscape!,
+                  overLayRect: event.overLayRect ?? overLayRect !,
+                  scale: event.scale ?? scale!,
+                  cameraLensDirection: event.cameraController.description.lensDirection
+              )
+            );
+
+            result.fold((ResponseError responseError) {
+
+
+
+            }, (BarcodeEntity barcodeEntity) async {
+              isDetected = true;
+              try {
+                if (isStreamImageRunning) {
+                  await cameraController.stopImageStream();
+                  for (int i = 10; i > 0; i--) {
+                    await HapticFeedback.vibrate();
+                  }
+                  add(BarcodeDetected(cameraController: event.cameraController , barcodeEntity: barcodeEntity));
+
+
+                  // await Future.delayed(const Duration(milliseconds: 1000));
+                  // await cameraController.setFocusMode(FocusMode.locked);
+                  // await cameraController.setFlashMode(FlashMode.off);
+                  // add(DriverLicenseDetected(cameraController: cameraController , objectDetectEntity: objectDetectEntity));
+
+                }
+              } catch (e) {
+                logger.e('from StartScanEvent error is $e');
+              }
+            });
+
+            //
+          }
+        }
+      });
+
+
+    }
+    );
+
+
+    on<BarcodeDetected>((event, emit) async {
+      emit(state.copyWith(newCameraStatus: CameraInitLoading()));
+      emit(state.copyWith(newBarcodeScannerStatus:  BarcodeScannerCompleted(barcodeEntity: event.barcodeEntity)));
       await event.cameraController.dispose();
       event.cameraController.removeListener(() { });
       imageCache.clear();

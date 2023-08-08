@@ -1,9 +1,11 @@
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:new_panel/core/extenstions/app_extension.dart';
+import 'package:new_panel/core/params/input_image_drivers_license.dart';
 
 class VinNumberModel{
 
-  Future<String?> parsTextBlocAndGetVinNumber(List<TextBlock> textBlockList) async{
+  Future<String?> parsTextBlocAndGetVinNumber(
+      {required List<TextBlock> textBlockList , required InputObjectDetectPropertyParams inputObjectDetectPropertyParams}) async{
     String result = "";
     for (final block in textBlockList) {
       for (final line in block.lines) {
@@ -19,7 +21,8 @@ class VinNumberModel{
     result = result.replaceAll(RegExp(r"[o0]",caseSensitive: false), "0");
 
 
-    String patternVin = "\b[A-HJ-NPR-Z0-9]{17}\b";
+
+
 
     String? vinNumber= RegExp( r"\s([A-HJ-NPR-ZñÑáéíóúüÁÉÍÓÚÜàâçéèêëîïôûùüÿ\d]{9}|[^\SA-HJ-NPR-ZñÑáéíóúüÁÉÍÓÚÜàâçéèêëîïôûùüÿ\d\s]{10})([A-HI-NPR-ZñÑáéíóúüÁÉÍÓÚÜàâçéèêëîïôûùüÿ\d]{3}|[A-HI-NPR-ZñÑáéíóúüÁÉÍÓÚÜàâçéèêëîïôûùüÿ\d\s]{4})(\d{5}|[\d\s]{6})\b", caseSensitive: false).firstMatch(result)?.group(0);
 

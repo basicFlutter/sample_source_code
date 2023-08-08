@@ -17,6 +17,7 @@ import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
 
 import 'package:new_panel/features/drivers_license_ocr_feature/presentation/manager/camera_bloc/camera_bloc.dart';
+import 'package:new_panel/features/drivers_license_ocr_feature/presentation/manager/camera_bloc/status/barcode_scanner_status.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/presentation/manager/camera_bloc/status/camera_status.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/presentation/manager/camera_bloc/status/crop_image_status.dart';
 import 'package:new_panel/features/drivers_license_ocr_feature/presentation/manager/camera_bloc/status/vin_number_scanner_status.dart';
@@ -25,8 +26,8 @@ import 'package:new_panel/features/drivers_license_ocr_feature/presentation/mana
 import 'package:new_panel/main.dart';
 
 class CameraPage extends StatefulWidget {
-  const CameraPage({Key? key}) : super(key: key);
-
+  const CameraPage({Key? key , required this.scannerMode}) : super(key: key);
+  final ScannerMode scannerMode ;
   @override
   State<CameraPage> createState() => _CameraPageState();
 }
@@ -40,6 +41,8 @@ class _CameraPageState extends State<CameraPage>  with WidgetsBindingObserver {
   CameraController? cameraController ;
   double ratio = 1.59;
   late BuildContext _context;
+  bool isNavigate = false;
+
   void _getWidgetInfo(_) {
     final size = MediaQuery.of(_context).size;
     final media = MediaQuery.of(_context);
@@ -66,28 +69,77 @@ class _CameraPageState extends State<CameraPage>  with WidgetsBindingObserver {
 
     final Offset offset = renderBox.localToGlobal(Offset.zero);
     final Size sizeOverLay = renderBox.size;
-    logger.e(sizeOverLay);
+
 
     final Size sizeScreen = MediaQuery.of(_context).size;
 
-    BlocProvider.of<CameraBloc>(_context).add(
-        StartDetectDriverLicense(
-            cameraController: cameraController!,
-            centerOffset: offset,
-            ratio: MediaQuery.of(_context).devicePixelRatio,
-            sizeScreen: sizeScreen,
-            overLayRect: key.globalPaintBounds!,
-            scale: cameraScale,
-            overlaySize: sizeOverLay,
-            isLandscape: media.orientation == Orientation.portrait ? false : true));
+    switch(widget.scannerMode){
+
+      case ScannerMode.driverLicenseScanner:
+        BlocProvider.of<CameraBloc>(_context).add(
+            StartDetectDriverLicense(
+                cameraController: cameraController!,
+                centerOffset: offset,
+                ratio: MediaQuery.of(_context).devicePixelRatio,
+                sizeScreen: sizeScreen,
+                overLayRect: key.globalPaintBounds!,
+                scale: cameraScale,
+                overlaySize: sizeOverLay,
+                isLandscape: media.orientation == Orientation.portrait ? false : true));
+        break;
+
+      case ScannerMode.vinNumberScanner:
+        Future.delayed(const Duration(seconds: 2) , (){
+          BlocProvider.of<CameraBloc>(_context).add(
+              StartScanVinNumber(
+                  cameraController: cameraController!,
+                  centerOffset: offset,
+                  ratio: MediaQuery.of(_context).devicePixelRatio,
+                  sizeScreen: sizeScreen,
+                  overLayRect: key.globalPaintBounds!,
+                  scale: cameraScale,
+                  overlaySize: sizeOverLay,
+                  isLandscape: media.orientation == Orientation.portrait ? false : true));
+        });
+        break;
+      case ScannerMode.barcodeScanner:
+        Future.delayed(const Duration(seconds: 2) , (){
+          BlocProvider.of<CameraBloc>(_context).add(
+              ScanBarcode(
+                  cameraController: cameraController!,
+                  centerOffset: offset,
+                  ratio: MediaQuery.of(_context).devicePixelRatio,
+                  sizeScreen: sizeScreen,
+                  overLayRect: key.globalPaintBounds!,
+                  scale: cameraScale,
+                  overlaySize: sizeOverLay,
+                  isLandscape: media.orientation == Orientation.portrait ? false : true));
+        });
+
+        break;
+
+
+
+    }
+
+
 
   }
+
+
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider<CameraBloc>(create:  (context) => CameraBloc(initCameraUseCase: locator(),detectDriversLicenseUseCase: locator(),cameraImageToInputImageUseCase: locator() , cropImageUseCase:  locator() , detectDriverLicenseSingleImageUseCase: locator(),vinNumberScannerUseCase: locator())..add(InitCameraEvent()),),
+        BlocProvider<CameraBloc>(create:  (context) => CameraBloc(initCameraUseCase: locator(),detectDriversLicenseUseCase: locator(),cameraImageToInputImageUseCase: locator() , cropImageUseCase:  locator() , detectDriverLicenseSingleImageUseCase: locator(),vinNumberScannerUseCase: locator(),barcodeScannerUseCase: locator())..add(InitCameraEvent()),),
         BlocProvider<OcrDriverLicenseBloc>(create: (context) => OcrDriverLicenseBloc(ocrDriverLicenseUseCase: locator()))
         // BlocProvider<OcrBloc>(create: (context)=> Ocr)
 
@@ -115,6 +167,33 @@ class _CameraPageState extends State<CameraPage>  with WidgetsBindingObserver {
                     Navigator.of(context).pop();
                   }
 
+                  if(state.vinNumberScannerStatus is VinNumberScannerCompleted){
+                    VinNumberScannerCompleted vinNumberScannerCompleted = state.vinNumberScannerStatus as VinNumberScannerCompleted;
+
+                    if(!isNavigate){
+                      Navigator.of(context).pop(vinNumberScannerCompleted.vinNumberEntity.vinNumber);
+                      isNavigate = true;
+                    }
+
+                    AppUtils.showCustomNotification(context:context
+                        , messageType: MessageType.successful, message: vinNumberScannerCompleted.vinNumberEntity.vinNumber);
+                  }
+
+                  if(state.barcodeScannerStatus is BarcodeScannerCompleted){
+
+                    BarcodeScannerCompleted barcodeScannerCompleted = state.barcodeScannerStatus as BarcodeScannerCompleted;
+
+
+                    if(!isNavigate){
+                      Navigator.of(context).pop(barcodeScannerCompleted.barcodeEntity.barcodeList);
+                      isNavigate = true;
+                    }
+
+                    AppUtils.showCustomNotification(context:context
+                        , messageType: MessageType.successful, message: "Barcode Detected");
+                  }
+
+
                 },
                 builder: (context, state) {
                   if(state.cameraStatus is CameraInitLoading){
@@ -123,12 +202,28 @@ class _CameraPageState extends State<CameraPage>  with WidgetsBindingObserver {
                   if(state.cameraStatus is CameraInitCompleted){
                     CameraInitCompleted cameraInitCompleted = state.cameraStatus as CameraInitCompleted;
                     cameraController = cameraInitCompleted.cameraController;
+                    final size = MediaQuery.of(context).size;
+                    final media = MediaQuery.of(context);
                     WidgetsBinding.instance.addObserver(this);
                     WidgetsBinding.instance.addPostFrameCallback(_getWidgetInfo);
 
-                    final size = MediaQuery.of(context).size;
-                    final media = MediaQuery.of(context);
+                    //
                     double rectangleOverLayWidth = media.orientation == Orientation.portrait ? size.shortestSide * .9 : size.longestSide * .5;
+
+                    switch(widget.scannerMode){
+
+                      case ScannerMode.driverLicenseScanner:
+
+                        break;
+                      case ScannerMode.vinNumberScanner:
+
+                        ratio = 2;
+                        break;
+                      case ScannerMode.barcodeScanner:
+                        rectangleOverLayWidth = rectangleOverLayWidth*0.8;
+                        ratio = 2;
+                        break;
+                    }
 
                     double cornerRadius = 0.064;
                     double rectangleOverLayHeight = rectangleOverLayWidth / ratio;
@@ -161,6 +256,7 @@ class _CameraPageState extends State<CameraPage>  with WidgetsBindingObserver {
                                   child: Center(child: CameraPreview(cameraInitCompleted.cameraController)),
                                 ),
 
+                               if(widget.scannerMode == ScannerMode.driverLicenseScanner || widget.scannerMode == ScannerMode.vinNumberScanner)
                                 Align(
                                     alignment: Alignment.center,
                                     child: Container(
@@ -175,6 +271,7 @@ class _CameraPageState extends State<CameraPage>  with WidgetsBindingObserver {
                                                   width: 1, color: Colors.white))),
                                     )),
 
+                               if(widget.scannerMode == ScannerMode.driverLicenseScanner|| widget.scannerMode == ScannerMode.vinNumberScanner)
                                 ColorFiltered(
                                   colorFilter:
                                   const ColorFilter.mode(Colors.black54, BlendMode.srcOut),
@@ -222,6 +319,7 @@ class _CameraPageState extends State<CameraPage>  with WidgetsBindingObserver {
                             ),
                           ),
 
+                          if(widget.scannerMode == ScannerMode.driverLicenseScanner)
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: Padding(
@@ -247,7 +345,7 @@ class _CameraPageState extends State<CameraPage>  with WidgetsBindingObserver {
                             ),
                           ),
 
-
+                          if(widget.scannerMode == ScannerMode.driverLicenseScanner)
                           Align(
                             alignment: media.orientation == Orientation.portrait
                                 ? Alignment.topLeft
