@@ -12,96 +12,17 @@ class Style {
 
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
-   // fontFamily: "publicSans-variable",
+    brightness: Brightness.light,
+    // fontFamily: "publicSans-variable",
     fontFamily: "heebo-variable",
     primaryColor: AppColors.primary,
 
-    colorScheme: const ColorScheme(
-        outline: AppColors.lightPrimaryColor,
-        surfaceTint: AppColors.selectedColor,
-        tertiary: AppColors.primary3,
-        onTertiaryContainer: AppColors.darkBlueColor,
-        onTertiary: AppColors.grayText,
-        shadow: AppColors.customGray,
-        brightness: Brightness.light,
-        primary: AppColors.primary2,
-        primaryContainer: AppColors.primary3,
-        background: AppColors.white,
-        onBackground: AppColors.titleColor,
-        surface: AppColors.unselectedColor,
-        onSurface: AppColors.titleColor,
-        onPrimary: AppColors.white,
-        secondary: AppColors.secondary,
-        secondaryContainer: AppColors.secondary2,
-        onSecondary: AppColors.secondary2,
-      error: AppColors.errorColor,
-      onError: AppColors.white,
-
-
-    ),
     searchBarTheme: SearchBarThemeData(
       backgroundColor:MaterialStateProperty.all(AppColors.primary3),
     ),
 
-    // cupertinoOverrideTheme: CupertinoThemeData(
-    //     textTheme: CupertinoTextThemeData(
-    //       dateTimePickerTextStyle: TextStyle(color: Colors.blue, fontSize: 16),
-    //       pickerTextStyle: TextStyle(color: Colors.red, fontSize: 12),
-    //     )
-    // ),
-
-    //
-    // checkboxTheme: CheckboxThemeData(
-    //   checkColor: MaterialStateProperty.all(AppColors.checkColor),
-    //   shape: RoundedRectangleBorder(
-    //     borderRadius: BorderRadius.all(Radius.circular(3.r)),
-    //   ),
-    //   side: MaterialStateBorderSide.resolveWith((Set<MaterialState> states) {
-    //     if(states.contains(MaterialState.selected)){
-    //       return const BorderSide(
-    //           width: 1,
-    //           color:Colors.transparent
-    //       );
-    //     }
-    //     return const BorderSide(
-    //         width: 1,
-    //         color:AppColors.checkBorderColor
-    //     ); // Defer to the widget's default.
-    //   },
-    //
-    //   ),
-    //   fillColor:MaterialStateProperty.resolveWith<Color?>(
-    //
-    //         (Set<MaterialState> states) {
-    //           if(states.contains(MaterialState.selected)){
-    //             return AppColors.checkBoxBackgroundColor;
-    //           }
-    //       return AppColors.lightBlue; // Defer to the widget's default.
-    //     },
-    //   ),
-    //
-    // ),
-    //
-    //
-    // // appBarTheme:  AppBarTheme(
-    // //     color: AppColors.appBarBackground,
-    // //     backgroundColor: AppColors.appBarBackground,
-    // //     titleTextStyle:  TextStyle(
-    // //         fontSize: 12.sp,
-    // //         fontWeight: FontWeight.w400,
-    // //         color: AppColors.appBarTitle
-    // //     ),
-    // //     iconTheme: IconThemeData(
-    // //         color: AppColors.appBarIcon,
-    // //       size: 24.r
-    // //     )
-    // // ),
-    //
-    //
-    canvasColor: AppColors.backgroundColor,
 
 
-    // cardColor:  LinearGradient(colors: [Colors.blue, Colors.green]),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor:AppColors.primary,
@@ -127,8 +48,8 @@ class Style {
           ]
       ),
       unselectedLabelStyle: TextStyle(
-        color: AppColors.white,
-        fontSize: 12.sp,
+          color: AppColors.white,
+          fontSize: 12.sp,
 
           fontVariations: const [
             FontVariation(
@@ -144,111 +65,20 @@ class Style {
       fillColor: MaterialStateProperty.all(Colors.transparent),
       shape: const CircleBorder(),
     ),
-    //
-    //
-    //
-    // ///############################ textButton #########################################
-    //
-    // // textButtonTheme: TextButtonThemeData(
-    // //   style: ButtonStyle(
-    // //    textStyle: MaterialStateProperty.resolveWith((states) {
-    // //      return
-    // //    })
-    // //   )
-    // // ),
-    //
-    //
-    //
-    //
-    // ///############################ textField theme #########################################
-    //
-    // inputDecorationTheme: InputDecorationTheme(
-    //
-    //   focusedBorder: OutlineInputBorder(
-    //       borderRadius:
-    //       BorderRadius.circular(AppDimensions.smallButtonRadius),
-    //       borderSide: const BorderSide(color: AppColors.borderTextFieldColor)),
-    //   border: OutlineInputBorder(
-    //       borderRadius:
-    //       BorderRadius.circular(AppDimensions.smallButtonRadius),
-    //       borderSide: const BorderSide(color: AppColors.borderTextFieldColor )
-    //   ),
-    //   enabledBorder: OutlineInputBorder(
-    //
-    //       borderRadius:
-    //       BorderRadius.circular(AppDimensions.smallButtonRadius),
-    //       borderSide: const BorderSide(color: AppColors.borderTextFieldColor)),
-    //   labelStyle: TextStyle(
-    //     fontWeight: FontWeight.w400,
-    //     fontFamily: "PublicSans",
-    //     fontSize: 14.sp,
-    //     color: AppColors.labelTextFieldColor
-    //   ),
-    //   floatingLabelStyle: TextStyle(
-    //       fontWeight: FontWeight.w400,
-    //       fontFamily: "PublicSans",
-    //       fontSize: 12.sp,
-    //
-    //       color: AppColors.labelTextFieldColor
-    //   ),
-    //
-    //   hintStyle: TextStyle(
-    //     fontWeight: FontWeight.w400,
-    //     fontFamily: "PublicSans",
-    //     fontSize: 16.sp,
-    //     color: AppColors.hintTextFieldColor
-    //   ),
-    //
-    //   errorStyle: TextStyle(
-    //     fontWeight: FontWeight.w400,
-    //     fontFamily: "PublicSans",
-    //     fontSize: 12.sp,
-    //     height: 0.3,
-    //     color: AppColors.errorTextFieldColor,
-    //   ),
-    //   helperStyle: TextStyle(
-    //       fontWeight: FontWeight.w400,
-    //       fontFamily: "PublicSans",
-    //       fontSize: 12.sp,
-    //       color: AppColors.errorTextFieldColor
-    //   ),
-    //
-    //
-    //   prefixIconColor: AppColors.prefixIconColor,
-    //   suffixIconColor: AppColors.suffixIconColor,
-    //
-    // ),
-    //
-    //
-    // // textButtonTheme: TextButtonThemeData(
-    // //   style: ButtonStyle(
-    // //     textStyle: MaterialStateProperty<TextStyle?>(TextStyle){
-    // //
-    // //   }
-    // //   )
-    // // ),
-    //
-    //
-    //
-    // ///###############################################################################################
-    //
-    //
+
 
 
 
     iconTheme: IconThemeData(color: Colors.grey[700]),
     textTheme: TextTheme(
-
-
-
       displayLarge:TextStyle(
         fontSize: 13.sp,
         fontWeight: FontWeight.w400,
-        color: AppColors.displayLargeColor,
+        color: AppColors.titleColor,
 
       ),
 
-      /// for Driven by Future,Run Faster, Cost Less in login page
+
       displaySmall:TextStyle(
           fontSize: 11.sp,
           fontWeight: FontWeight.w400,
@@ -260,58 +90,54 @@ class Style {
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
-      /// Large Title
+
       titleLarge: TextStyle(
           fontSize: 20.sp,
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
-      /// Medium Title
+
       titleMedium: TextStyle(
           fontSize: 19.sp,
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
-      /// SubTitle
+
       titleSmall: TextStyle(
           fontSize: 18.sp,
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
       headlineLarge: TextStyle(
-          fontSize: 31.sp,
-          color: AppColors.titleColor,
+        fontSize: 31.sp,
+        color: AppColors.titleColor,
         fontFamily: "publicSans-variable",
 
       ),
-      headlineMedium: TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w400, color: AppColors.secondaryColor2),
-      //body normal text
+      headlineMedium: TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w400, color: AppColors.secondary2),
+
       headlineSmall: TextStyle(
           fontSize: 9.sp,
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
-      //
-      //   /// for title check box
+
       bodyLarge: TextStyle(
           fontSize: 10.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
       bodyMedium: TextStyle(
           fontSize: 9.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
       bodySmall: TextStyle(
           fontSize: 17.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
-      //
-      //   /// search hint text field text
+
       labelLarge: TextStyle(
           fontSize: 16.sp,
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
-      /// search text
       labelMedium: TextStyle(
           fontSize: 15.sp,
           fontWeight: FontWeight.w400,
           color: AppColors.titleColor),
 
-      /// label text => carPrice
       labelSmall: TextStyle(
           fontSize: 14.sp,
           fontWeight: FontWeight.w400,
@@ -321,59 +147,138 @@ class Style {
   );
 
   static ThemeData darkTheme = ThemeData(
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
     brightness: Brightness.dark,
-    appBarTheme: AppBarTheme(
-        titleTextStyle: TextStyle(
-            fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[400]),
-        iconTheme: IconThemeData(color: Colors.grey[500])),
+    // fontFamily: "publicSans-variable",
+    fontFamily: "heebo-variable",
+    primaryColor: AppColors.primary,
 
-    ///############################ textField theme #########################################
-
-    // inputDecorationTheme: InputDecorationTheme(
-    //   focusedBorder: OutlineInputBorder(
-    //       borderRadius:
-    //       BorderRadius.circular(AppDimensions.smallButtonRadius),
-    //       borderSide:  BorderSide(color: AppColors.borderTextFieldColorDark)),
-    //   border: OutlineInputBorder(
-    //       borderRadius:
-    //       BorderRadius.circular(AppDimensions.smallButtonRadius),
-    //       borderSide:  BorderSide(color: AppColors.borderTextFieldColorDark)),
-    //   enabledBorder: OutlineInputBorder(
-    //       borderRadius:
-    //       BorderRadius.circular(AppDimensions.smallButtonRadius),
-    //       borderSide:  BorderSide(color: AppColors.borderTextFieldColorDark)),
-    //   labelStyle: TextStyle(
-    //       fontWeight: FontWeight.w400,
-    //       fontFamily: "PublicSans",
-    //       fontSize: 16.sp,
-    //       color: AppColors.labelTextFieldColorDark
-    //   ),
-    //   hintStyle: TextStyle(
-    //       fontWeight: FontWeight.w400,
-    //       fontFamily: "PublicSans",
-    //       fontSize: 16.sp,
-    //       color: AppColors.hintTextFieldColorDark
-    //   ),
-    //   errorStyle: TextStyle(
-    //       fontWeight: FontWeight.w400,
-    //       fontFamily: "PublicSans",
-    //       fontSize: 16.sp,
-    //       color: AppColors.errorTextFieldColorDark
-    //   ),
-    //   prefixIconColor: AppColors.prefixIconColorDark,
-    //   suffixIconColor: AppColors.suffixIconColorDark,
-    //
-    // ),
-    //
-    // ///###############################################################################################
-
-    // colorScheme:  ColorScheme(
-    //
-    // ),
-
-    iconTheme: IconThemeData(
-      color: Colors.grey[500],
+    searchBarTheme: SearchBarThemeData(
+      backgroundColor:MaterialStateProperty.all(AppColors.primary3),
     ),
-    textTheme: TextTheme(),
+
+
+
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor:AppColors.primary,
+
+
+      elevation: 0,
+
+      selectedIconTheme: IconThemeData(
+          color: AppColors.white,
+          size: 28.r
+      ),
+      unselectedIconTheme: IconThemeData(
+          color:AppColors.white,
+          size: 28.r
+      ),
+      selectedLabelStyle: TextStyle(
+          color: AppColors.hint,
+          fontSize:11.sp,
+          fontVariations: const [
+            FontVariation(
+                'wght', 600
+            )
+          ]
+      ),
+      unselectedLabelStyle: TextStyle(
+          color: AppColors.white,
+          fontSize: 12.sp,
+
+          fontVariations: const [
+            FontVariation(
+                'wght', 400
+            )
+          ]
+
+      ),
+    ),
+    checkboxTheme: CheckboxThemeData(
+      checkColor: MaterialStateProperty.all(AppColors.white),
+
+      fillColor: MaterialStateProperty.all(Colors.transparent),
+      shape: const CircleBorder(),
+    ),
+
+
+
+
+    iconTheme: IconThemeData(color: Colors.grey[700]),
+    textTheme: TextTheme(
+      displayLarge:TextStyle(
+        fontSize: 13.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.titleColor,
+
+      ),
+
+
+      displaySmall:TextStyle(
+          fontSize: 11.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.titleColor),
+
+
+      displayMedium: TextStyle(
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.titleColor),
+
+
+      titleLarge: TextStyle(
+          fontSize: 20.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.titleColor),
+
+
+      titleMedium: TextStyle(
+          fontSize: 19.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.titleColor),
+
+
+      titleSmall: TextStyle(
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.titleColor),
+
+      headlineLarge: TextStyle(
+        fontSize: 31.sp,
+        color: AppColors.titleColor,
+        fontFamily: "publicSans-variable",
+
+      ),
+      headlineMedium: TextStyle(fontSize: 10.sp,fontWeight: FontWeight.w400, color: AppColors.secondary2Dark),
+
+      headlineSmall: TextStyle(
+          fontSize: 9.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.titleColor),
+
+      bodyLarge: TextStyle(
+          fontSize: 10.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
+      bodyMedium: TextStyle(
+          fontSize: 9.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
+      bodySmall: TextStyle(
+          fontSize: 17.sp, fontWeight: FontWeight.w400, color: AppColors.titleColor),
+
+      labelLarge: TextStyle(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.titleColor),
+
+      labelMedium: TextStyle(
+          fontSize: 15.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.titleColor),
+
+      labelSmall: TextStyle(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.titleColor),
+    ),
   );
 }

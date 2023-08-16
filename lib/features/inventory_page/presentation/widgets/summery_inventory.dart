@@ -7,7 +7,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/models/drop_down_model.dart';
 import 'package:new_panel/core/widgets/circular_button.dart';
-import 'package:new_panel/core/widgets/custom_dropdown.dart';
 import 'package:new_panel/core/widgets/custom_tag.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
@@ -19,6 +18,8 @@ import 'package:new_panel/features/inventory_page/presentation/widgets/selected_
 
 import 'package:new_panel/main.dart';
 import 'package:page_transition/page_transition.dart';
+
+import '../../../../core/widgets/custom_dropdown.dart';
 
 class SummeryInventory extends StatefulWidget {
   SummeryInventory({Key? key , required this.filterList , required this.onTapDoneButton}) : super(key: key);
