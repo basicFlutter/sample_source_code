@@ -1,4 +1,4 @@
-# new_panel
+# Sample Source Code
 
 A new Flutter project.
 
