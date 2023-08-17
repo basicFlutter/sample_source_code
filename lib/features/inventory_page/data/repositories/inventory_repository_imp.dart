@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:new_panel/core/data/error_handling/error_handling.dart';
 import 'package:new_panel/core/exceptions/failure.dart';
-import 'package:new_panel/core/exceptions/server_exception.dart';
 import 'package:new_panel/features/inventory_page/data/data_sources/inventory_remote_data.dart';
 import 'package:new_panel/features/inventory_page/data/models/inventory_model.dart';
 import 'package:new_panel/features/inventory_page/domain/entities/inventory_entity.dart';

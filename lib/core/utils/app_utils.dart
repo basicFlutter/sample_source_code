@@ -10,10 +10,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/enums/app_enums.dart';
-import 'package:new_panel/core/widgets/custom_bottom_sheet.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_error_snackbar.dart';
-import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -60,18 +58,7 @@ class AppUtils {
 
 
   
-  static Future<void> showCustomBottomSheet({required BuildContext context,required child}) async{
-    showModalBottomSheet(
-        context: context,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(topRight: Radius.circular(36.r) , topLeft: Radius.circular(36.r)),
-        ),
 
-        builder: (builder){
-          return  CustomBottomSheet(child: child);
-        }
-    );
-  }
 
 
 
@@ -299,29 +286,8 @@ class AppUtils {
 
   }
 
-  static sendMessage({required String phone}) async {
-    // Android
-    if (Platform.isAndroid) {
-      var uri = 'sms:$phone';
-      await launchUrl(Uri.parse(uri));
-    } else if (Platform.isIOS) {
-      // iOS
-      var uri = 'sms:$phone';
-      await launchUrl(Uri.parse(uri));
-    }
-  }
 
-  static Color toColor(String color) {
-    var hexColor = color.replaceAll("#", "");
-    if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
-    }
-    if (hexColor.length == 8) {
-      return Color(int.parse("0x$hexColor"));
-    }
 
-    return Color(int.parse(hexColor));
-  }
 
   static String dollarFormat(String number ) {
     if (number.length > 2) {
@@ -337,8 +303,5 @@ class AppUtils {
     return await MultipartFile.fromFile(file.path, filename:fileName);
   }
 
-  // static copyToClipboard({required String text}) {
-  //   Future<void> isOk = Clipboard.setData(ClipboardData(text: text));
-  //   isOk.whenComplete(() => showMessage(message: 'success'));
-  // }
+
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
+import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
@@ -13,14 +14,12 @@ class CustomBottomNavigation extends StatelessWidget {
   final double borderRadius = 12.r;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return CustomContainer(
       width: 1.sw,
       height: 65.h,
       margin: EdgeInsets.only(bottom: 4.h , left: 16.w , right: 16.w),
-      decoration:  BoxDecoration(
-          color:Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-          borderRadius:  BorderRadius.all(Radius.circular(15.r)),
-      ),
+      color:Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+      borderRadius:  BorderRadius.all(Radius.circular(15.r)),
       child: Row(
 
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,24 +28,19 @@ class CustomBottomNavigation extends StatelessWidget {
             onTap: (){
               onSelected(0);
             },
-            child: Container(
+            child: CustomContainer(
               width: 89.5.w,
-             // color: Colors.red,
 
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  Container(
+                  CustomContainer(
                     width:itemSelectedSizeWidth,
                     height: itemSelectedSizeHeight,
-                    // decoration: BoxDecoration(
-                    //     color: indexSelected == 0 ?  Theme.of(context).primaryColor : Colors.transparent,
-                    //     borderRadius: BorderRadius.all(Radius.circular(15.r))
-                    // ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
+                        CustomContainer(
                           width:23.r,
                           height: 23.r,
                           // padding: EdgeInsets.all(2.r),
@@ -115,23 +109,22 @@ class CustomBottomNavigation extends StatelessWidget {
             onTap: (){
               onSelected(2);
             },
-            child: Container(
+            child: CustomContainer(
 
               width: 89.5.w,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  Container(
+                  CustomContainer(
                     width:itemSelectedSizeWidth,
                     height: itemSelectedSizeHeight,
-                    decoration: BoxDecoration(
-                        color: indexSelected == 2 ?  Theme.of(context).primaryColor : Colors.transparent,
-                        borderRadius: BorderRadius.all(Radius.circular(15.r))
-                    ),
+                    color: indexSelected == 2 ?  Theme.of(context).primaryColor : Colors.transparent,
+                    borderRadius: BorderRadius.all(Radius.circular(15.r)),
+
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
+                        CustomContainer(
                           width: 28.r,
                           height: 28.r,
                           padding: EdgeInsets.symmetric(vertical: 1.r,horizontal: 2.r),
@@ -156,24 +149,23 @@ class CustomBottomNavigation extends StatelessWidget {
             onTap: (){
               onSelected(3);
             },
-            child: Container(
+            child: CustomContainer(
 
               width: 89.5.w,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  Container(
+                  CustomContainer(
                     width:itemSelectedSizeWidth,
                     height: itemSelectedSizeHeight,
-                    decoration: BoxDecoration(
                         color: indexSelected == 3 ?  Theme.of(context).primaryColor : Colors.transparent,
-                        borderRadius: BorderRadius.all(Radius.circular(15.r))
-                    ),
+                        borderRadius: BorderRadius.all(Radius.circular(15.r)),
+
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
 
                       children: [
-                        Container(
+                        CustomContainer(
                           width: 30.r,
                           height: 30.r,
                           padding: EdgeInsets.symmetric(vertical: 5.95.r,horizontal: 0),

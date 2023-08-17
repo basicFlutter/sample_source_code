@@ -10,7 +10,6 @@ import 'package:new_panel/core/widgets/circular_button.dart';
 import 'package:new_panel/core/widgets/custom_tag.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
-import 'package:new_panel/features/add_inventory_feature/presentation/pages/add_inventory_page.dart';
 import 'package:new_panel/features/filter_inventory_page/presentation/pages/filter_page.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/filter_list_item.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/search_inventory.dart';
@@ -215,14 +214,7 @@ class SummeryInventoryState extends State<SummeryInventory> {
                       textFontWight: TextFontWight.regular,
                       onTap: (){
 
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: const Duration(milliseconds: 200),
-                              child:   const AddInventoryPage()
-                          ),
-                        );
+
 
                       },
 

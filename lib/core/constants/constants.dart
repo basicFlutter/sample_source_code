@@ -4,7 +4,9 @@ import 'package:new_panel/core/models/drop_down_model.dart';
 
 
 class Constants {
-  static const cdnBaseUrl = 'https://image123.azureedge.net';
+  static const cdnBaseUrl = 'azureedge base url';
+
+  /// path of google ml kit model for object detection
   static const pathOfMlKitModel = 'assets/ml/object_labeler.tflite';
 
   static String? accessToken = "";

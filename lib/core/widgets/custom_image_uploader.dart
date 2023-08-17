@@ -8,8 +8,7 @@ import 'package:new_panel/core/enums/app_enums.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_image_network.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
-import 'package:new_panel/features/drivers_license_ocr_feature/domain/entities/ocr_entitiy.dart';
-import 'package:new_panel/features/drivers_license_ocr_feature/presentation/pages/camera_page.dart';
+
 
 
 import 'package:new_panel/main.dart';
@@ -21,7 +20,7 @@ class CustomImageUploader extends StatelessWidget {
   final double? width;
   final String? imageUrl;
    File? imageFile;
-  final Function(File imageFile , OcrEntity) onSelectImage;
+  final Function(File imageFile ) onSelectImage;
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -33,20 +32,8 @@ class CustomImageUploader extends StatelessWidget {
         children: [
           InkWell(
             onTap:() async{
-             OcrEntity? ocrEntity = await Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: const Duration(milliseconds: 200),
-                    child:   const CameraPage(scannerMode: ScannerMode.driverLicenseScanner,)
-                ),
-              );
-             if(ocrEntity != null){
-               imageFile = ocrEntity.imageFile;
-                 if(ocrEntity.imageFile != null){
-                   onSelectImage(ocrEntity.imageFile! ,ocrEntity);
-                 }
-             }
+
+
             },
               child:  CustomImageNetwork(imageSvgPath: Theme.of(context).brightness == Brightness.light ? AppImages.uploadFileIcon : AppImages.uploadFileIconDark ,url: null,)),
           SizedBox(

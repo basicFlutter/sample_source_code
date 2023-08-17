@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
-import 'package:new_panel/core/constants/blurMenuItem.dart';
+import 'package:new_panel/core/widgets/blurMenuItem.dart';
 
 class BlurMenu extends StatelessWidget {
   final double width;

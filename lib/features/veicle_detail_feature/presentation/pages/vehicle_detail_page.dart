@@ -7,7 +7,6 @@ import 'package:new_panel/core/models/history_model.dart';
 import 'package:new_panel/core/service_locator.dart';
 import 'package:new_panel/core/widgets/appBar.dart';
 import 'package:new_panel/core/widgets/custom_body.dart';
-import 'package:new_panel/core/widgets/custom_card_color.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/custome_expansion.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
@@ -66,26 +65,9 @@ class VehicleDetailPage extends StatelessWidget {
                   SizedBox(
                     height: 25.h,
                   ),
-                  MainDetailWidget(),
+                  const MainDetailWidget(),
 
-                  SizedBox(
-                    height: 25.h,
-                  ),
-                  CustomCardColor(
-                    iconSvgPath: Theme.of(context).brightness == Brightness.light ? AppImages.gasGageIcon : AppImages.gasGageIconDark,
-                    title: "HWY FUEL :",
-                    value: "9.0",
-                    gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientGreen : AppColors.gradientGreenDark,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  CustomCardColor(
-                    iconSvgPath: Theme.of(context).brightness == Brightness.light ? AppImages.gasStationIcon : AppImages.gasStationIconDark,
-                    title: "CITY FUEL :",
-                    value: "12.2",
-                    gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientPink : AppColors.gradientPinkDark,
-                  ),
+
                   SizedBox(
                     height: 25.h,
                   ),

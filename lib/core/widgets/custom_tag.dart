@@ -5,7 +5,7 @@ import 'package:new_panel/core/widgets/custom_text.dart';
 
 
 import '../constants/app_dimensions.dart';
-import '../constants/app_styles.dart';
+
 
 class CustomTag extends StatelessWidget {
   final String tagString;

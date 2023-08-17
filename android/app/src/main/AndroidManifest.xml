@@ -2,7 +2,7 @@
     package="com.example.new_panel">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="new_panel"
+        android:label="Sample"
         android:name="${applicationName}"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher">

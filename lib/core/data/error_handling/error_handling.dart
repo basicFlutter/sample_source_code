@@ -15,12 +15,7 @@ class ErrorHandling {
 
   ErrorHandling._internal();
 
-
   ResponseError getResponseError({required DioError response ,required String fromMethod}){
-    // ErrorModel errorModel =ErrorModel.fromJson(response.response?.data) ;
-    // logger.e("$fromMethod : ${response.response?.data["message"]}");
-    // logger.e("$fromMethod : ${response.response?.data["message"]}");
-
 
     if(response.type == DioErrorType.connectionTimeout){
       return ResponseError(

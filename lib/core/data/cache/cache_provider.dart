@@ -17,9 +17,6 @@ class CacheProvider{
     } else if (value is double) {
       sharedPrefs.setDouble(key, value);
     }
-    // else if (value is List<String>) {
-    //   sharedPrefs.setStringList(key, value);
-    // }
   }
 
   static Future<bool> saveString(String key , String value) async{

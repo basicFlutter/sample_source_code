@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
-import 'package:new_panel/features/main_page_feature/presentation/widgets/submenu_model.dart';
+import 'package:new_panel/core/models/submenu_model.dart';
 
 class CustomSubmenu extends StatelessWidget {
    CustomSubmenu({Key? key , required this.subtitle, required this.index , required this.itemLength }) : super(key: key);
@@ -29,19 +29,11 @@ class CustomSubmenu extends StatelessWidget {
                 margin: EdgeInsets.only(left: 2.5.w),
 
                 color: Theme.of(context).primaryColor,
-                child: SizedBox()
+                child: const SizedBox()
             ),
           ),
 
         CustomContainer(
-          // height: 51.h,
-          // color: Colors.red,
-          // border:Border(
-          //   left: BorderSide( //                   <--- right side
-          //     color: Colors.black,
-          //     width: 1,
-          //   ),
-          // ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -50,7 +42,7 @@ class CustomSubmenu extends StatelessWidget {
                   height: 7.5.r,
                   shape: BoxShape.circle,
                   color: Theme.of(context).primaryColor,
-                  child: SizedBox()),
+                  child: const SizedBox()),
               SizedBox(
                 width: 20.w,
               ),
@@ -71,7 +63,7 @@ class CustomSubmenu extends StatelessWidget {
                 height: 36.5.r,
 
                 color: Theme.of(context).primaryColor,
-                child: SizedBox()),
+                child: const SizedBox()),
           ),
 
 

@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_panel/core/constants/constants.dart';
 import 'package:new_panel/core/widgets/custom_text.dart';
 import 'package:new_panel/core/widgets/gradeint_text.dart';
-import 'package:new_panel/core/widgets/shimmer_loading.dart';
+
 
 import '../constants/app_colors.dart';
 
@@ -67,8 +67,8 @@ class CustomImageNetwork extends StatelessWidget {
             loadingBuilder: (BuildContext context, Widget child,
                 ImageChunkEvent? loadingProgress) {
               if (loadingProgress == null) return child;
-              return Center(
-                child: ShimmerLoading(),
+              return const Center(
+                child: Icon(Icons.car_crash),
               );
             },
             errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {

@@ -9,7 +9,6 @@ import '../../domain/entities/inventory_entity.dart';
 /// is_active : 2
 /// is_deleted : 0
 /// sell_price : 0
-/// MidVDSMedia : [{"id":"1086282","media_src":"/hillzgroup/9965686726491139-Honda-Accord_Sedan-2013-fccfda60-b125-11ed-b8dc-bbc4e2a87faf.jpg","media_type":1,"createdAt":"2023-02-20T13:53:55.000Z","updatedAt":"2023-02-20T13:54:13.000Z","frk_mid_v_ds_id":"38139","status":2,"error_reason":null,"order":1,"frk_v_img_cat_id":null,"visible":1,"template_src":"/hillzgroup/2013-Honda-AccordSedan-0-2902442138358796.jpg","default_visible":1}]
 /// odometer_type : 2
 /// special_price : 0
 /// is_coming_soon : false
@@ -122,21 +121,7 @@ InventoryModel copyWith({  int? id,
   totalCost: totalCost ?? _totalCost,
   age: age ?? _age,
 );
-  int? get id => _id;
-  Vehicles? get vehicles => _vehicles;
-  num? get odometer => _odometer;
-  String? get stockNO => _stockNO;
-  String? get createdAt => _createdAt;
-  num? get isActive => _isActive;
-  num? get isDeleted => _isDeleted;
-  num? get sellPrice => _sellPrice;
-  List<MidVdsMedia>? get midVDSMedia => _midVDSMedia;
-  num? get odometerType => _odometerType;
-  num? get specialPrice => _specialPrice;
-  bool? get isComingSoon => _isComingSoon;
-  num? get vehicleStatus => _vehicleStatus;
-  num? get totalCost => _totalCost;
-  num? get age => _age;
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -165,7 +150,6 @@ InventoryModel copyWith({  int? id,
 }
 
 /// id : "1086282"
-/// media_src : "/hillzgroup/9965686726491139-Honda-Accord_Sedan-2013-fccfda60-b125-11ed-b8dc-bbc4e2a87faf.jpg"
 /// media_type : 1
 /// createdAt : "2023-02-20T13:53:55.000Z"
 /// updatedAt : "2023-02-20T13:54:13.000Z"
@@ -175,7 +159,6 @@ InventoryModel copyWith({  int? id,
 /// order : 1
 /// frk_v_img_cat_id : null
 /// visible : 1
-/// template_src : "/hillzgroup/2013-Honda-AccordSedan-0-2902442138358796.jpg"
 /// default_visible : 1
 
 MidVdsMedia midVdsMediaFromJson(String str) => MidVdsMedia.fromJson(json.decode(str));

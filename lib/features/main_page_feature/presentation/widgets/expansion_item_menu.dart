@@ -4,8 +4,7 @@ import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/features/main_page_feature/presentation/widgets/custom_submenu.dart';
 import 'package:new_panel/features/main_page_feature/presentation/widgets/drawerItem.dart';
 import 'package:flutter_expanded_tile/flutter_expanded_tile.dart';
-import 'package:new_panel/features/main_page_feature/presentation/widgets/submenu_model.dart';
-import 'package:new_panel/main.dart';
+import 'package:new_panel/core/models/submenu_model.dart';
 
 class ExpansionItemMenu extends StatefulWidget {
   const ExpansionItemMenu({Key? key , required this.children , required this.title , required this.iconSvgPath , required this.onTap}) : super(key: key);
@@ -42,22 +41,15 @@ class _ExpansionItemMenuState extends State<ExpansionItemMenu> {
             titlePadding: EdgeInsets.zero,
             leadingPadding: EdgeInsets.zero,
             trailingPadding: EdgeInsets.zero,
-            // headerPadding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 12.h),
             headerSplashColor: Colors.transparent,
             contentBackgroundColor: Colors.transparent,
             contentPadding: EdgeInsets.only(left: 20.w , right: 10.w ,bottom: 15.h),
-            //  contentRadius: 12.0,
-
           ),
           trailingRotation: 180,
           trailing: Icon(
               Icons.keyboard_arrow_down_outlined,
             color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark,
           ),
-
-
-
-
 
 
           controller: _controller,
@@ -85,9 +77,7 @@ class _ExpansionItemMenuState extends State<ExpansionItemMenu> {
 
           ),
 
-
           onTap: () {
-
           },
           onLongTap: () {
 

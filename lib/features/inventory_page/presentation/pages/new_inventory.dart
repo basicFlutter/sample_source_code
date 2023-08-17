@@ -36,8 +36,7 @@ class NewInventory extends StatelessWidget {
       searchbarController: searchbarController,
       body: BlocProvider<InventoryBloc>(
         create: (context) => InventoryBloc(
-            getInventoryUseCase: locator(),
-            getWholeInventoriesUseCase: locator())..add(GetInventoriesEvent(stateType: '3'),
+            getInventoryUseCase: locator(),)..add(GetInventoriesEvent(stateType: '3'),
         ),
         child: Builder(
             builder: (context) {

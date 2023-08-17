@@ -8,14 +8,8 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../constants/constants.dart';
 import '../cache/cache_provider.dart';
 const baseUrl = 'http://192.168.1.120:8000';
-// const baseUrl = 'https://test111web.ca';
 
-// const baseUrl = 'https://hillz-panel-backend.azurewebsites.net';
-// const baseUrl = 'http://192.168.1.120:8000';
-// const baseUrl = 'https://api.test333web.ca';
-// const domain = 'localhost:3000';
 
-const imageBaseUrl = 'https://image123.azureedge.net';
 
 
 
@@ -43,7 +37,6 @@ class ApiProvider extends ApiProviderInterface {
     baseUrl: baseUrl,
     connectTimeout:const Duration(milliseconds: 700000),
     headers: {
-     // "Authorization" :"Bearer ${_singleton.getToken()}",
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
@@ -51,9 +44,6 @@ class ApiProvider extends ApiProviderInterface {
 
   final Dio _dio = Dio(optionsDio);
 
-  Future<String?> getToken()async{
-    return await CacheProvider.getString("accessToken");
-  }
 
   @override
   Future<Response> get(path, {dynamic data,Options? options}) async{
@@ -104,10 +94,7 @@ class ApiProvider extends ApiProviderInterface {
 
   @override
   Future<void> setToken() async{
-    // _dio.options.headers.addAll({"Authorization" : "Bearer ${await CacheProvider.getString("accessToken")}"});
-    // _dio.options.headers.addAll({"Authorization" : "Bearer ${Constants.accessToken}"});
     _dio.options.headers.addAll({"Authorization" : "Bearer ${Constants.accessToken}"});
-    logger.w(_dio.options.headers);
   }
 
 

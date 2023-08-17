@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:new_panel/core/constants/app_colors.dart';
-import 'package:new_panel/features/main_page_feature/presentation/widgets/custom_submenu.dart';
+
 import 'package:new_panel/features/main_page_feature/presentation/widgets/drawerItem.dart';
 import 'package:new_panel/features/main_page_feature/presentation/widgets/expansion_item_menu.dart';
-import 'package:new_panel/features/main_page_feature/presentation/widgets/sub_menu.dart';
-import 'package:new_panel/features/main_page_feature/presentation/widgets/submenu_model.dart';
+import 'package:new_panel/core/models/submenu_model.dart';
 import 'package:new_panel/main.dart';
 
 import '../../../../core/constants/app_images.dart';
@@ -47,8 +44,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             child: Column(
               children: [
-                _backButton(context),
-
                 Expanded(
                   child: Padding(
                     padding:
@@ -128,13 +123,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
                           ),
 
-                          // _expansionItem(
-                          //     context: context,
-                          //     title: 'Marketing',
-                          //     child: [],
-                          //     imageUrl: AppImages.marketing),
-
-
 
                           DrawerItem(
                             imageSvgPath: Theme.of(context).brightness == Brightness.light ? AppImages.accounting : AppImages.accountingDark,
@@ -171,70 +159,4 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
 
 
-  Widget _expansionItem(
-      {required BuildContext context,
-        required String title,
-        required String imageUrl,
-        required List<Widget> child}) {
-    return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(6.r)),
-      child: Theme(
-        data: ThemeData(
-          dividerColor:
-          Theme.of(context).colorScheme.background.withOpacity(0.4),
-        ),
-        child: ExpansionTile(
-            children: child,
-            backgroundColor:
-            Theme.of(context).colorScheme.background.withOpacity(0.3),
-            iconColor: Theme.of(context).colorScheme.background,
-            collapsedIconColor: Theme.of(context).colorScheme.background,
-            tilePadding: EdgeInsets.zero,
-            title: _drawerItem(
-                context: context, imageUrl: imageUrl, title: title)),
-      ),
-    );
-  }
-
-  Widget _drawerItem(
-      {required BuildContext context,
-        required String imageUrl,
-        required String title}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.h),
-      child: Row(
-        children: [
-          SvgPicture.asset(imageUrl),
-          SizedBox(
-            width: 20.w,
-          ),
-          Text(
-            title,
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall!
-                .copyWith(color: Colors.white),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _backButton(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.only(right: 10.w,top: 0.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon:  Icon(Icons.arrow_back,
-                  color: Theme.of(context).brightness == Brightness.light ? AppColors.white : AppColors.whiteDark
-              ))
-        ],
-      ),
-    );
-  }
 }

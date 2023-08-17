@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:new_panel/core/constants/blurMenu.dart';
-import 'package:new_panel/core/constants/blurMenuItem.dart';
-import 'package:new_panel/core/constants/constants.dart';
+import 'package:new_panel/core/widgets/blurMenu.dart';
+import 'package:new_panel/core/widgets/blurMenuItem.dart';
 import 'package:new_panel/core/data/cache/cache_provider.dart';
-import 'package:new_panel/core/params/login_input_params.dart';
 import 'package:new_panel/core/widgets/appBar.dart';
 import 'package:new_panel/core/widgets/searchbar_widget.dart';
-import 'package:new_panel/features/home_page_feature/presentation/pages/home_page.dart';
 import 'package:new_panel/features/inventory_page/presentation/pages/new_inventory.dart';
-import 'package:new_panel/features/login_feature/data/models/login_response_model.dart';
-import 'package:new_panel/features/login_feature/presentation/pages/login_page.dart';
-import 'package:new_panel/features/main_page_feature/presentation/widgets/custom_buttom_navigation.dart';
 import 'package:new_panel/main.dart';
-import 'package:page_transition/page_transition.dart';
-
 import '../constants/app_images.dart';
+
 GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>() ;
 class CustomBody extends StatelessWidget {
   final TextEditingController searchbarController;
@@ -32,7 +25,6 @@ class CustomBody extends StatelessWidget {
       : super(key: key);
 
   List<Widget> pageList = [
-    const HomePage(),
      NewInventory(),
     Container(),
     Container()
@@ -50,46 +42,6 @@ class CustomBody extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       drawerEnableOpenDragGesture: false,
       backgroundColor: Theme.of(context).colorScheme.background,
-      // drawer: Drawer(
-      //
-      //   child: Column(
-      //     children: [
-      //       Container(
-      //         width: MediaQuery.of(context).size.width,
-      //         height: MediaQuery.of(context).size.height,
-      //         decoration: BoxDecoration(
-      //           image: DecorationImage(image: AssetImage(AppImages.drawerBackground)
-      //
-      //           )
-      //         ),
-      //       )
-      //     ],
-      //   ),
-      // ),
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false ,
-      //   // actions: [],
-      //   // backgroundColor: Theme.of(context).colorScheme.background,
-      //   backgroundColor: Colors.grey,
-      //   toolbarHeight: 93.h,
-      //   elevation: 0,
-      //
-      //
-      //   title:Column(
-      //     mainAxisAlignment: MainAxisAlignment.start,
-      //     children: [
-      //     SizedBox(
-      //       height: 10.h,
-      //     ),
-      //   _topOptions(context),
-      //   SizedBox(
-      //     height: 10.h,
-      //   ),
-      //   SearchbarWidget(
-      //     searchbarController: searchbarController,
-      //   ),
-      // ],) ,),
-
       body: SafeArea(
         child: SizedBox(
           width: 1.sw,
@@ -116,15 +68,8 @@ class CustomBody extends StatelessWidget {
                     ),
                   ],),
               ),
-              // if(appBarCustom!= null)
-              //   SizedBox(
-              //     height: 8.h,
-              //   ),
               if(appBarCustom!= null)
                 appBarCustom!,
-              // SizedBox(
-              //   height: 20.h,
-              // ),
               body,
             ],
           ),
@@ -159,45 +104,17 @@ class CustomBody extends StatelessWidget {
                     onSelect: (BlurMenuItem item){
                       logger.i("on Selected Function called ${item.text}");
                       if(item.partName == "profile"){
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //       type: PageTransitionType.fade,
-                        //       duration: const Duration(milliseconds: 200),
-                        //       child:   ProfileSettingPage(
-                        //         userInformation: Constants.customerInformation!,
-                        //       )
-                        //   ),
-                        // );
+
                       }else if(item.partName == "Password and security"){
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //       type: PageTransitionType.fade,
-                        //       duration: const Duration(milliseconds: 200),
-                        //       child:   PasswordAndSecurityPage(
-                        //         userInformation: Constants.customerInformation!,
-                        //       )
-                        //   ),
-                        // );
+
                       }else if(item.partName == "trade"){
 
                       }else if(item.partName == "credit"){
 
                       }else if(item.partName == "LogOut"){
 
-                        CacheProvider.saveString('userName',"");
-                        CacheProvider.saveString('password',"");
-                        //Constants.customerInformation?.password = "";
 
-                        Navigator.pushReplacement(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: const Duration(milliseconds: 200),
-                              child:   LoginPage(loginMapModel: LoginInputParams())
-                          ),
-                        );
+
 
                       }
                       if(onClickedItemMenu != null){
@@ -230,13 +147,6 @@ class CustomBody extends StatelessWidget {
     }
 
 
-    // if(menuIsOpen){
-    //   overlayEntry?.remove();
-    //   menuIsOpen = true;
-    // }else{
-    // overlayState.insert(overlayEntry!);
-    // menuIsOpen = true;
-    // }
   }
 
   Widget _topOptions(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_colors.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/core/widgets/circular_button.dart';
-import 'package:new_panel/core/widgets/custom_bottom_sheet.dart';
+
 import 'package:new_panel/core/widgets/custom_check_box.dart';
 import 'package:new_panel/core/widgets/custom_container.dart';
 import 'package:new_panel/core/widgets/custom_image_network.dart';
@@ -13,7 +13,6 @@ import 'package:new_panel/features/inventory_page/presentation/widgets/action_ca
 import 'package:new_panel/features/inventory_page/presentation/widgets/bottom_sheet_inventory_item.dart';
 import 'package:new_panel/features/inventory_page/presentation/widgets/price_widget.dart';
 
-import 'package:new_panel/main.dart';
 
 import 'dart:math' as math;
 
@@ -182,7 +181,6 @@ class NewInventoryItem extends StatelessWidget {
 
                                                   onTap: (){
 
-                                                  AppUtils.showCustomBottomSheet(context: context, child: BottomSheetInventoryItems());
 
                                                   },
                                                 radius: 25.r,

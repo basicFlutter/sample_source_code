@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_panel/core/constants/app_images.dart';
+import 'package:new_panel/core/constants/constants.dart';
 import 'package:new_panel/core/utils/app_utils.dart';
 import 'package:new_panel/features/inventory_page/data/models/inventory_model.dart';
 
@@ -85,7 +86,7 @@ class _CustomSliderState extends State<CustomSlider> {
                         ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                      child: Image.network( '$imageBaseUrl${image.mediaSrc!}' , fit: BoxFit.cover,),
+                      child: Image.network( '${Constants.cdnBaseUrl}${image.mediaSrc!}' , fit: BoxFit.cover,),
                     ),
                   );
   }
@@ -124,7 +125,7 @@ class _CustomSliderState extends State<CustomSlider> {
                     bottomLeft: Radius.circular(15.r),
                     bottomRight: Radius.circular(15.r)),
                 child: Image.network(
-                  '$imageBaseUrl${widget.carImages[0].mediaSrc}',
+                  '${Constants.cdnBaseUrl}${widget.carImages[0].mediaSrc}',
                   fit: BoxFit.cover,
                 ),
               )

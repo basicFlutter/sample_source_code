@@ -12,7 +12,6 @@ import 'package:new_panel/main.dart';
 
 import '../../domain/entities/inventory_entity.dart';
 import '../../domain/use_cases/get_inventory_usecase.dart';
-import '../../domain/use_cases/get_whole_inventory_use_case.dart';
 
 part 'inventory_event.dart';
 
@@ -21,14 +20,13 @@ part 'inventory_state.dart';
 class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
   GetInventoryUseCase getInventoryUseCase;
 
-  GetWholeInventoryUseCase getWholeInventoriesUseCase;
+
 
   List<InventoryEntity> inventories = [];
   List<InventoryEntity> searchedInventories = [] ;
 
   InventoryBloc(
-      {required this.getInventoryUseCase,
-      required this.getWholeInventoriesUseCase})
+      {required this.getInventoryUseCase,})
       : super(InventoryState()) {
 
 

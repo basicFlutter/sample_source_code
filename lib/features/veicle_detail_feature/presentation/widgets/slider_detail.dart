@@ -98,7 +98,6 @@ class _SliderDetailState extends State<SliderDetail> {
                     cacheWidth: 500,
                     boxFit: BoxFit.cover,
 
-                    // url: "/hillzgroup/6989326754475327-Subaru-BRZ-2015-11369cb0-2f8d-11ee-b422-cd37e6d3ffa2.jpg"
                     url: imageUrl
                 );
               },
