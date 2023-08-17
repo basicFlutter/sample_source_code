@@ -10,7 +10,7 @@ import 'package:new_panel/core/suggestions/presentation/manager/status/get_body_
 import 'package:new_panel/core/suggestions/presentation/manager/status/get_color_status.dart';
 import 'package:new_panel/core/suggestions/presentation/manager/suggestion_bloc.dart';
 import 'package:new_panel/core/widgets/appBar.dart';
-import 'package:new_panel/core/widgets/custom_body_with_bottomNavigation.dart';
+import 'package:new_panel/core/widgets/custom_body.dart';
 import 'package:new_panel/core/widgets/odometer_input_title.dart';
 import 'package:new_panel/core/widgets/round_corner_button.dart';
 import 'package:new_panel/core/widgets/simpleDropDown.dart';
@@ -90,9 +90,8 @@ class _FilterPageState extends State<FilterPage> {
   // @override
   @override
   Widget build(BuildContext context) {
-    return CustomBodyWithBottomNavigation(
+    return CustomBody(
         searchbarController: searchController,
-        indexPageSelected: 1,
         appBarCustom: AppBarCustom(
           title: "Filter",
           height: 65.h,
